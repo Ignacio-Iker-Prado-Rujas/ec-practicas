@@ -1,0 +1,37 @@
+
+	.global contarUnos
+
+	.equ UNO, 0x01
+	.equ ROJO, 2126
+	.equ VERDE, 7152
+	.equ BLUE, 722
+
+	contarUnos:
+
+		bx lr		
+
+
+
+	.global rgb2gray
+
+	.equ UNO, 0x01
+	.equ ROJO, 2126
+	.equ VERDE, 7152
+	.equ BLUE, 722
+
+	.text
+
+	rgb2gray:
+
+		bx lr
+
+	div10000:
+		push {fp}
+		LDR     R1, =0xD1B71758
+		UMULL   R3, R2, R0, R1
+		MOV     R0, R2,LSR#13
+ 		pop {fp}
+ 		bx lr
+
+
+
