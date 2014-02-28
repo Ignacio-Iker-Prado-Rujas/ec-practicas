@@ -1,0 +1,157 @@
+20:47:17 **** Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../init.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="init.o.lst" -c -fmessage-length=0 -MMD -MP -MF"init.d" -MT"init.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "init.o" "../init.S"
+'Finished building: ../init.S'
+' '
+'Building file: ../main.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
+'Finished building: ../main.c'
+' '
+'Building file: ../misc.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="misc.o.lst" -c -fmessage-length=0 -MMD -MP -MF"misc.d" -MT"misc.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "misc.o" "../misc.S"
+../misc.S: Assembler messages:
+../misc.S:11: Error: bad instruction `push{lr, r4,r5,r6,r7,r8}'
+../misc.S:19: Error: immediate expression requires a # prefix -- `cmp r3,r'
+../misc.S:25: Error: bad instruction `sum r6,r6,r5'
+../misc.S:44: Error: bad instruction `pop{lr, r4,r5,r6,r7,r8}'
+../misc.S:58: Error: bad instruction `push{lr, r4,r5,r6}'
+../misc.S:64: Error: ARM register expected -- `mul r4,#ROJO,r1'
+../misc.S:65: Error: ARM register expected -- `mul r5,#VERDE,r2'
+../misc.S:66: Error: ARM register expected -- `mul r6,#AZUL,r3'
+../misc.S:68: Error: bad instruction `sum r0,r4,r5'
+../misc.S:69: Error: bad instruction `sum r0,r0,r6'
+../misc.S:73: Error: bad instruction `pop{lr, r4,r5,r6}'
+cs-make: *** [misc.o] Error 1
+20:50:54 **** Incremental Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../misc.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="misc.o.lst" -c -fmessage-length=0 -MMD -MP -MF"misc.d" -MT"misc.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "misc.o" "../misc.S"
+../misc.S: Assembler messages:
+../misc.S:12: Error: bad instruction `push{lr, r4,r5,r6,r7,r8}'
+../misc.S:21: Error: immediate expression requires a # prefix -- `cmp r3,r'
+../misc.S:27: Error: bad instruction `sum r6,r6,r5'
+../misc.S:46: Error: bad instruction `pop{lr, r4,r5,r6,r7,r8}'
+../misc.S:60: Error: bad instruction `push{lr, r4,r5,r6,r7}'
+../misc.S:67: Error: bad expression -- `ldr r7,=#ROJO'
+../misc.S:70: Error: bad expression -- `ldr r7,=#VERDE'
+../misc.S:73: Error: bad expression -- `ldr r7,=#AZUL'
+../misc.S:76: Error: bad instruction `sum r0,r4,r5'
+../misc.S:77: Error: bad instruction `sum r0,r0,r6'
+../misc.S:81: Error: bad instruction `pop{lr, r4,r5,r6,r7}'
+cs-make: *** [misc.o] Error 1
+20:52:18 **** Incremental Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../misc.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="misc.o.lst" -c -fmessage-length=0 -MMD -MP -MF"misc.d" -MT"misc.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "misc.o" "../misc.S"
+../misc.S: Assembler messages:
+../misc.S:12: Error: bad instruction `push{lr, r4,r5,r6,r7,r8}'
+../misc.S:21: Error: immediate expression requires a # prefix -- `cmp r3,r'
+../misc.S:27: Error: bad instruction `sum r6,r6,r5'
+../misc.S:46: Error: bad instruction `pop{lr, r4,r5,r6,r7,r8}'
+../misc.S:60: Error: bad instruction `push{lr, r4,r5,r6,r7}'
+../misc.S:76: Error: bad instruction `sum r0,r4,r5'
+../misc.S:77: Error: bad instruction `sum r0,r0,r6'
+../misc.S:81: Error: bad instruction `pop{lr, r4,r5,r6,r7}'
+cs-make: *** [misc.o] Error 1
+20:53:08 **** Incremental Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../misc.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="misc.o.lst" -c -fmessage-length=0 -MMD -MP -MF"misc.d" -MT"misc.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "misc.o" "../misc.S"
+../misc.S: Assembler messages:
+../misc.S:12: Error: bad instruction `push{lr, r4,r5,r6,r7,r8}'
+../misc.S:46: Error: bad instruction `pop{lr, r4,r5,r6,r7,r8}'
+../misc.S:60: Error: bad instruction `push{lr, r4,r5,r6,r7}'
+../misc.S:81: Error: bad instruction `pop{lr, r4,r5,r6,r7}'
+cs-make: *** [misc.o] Error 1
+20:53:58 **** Incremental Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../misc.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="misc.o.lst" -c -fmessage-length=0 -MMD -MP -MF"misc.d" -MT"misc.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "misc.o" "../misc.S"
+../misc.S: Assembler messages:
+../misc.S:12: Warning: register range not in ascending order
+../misc.S:46: Warning: register range not in ascending order
+../misc.S:60: Warning: register range not in ascending order
+../misc.S:81: Warning: register range not in ascending order
+'Finished building: ../misc.S'
+' '
+'Building file: ../trafo.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="trafo.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"trafo.d" -MT"trafo.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "trafo.o" "../trafo.c"
+../trafo.c: In function 'RGB2GrayMatrix':
+../trafo.c:11:4: error: incompatible type for argument 1 of 'rgb2gray'
+../trafo.c:5:22: note: expected 'struct pixelRGB *' but argument is of type 'pixelRGB'
+cs-make: *** [trafo.o] Error 1
+20:54:40 **** Incremental Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../misc.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="misc.o.lst" -c -fmessage-length=0 -MMD -MP -MF"misc.d" -MT"misc.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "misc.o" "../misc.S"
+'Finished building: ../misc.S'
+' '
+'Building file: ../trafo.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="trafo.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"trafo.d" -MT"trafo.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "trafo.o" "../trafo.c"
+../trafo.c: In function 'RGB2GrayMatrix':
+../trafo.c:11:4: error: incompatible type for argument 1 of 'rgb2gray'
+../trafo.c:5:22: note: expected 'struct pixelRGB *' but argument is of type 'pixelRGB'
+cs-make: *** [trafo.o] Error 1
+20:55:05 **** Incremental Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../trafo.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="trafo.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"trafo.d" -MT"trafo.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "trafo.o" "../trafo.c"
+'Finished building: ../trafo.c'
+' '
+'Building target: PracticaEC1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\PracticaEC1\ld_script.ld" -nostartfiles -Wl,-Map,PracticaEC1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "PracticaEC1.elf"  ./init.o ./main.o ./misc.o ./trafo.o   
+'Finished building target: PracticaEC1.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary PracticaEC1.elf  "PracticaEC1.hex"
+'Finished building: PracticaEC1.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S PracticaEC1.elf > "PracticaEC1.lst"
+'Finished building: PracticaEC1.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley PracticaEC1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1220	      0	    176	   1396	    574	PracticaEC1.elf
+'Finished building: PracticaEC1.siz'
+' '
+20:55:58 **** Incremental Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../trafo.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="trafo.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"trafo.d" -MT"trafo.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "trafo.o" "../trafo.c"
+'Finished building: ../trafo.c'
+' '
+'Building target: PracticaEC1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\PracticaEC1\ld_script.ld" -nostartfiles -Wl,-Map,PracticaEC1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "PracticaEC1.elf"  ./init.o ./main.o ./misc.o ./trafo.o   
+'Finished building target: PracticaEC1.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary PracticaEC1.elf  "PracticaEC1.hex"
+'Finished building: PracticaEC1.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S PracticaEC1.elf > "PracticaEC1.lst"
+'Finished building: PracticaEC1.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley PracticaEC1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1220	      0	    176	   1396	    574	PracticaEC1.elf
+'Finished building: PracticaEC1.siz'
+' '

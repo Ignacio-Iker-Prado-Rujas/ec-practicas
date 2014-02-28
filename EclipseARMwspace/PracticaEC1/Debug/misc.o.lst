@@ -1,0 +1,116 @@
+   1              	# 1 "../misc.S"
+   1              	
+   0              	
+   0              	
+   0              	
+   2              		.global contarUnos
+   3              	
+   4              		.equ UNO, 0x01
+   5              	
+   6              		contarUnos:
+   7              			@En r0 tenemos la direccion de la imagen binaria
+   8              			@En r1 tenemos la direccion de unosPorFila
+   9              			@En r2 tenemos nfilas
+  10              			@En r3 tenemos ncols
+  11              	
+  12 0000 F0412DE9 			PUSH { r4, r5, r6, r7, r8, lr}
+  13              	
+  14              	
+  15 0004 0040A0E3 			mov r4, #0	@En r4 tenemos la i
+  16              	
+  17 0008 020054E1 	buclei:	cmp  r4, r2		@i = nfilas?
+  18 000c 0E00000A 			beq endBuclei
+  19 0010 0150A0E3 			mov r5, #UNO	@En r5 tenemos la j
+  20              	buclej:
+  21 0014 050053E1 			cmp r3, r5		@j = ncols?
+  22 0018 0900000A 			beq endBuclej
+  23              	
+  24              			@i*nfilas
+  25 001c 940206E0 			mul r6, r4, r2
+  26              			@i*nfilas+j
+  27 0020 056086E0 			add r6, r6, r5
+  28              			@imagenBinaria[i*nfilas + j]
+  29 0024 0670D0E7 			ldrb r7, [r0, r6]
+  30 0028 000057E3 			cmp  r7, #0
+  31 002c 0200000A 			beq noHayUno
+  32              			@imagenBinaria[i*nfilas + j] = 1
+  33              			@unosPorFila[i]
+  34 0030 B48091E1 			ldrh r8, [r1, r4]
+  35 0034 018088E2 			add r8, r8, #UNO
+  36 0038 B48081E1 			strh r8, [r1, r4]
+  37              	
+  38              	noHayUno:
+  39 003c 015085E2 			add r5, r5, #UNO	@j = j + 1
+  40 0040 F3FFFFEA 			b buclej
+  41              	endBuclej:
+  42 0044 014084E2 			add r4, r4, #UNO	@i = i + 1
+  43 0048 EEFFFFEA 			b buclei
+  44              	endBuclei:
+  45              	
+  46 004c F041BDE8 			pop {r4, r5, r6, r7, r8, lr}
+  47 0050 1EFF2FE1 			bx lr		
+  48              	
+  49              		.global rgb2gray
+  50              	
+  51              		.equ UNO, 0x01
+  52              		.equ ROJO, 2126
+  53              		.equ VERDE, 7152
+  54              		.equ AZUL, 722
+  55              	
+  56              		.text
+  57              	
+  58              		rgb2gray:
+  59              	
+  60 0054 F0402DE9 			push { r4, r5, r6, r7, lr}
+  61              	
+  62 0058 0010D0E5 			ldrb r1, [r0]
+  63 005c 0120D0E5 			ldrb r2, [r0, #1]
+  64 0060 0230D0E5 			ldrb r3, [r0, #2]
+  65              	
+  66              	
+  67 0064 3C70DFE5 			ldrb r7, =ROJO
+  68 0068 970104E0 			mul r4, r7, r1
+  69              	
+  70 006c 3870DFE5 			ldrb r7, =VERDE
+  71 0070 970205E0 			mul r5, r7, r2
+  72              	
+  73 0074 3470DFE5 			ldrb r7, =AZUL
+  74 0078 970306E0 			mul r6, r7, r3
+  75              	
+  76 007c 050084E0 			add r0, r4, r5
+  77 0080 060080E0 			add r0, r0, r6
+  78              	
+  79 0084 010000EB 			bl div10000
+  80              	
+  81 0088 F040BDE8 			pop {r4, r5, r6, r7, lr}
+  82 008c 1EFF2FE1 			bx lr
+  83              	
+  84              		div10000:
+  85 0090 04B02DE5 			push {fp}
+  86 0094 18109FE5 			LDR     R1, =0xD1B71758
+  87 0098 903182E0 			UMULL   R3, R2, R0, R1
+  88 009c A206A0E1 			MOV     R0, R2,LSR#13
+  89 00a0 04B09DE4 	 		pop {fp}
+  90 00a4 1EFF2FE1 	 		bx lr
+  90      4E080000 
+  90      F01B0000 
+  90      D2020000 
+  90      5817B7D1 
+DEFINED SYMBOLS
+           ../misc.S:6      .text:00000000 contarUnos
+           ../misc.S:4      *ABS*:00000001 UNO
+           ../misc.S:12     .text:00000000 $a
+           ../misc.S:17     .text:00000008 buclei
+           ../misc.S:44     .text:0000004c endBuclei
+           ../misc.S:20     .text:00000014 buclej
+           ../misc.S:41     .text:00000044 endBuclej
+           ../misc.S:38     .text:0000003c noHayUno
+           ../misc.S:58     .text:00000054 rgb2gray
+           ../misc.S:52     *ABS*:0000084e ROJO
+           ../misc.S:53     *ABS*:00001bf0 VERDE
+           ../misc.S:54     *ABS*:000002d2 AZUL
+           ../misc.S:84     .text:00000090 div10000
+           ../misc.S:90     .text:000000a8 $d
+                   .debug_aranges:0000000c $d
+
+NO UNDEFINED SYMBOLS

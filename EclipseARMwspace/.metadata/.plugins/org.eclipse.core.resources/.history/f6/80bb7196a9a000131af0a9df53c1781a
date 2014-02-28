@@ -1,0 +1,31 @@
+#include "trafo.h"
+#include "types.h"
+
+
+extern unsigned char rgb2gray(pixelRGB* pixel);
+
+void RGB2GrayMatrix(pixelRGB orig[], unsigned char dest[], int nfilas, int ncols) {
+    int i, j;
+	for (i = 0; i < nfilas; i++)
+		for (j = 0; j < ncols; j++)
+			dest[i*ncols+j] = rgb2gray(orig[i*ncols+j]);
+    
+}
+
+void Gray2BinaryMatrix(unsigned char orig[], unsigned char dest[],
+		unsigned char umbral, int nfilas, int ncols) {
+	unsigned char imagenGris[nfilas*ncols];
+	unsigned char imagenBinaria[nfilas*ncols];
+	int i,j;
+	// umbral será una variable o constante de nuestro código
+	for (i=0;i<N;i++) {
+	for (j=0;j<M;j++) {
+	if (imagenGris[i*M + j] > umbral)
+	imagenBinaria[i*M + j]= 1;
+	else
+	imagenBinaria[i*M + j]= 0;
+	}
+	}
+    
+}
+

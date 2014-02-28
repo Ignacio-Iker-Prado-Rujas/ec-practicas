@@ -1,0 +1,49 @@
+
+	.global contarUnos
+
+	.equ UNO, 0x01
+
+	contarUnos:
+
+		bx lr		
+
+
+
+	.global rgb2gray
+
+	.equ UNO, 0x01
+	.equ ROJO, 2126
+	.equ VERDE, 7152
+	.equ BLUE, 722
+
+	.text
+
+	rgb2gray:
+
+		push{lr, r4, r5, r6}
+
+		ldr r1, [r0]
+		ldr r2, [r0, #1]
+		ldr r3, [r0, #2]
+
+		mul r4, #ROJO, r1
+		mul r5, #VERDE, r2
+		mul r6, #AZUL, r3
+
+		sum r0, r4, r5
+		sum r0, r0, r6
+
+		bl div10000
+		pop{lr, r4, r5, r6}
+		bx lr
+
+	div10000:
+		push {fp}
+		LDR     R1, =0xD1B71758
+		UMULL   R3, R2, R0, R1
+		MOV     R0, R2,LSR#13
+ 		pop {fp}
+ 		bx lr
+
+
+

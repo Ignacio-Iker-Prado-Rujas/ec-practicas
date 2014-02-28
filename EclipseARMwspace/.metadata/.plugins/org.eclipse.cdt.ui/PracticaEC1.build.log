@@ -1,0 +1,29 @@
+20:55:58 **** Incremental Build of configuration Debug for project PracticaEC1 ****
+cs-make all 
+'Building file: ../trafo.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="trafo.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"trafo.d" -MT"trafo.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "trafo.o" "../trafo.c"
+'Finished building: ../trafo.c'
+' '
+'Building target: PracticaEC1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\PracticaEC1\ld_script.ld" -nostartfiles -Wl,-Map,PracticaEC1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "PracticaEC1.elf"  ./init.o ./main.o ./misc.o ./trafo.o   
+'Finished building target: PracticaEC1.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary PracticaEC1.elf  "PracticaEC1.hex"
+'Finished building: PracticaEC1.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S PracticaEC1.elf > "PracticaEC1.lst"
+'Finished building: PracticaEC1.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley PracticaEC1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1220	      0	    176	   1396	    574	PracticaEC1.elf
+'Finished building: PracticaEC1.siz'
+' '
+
+20:55:58 Build Finished (took 534ms)
+
