@@ -1,0 +1,85 @@
+
+	.global contarUnos
+
+	.equ UNO, 0x01
+
+	contarUnos:
+		@En r0 tenemos la direccion de la imagen binaria
+		@En r1 tenemos la direccion de unosPorFila
+		@En r2 tenemos nfilas
+		@En r3 tenemos ncols
+		push{lr, r4, r5, r6, r7, r8}
+
+
+		mov r4, #0	@En r4 tenemos la i
+
+buclei:	cmp  r4, r2		@i = nfilas?
+		beq endBuclei
+		mov r5, #0	@En r5 tenemos la j
+buclej:	cmp r3, r		@j = ncols?
+		beq endBuclej
+
+		@i*nfilas
+		mul r6, r4, r2
+		@i*nfilas+j
+		sum r6, r6, r5
+		@imagenBinaria[i*nfilas + j]
+		ldrb r7, [r0, r6]
+		cmp  r7, #0
+		beq noHayUno
+		@imagenBinaria[i*nfilas + j] = 1
+		@unosPorFila[i]
+		ldrh r8, [r1, r4]
+		add r8, r8, #UNO
+		strh r8, [r1, r4]
+
+noHayUno:
+		add r5, r5, #UNO	@j = j + 1
+		b buclej
+endBuclej:
+		add r4, r4, #UNO	@i = i + 1
+		b buclei
+endBuclei:
+
+		pop{lr, r4, r5, r6, r7, r8}
+		bx lr		
+
+	.global rgb2gray
+
+	.equ UNO, 0x01
+	.equ ROJO, 2126
+	.equ VERDE, 7152
+	.equ AZUL, 722
+
+	.text
+
+	rgb2gray:
+
+		push{lr, r4, r5, r6}
+
+		ldrb r1, [r0]
+		ldrb r2, [r0, #1]
+		ldrb r3, [r0, #2]
+
+		mul r4, #ROJO, r1
+		mul r5, #VERDE, r2
+		mul r6, #AZUL, r3
+
+		sum r0, r4, r5
+		sum r0, r0, r6
+
+		bl div10000
+
+		pop{lr, r4, r5, r6}
+		bx lr
+
+	div10000:
+		push {fp}
+		LDR     R1, =0xD1B71758
+		UMULL   R3, R2, R0, R1
+		MOV     R0, R2,LSR#13
+ 		pop {fp}
+ 		bx lr
+
+
+
