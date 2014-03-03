@@ -1,3 +1,4 @@
-activeuserprofiles=PTO0911;Team
+activeuserprofiles=PTO0715;PTO0911;Team
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=usuario_local
+useridperkey=PTO0911.Local\=usuario_local;PTO0715.Local\=usuario_local;

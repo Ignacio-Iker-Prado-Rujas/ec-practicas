@@ -1,0 +1,122 @@
+   1              	# 1 "../misc.S"
+   1              	
+   0              	
+   0              	
+   0              	
+   2              		.global contarUnos
+   3              	
+   4              		.equ UNO, 0x01
+   5              	
+   6              		contarUnos:
+   7              			@En r0 tenemos la direccion de la imagen binaria
+   8              			@En r1 tenemos la direccion de unosPorFila
+   9              			@En r2 tenemos nfilas
+  10              			@En r3 tenemos ncols
+  11              	
+  12 0000 F0412DE9 			PUSH { r4, r5, r6, r7, r8, lr}
+  13              	
+  14 0004 0040A0E3 			mov r4, #0	@En r4 tenemos la i
+  15              	
+  16 0008 020054E1 	buclei:	cmp  r4, r2		@i = nfilas?
+  17 000c 0F00000A 			beq endBuclei
+  18 0010 0050A0E3 			mov r5, #0	@En r5 tenemos la j
+  19              	buclej:
+  20 0014 050053E1 			cmp r3, r5		@j = ncols?
+  21 0018 0A00000A 			beq endBuclej
+  22              	
+  23              			@i*ncols
+  24 001c 940306E0 			mul r6, r4, r3
+  25              			@i*ncols+j
+  26 0020 056086E0 			add r6, r6, r5
+  27              			@imagenBinaria[i*ncols + j]
+  28 0024 0670D0E7 			ldrb r7, [r0, r6]
+  29 0028 000057E3 			cmp  r7, #0
+  30 002c 0300000A 			beq noHayUno
+  31              			@imagenBinaria[i*ncols + j] = 1
+  32              			@unosPorFila[i]++
+  33              			@Como es short int, debemos avanzar de dos bytes en dos
+  34 0030 047084E0 			add r7, r4, r4
+  35 0034 B78091E1 			ldrh r8, [r1, r7]
+  36 0038 018088E2 			add r8, r8, #UNO
+  37 003c B78081E1 			strh r8, [r1, r7]
+  38              	
+  39              	noHayUno:
+  40 0040 015085E2 			add r5, r5, #UNO	@j = j + 1
+  41 0044 F2FFFFEA 			b buclej
+  42              	endBuclej:
+  43 0048 014084E2 			add r4, r4, #UNO	@i = i + 1
+  44 004c EDFFFFEA 			b buclei
+  45              	endBuclei:
+  46              	
+  47 0050 F041BDE8 			pop {r4, r5, r6, r7, r8, lr}
+  48 0054 1EFF2FE1 			bx lr		
+  49              	
+  50              		.global rgb2gray
+  51              	
+  52              		.equ UNO, 0x01
+  53 0058 4E080000 	 ROJO: .word 2126
+  54 005c F01B0000 	 VERDE: .word 7152
+  55 0060 D2020000 	 AZUL: .word 722
+  56              	
+  57              		.text
+  58              	
+  59              		rgb2gray:
+  60              	
+  61 0064 F0412DE9 			push { r4, r5, r6, r7, r8, lr}
+  62              	
+  63 0068 0010D0E5 			ldrb r1, [r0]
+  64 006c 0120D0E5 			ldrb r2, [r0, #1]
+  65 0070 0230D0E5 			ldrb r3, [r0, #2]
+  66              	
+  67              	
+  68 0074 48809FE5 			ldr r8, =ROJO
+  69 0078 007098E5 			ldr r7, [r8]
+  70 007c 970104E0 			mul r4, r7, r1
+  71              	
+  72 0080 40809FE5 			ldr r8, =VERDE
+  73 0084 007098E5 			ldr r7, [r8]
+  74 0088 970205E0 			mul r5, r7, r2
+  75              	
+  76 008c 38809FE5 			ldr r8, =AZUL
+  77 0090 007098E5 			ldr r7, [r8]
+  78 0094 970306E0 			mul r6, r7, r3
+  79              	
+  80 0098 050084E0 			add r0, r4, r5
+  81 009c 060080E0 			add r0, r0, r6
+  82              	
+  83 00a0 010000EB 			bl div10000
+  84              	
+  85 00a4 F041BDE8 			pop {r4, r5, r6, r7, r8, lr}
+  86 00a8 1EFF2FE1 			bx lr
+  87              	
+  88              		div10000:
+  89 00ac 04B02DE5 			push {fp}
+  90 00b0 18109FE5 			LDR     R1, =0xD1B71758
+  91 00b4 903182E0 			UMULL   R3, R2, R0, R1
+  92 00b8 A206A0E1 			MOV     R0, R2,LSR#13
+  93 00bc 04B09DE4 	 		pop {fp}
+  94 00c0 1EFF2FE1 	 		bx lr
+  94      58000000 
+  94      5C000000 
+  94      60000000 
+  94      5817B7D1 
+DEFINED SYMBOLS
+           ../misc.S:6      .text:00000000 contarUnos
+           ../misc.S:4      *ABS*:00000001 UNO
+           ../misc.S:12     .text:00000000 $a
+           ../misc.S:16     .text:00000008 buclei
+           ../misc.S:45     .text:00000050 endBuclei
+           ../misc.S:19     .text:00000014 buclej
+           ../misc.S:42     .text:00000048 endBuclej
+           ../misc.S:39     .text:00000040 noHayUno
+           ../misc.S:59     .text:00000064 rgb2gray
+           ../misc.S:53     .text:00000058 ROJO
+           ../misc.S:53     .text:00000058 $d
+           ../misc.S:54     .text:0000005c VERDE
+           ../misc.S:55     .text:00000060 AZUL
+           ../misc.S:61     .text:00000064 $a
+           ../misc.S:88     .text:000000ac div10000
+           ../misc.S:94     .text:000000c4 $d
+                   .debug_aranges:0000000c $d
+
+NO UNDEFINED SYMBOLS
