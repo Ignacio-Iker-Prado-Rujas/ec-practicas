@@ -1,0 +1,48 @@
+   1              	# 1 "../rgbToGrayMatrix.S"
+   1              	
+   0              	
+   0              	
+   0              	
+   2              		.global rgb2GrayMatrix
+   3              	
+   4              		rgb2GrayMatrix:
+   5              			@En r0 tenemos la direccion de la matriz rgb
+   6              			@En r1 tenemos la direccion de la matriz de grises
+   7              			@En r2 tenemos nfilas
+   8              			@En r3 tenemos ncols
+   9              	
+  10 0000 10402DE9 			PUSH { r4, lr}
+  11              	
+  12 0004 920304E0 			mul r4, r2, r3	@En r4 tenemos nfilas*ncols := N
+  13 0008 0030A0E3 			mov r3, #0		@En r3 tenemos la i
+  14              	
+  15 000c 040053E1 	buclei:	cmp  r3, r4		@i = N?
+  16 0010 0600000A 			beq endBuclei
+  17              	
+  18              			@mul r4, r3, #4		@r4 := 4·i
+  19              			@add r4, r0, r4		@r4 := r0 + 4·i
+  20              	
+  21 0014 0F002DE9 			PUSH {r0, r1, r2, r3}
+  22              	
+  23 0018 FEFFFFEB 			bl rgb2gray
+  24              	
+  25 001c 0300C1E7 			strb r0, [r1, r3]		@dest[dest + i] = rgb2Gray()
+  26 0020 0F00BDE8 			POP {r0, r1, r2, r3}
+  27              	
+  28 0024 040080E2 			add r0, r0, #4		@orig := orig + 4
+  29 0028 013083E2 			add r3, r3, #1		@i++
+  30 002c F6FFFFEA 			b buclei
+  31              	
+  32              	endBuclei:
+  33              	
+  34 0030 1040BDE8 			pop {r4, lr}
+  35 0034 1EFF2FE1 			bx lr		
+DEFINED SYMBOLS
+../rgbToGrayMatrix.S:4      .text:00000000 rgb2GrayMatrix
+../rgbToGrayMatrix.S:10     .text:00000000 $a
+../rgbToGrayMatrix.S:15     .text:0000000c buclei
+../rgbToGrayMatrix.S:32     .text:00000030 endBuclei
+                   .debug_aranges:0000000c $d
+
+UNDEFINED SYMBOLS
+rgb2gray

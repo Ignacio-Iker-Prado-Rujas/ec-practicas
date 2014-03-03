@@ -9,12 +9,14 @@ C_SRCS += \
 
 S_UPPER_SRCS += \
 ../init.S \
-../misc.S 
+../misc.S \
+../rgb2GrayMatrix.S 
 
 OBJS += \
 ./init.o \
 ./main.o \
 ./misc.o \
+./rgb2GrayMatrix.o \
 ./trafo.o 
 
 C_DEPS += \
@@ -23,7 +25,8 @@ C_DEPS += \
 
 S_UPPER_DEPS += \
 ./init.d \
-./misc.d 
+./misc.d \
+./rgb2GrayMatrix.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

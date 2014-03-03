@@ -17,6 +17,7 @@ Linker script and memory map
 LOAD ./init.o
 LOAD ./main.o
 LOAD ./misc.o
+LOAD ./rgb2GrayMatrix.o
 LOAD ./trafo.o
 START GROUP
 LOAD c:/software/electronica/arm/eclipsearm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2\libgcc.a
@@ -29,6 +30,7 @@ END GROUP
  .data          0x0c000000        0x0 ./init.o
  .data          0x0c000000        0x0 ./main.o
  .data          0x0c000000        0x0 ./misc.o
+ .data          0x0c000000        0x0 ./rgb2GrayMatrix.o
  .data          0x0c000000        0x0 ./trafo.o
  *(.rodata)
 
@@ -37,6 +39,7 @@ END GROUP
  .bss           0x0c000000        0x0 ./init.o
  .bss           0x0c000000        0x0 ./main.o
  .bss           0x0c000000        0x0 ./misc.o
+ .bss           0x0c000000        0x0 ./rgb2GrayMatrix.o
  .bss           0x0c000000        0x0 ./trafo.o
  *(COMMON)
  COMMON         0x0c000000       0xb0 ./main.o
@@ -45,7 +48,7 @@ END GROUP
                 0x0c000080                unosPorFila
                 0x0c000090                imagenGris
 
-.text           0x0c0000b0      0x4e0
+.text           0x0c0000b0      0x444
  *(.text)
  .text          0x0c0000b0       0x14 ./init.o
                 0x0c0000b0                start
@@ -55,23 +58,24 @@ END GROUP
  .text          0x0c0002f0       0xd4 ./misc.o
                 0x0c0002f0                contarUnos
                 0x0c000354                rgb2gray
- .text          0x0c0003c4      0x1cc ./trafo.o
+ .text          0x0c0003c4       0x38 ./rgb2GrayMatrix.o
                 0x0c0003c4                RGB2GrayMatrix
-                0x0c000498                Gray2BinaryMatrix
-                0x0c000590                PROVIDE (end, .)
+ .text          0x0c0003fc       0xf8 ./trafo.o
+                0x0c0003fc                Gray2BinaryMatrix
+                0x0c0004f4                PROVIDE (end, .)
                 0x0c7ff000                PROVIDE (_stack, 0xc7ff000)
 OUTPUT(Practica1.elf elf32-littlearm)
 
-.glue_7         0x0c000590        0x0
+.glue_7         0x0c0004f4        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x0c000590        0x0
+.glue_7t        0x0c0004f4        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x0c000590        0x0
+.vfp11_veneer   0x0c0004f4        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0c000590        0x0
+.v4_bx          0x0c0004f4        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
 .ARM.attributes
@@ -83,32 +87,37 @@ OUTPUT(Practica1.elf elf32-littlearm)
  .ARM.attributes
                 0x00000054       0x22 ./misc.o
  .ARM.attributes
-                0x00000076       0x32 ./trafo.o
+                0x00000076       0x22 ./rgb2GrayMatrix.o
+ .ARM.attributes
+                0x00000098       0x32 ./trafo.o
 
 .comment        0x00000000       0x2a
  .comment       0x00000000       0x2a ./main.o
                                  0x2b (size before relaxing)
  .comment       0x00000000       0x2b ./trafo.o
 
-.debug_line     0x00000000      0x495
+.debug_line     0x00000000      0x4c8
  .debug_line    0x00000000       0x3a ./init.o
  .debug_line    0x0000003a      0x364 ./main.o
  .debug_line    0x0000039e       0x68 ./misc.o
- .debug_line    0x00000406       0x8f ./trafo.o
+ .debug_line    0x00000406       0x50 ./rgb2GrayMatrix.o
+ .debug_line    0x00000456       0x72 ./trafo.o
 
-.debug_info     0x00000000      0x3f1
+.debug_info     0x00000000      0x3b1
  .debug_info    0x00000000       0x5e ./init.o
  .debug_info    0x0000005e      0x1d7 ./main.o
  .debug_info    0x00000235       0x5e ./misc.o
- .debug_info    0x00000293      0x15e ./trafo.o
+ .debug_info    0x00000293       0x68 ./rgb2GrayMatrix.o
+ .debug_info    0x000002fb       0xb6 ./trafo.o
 
-.debug_abbrev   0x00000000      0x1bf
+.debug_abbrev   0x00000000      0x193
  .debug_abbrev  0x00000000       0x14 ./init.o
  .debug_abbrev  0x00000014       0xed ./main.o
  .debug_abbrev  0x00000101       0x14 ./misc.o
- .debug_abbrev  0x00000115       0xaa ./trafo.o
+ .debug_abbrev  0x00000115       0x14 ./rgb2GrayMatrix.o
+ .debug_abbrev  0x00000129       0x6a ./trafo.o
 
-.debug_aranges  0x00000000       0x80
+.debug_aranges  0x00000000       0xa0
  .debug_aranges
                 0x00000000       0x20 ./init.o
  .debug_aranges
@@ -116,7 +125,9 @@ OUTPUT(Practica1.elf elf32-littlearm)
  .debug_aranges
                 0x00000040       0x20 ./misc.o
  .debug_aranges
-                0x00000060       0x20 ./trafo.o
+                0x00000060       0x20 ./rgb2GrayMatrix.o
+ .debug_aranges
+                0x00000080       0x20 ./trafo.o
 
 .debug_macinfo  0x00000000     0x6ca4
  .debug_macinfo
@@ -124,30 +135,30 @@ OUTPUT(Practica1.elf elf32-littlearm)
  .debug_macinfo
                 0x00004b88     0x211c ./trafo.o
 
-.debug_loc      0x00000000       0xb0
+.debug_loc      0x00000000       0x84
  .debug_loc     0x00000000       0x58 ./main.o
- .debug_loc     0x00000058       0x58 ./trafo.o
+ .debug_loc     0x00000058       0x2c ./trafo.o
 
 .debug_pubnames
-                0x00000000       0xa1
+                0x00000000       0x8e
  .debug_pubnames
                 0x00000000       0x66 ./main.o
  .debug_pubnames
-                0x00000066       0x3b ./trafo.o
+                0x00000066       0x28 ./trafo.o
 
 .debug_pubtypes
-                0x00000000       0x60
+                0x00000000       0x42
  .debug_pubtypes
                 0x00000000       0x30 ./main.o
  .debug_pubtypes
-                0x00000030       0x30 ./trafo.o
+                0x00000030       0x12 ./trafo.o
 
-.debug_str      0x00000000      0x12d
+.debug_str      0x00000000      0x11e
  .debug_str     0x00000000       0xf0 ./main.o
                                 0x129 (size before relaxing)
- .debug_str     0x000000f0       0x3d ./trafo.o
-                                 0xa5 (size before relaxing)
+ .debug_str     0x000000f0       0x2e ./trafo.o
+                                 0x80 (size before relaxing)
 
-.debug_frame    0x00000000       0xa4
+.debug_frame    0x00000000       0x80
  .debug_frame   0x00000000       0x50 ./main.o
- .debug_frame   0x00000050       0x54 ./trafo.o
+ .debug_frame   0x00000050       0x30 ./trafo.o

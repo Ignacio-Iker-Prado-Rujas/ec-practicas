@@ -1,0 +1,47 @@
+
+	.global rgb2GrayMatrix
+
+	.equ UNO, 0x01
+
+	rgb2GrayMatrix:
+		@En r0 tenemos la direccion de la matriz rgb
+		@En r1 tenemos la direccion de la matriz de grises
+		@En r2 tenemos nfilas
+		@En r3 tenemos ncols
+
+		PUSH { r4, lr}
+
+		mul r2, r2, r3	@En r2 tenemos nfilas*ncols := N
+		mov r3, #0	@En r3 tenemos la i
+
+buclei:	cmp  r3, r2		@i =N?
+		beq endBuclei
+
+		@i*ncols
+		mul r6, r4, r3
+		@i*ncols+j
+		add r6, r6, r5
+		@imagenBinaria[i*ncols + j]
+		ldrb r7, [r0, r6]
+		cmp  r7, #0
+		beq noHayUno
+		@imagenBinaria[i*ncols + j] = 1
+		@unosPorFila[i]++
+		@Como es short int, debemos avanzar de dos bytes en dos
+		add r7, r4, r4
+		ldrh r8, [r1, r7]
+		add r8, r8, #UNO
+		strh r8, [r1, r7]
+
+noHayUno:
+		add r5, r5, #UNO	@j = j + 1
+		b buclej
+
+endBuclei:
+
+		pop {r4, lr}
+		bx lr		
+
+
+
+
