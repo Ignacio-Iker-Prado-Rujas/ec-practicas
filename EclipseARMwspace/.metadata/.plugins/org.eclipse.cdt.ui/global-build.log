@@ -241,3 +241,242 @@ arm-none-eabi-size  --format=berkeley Practica1.elf
    1248	      0	    176	   1424	    590	Practica1.elf
 'Finished building: Practica1.siz'
 ' '
+12:42:20 **** Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1248	      0	    176	   1424	    590	Practica1.elf
+'Finished building: Practica1.siz'
+' '
+13:34:49 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../init.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="init.o.lst" -c -fmessage-length=0 -MMD -MP -MF"init.d" -MT"init.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "init.o" "../init.S"
+'Finished building: ../init.S'
+' '
+'Building file: ../main.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
+'Finished building: ../main.c'
+' '
+'Building file: ../misc.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="misc.o.lst" -c -fmessage-length=0 -MMD -MP -MF"misc.d" -MT"misc.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "misc.o" "../misc.S"
+'Finished building: ../misc.S'
+' '
+'Building file: ../rgbToGrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgbToGrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgbToGrayMatrix.d" -MT"rgbToGrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgbToGrayMatrix.o" "../rgbToGrayMatrix.S"
+../rgbToGrayMatrix.S: Assembler messages:
+../rgbToGrayMatrix.S:12: Rd and Rm should be different in mul
+../rgbToGrayMatrix.S:21: Error: bad instruction `push{r0, r1,r2,r3}'
+../rgbToGrayMatrix.S:26: Error: bad instruction `pop{r0, r1,r2,r3}'
+cs-make: *** [rgbToGrayMatrix.o] Error 1
+13:36:03 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../rgbToGrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgbToGrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgbToGrayMatrix.d" -MT"rgbToGrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgbToGrayMatrix.o" "../rgbToGrayMatrix.S"
+'Finished building: ../rgbToGrayMatrix.S'
+' '
+'Building file: ../trafo.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="trafo.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"trafo.d" -MT"trafo.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "trafo.o" "../trafo.c"
+'Finished building: ../trafo.c'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgbToGrayMatrix.o ./trafo.o   
+./main.o: In function `main':
+C:\hlocal\EclipseARMwspace\Practica1\Debug/../main.c:35: undefined reference to `RGB2GrayMatrix'
+./rgbToGrayMatrix.o: In function `buclei':
+C:\hlocal\EclipseARMwspace\Practica1\Debug/../rgbToGrayMatrix.S:23: undefined reference to `rgb2Gray'
+collect2: ld returned 1 exit status
+cs-make: *** [Practica1.elf] Error 1
+13:37:03 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../rgbToGrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgbToGrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgbToGrayMatrix.d" -MT"rgbToGrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgbToGrayMatrix.o" "../rgbToGrayMatrix.S"
+'Finished building: ../rgbToGrayMatrix.S'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgbToGrayMatrix.o ./trafo.o   
+./main.o: In function `main':
+C:\hlocal\EclipseARMwspace\Practica1\Debug/../main.c:35: undefined reference to `RGB2GrayMatrix'
+collect2: ld returned 1 exit status
+cs-make: *** [Practica1.elf] Error 1
+13:37:44 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../rgb2GrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgb2GrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgb2GrayMatrix.d" -MT"rgb2GrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgb2GrayMatrix.o" "../rgb2GrayMatrix.S"
+'Finished building: ../rgb2GrayMatrix.S'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgb2GrayMatrix.o ./trafo.o   
+./main.o: In function `main':
+C:\hlocal\EclipseARMwspace\Practica1\Debug/../main.c:35: undefined reference to `RGB2GrayMatrix'
+collect2: ld returned 1 exit status
+cs-make: *** [Practica1.elf] Error 1
+13:38:24 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../main.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
+'Finished building: ../main.c'
+' '
+'Building file: ../trafo.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="trafo.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"trafo.d" -MT"trafo.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "trafo.o" "../trafo.c"
+'Finished building: ../trafo.c'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgb2GrayMatrix.o ./trafo.o   
+./main.o: In function `main':
+C:\hlocal\EclipseARMwspace\Practica1\Debug/../main.c:35: undefined reference to `RGB2GrayMatrix'
+collect2: ld returned 1 exit status
+cs-make: *** [Practica1.elf] Error 1
+13:39:19 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../rgb2GrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgb2GrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgb2GrayMatrix.d" -MT"rgb2GrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgb2GrayMatrix.o" "../rgb2GrayMatrix.S"
+'Finished building: ../rgb2GrayMatrix.S'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgb2GrayMatrix.o ./trafo.o   
+'Finished building target: Practica1.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary Practica1.elf  "Practica1.hex"
+'Finished building: Practica1.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S Practica1.elf > "Practica1.lst"
+'Finished building: Practica1.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1092	      0	    176	   1268	    4f4	Practica1.elf
+'Finished building: Practica1.siz'
+' '
+13:48:11 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../rgb2GrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgb2GrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgb2GrayMatrix.d" -MT"rgb2GrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgb2GrayMatrix.o" "../rgb2GrayMatrix.S"
+'Finished building: ../rgb2GrayMatrix.S'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgb2GrayMatrix.o ./trafo.o   
+'Finished building target: Practica1.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary Practica1.elf  "Practica1.hex"
+'Finished building: Practica1.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S Practica1.elf > "Practica1.lst"
+'Finished building: Practica1.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1092	      0	    176	   1268	    4f4	Practica1.elf
+'Finished building: Practica1.siz'
+' '
+13:55:05 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../rgb2GrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgb2GrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgb2GrayMatrix.d" -MT"rgb2GrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgb2GrayMatrix.o" "../rgb2GrayMatrix.S"
+'Finished building: ../rgb2GrayMatrix.S'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgb2GrayMatrix.o ./trafo.o   
+'Finished building target: Practica1.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary Practica1.elf  "Practica1.hex"
+'Finished building: Practica1.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S Practica1.elf > "Practica1.lst"
+'Finished building: Practica1.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1092	      0	    176	   1268	    4f4	Practica1.elf
+'Finished building: Practica1.siz'
+' '
+14:16:48 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../rgb2GrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgb2GrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgb2GrayMatrix.d" -MT"rgb2GrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgb2GrayMatrix.o" "../rgb2GrayMatrix.S"
+'Finished building: ../rgb2GrayMatrix.S'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgb2GrayMatrix.o ./trafo.o   
+'Finished building target: Practica1.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary Practica1.elf  "Practica1.hex"
+'Finished building: Practica1.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S Practica1.elf > "Practica1.lst"
+'Finished building: Practica1.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1092	      0	    176	   1268	    4f4	Practica1.elf
+'Finished building: Practica1.siz'
+' '
+14:21:03 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Building file: ../rgb2GrayMatrix.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="rgb2GrayMatrix.o.lst" -c -fmessage-length=0 -MMD -MP -MF"rgb2GrayMatrix.d" -MT"rgb2GrayMatrix.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "rgb2GrayMatrix.o" "../rgb2GrayMatrix.S"
+'Finished building: ../rgb2GrayMatrix.S'
+' '
+'Building target: Practica1.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EclipseARMwspace\Practica1\ld_script.ld" -nostartfiles -Wl,-Map,Practica1.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica1.elf"  ./init.o ./main.o ./misc.o ./rgb2GrayMatrix.o ./trafo.o   
+'Finished building target: Practica1.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary Practica1.elf  "Practica1.hex"
+'Finished building: Practica1.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S Practica1.elf > "Practica1.lst"
+'Finished building: Practica1.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1092	      0	    176	   1268	    4f4	Practica1.elf
+'Finished building: Practica1.siz'
+' '
+14:21:22 **** Incremental Build of configuration Debug for project Practica1 ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica1.elf
+   text	   data	    bss	    dec	    hex	filename
+   1092	      0	    176	   1268	    4f4	Practica1.elf
+'Finished building: Practica1.siz'
+' '

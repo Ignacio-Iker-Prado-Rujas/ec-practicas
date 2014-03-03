@@ -26,7 +26,7 @@
    9:../main.c     **** #define FACTOR ( (unsigned char) ( 255/(N+M-2) ) )
   10:../main.c     **** 
   11:../main.c     **** extern void contarUnos(unsigned char mat[], short int vector[],int nfilas, int ncols);
-  12:../main.c     **** 
+  12:../main.c     **** extern void RGB2GrayMatrix(pixelRGB orig[], unsigned char dest[], int nfilas, int ncols);
   13:../main.c     **** 
   14:../main.c     **** pixelRGB imagenRGB[N*M];
   15:../main.c     **** unsigned char imagenGris[N*M];
@@ -259,10 +259,10 @@ DEFINED SYMBOLS
                             *COM*:00000020 imagenGris
                             *COM*:00000020 imagenBinaria
                             *COM*:00000010 unosPorFila
-C:\Users\USUARI~1\AppData\Local\Temp\ccZ10yh8.s:1991   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccZ10yh8.s:1994   .text:00000000 initRGB
-C:\Users\USUARI~1\AppData\Local\Temp\ccZ10yh8.s:2133   .text:000001a4 main
-C:\Users\USUARI~1\AppData\Local\Temp\ccZ10yh8.s:2186   .text:0000021c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccnq46nb.s:1991   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccnq46nb.s:1994   .text:00000000 initRGB
+C:\Users\USUARI~1\AppData\Local\Temp\ccnq46nb.s:2133   .text:000001a4 main
+C:\Users\USUARI~1\AppData\Local\Temp\ccnq46nb.s:2186   .text:0000021c $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

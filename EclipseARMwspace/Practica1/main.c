@@ -9,7 +9,7 @@
 #define FACTOR ( (unsigned char) ( 255/(N+M-2) ) )
 
 extern void contarUnos(unsigned char mat[], short int vector[],int nfilas, int ncols);
-
+extern void RGB2GrayMatrix(pixelRGB orig[], unsigned char dest[], int nfilas, int ncols);
 
 pixelRGB imagenRGB[N*M];
 unsigned char imagenGris[N*M];

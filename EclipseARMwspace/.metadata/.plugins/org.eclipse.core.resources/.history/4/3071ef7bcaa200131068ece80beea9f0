@@ -1,0 +1,97 @@
+
+	.global rgb2GrayMatrix
+
+	.equ UNO, 0x01
+
+	rgb2GrayMatrix:
+		@En r0 tenemos la direccion de la imagen binaria
+		@En r1 tenemos la direccion de unosPorFila
+		@En r2 tenemos nfilas
+		@En r3 tenemos ncols
+
+		PUSH { r4, r5, r6, r7, r8, lr}
+
+		mov r4, #0	@En r4 tenemos la i
+
+buclei:	cmp  r4, r2		@i = nfilas?
+		beq endBuclei
+		mov r5, #0	@En r5 tenemos la j
+buclej:
+		cmp r3, r5		@j = ncols?
+		beq endBuclej
+
+		@i*ncols
+		mul r6, r4, r3
+		@i*ncols+j
+		add r6, r6, r5
+		@imagenBinaria[i*ncols + j]
+		ldrb r7, [r0, r6]
+		cmp  r7, #0
+		beq noHayUno
+		@imagenBinaria[i*ncols + j] = 1
+		@unosPorFila[i]++
+		@Como es short int, debemos avanzar de dos bytes en dos
+		add r7, r4, r4
+		ldrh r8, [r1, r7]
+		add r8, r8, #UNO
+		strh r8, [r1, r7]
+
+noHayUno:
+		add r5, r5, #UNO	@j = j + 1
+		b buclej
+endBuclej:
+		add r4, r4, #UNO	@i = i + 1
+		b buclei
+endBuclei:
+
+		pop {r4, r5, r6, r7, r8, lr}
+		bx lr		
+
+	.global rgb2gray
+
+	.equ UNO, 0x01
+ ROJO: .word 2126
+ VERDE: .word 7152
+ AZUL: .word 722
+
+	.text
+
+	rgb2gray:
+
+		push { r4, r5, r6, r7, r8, lr}
+
+		ldrb r1, [r0]
+		ldrb r2, [r0, #1]
+		ldrb r3, [r0, #2]
+
+
+		ldr r8, =ROJO
+		ldr r7, [r8]
+		mul r4, r7, r1
+
+		ldr r8, =VERDE
+		ldr r7, [r8]
+		mul r5, r7, r2
+
+		ldr r8, =AZUL
+		ldr r7, [r8]
+		mul r6, r7, r3
+
+		add r0, r4, r5
+		add r0, r0, r6
+
+		bl div10000
+
+		pop {r4, r5, r6, r7, r8, lr}
+		bx lr
+
+	div10000:
+		push {fp}
+		LDR     R1, =0xD1B71758
+		UMULL   R3, R2, R0, R1
+		MOV     R0, R2,LSR#13
+ 		pop {fp}
+ 		bx lr
+
+
+

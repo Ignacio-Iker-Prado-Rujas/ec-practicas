@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;Practica1/rgbGray.S&apos; to &apos;rgbToGrayMatrix.S&apos;" description="Rename resource &apos;rgbGray.S&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="rgbGray.S" name="rgbToGrayMatrix.S" stamp="1393847555253" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;Practica1/rgbToGrayMatrix.S&apos; to &apos;rgb2GrayMatrix.S&apos;" description="Rename resource &apos;rgbToGrayMatrix.S&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="rgbToGrayMatrix.S" name="rgb2GrayMatrix.S" stamp="1393850262004" updateReferences="true"/>
+</session>

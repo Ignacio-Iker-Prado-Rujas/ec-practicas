@@ -1,0 +1,29 @@
+
+	.global rgb2GrayMatrix
+
+	.equ UNO, 0x01
+
+	rgb2GrayMatrix:
+		@En r0 tenemos la direccion de la matriz rgb
+		@En r1 tenemos la direccion de la matriz de grises
+		@En r2 tenemos nfilas
+		@En r3 tenemos ncols
+
+		PUSH { r4, lr}
+
+		mul r2, r2, r3	@En r2 tenemos nfilas*ncols := N
+		mov r3, #0		@En r3 tenemos la i
+
+buclei:	cmp  r3, r2		@i = N?
+		beq endBuclei
+
+		b buclei
+
+endBuclei:
+
+		pop {r4, lr}
+		bx lr		
+
+
+
+
