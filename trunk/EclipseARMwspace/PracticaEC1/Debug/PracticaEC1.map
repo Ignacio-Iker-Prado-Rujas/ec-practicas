@@ -19,8 +19,8 @@ LOAD ./main.o
 LOAD ./misc.o
 LOAD ./trafo.o
 START GROUP
-LOAD c:/software/electronica/arm/eclipsearm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2\libgcc.a
-LOAD c:/software/electronica/arm/eclipsearm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib\libc.a
+LOAD c:/hlocal/eclipsearm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2\libgcc.a
+LOAD c:/hlocal/eclipsearm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib\libc.a
 END GROUP
                 0x0c000000                . = 0xc000000
 
@@ -45,33 +45,33 @@ END GROUP
                 0x0c000080                unosPorFila
                 0x0c000090                imagenGris
 
-.text           0x0c0000b0      0x4c4
+.text           0x0c0000b0      0x4e0
  *(.text)
  .text          0x0c0000b0       0x14 ./init.o
                 0x0c0000b0                start
  .text          0x0c0000c4      0x22c ./main.o
                 0x0c0000c4                initRGB
                 0x0c000268                main
- .text          0x0c0002f0       0xb8 ./misc.o
+ .text          0x0c0002f0       0xd4 ./misc.o
                 0x0c0002f0                contarUnos
-                0x0c000344                rgb2gray
- .text          0x0c0003a8      0x1cc ./trafo.o
-                0x0c0003a8                RGB2GrayMatrix
-                0x0c00047c                Gray2BinaryMatrix
-                0x0c000574                PROVIDE (end, .)
+                0x0c000354                rgb2gray
+ .text          0x0c0003c4      0x1cc ./trafo.o
+                0x0c0003c4                RGB2GrayMatrix
+                0x0c000498                Gray2BinaryMatrix
+                0x0c000590                PROVIDE (end, .)
                 0x0c7ff000                PROVIDE (_stack, 0xc7ff000)
 OUTPUT(PracticaEC1.elf elf32-littlearm)
 
-.glue_7         0x0c000574        0x0
+.glue_7         0x0c000590        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x0c000574        0x0
+.glue_7t        0x0c000590        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x0c000574        0x0
+.vfp11_veneer   0x0c000590        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0c000574        0x0
+.v4_bx          0x0c000590        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
 .ARM.attributes
@@ -90,17 +90,17 @@ OUTPUT(PracticaEC1.elf elf32-littlearm)
                                  0x2b (size before relaxing)
  .comment       0x00000000       0x2b ./trafo.o
 
-.debug_line     0x00000000      0x491
+.debug_line     0x00000000      0x44d
  .debug_line    0x00000000       0x3a ./init.o
- .debug_line    0x0000003a      0x364 ./main.o
- .debug_line    0x0000039e       0x64 ./misc.o
- .debug_line    0x00000402       0x8f ./trafo.o
+ .debug_line    0x0000003a      0x31c ./main.o
+ .debug_line    0x00000356       0x68 ./misc.o
+ .debug_line    0x000003be       0x8f ./trafo.o
 
-.debug_info     0x00000000      0x3f5
- .debug_info    0x00000000       0x60 ./init.o
- .debug_info    0x00000060      0x1d7 ./main.o
- .debug_info    0x00000237       0x60 ./misc.o
- .debug_info    0x00000297      0x15e ./trafo.o
+.debug_info     0x00000000      0x40f
+ .debug_info    0x00000000       0x6d ./init.o
+ .debug_info    0x0000006d      0x1d7 ./main.o
+ .debug_info    0x00000244       0x6d ./misc.o
+ .debug_info    0x000002b1      0x15e ./trafo.o
 
 .debug_abbrev   0x00000000      0x1bf
  .debug_abbrev  0x00000000       0x14 ./init.o
@@ -142,11 +142,11 @@ OUTPUT(PracticaEC1.elf elf32-littlearm)
  .debug_pubtypes
                 0x00000030       0x30 ./trafo.o
 
-.debug_str      0x00000000      0x12f
- .debug_str     0x00000000       0xf2 ./main.o
-                                0x12b (size before relaxing)
- .debug_str     0x000000f2       0x3d ./trafo.o
-                                 0xa7 (size before relaxing)
+.debug_str      0x00000000      0x13c
+ .debug_str     0x00000000       0xff ./main.o
+                                0x138 (size before relaxing)
+ .debug_str     0x000000ff       0x3d ./trafo.o
+                                 0xb4 (size before relaxing)
 
 .debug_frame    0x00000000       0xa4
  .debug_frame   0x00000000       0x50 ./main.o
