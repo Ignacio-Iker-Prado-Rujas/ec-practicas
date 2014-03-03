@@ -11,29 +11,30 @@
 
 		PUSH { r4, r5, r6, r7, r8, lr}
 
-
 		mov r4, #0	@En r4 tenemos la i
 
 buclei:	cmp  r4, r2		@i = nfilas?
 		beq endBuclei
-		mov r5, #UNO	@En r5 tenemos la j
+		mov r5, #0	@En r5 tenemos la j
 buclej:
 		cmp r3, r5		@j = ncols?
 		beq endBuclej
 
-		@i*nfilas
-		mul r6, r4, r2
-		@i*nfilas+j
+		@i*ncols
+		mul r6, r4, r3
+		@i*ncols+j
 		add r6, r6, r5
-		@imagenBinaria[i*nfilas + j]
+		@imagenBinaria[i*ncols + j]
 		ldrb r7, [r0, r6]
 		cmp  r7, #0
 		beq noHayUno
-		@imagenBinaria[i*nfilas + j] = 1
-		@unosPorFila[i]
-		ldrh r8, [r1, r4]
+		@imagenBinaria[i*ncols + j] = 1
+		@unosPorFila[i]++
+		@Como es short int, debemos avanzar de dos bytes en dos
+		add r9, r4, r4
+		ldrh r8, [r1, r9]
 		add r8, r8, #UNO
-		strh r8, [r1, r4]
+		strh r8, [r1, r9]
 
 noHayUno:
 		add r5, r5, #UNO	@j = j + 1
@@ -49,28 +50,31 @@ endBuclei:
 	.global rgb2gray
 
 	.equ UNO, 0x01
-	.equ ROJO, 2126
-	.equ VERDE, 7152
-	.equ AZUL, 722
+ ROJO: .word 2126
+ VERDE: .word 7152
+ AZUL: .word 722
 
 	.text
 
 	rgb2gray:
 
-		push { r4, r5, r6, r7, lr}
+		push { r4, r5, r6, r7, r8, lr}
 
 		ldrb r1, [r0]
 		ldrb r2, [r0, #1]
 		ldrb r3, [r0, #2]
 
 
-		ldrb r7, =ROJO
+		ldr r8, =ROJO
+		ldr r7, [r8]
 		mul r4, r7, r1
 
-		ldrb r7, =VERDE
+		ldr r8, =VERDE
+		ldr r7, [r8]
 		mul r5, r7, r2
 
-		ldrb r7, =AZUL
+		ldr r8, =AZUL
+		ldr r7, [r8]
 		mul r6, r7, r3
 
 		add r0, r4, r5
@@ -78,7 +82,7 @@ endBuclei:
 
 		bl div10000
 
-		pop {r4, r5, r6, r7, lr}
+		pop {r4, r5, r6, r7, r8, lr}
 		bx lr
 
 	div10000:

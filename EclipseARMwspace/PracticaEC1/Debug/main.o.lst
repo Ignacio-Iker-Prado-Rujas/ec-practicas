@@ -260,10 +260,10 @@ DEFINED SYMBOLS
                             *COM*:00000020 imagenGris
                             *COM*:00000020 imagenBinaria
                             *COM*:00000010 unosPorFila
-C:\Users\USUARI~1\AppData\Local\Temp\ccCxMuqi.s:1991   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccCxMuqi.s:1994   .text:00000000 initRGB
-C:\Users\USUARI~1\AppData\Local\Temp\ccCxMuqi.s:2133   .text:000001a4 main
-C:\Users\USUARI~1\AppData\Local\Temp\ccCxMuqi.s:2186   .text:0000021c $d
+C:\Users\ENRIQU~1\AppData\Local\Temp\ccRv6VJa.s:1991   .text:00000000 $a
+C:\Users\ENRIQU~1\AppData\Local\Temp\ccRv6VJa.s:1994   .text:00000000 initRGB
+C:\Users\ENRIQU~1\AppData\Local\Temp\ccRv6VJa.s:2133   .text:000001a4 main
+C:\Users\ENRIQU~1\AppData\Local\Temp\ccRv6VJa.s:2186   .text:0000021c $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
