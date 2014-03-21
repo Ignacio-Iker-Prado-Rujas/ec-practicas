@@ -22,85 +22,85 @@ END GROUP
                 0x0c000000                . = 0xc000000
                 0x0c000000                Image_RO_Base = .
 
-.text           0x0c000000      0xba0
+.text           0x0c000000      0xc18
  *(.text)
  .text          0x0c000000       0xdc ./boton.o
                 0x0c000000                EliminaRebotes
                 0x0c000060                DoDetecta
- .text          0x0c0000dc      0x568 ./init.o
+ .text          0x0c0000dc      0x588 ./init.o
                 0x0c0000dc                start
-                0x0c0001d8                DoSWI
-                0x0c0001e0                DoUndef
-                0x0c0001e8                DoDabort
-                0x0c0001f4                screen
- .text          0x0c000644      0x2c0 ./led.o
-                0x0c000644                init_leds
-                0x0c000690                leds_on
-                0x0c0006b0                leds_off
-                0x0c0006d0                led1_on
-                0x0c000710                led1_off
-                0x0c000750                led2_on
-                0x0c000790                led2_off
-                0x0c0007d0                switchLed1
-                0x0c0007ec                switchLed2
-                0x0c000808                leds_switch
-                0x0c000848                Led_Display
- .text          0x0c000904      0x29c ./main.o
-                0x0c000904                write
-                0x0c000964                ISR_Undef
-                0x0c0009a0                ISR_FIQ
-                0x0c0009dc                ISR_SWI
-                0x0c000a18                ISR_Pabort
-                0x0c000a54                ISR_Dabort
-                0x0c000a90                InitPorts
-                0x0c000af4                IntInit
-                0x0c000b7c                main
-                0x0c000ba0                Image_RO_Limit = .
-                0x0c000ba0                Image_RW_Base = .
+                0x0c0001f4                DoSWI
+                0x0c0001fc                DoUndef
+                0x0c000204                DoDabort
+                0x0c000210                screen
+ .text          0x0c000664      0x318 ./led.o
+                0x0c000664                init_leds
+                0x0c0006b0                leds_on
+                0x0c0006d0                leds_off
+                0x0c0006f0                led1_on
+                0x0c000730                led1_off
+                0x0c000770                led2_on
+                0x0c0007b0                led2_off
+                0x0c0007f0                switchLed1
+                0x0c000838                switchLed2
+                0x0c000880                leds_switch
+                0x0c0008c0                Led_Display
+ .text          0x0c00097c      0x29c ./main.o
+                0x0c00097c                write
+                0x0c0009dc                ISR_Undef
+                0x0c000a18                ISR_FIQ
+                0x0c000a54                ISR_SWI
+                0x0c000a90                ISR_Pabort
+                0x0c000acc                ISR_Dabort
+                0x0c000b08                InitPorts
+                0x0c000b6c                IntInit
+                0x0c000bf4                main
+                0x0c000c18                Image_RO_Limit = .
+                0x0c000c18                Image_RW_Base = .
 
-.glue_7         0x0c000ba0        0x0
+.glue_7         0x0c000c18        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x0c000ba0        0x0
+.glue_7t        0x0c000c18        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x0c000ba0        0x0
+.vfp11_veneer   0x0c000c18        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0c000ba0        0x0
+.v4_bx          0x0c000c18        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.data           0x0c000ba0        0x4
+.data           0x0c000c18        0x4
  *(.data)
- .data          0x0c000ba0        0x0 ./boton.o
- .data          0x0c000ba0        0x0 ./init.o
- .data          0x0c000ba0        0x0 ./led.o
- .data          0x0c000ba0        0x4 ./main.o
-                0x0c000ba0                Screen
+ .data          0x0c000c18        0x0 ./boton.o
+ .data          0x0c000c18        0x0 ./init.o
+ .data          0x0c000c18        0x0 ./led.o
+ .data          0x0c000c18        0x4 ./main.o
+                0x0c000c18                Screen
 
-.rodata         0x0c000ba4       0x28
+.rodata         0x0c000c1c       0x28
  *(.rodata)
- .rodata        0x0c000ba4       0x28 ./main.o
-                0x0c000bcc                Image_RW_Limit = .
-                0x0c000bcc                Image_ZI_Base = .
+ .rodata        0x0c000c1c       0x28 ./main.o
+                0x0c000c44                Image_RW_Limit = .
+                0x0c000c44                Image_ZI_Base = .
 
-.bss            0x0c000bcc        0x8
+.bss            0x0c000c44        0x8
  *(.bss)
- .bss           0x0c000bcc        0x4 ./boton.o
-                0x0c000bcc                update
- .bss           0x0c000bd0        0x0 ./init.o
- .bss           0x0c000bd0        0x0 ./led.o
- .bss           0x0c000bd0        0x0 ./main.o
- COMMON         0x0c000bd0        0x4 ./led.o
-                0x0c000bd0                led_state
-                0x0c000bd4                Image_ZI_Limit = .
-                0x0c000bd4                __bss_start__ = .
-                0x0c000bd4                __bss_end__ = .
-                0x0c000bd4                __EH_FRAME_BEGIN__ = .
-                0x0c000bd4                __EH_FRAME_END__ = .
-                0x0c000bd4                PROVIDE (__stack, .)
-                0x0c000bd4                end = .
-                0x0c000bd4                _end = .
+ .bss           0x0c000c44        0x4 ./boton.o
+                0x0c000c44                update
+ .bss           0x0c000c48        0x0 ./init.o
+ .bss           0x0c000c48        0x0 ./led.o
+ .bss           0x0c000c48        0x0 ./main.o
+ COMMON         0x0c000c48        0x4 ./led.o
+                0x0c000c48                led_state
+                0x0c000c4c                Image_ZI_Limit = .
+                0x0c000c4c                __bss_start__ = .
+                0x0c000c4c                __bss_end__ = .
+                0x0c000c4c                __EH_FRAME_BEGIN__ = .
+                0x0c000c4c                __EH_FRAME_END__ = .
+                0x0c000c4c                PROVIDE (__stack, .)
+                0x0c000c4c                end = .
+                0x0c000c4c                _end = .
 
 .comment        0x00000000       0x2a
  .comment       0x00000000       0x2a ./boton.o
@@ -126,12 +126,12 @@ END GROUP
  .debug_info    0x00000120      0x140 ./led.o
  .debug_info    0x00000260      0x164 ./main.o
 
-.debug_line     0x00000000      0x238
+.debug_line     0x00000000      0x255
  *(.debug_line)
- .debug_line    0x00000000       0x83 ./boton.o
- .debug_line    0x00000083       0x84 ./init.o
- .debug_line    0x00000107       0x8f ./led.o
- .debug_line    0x00000196       0xa2 ./main.o
+ .debug_line    0x00000000       0x87 ./boton.o
+ .debug_line    0x00000087       0x8b ./init.o
+ .debug_line    0x00000112       0xa1 ./led.o
+ .debug_line    0x000001b3       0xa2 ./main.o
 
 .debug_abbrev   0x00000000      0x1b9
  *(.debug_abbrev)

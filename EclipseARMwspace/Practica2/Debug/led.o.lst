@@ -362,230 +362,274 @@
   70:../led.c      **** /*El alumno/a debe completar esta funcion para que cambie el estado del led 1, 
   71:../led.c      **** si estaba encendido debera apagarlo
   72:../led.c      **** y si esta apagado encenderlo */
-  73:../led.c      **** if (led_state == led_state | 0x1)
+  73:../led.c      **** if ((led_state == 1) || (led_state == 3))
+ 2169              		.loc 1 73 0
+ 2170 0198 30309FE5 		ldr	r3, .L22
+ 2171 019c 003093E5 		ldr	r3, [r3, #0]
+ 2172 01a0 010053E3 		cmp	r3, #1
+ 2173 01a4 0300000A 		beq	.L19
+ 2174              		.loc 1 73 0 is_stmt 0 discriminator 1
+ 2175 01a8 20309FE5 		ldr	r3, .L22
+ 2176 01ac 003093E5 		ldr	r3, [r3, #0]
+ 2177 01b0 030053E3 		cmp	r3, #3
+ 2178 01b4 0100001A 		bne	.L20
+ 2179              	.L19:
   74:../led.c      **** 	led1_off();
- 2169              		.loc 1 74 0
- 2170 0198 FEFFFFEB 		bl	led1_off
+ 2180              		.loc 1 74 0 is_stmt 1
+ 2181 01b8 FEFFFFEB 		bl	led1_off
+ 2182 01bc 000000EA 		b	.L18
+ 2183              	.L20:
   75:../led.c      **** else
   76:../led.c      **** 	led1_on();
+ 2184              		.loc 1 76 0
+ 2185 01c0 FEFFFFEB 		bl	led1_on
+ 2186              	.L18:
   77:../led.c      **** /*fin TAREA 4a*/
   78:../led.c      **** }
- 2171              		.loc 1 78 0
- 2172 019c 0CD04BE2 		sub	sp, fp, #12
- 2173 01a0 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2174 01a4 1EFF2FE1 		bx	lr
- 2175              		.cfi_endproc
- 2176              	.LFE7:
- 2178              		.align	2
- 2179              		.global	switchLed2
- 2181              	switchLed2:
- 2182              	.LFB8:
+ 2187              		.loc 1 78 0
+ 2188 01c4 0CD04BE2 		sub	sp, fp, #12
+ 2189 01c8 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2190 01cc 1EFF2FE1 		bx	lr
+ 2191              	.L23:
+ 2192              		.align	2
+ 2193              	.L22:
+ 2194 01d0 00000000 		.word	led_state
+ 2195              		.cfi_endproc
+ 2196              	.LFE7:
+ 2198              		.align	2
+ 2199              		.global	switchLed2
+ 2201              	switchLed2:
+ 2202              	.LFB8:
   79:../led.c      **** 
   80:../led.c      **** void switchLed2() {
- 2183              		.loc 1 80 0
- 2184              		.cfi_startproc
- 2185              		@ Function supports interworking.
- 2186              		@ args = 0, pretend = 0, frame = 0
- 2187              		@ frame_needed = 1, uses_anonymous_args = 0
- 2188 01a8 0DC0A0E1 		mov	ip, sp
- 2189              	.LCFI16:
- 2190              		.cfi_def_cfa_register 12
- 2191 01ac 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 2192 01b0 04B04CE2 		sub	fp, ip, #4
- 2193              		.cfi_offset 14, -8
- 2194              		.cfi_offset 13, -12
- 2195              		.cfi_offset 11, -16
- 2196              	.LCFI17:
- 2197              		.cfi_def_cfa 11, 4
+ 2203              		.loc 1 80 0
+ 2204              		.cfi_startproc
+ 2205              		@ Function supports interworking.
+ 2206              		@ args = 0, pretend = 0, frame = 0
+ 2207              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2208 01d4 0DC0A0E1 		mov	ip, sp
+ 2209              	.LCFI16:
+ 2210              		.cfi_def_cfa_register 12
+ 2211 01d8 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2212 01dc 04B04CE2 		sub	fp, ip, #4
+ 2213              		.cfi_offset 14, -8
+ 2214              		.cfi_offset 13, -12
+ 2215              		.cfi_offset 11, -16
+ 2216              	.LCFI17:
+ 2217              		.cfi_def_cfa 11, 4
   81:../led.c      **** /*TAREA 4b*/
   82:../led.c      **** /*El alumno/a debe completar esta funcion para que cambie el estado del led 2, 
   83:../led.c      **** si estaba encendido debera apagarlo
   84:../led.c      **** y si esta apagado encenderlo */
-  85:../led.c      **** 	if (led_state == led_state | 0x2)
+  85:../led.c      **** 	if ((led_state == 2) || (led_state == 3))
+ 2218              		.loc 1 85 0
+ 2219 01e0 30309FE5 		ldr	r3, .L28
+ 2220 01e4 003093E5 		ldr	r3, [r3, #0]
+ 2221 01e8 020053E3 		cmp	r3, #2
+ 2222 01ec 0300000A 		beq	.L25
+ 2223              		.loc 1 85 0 is_stmt 0 discriminator 1
+ 2224 01f0 20309FE5 		ldr	r3, .L28
+ 2225 01f4 003093E5 		ldr	r3, [r3, #0]
+ 2226 01f8 030053E3 		cmp	r3, #3
+ 2227 01fc 0100001A 		bne	.L26
+ 2228              	.L25:
   86:../led.c      **** 		led2_off();
- 2198              		.loc 1 86 0
- 2199 01b4 FEFFFFEB 		bl	led2_off
+ 2229              		.loc 1 86 0 is_stmt 1
+ 2230 0200 FEFFFFEB 		bl	led2_off
+ 2231 0204 000000EA 		b	.L24
+ 2232              	.L26:
   87:../led.c      **** 	else
   88:../led.c      **** 		led2_on();
+ 2233              		.loc 1 88 0
+ 2234 0208 FEFFFFEB 		bl	led2_on
+ 2235              	.L24:
   89:../led.c      **** /*fin TAREA 4b*/
   90:../led.c      **** }
- 2200              		.loc 1 90 0
- 2201 01b8 0CD04BE2 		sub	sp, fp, #12
- 2202 01bc 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2203 01c0 1EFF2FE1 		bx	lr
- 2204              		.cfi_endproc
- 2205              	.LFE8:
- 2207              		.align	2
- 2208              		.global	leds_switch
- 2210              	leds_switch:
- 2211              	.LFB9:
+ 2236              		.loc 1 90 0
+ 2237 020c 0CD04BE2 		sub	sp, fp, #12
+ 2238 0210 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2239 0214 1EFF2FE1 		bx	lr
+ 2240              	.L29:
+ 2241              		.align	2
+ 2242              	.L28:
+ 2243 0218 00000000 		.word	led_state
+ 2244              		.cfi_endproc
+ 2245              	.LFE8:
+ 2247              		.align	2
+ 2248              		.global	leds_switch
+ 2250              	leds_switch:
+ 2251              	.LFB9:
   91:../led.c      **** 
   92:../led.c      **** void leds_switch ()
   93:../led.c      **** {
- 2212              		.loc 1 93 0
- 2213              		.cfi_startproc
- 2214              		@ Function supports interworking.
- 2215              		@ args = 0, pretend = 0, frame = 0
- 2216              		@ frame_needed = 1, uses_anonymous_args = 0
- 2217 01c4 0DC0A0E1 		mov	ip, sp
- 2218              	.LCFI18:
- 2219              		.cfi_def_cfa_register 12
- 2220 01c8 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 2221 01cc 04B04CE2 		sub	fp, ip, #4
- 2222              		.cfi_offset 14, -8
- 2223              		.cfi_offset 13, -12
- 2224              		.cfi_offset 11, -16
- 2225              	.LCFI19:
- 2226              		.cfi_def_cfa 11, 4
+ 2252              		.loc 1 93 0
+ 2253              		.cfi_startproc
+ 2254              		@ Function supports interworking.
+ 2255              		@ args = 0, pretend = 0, frame = 0
+ 2256              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2257 021c 0DC0A0E1 		mov	ip, sp
+ 2258              	.LCFI18:
+ 2259              		.cfi_def_cfa_register 12
+ 2260 0220 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2261 0224 04B04CE2 		sub	fp, ip, #4
+ 2262              		.cfi_offset 14, -8
+ 2263              		.cfi_offset 13, -12
+ 2264              		.cfi_offset 11, -16
+ 2265              	.LCFI19:
+ 2266              		.cfi_def_cfa 11, 4
   94:../led.c      ****     led_state ^= 0x03;
- 2227              		.loc 1 94 0
- 2228 01d0 28309FE5 		ldr	r3, .L21
- 2229 01d4 003093E5 		ldr	r3, [r3, #0]
- 2230 01d8 032023E2 		eor	r2, r3, #3
- 2231 01dc 1C309FE5 		ldr	r3, .L21
- 2232 01e0 002083E5 		str	r2, [r3, #0]
+ 2267              		.loc 1 94 0
+ 2268 0228 28309FE5 		ldr	r3, .L31
+ 2269 022c 003093E5 		ldr	r3, [r3, #0]
+ 2270 0230 032023E2 		eor	r2, r3, #3
+ 2271 0234 1C309FE5 		ldr	r3, .L31
+ 2272 0238 002083E5 		str	r2, [r3, #0]
   95:../led.c      ****     Led_Display(led_state);
- 2233              		.loc 1 95 0
- 2234 01e4 14309FE5 		ldr	r3, .L21
- 2235 01e8 003093E5 		ldr	r3, [r3, #0]
- 2236 01ec 0300A0E1 		mov	r0, r3
- 2237 01f0 FEFFFFEB 		bl	Led_Display
+ 2273              		.loc 1 95 0
+ 2274 023c 14309FE5 		ldr	r3, .L31
+ 2275 0240 003093E5 		ldr	r3, [r3, #0]
+ 2276 0244 0300A0E1 		mov	r0, r3
+ 2277 0248 FEFFFFEB 		bl	Led_Display
   96:../led.c      ****     
   97:../led.c      **** }
- 2238              		.loc 1 97 0
- 2239 01f4 0CD04BE2 		sub	sp, fp, #12
- 2240 01f8 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2241 01fc 1EFF2FE1 		bx	lr
- 2242              	.L22:
- 2243              		.align	2
- 2244              	.L21:
- 2245 0200 00000000 		.word	led_state
- 2246              		.cfi_endproc
- 2247              	.LFE9:
- 2249              		.align	2
- 2250              		.global	Led_Display
- 2252              	Led_Display:
- 2253              	.LFB10:
+ 2278              		.loc 1 97 0
+ 2279 024c 0CD04BE2 		sub	sp, fp, #12
+ 2280 0250 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2281 0254 1EFF2FE1 		bx	lr
+ 2282              	.L32:
+ 2283              		.align	2
+ 2284              	.L31:
+ 2285 0258 00000000 		.word	led_state
+ 2286              		.cfi_endproc
+ 2287              	.LFE9:
+ 2289              		.align	2
+ 2290              		.global	Led_Display
+ 2292              	Led_Display:
+ 2293              	.LFB10:
   98:../led.c      **** 
   99:../led.c      **** void Led_Display(int LedStatus)
  100:../led.c      **** {	
- 2254              		.loc 1 100 0
- 2255              		.cfi_startproc
- 2256              		@ Function supports interworking.
- 2257              		@ args = 0, pretend = 0, frame = 8
- 2258              		@ frame_needed = 1, uses_anonymous_args = 0
- 2259 0204 0DC0A0E1 		mov	ip, sp
- 2260              	.LCFI20:
- 2261              		.cfi_def_cfa_register 12
- 2262 0208 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 2263 020c 04B04CE2 		sub	fp, ip, #4
- 2264              		.cfi_offset 14, -8
- 2265              		.cfi_offset 13, -12
- 2266              		.cfi_offset 11, -16
- 2267              	.LCFI21:
- 2268              		.cfi_def_cfa 11, 4
- 2269 0210 08D04DE2 		sub	sp, sp, #8
- 2270 0214 10000BE5 		str	r0, [fp, #-16]
+ 2294              		.loc 1 100 0
+ 2295              		.cfi_startproc
+ 2296              		@ Function supports interworking.
+ 2297              		@ args = 0, pretend = 0, frame = 8
+ 2298              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2299 025c 0DC0A0E1 		mov	ip, sp
+ 2300              	.LCFI20:
+ 2301              		.cfi_def_cfa_register 12
+ 2302 0260 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2303 0264 04B04CE2 		sub	fp, ip, #4
+ 2304              		.cfi_offset 14, -8
+ 2305              		.cfi_offset 13, -12
+ 2306              		.cfi_offset 11, -16
+ 2307              	.LCFI21:
+ 2308              		.cfi_def_cfa 11, 4
+ 2309 0268 08D04DE2 		sub	sp, sp, #8
+ 2310 026c 10000BE5 		str	r0, [fp, #-16]
  101:../led.c      **** 	led_state = LedStatus;
- 2271              		.loc 1 101 0
- 2272 0218 94309FE5 		ldr	r3, .L28
- 2273 021c 10201BE5 		ldr	r2, [fp, #-16]
- 2274 0220 002083E5 		str	r2, [r3, #0]
+ 2311              		.loc 1 101 0
+ 2312 0270 94309FE5 		ldr	r3, .L38
+ 2313 0274 10201BE5 		ldr	r2, [fp, #-16]
+ 2314 0278 002083E5 		str	r2, [r3, #0]
  102:../led.c      **** 	
  103:../led.c      **** 	if((LedStatus&0x01)==0x01)
- 2275              		.loc 1 103 0
- 2276 0224 10301BE5 		ldr	r3, [fp, #-16]
- 2277 0228 013003E2 		and	r3, r3, #1
- 2278 022c FF3003E2 		and	r3, r3, #255
- 2279 0230 000053E3 		cmp	r3, #0
- 2280 0234 0600000A 		beq	.L24
+ 2315              		.loc 1 103 0
+ 2316 027c 10301BE5 		ldr	r3, [fp, #-16]
+ 2317 0280 013003E2 		and	r3, r3, #1
+ 2318 0284 FF3003E2 		and	r3, r3, #255
+ 2319 0288 000053E3 		cmp	r3, #0
+ 2320 028c 0600000A 		beq	.L34
  104:../led.c      **** 		rPDATB=rPDATB&0x5ff; /* poner a 0 el bit 9 del puerto B */
- 2281              		.loc 1 104 0
- 2282 0238 78209FE5 		ldr	r2, .L28+4
- 2283 023c 74309FE5 		ldr	r3, .L28+4
- 2284 0240 001093E5 		ldr	r1, [r3, #0]
- 2285 0244 70309FE5 		ldr	r3, .L28+8
- 2286 0248 033001E0 		and	r3, r1, r3
- 2287 024c 003082E5 		str	r3, [r2, #0]
- 2288 0250 040000EA 		b	.L25
- 2289              	.L24:
+ 2321              		.loc 1 104 0
+ 2322 0290 78209FE5 		ldr	r2, .L38+4
+ 2323 0294 74309FE5 		ldr	r3, .L38+4
+ 2324 0298 001093E5 		ldr	r1, [r3, #0]
+ 2325 029c 70309FE5 		ldr	r3, .L38+8
+ 2326 02a0 033001E0 		and	r3, r1, r3
+ 2327 02a4 003082E5 		str	r3, [r2, #0]
+ 2328 02a8 040000EA 		b	.L35
+ 2329              	.L34:
  105:../led.c      **** 	else
  106:../led.c      **** 		rPDATB=rPDATB|0x200; /* poner a 1 el bit 9 del puerto B */
- 2290              		.loc 1 106 0
- 2291 0254 5C309FE5 		ldr	r3, .L28+4
- 2292 0258 58209FE5 		ldr	r2, .L28+4
- 2293 025c 002092E5 		ldr	r2, [r2, #0]
- 2294 0260 022C82E3 		orr	r2, r2, #512
- 2295 0264 002083E5 		str	r2, [r3, #0]
- 2296              	.L25:
+ 2330              		.loc 1 106 0
+ 2331 02ac 5C309FE5 		ldr	r3, .L38+4
+ 2332 02b0 58209FE5 		ldr	r2, .L38+4
+ 2333 02b4 002092E5 		ldr	r2, [r2, #0]
+ 2334 02b8 022C82E3 		orr	r2, r2, #512
+ 2335 02bc 002083E5 		str	r2, [r3, #0]
+ 2336              	.L35:
  107:../led.c      **** 	
  108:../led.c      **** 	if((LedStatus&0x02)==0x02)
- 2297              		.loc 1 108 0
- 2298 0268 10301BE5 		ldr	r3, [fp, #-16]
- 2299 026c 023003E2 		and	r3, r3, #2
- 2300 0270 000053E3 		cmp	r3, #0
- 2301 0274 0600000A 		beq	.L26
+ 2337              		.loc 1 108 0
+ 2338 02c0 10301BE5 		ldr	r3, [fp, #-16]
+ 2339 02c4 023003E2 		and	r3, r3, #2
+ 2340 02c8 000053E3 		cmp	r3, #0
+ 2341 02cc 0600000A 		beq	.L36
  109:../led.c      **** 		rPDATB=rPDATB&0x3ff; /* poner a 0 el bit 10 del puerto B */
- 2302              		.loc 1 109 0
- 2303 0278 38209FE5 		ldr	r2, .L28+4
- 2304 027c 34309FE5 		ldr	r3, .L28+4
- 2305 0280 003093E5 		ldr	r3, [r3, #0]
- 2306 0284 033BA0E1 		mov	r3, r3, asl #22
- 2307 0288 233BA0E1 		mov	r3, r3, lsr #22
- 2308 028c 003082E5 		str	r3, [r2, #0]
- 2309 0290 040000EA 		b	.L23
- 2310              	.L26:
+ 2342              		.loc 1 109 0
+ 2343 02d0 38209FE5 		ldr	r2, .L38+4
+ 2344 02d4 34309FE5 		ldr	r3, .L38+4
+ 2345 02d8 003093E5 		ldr	r3, [r3, #0]
+ 2346 02dc 033BA0E1 		mov	r3, r3, asl #22
+ 2347 02e0 233BA0E1 		mov	r3, r3, lsr #22
+ 2348 02e4 003082E5 		str	r3, [r2, #0]
+ 2349 02e8 040000EA 		b	.L33
+ 2350              	.L36:
  110:../led.c      **** 	else
  111:../led.c      **** 		rPDATB=rPDATB|0x400; /* poner a 1 el bit 10 del puerto B */
- 2311              		.loc 1 111 0
- 2312 0294 1C309FE5 		ldr	r3, .L28+4
- 2313 0298 18209FE5 		ldr	r2, .L28+4
- 2314 029c 002092E5 		ldr	r2, [r2, #0]
- 2315 02a0 012B82E3 		orr	r2, r2, #1024
- 2316 02a4 002083E5 		str	r2, [r3, #0]
- 2317              	.L23:
+ 2351              		.loc 1 111 0
+ 2352 02ec 1C309FE5 		ldr	r3, .L38+4
+ 2353 02f0 18209FE5 		ldr	r2, .L38+4
+ 2354 02f4 002092E5 		ldr	r2, [r2, #0]
+ 2355 02f8 012B82E3 		orr	r2, r2, #1024
+ 2356 02fc 002083E5 		str	r2, [r3, #0]
+ 2357              	.L33:
  112:../led.c      **** }
- 2318              		.loc 1 112 0
- 2319 02a8 0CD04BE2 		sub	sp, fp, #12
- 2320 02ac 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2321 02b0 1EFF2FE1 		bx	lr
- 2322              	.L29:
- 2323              		.align	2
- 2324              	.L28:
- 2325 02b4 00000000 		.word	led_state
- 2326 02b8 0C00D201 		.word	30539788
- 2327 02bc FF050000 		.word	1535
- 2328              		.cfi_endproc
- 2329              	.LFE10:
- 2331              	.Letext0:
+ 2358              		.loc 1 112 0
+ 2359 0300 0CD04BE2 		sub	sp, fp, #12
+ 2360 0304 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2361 0308 1EFF2FE1 		bx	lr
+ 2362              	.L39:
+ 2363              		.align	2
+ 2364              	.L38:
+ 2365 030c 00000000 		.word	led_state
+ 2366 0310 0C00D201 		.word	30539788
+ 2367 0314 FF050000 		.word	1535
+ 2368              		.cfi_endproc
+ 2369              	.LFE10:
+ 2371              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 led.c
                             *COM*:00000004 led_state
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:1875   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:1878   .text:00000000 init_leds
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:1914   .text:0000003c $d
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:1921   .text:0000004c $a
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:1924   .text:0000004c leds_on
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2252   .text:00000204 Led_Display
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:1954   .text:0000006c leds_off
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:1984   .text:0000008c led1_on
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2019   .text:000000c8 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2023   .text:000000cc $a
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2026   .text:000000cc led1_off
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2061   .text:00000108 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2065   .text:0000010c $a
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2068   .text:0000010c led2_on
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2103   .text:00000148 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2107   .text:0000014c $a
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2110   .text:0000014c led2_off
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2145   .text:00000188 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2149   .text:0000018c $a
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2152   .text:0000018c switchLed1
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2181   .text:000001a8 switchLed2
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2210   .text:000001c4 leds_switch
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2245   .text:00000200 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2249   .text:00000204 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cctQhusa.s:2325   .text:000002b4 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1875   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1878   .text:00000000 init_leds
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1914   .text:0000003c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1921   .text:0000004c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1924   .text:0000004c leds_on
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2292   .text:0000025c Led_Display
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1954   .text:0000006c leds_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1984   .text:0000008c led1_on
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2019   .text:000000c8 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2023   .text:000000cc $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2026   .text:000000cc led1_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2061   .text:00000108 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2065   .text:0000010c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2068   .text:0000010c led2_on
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2103   .text:00000148 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2107   .text:0000014c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2110   .text:0000014c led2_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2145   .text:00000188 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2149   .text:0000018c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2152   .text:0000018c switchLed1
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2194   .text:000001d0 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2198   .text:000001d4 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2201   .text:000001d4 switchLed2
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2243   .text:00000218 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2247   .text:0000021c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2250   .text:0000021c leds_switch
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2285   .text:00000258 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2289   .text:0000025c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2365   .text:0000030c $d
                      .debug_frame:00000010 $d
 
 NO UNDEFINED SYMBOLS

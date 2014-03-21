@@ -14,6 +14,7 @@
 .extern ISR_FIQ
 .extern ISR_Pabort
 .extern ISR_Dabort 
+.extern DoDetecta
 
 .equ 	_ISR_STARTADDRESS,	0xc7fff00		/* GCS6:64M DRAM/SDRAM 	*/
 .equ    UserStack,   _ISR_STARTADDRESS-0xf00         /* c7ff000 */
@@ -50,6 +51,7 @@ de los modos de ejecución */
 .equ EXTINTPND, 0x1d20054
 
 .text
+
 start:
     /* Si comenzamos con un reset
      el procesador esta en modo supervisor */
@@ -66,6 +68,11 @@ start:
        las direcciones de las rutinas de tratamiento
        de excepciones */
     bl InitISR
+
+	@ activamos excepciones
+	mrs r0,cpsr
+	bic r0,#NOINT
+	msr cpsr_cxsf,r0
 
     /* Pasamos a MODO USUARIO, inicializamos su pila
       y ponemos a cero el frame pointer*/
@@ -133,24 +140,29 @@ ISR_IRQ:
 	/*Debe preservar los registros arquitectónicos r0-r12*/
 
 	/* prólogo */
-	push {r0,fp} @ Basta con apilar los registros modificados
+	push {r0,lr} @ Basta con apilar los registros modificados
 		@ INCLUYENDO r0-r3 si se modifican
-	add fp,sp,#4
+
 
 	/* cuerpo de la rutina */
 	ldr r0, =I_ISPR
-	//El registro EXTINTPND indica qué interrupción
-	// está pendiente. El ISPR solo indica una. Sirven ambos.
+	// El ISPR solo indica una. Sirven ambos.
 	ldr r0, [r0]
 	//Como en esta interrumpen solo
 	//los botones nos basta comprobar
 	//Que hay algún bit encendido
 	cmp r0, #0
-	bne DoDetecta
-
+	beq epilogo
+	ldr r0,=EXTINTPND
+	ldr r0,[r0]
+	and r0,r0,#12
+	cmp r0,#0
+	beq epilogo
+	bl DoDetecta
 	/* epílogo */
-	sub sp,fp, #4
-	pop {r0, fp} @ restauramos contexto y retornamos
+
+epilogo:
+	pop {r0,lr} @ restauramos contexto y retornamos
 	subs pc,lr,#4 @ La constante a restar depende de la excepción
 
 
@@ -174,16 +186,16 @@ InitISR:
 	ldr r1,=HandlePabort
 	str r0,[r1]
 
-	ldr r0,=ISR_IRQ
-	ldr r1,=HandleIRQ
-	str r0,[r1]
-
 	ldr r0,=ISR_SWI
 	ldr r1,=HandleSWI
 	str r0,[r1]
 
 	ldr r0,=ISR_FIQ
 	ldr r1,=HandleFIQ
+	str r0,[r1]
+
+	ldr r0,=ISR_IRQ
+	ldr r1,=HandleIRQ
 	str r0,[r1]
 
 	/*fin TAREA 1b*/

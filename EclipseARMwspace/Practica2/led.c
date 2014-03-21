@@ -70,7 +70,7 @@ void switchLed1() {
 /*El alumno/a debe completar esta funcion para que cambie el estado del led 1, 
 si estaba encendido debera apagarlo
 y si esta apagado encenderlo */
-if (led_state == led_state | 0x1)
+if ((led_state == 1) || (led_state == 3))
 	led1_off();
 else
 	led1_on();
@@ -82,7 +82,7 @@ void switchLed2() {
 /*El alumno/a debe completar esta funcion para que cambie el estado del led 2, 
 si estaba encendido debera apagarlo
 y si esta apagado encenderlo */
-	if (led_state == led_state | 0x2)
+	if ((led_state == 2) || (led_state == 3))
 		led2_off();
 	else
 		led2_on();
