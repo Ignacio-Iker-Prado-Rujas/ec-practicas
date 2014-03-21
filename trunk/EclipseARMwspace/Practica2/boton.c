@@ -23,7 +23,7 @@ void EliminaRebotes(void) {
 	}
 }
 void DoDetecta(void) {
-	   int which_int = rEXTINTPND&0xc;//Hacemos la and con 12 para quitar la basura
+	   int which_int = rEXTINTPND&0xC;
 
 		/*TAREA 3*/
 		/* Identificar la interrupcion y almaacenarlo en which_int*/ 
@@ -34,11 +34,11 @@ void DoDetecta(void) {
 	      switch (which_int) {
 	      EliminaRebotes();
 	      	//Si el bit 2 estaba a uno, es el boton 1
-	     	case 8:
+	     	case 4:
 	     		switchLed1();
 	        	break;
 	        //Si el bit 2 estaba a uno, es el boton 1
-	     	case 4:
+	     	case 8:
 	     		switchLed2();
 	     	 	break;
 	     	default:
