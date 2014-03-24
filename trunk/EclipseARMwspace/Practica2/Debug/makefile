@@ -27,47 +27,47 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_FLASH += \
-PracticaC2.hex \
+Practica2.hex \
 
 SECONDARY_LIST += \
-PracticaC2.lst \
+Practica2.lst \
 
 SECONDARY_SIZE += \
-PracticaC2.siz \
+Practica2.siz \
 
 
 # All Target
-all: PracticaC2.elf secondary-outputs
+all: Practica2.elf secondary-outputs
 
 # Tool invocations
-PracticaC2.elf: $(OBJS) $(USER_OBJS)
+Practica2.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Sourcery Windows GCC C Linker'
-	arm-none-eabi-gcc -T"C:\hlocal\EcomputadoresP2\EclipseARMwspace\Practica2\script.ld" -nostartfiles -Wl,-Map,PracticaC2.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "PracticaC2.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -T"C:\hlocal\EComp\EclipseARMwspace\Practica2\script.ld" -nostartfiles -Wl,-Map,Practica2.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica2.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-PracticaC2.hex: PracticaC2.elf
+Practica2.hex: Practica2.elf
 	@echo 'Invoking: ARM Sourcery Windows GNU Create Flash Image'
-	arm-none-eabi-objcopy -O binary PracticaC2.elf  "PracticaC2.hex"
+	arm-none-eabi-objcopy -O binary Practica2.elf  "Practica2.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-PracticaC2.lst: PracticaC2.elf
+Practica2.lst: Practica2.elf
 	@echo 'Invoking: ARM Sourcery Windows GNU Create Listing'
-	arm-none-eabi-objdump -h -S PracticaC2.elf > "PracticaC2.lst"
+	arm-none-eabi-objdump -h -S Practica2.elf > "Practica2.lst"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-PracticaC2.siz: PracticaC2.elf
+Practica2.siz: Practica2.elf
 	@echo 'Invoking: ARM Sourcery Windows GNU Print Size'
-	arm-none-eabi-size  --format=berkeley PracticaC2.elf
+	arm-none-eabi-size  --format=berkeley Practica2.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(SECONDARY_SIZE)$(OBJS)$(C_DEPS)$(ASM_DEPS)$(SECONDARY_FLASH)$(EXECUTABLES)$(SECONDARY_LIST)$(S_UPPER_DEPS) PracticaC2.elf
+	-$(RM) $(SECONDARY_SIZE)$(OBJS)$(C_DEPS)$(ASM_DEPS)$(SECONDARY_FLASH)$(EXECUTABLES)$(SECONDARY_LIST)$(S_UPPER_DEPS) Practica2.elf
 	-@echo ' '
 
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_LIST) $(SECONDARY_SIZE)

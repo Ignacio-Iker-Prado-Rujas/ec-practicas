@@ -754,3 +754,890 @@ Binding(CTRL+SHIFT+H,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.cdt.ui.cViewScope,,,system)
+!SESSION 2014-03-24 12:44:24.790 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product -data C:\hlocal\EComp\EclipseARMwspace
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-03-24 12:44:25.634
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-03-24 12:44:30.097
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-03-24 12:44:30.103
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'c:\hlocal'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-03-24 12:44:53.969
+!MESSAGE Indexed 'Practica2' (3 sources, 6 headers) in 0,08 sec: 86 declarations; 112 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0,00%)
+
+!ENTRY org.eclipse.core.jobs 4 2 2014-03-24 13:02:42.694
+!MESSAGE An internal error occurred during: "Launching Practica2 Debug".
+!STACK 0
+java.lang.ClassCastException: org.eclipse.cdt.debug.mi.core.GDBCDIDebugger2 cannot be cast to com.zylin.embeddedcdt.EmbeddedGDBCDIDebugger
+	at com.zylin.embeddedcdt.launch.Launch.launch(Launch.java:199)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2014-03-24 13:05:33.203
+!MESSAGE Internal Error
+!STACK 0
+org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Target is not suspended[]
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.getMIShareds(SharedLibraryManager.java:123)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.updateState(SharedLibraryManager.java:189)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.update(SharedLibraryManager.java:137)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventManager.java:329)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:101)
+	at java.util.Observable.notifyObservers(Unknown Source)
+	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
+	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+
+!ENTRY org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for ALT+CTRL+I:
+Binding(ALT+CTRL+I,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.include.browser,Open Include Browser,
+		Open an include browser on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@651e80,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+CTRL+I,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.include.browser,Open Include Browser,
+		Open an include browser on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@651e80,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for ALT+SHIFT+R:
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.text.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.cdt.ui.category.refactoring,Refactor - C++,C/C++ Refactorings,true),
+		org.eclipse.ui.internal.MakeHandlersGo@b56ad4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.text.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.cdt.ui.category.refactoring,Refactor - C++,C/C++ Refactorings,true),
+		org.eclipse.ui.internal.MakeHandlersGo@b56ad4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for F3:
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.opendecl,Open Declaration,
+		Open an editor on the selected element's declaration(s),
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@78c028,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.opendecl,Open Declaration,
+		Open an editor on the selected element's declaration(s),
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@78c028,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.opentype,Open Element,
+		Open an element in an Editor,
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@18f9bfb,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.opentype,Open Element,
+		Open an element in an Editor,
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@18f9bfb,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for F4:
+Binding(F4,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.type.hierarchy,Open Type Hierarchy,
+		Open a type hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@14986cc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(F4,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.type.hierarchy,Open Type Hierarchy,
+		Open a type hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@14986cc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for CTRL+G:
+Binding(CTRL+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.finddecl,Declaration,
+		Search for declarations of the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@30bed0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.finddecl,Declaration,
+		Search for declarations of the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@30bed0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for CTRL+SHIFT+G:
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.findrefs,References,
+		Search for references to the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3f812d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.findrefs,References,
+		Search for references to the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3f812d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for ALT+CTRL+H:
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.call.hierarchy,Open Call Hierarchy,
+		Open the call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@139ecfa,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.call.hierarchy,Open Call Hierarchy,
+		Open the call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@139ecfa,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 13:15:31.179
+!MESSAGE A conflict occurred for CTRL+SHIFT+H:
+Binding(CTRL+SHIFT+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.open.type.in.hierarchy,Open Type in Hierarchy,
+		Open a type in the type hierarchy view,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1f54d36,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+SHIFT+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.open.type.in.hierarchy,Open Type in Hierarchy,
+		Open a type in the type hierarchy view,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1f54d36,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:20:21.851
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:20:21.851
+!MESSAGE localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:20:21.872
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: "monitor" command not supported by this target.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:378)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:223)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:20:21.872
+!MESSAGE "monitor" command not supported by this target.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: "monitor" command not supported by this target.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:378)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:223)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:20:21.891
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: You can't do that when your target is `None'
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:20:21.892
+!MESSAGE You can't do that when your target is `None'
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: You can't do that when your target is `None'
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:20:21.962
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: The program is not being run.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doRunSession(GDBJtagDebugger.java:320)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:74)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:20:21.962
+!MESSAGE The program is not being run.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: The program is not being run.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doRunSession(GDBJtagDebugger.java:320)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:74)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2014-03-24 13:20:22.022
+!MESSAGE Internal Error
+!STACK 0
+org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: No registers.[No registers.]
+	at org.eclipse.cdt.debug.mi.core.cdi.RegisterManager.update(RegisterManager.java:427)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventManager.java:317)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:101)
+	at java.util.Observable.notifyObservers(Unknown Source)
+	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
+	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 5012 2014-03-24 13:23:16.633
+!MESSAGE Error in final launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to execute MI command:
+-exec-run
+Error message from debugger back end:
+Error creating process c:\hlocal\ecomp\eclipsearmwspace\practica2\debug\PracticaC2.elf, (error 193).
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:115)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:231)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:106)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:94)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.Exception: Error creating process c:\hlocal\ecomp\eclipsearmwspace\practica2\debug\PracticaC2.elf, (error 193).
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:918)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:747)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2014-03-24 13:23:16.633
+!MESSAGE Failed to execute MI command:
+-exec-run
+Error message from debugger back end:
+Error creating process c:\hlocal\ecomp\eclipsearmwspace\practica2\debug\PracticaC2.elf, (error 193).
+!STACK 0
+java.lang.Exception: Error creating process c:\hlocal\ecomp\eclipsearmwspace\practica2\debug\PracticaC2.elf, (error 193).
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:918)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:747)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:29:02.114
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:29:02.115
+!MESSAGE localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:29:02.135
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: {R,T}xThread terminated
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:571)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:350)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:378)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:223)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:29:02.136
+!MESSAGE {R,T}xThread terminated
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: {R,T}xThread terminated
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:571)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:350)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:378)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:223)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:29:02.149
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: {R,T}xThread terminated
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:571)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:350)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:29:02.149
+!MESSAGE {R,T}xThread terminated
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: {R,T}xThread terminated
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:571)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:350)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:30:07.625
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:30:07.625
+!MESSAGE localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:30:07.645
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: {R,T}xThread terminated
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:571)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:350)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:378)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:223)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:30:07.645
+!MESSAGE {R,T}xThread terminated
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: {R,T}xThread terminated
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:571)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:350)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:378)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:223)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:30:07.663
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: {R,T}xThread terminated
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:571)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:350)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 13:30:07.663
+!MESSAGE {R,T}xThread terminated
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: {R,T}xThread terminated
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:571)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:350)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-24 14:26:39.823
+!MESSAGE NLS missing message: DisassemblyPreferencePage_showFunctionOffsets in: org.eclipse.cdt.dsf.debug.internal.ui.disassembly.DisassemblyMessages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-24 14:26:39.832
+!MESSAGE NLS missing message: DisassemblyPreferencePage_showFunctionOffsetsTooltip in: org.eclipse.cdt.dsf.debug.internal.ui.disassembly.DisassemblyMessages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-24 14:26:39.841
+!MESSAGE NLS missing message: DisassemblyPreferencePage_showCodeBytes in: org.eclipse.cdt.dsf.debug.internal.ui.disassembly.DisassemblyMessages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-24 14:26:39.850
+!MESSAGE NLS missing message: DisassemblyPreferencePage_showCodeBytesTooltip in: org.eclipse.cdt.dsf.debug.internal.ui.disassembly.DisassemblyMessages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-24 14:26:39.859
+!MESSAGE NLS missing message: DisassemblyPreferencePage_showAddress in: org.eclipse.cdt.dsf.debug.internal.ui.disassembly.DisassemblyMessages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-24 14:26:39.869
+!MESSAGE NLS missing message: DisassemblyPreferencePage_showAddressTooltip in: org.eclipse.cdt.dsf.debug.internal.ui.disassembly.DisassemblyMessages
+
+!ENTRY org.eclipse.core.resources 4 2 2014-03-24 14:28:23.757
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource '/Practica2/Debug/sources.mk' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:341)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:215)
+	at org.eclipse.core.internal.resources.File.setContents(File.java:357)
+	at org.eclipse.core.internal.resources.File.setContents(File.java:464)
+	at org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator.save(GnuMakefileGenerator.java:837)
+	at org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator.populateSourcesMakefile(GnuMakefileGenerator.java:1166)
+	at org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator.regenerateMakefiles(GnuMakefileGenerator.java:930)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.performMakefileGeneration(CommonBuilder.java:1006)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.performPrebuildGeneration(CommonBuilder.java:873)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:748)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:513)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:459)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:726)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:513)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:422)
+	at org.eclipse.ui.actions.GlobalBuildAction$1.run(GlobalBuildAction.java:180)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2014-03-24 14:28:23.757
+!MESSAGE Resource '/Practica2/Debug/sources.mk' does not exist.
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2014-03-24 14:28:23.757
+!MESSAGE Resource '/Practica2/Debug/sources.mk' does not exist.
+
+!ENTRY org.eclipse.core.resources 4 75 2014-03-24 14:28:24.251
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 75 2014-03-24 14:28:24.252
+!MESSAGE Errors running builder 'CDT Builder' on project 'Practica2'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource '/Practica2/Debug/sources.mk' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:341)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:215)
+	at org.eclipse.core.internal.resources.File.setContents(File.java:357)
+	at org.eclipse.core.internal.resources.File.setContents(File.java:464)
+	at org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator.save(GnuMakefileGenerator.java:837)
+	at org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator.populateSourcesMakefile(GnuMakefileGenerator.java:1166)
+	at org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator.regenerateMakefiles(GnuMakefileGenerator.java:930)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.performMakefileGeneration(CommonBuilder.java:1006)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.performPrebuildGeneration(CommonBuilder.java:873)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:748)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:513)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:459)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:726)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:513)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:422)
+	at org.eclipse.ui.actions.GlobalBuildAction$1.run(GlobalBuildAction.java:180)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 2 org.eclipse.core.resources 4 368 2014-03-24 14:28:24.252
+!MESSAGE Resource '/Practica2/Debug/sources.mk' does not exist.
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2014-03-24 14:28:24.252
+!MESSAGE Resource '/Practica2/Debug/sources.mk' does not exist.
+
+!ENTRY org.eclipse.cdt.debug.core 4 104 2014-03-24 14:29:31.547
+!MESSAGE The program file specified in the launch configuration does not exist
+!STACK 0
+java.io.FileNotFoundException: C:\hlocal\EComp\EclipseARMwspace\Practica2\Debug\PracticaC2.elf not found
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:658)
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:674)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:53)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-03-24 14:31:30.130
+!MESSAGE Indexed 'Practica2b' (0 sources, 0 headers) in 0,00 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0,00%)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2014-03-24 14:33:56.649
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.debug.ui.contexts.DsfSuspendTrigger$2@3c6d15): Status ERROR: org.eclipse.cdt.dsf code=10005 Composite status null children=[Status ERROR: org.eclipse.cdt.dsf.gdb.ui code=10001 Not available null Status ERROR: org.eclipse.cdt.dsf code=10005 Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.debug.ui.contexts.DsfSuspendTrigger$6@10b3d46): Status ERROR: org.eclipse.cdt.dsf.gdb.ui code=10001 Not available null' resulted in a rejected execution exception. null]' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb.ui 4 10001 2014-03-24 14:33:56.649
+!MESSAGE Not available
+!SUBENTRY 1 org.eclipse.cdt.dsf 4 10005 2014-03-24 14:33:56.649
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.debug.ui.contexts.DsfSuspendTrigger$6@10b3d46): Status ERROR: org.eclipse.cdt.dsf.gdb.ui code=10001 Not available null' resulted in a rejected execution exception.
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 103 2014-03-24 14:33:56.659
+!MESSAGE Program file does not exist
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 103 2014-03-24 14:33:56.659
+!MESSAGE 
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2014-03-24 14:36:36.037
+!MESSAGE Internal Error
+!STACK 0
+org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.getMIShareds(SharedLibraryManager.java:123)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.updateState(SharedLibraryManager.java:189)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.update(SharedLibraryManager.java:137)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventManager.java:329)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:101)
+	at java.util.Observable.notifyObservers(Unknown Source)
+	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
+	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 14:36:56.899
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 14:36:56.899
+!MESSAGE localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: localhost:3333: Se produjo un error durante el intento de conexi\363n ya que la parte conectada no respondi\363 adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi\363n establecida ya que el host conectado no ha podido responder.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 14:36:56.929
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: "monitor" command not supported by this target.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:378)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:223)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 14:36:56.929
+!MESSAGE "monitor" command not supported by this target.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: "monitor" command not supported by this target.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:378)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:223)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 14:36:56.949
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: You can't do that when your target is `None'
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 14:36:56.949
+!MESSAGE You can't do that when your target is `None'
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: You can't do that when your target is `None'
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 14:36:57.020
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: The program is not being run.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doRunSession(GDBJtagDebugger.java:320)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:74)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2014-03-24 14:36:57.020
+!MESSAGE The program is not being run.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: The program is not being run.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doRunSession(GDBJtagDebugger.java:320)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:74)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2014-03-24 14:36:57.051
+!MESSAGE Internal Error
+!STACK 0
+org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: No registers.[No registers.]
+	at org.eclipse.cdt.debug.mi.core.cdi.RegisterManager.update(RegisterManager.java:427)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventManager.java:317)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:101)
+	at java.util.Observable.notifyObservers(Unknown Source)
+	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
+	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+
+!ENTRY org.eclipse.debug.ui 4 120 2014-03-24 14:41:47.997
+!MESSAGE Error logged from Debug UI: 
+!STACK 1
+org.eclipse.debug.core.DebugException: Target request failed: Target is not suspended.
+	at org.eclipse.cdt.debug.internal.core.model.CDebugElement.throwDebugException(CDebugElement.java:295)
+	at org.eclipse.cdt.debug.internal.core.model.CDebugElement.requestFailed(CDebugElement.java:262)
+	at org.eclipse.cdt.debug.internal.core.model.CDebugElement.targetRequestFailed(CDebugElement.java:250)
+	at org.eclipse.cdt.debug.internal.core.model.CMemoryBlockExtension.getAddressableSize(CMemoryBlockExtension.java:185)
+	at org.eclipse.debug.internal.ui.memory.provisional.AbstractAsyncTableRendering.initAddressableSize(AbstractAsyncTableRendering.java:883)
+	at org.eclipse.debug.internal.ui.memory.provisional.AbstractAsyncTableRendering.access$19(AbstractAsyncTableRendering.java:877)
+	at org.eclipse.debug.internal.ui.memory.provisional.AbstractAsyncTableRendering$6.run(AbstractAsyncTableRendering.java:614)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.cdt.debug.core 4 5010 2014-03-24 14:41:47.997
+!MESSAGE Target request failed: Target is not suspended.
+
+!ENTRY org.eclipse.jface 2 0 2014-03-24 14:41:54.302
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-03-24 14:41:54.302
+!MESSAGE A conflict occurred for HOME:
+Binding(HOME,
+	ParameterizedCommand(Command(org.eclipse.cdt.dsf.debug.ui.disassembly.commands.gotoPC,Go to Program Counter,
+		Navigate to current program counter,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.MakeHandlersGo@120949e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.dsf.debug.ui.disassembly.context,,,system)
+Binding(HOME,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.lineStart,Line Start,
+		Go to the start of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1fd5039,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)

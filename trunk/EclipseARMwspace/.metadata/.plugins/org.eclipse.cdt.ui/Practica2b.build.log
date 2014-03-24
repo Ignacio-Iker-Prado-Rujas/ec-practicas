@@ -1,0 +1,11 @@
+14:41:10 **** Incremental Build of configuration Debug for project Practica2b ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica2b.elf
+   text	   data	    bss	    dec	    hex	filename
+   3116	      4	      8	   3128	    c38	Practica2b.elf
+'Finished building: Practica2b.siz'
+' '
+
+14:41:10 Build Finished (took 189ms)
+

@@ -601,35 +601,35 @@
 DEFINED SYMBOLS
                             *ABS*:00000000 led.c
                             *COM*:00000004 led_state
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1875   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1878   .text:00000000 init_leds
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1914   .text:0000003c $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1921   .text:0000004c $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1924   .text:0000004c leds_on
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2292   .text:0000025c Led_Display
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1954   .text:0000006c leds_off
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:1984   .text:0000008c led1_on
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2019   .text:000000c8 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2023   .text:000000cc $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2026   .text:000000cc led1_off
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2061   .text:00000108 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2065   .text:0000010c $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2068   .text:0000010c led2_on
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2103   .text:00000148 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2107   .text:0000014c $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2110   .text:0000014c led2_off
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2145   .text:00000188 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2149   .text:0000018c $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2152   .text:0000018c switchLed1
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2194   .text:000001d0 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2198   .text:000001d4 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2201   .text:000001d4 switchLed2
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2243   .text:00000218 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2247   .text:0000021c $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2250   .text:0000021c leds_switch
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2285   .text:00000258 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2289   .text:0000025c $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccoUHkZ3.s:2365   .text:0000030c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:1875   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:1878   .text:00000000 init_leds
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:1914   .text:0000003c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:1921   .text:0000004c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:1924   .text:0000004c leds_on
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2292   .text:0000025c Led_Display
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:1954   .text:0000006c leds_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:1984   .text:0000008c led1_on
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2019   .text:000000c8 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2023   .text:000000cc $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2026   .text:000000cc led1_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2061   .text:00000108 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2065   .text:0000010c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2068   .text:0000010c led2_on
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2103   .text:00000148 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2107   .text:0000014c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2110   .text:0000014c led2_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2145   .text:00000188 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2149   .text:0000018c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2152   .text:0000018c switchLed1
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2194   .text:000001d0 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2198   .text:000001d4 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2201   .text:000001d4 switchLed2
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2243   .text:00000218 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2247   .text:0000021c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2250   .text:0000021c leds_switch
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2285   .text:00000258 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2289   .text:0000025c $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccItMMFc.s:2365   .text:0000030c $d
                      .debug_frame:00000010 $d
 
 NO UNDEFINED SYMBOLS
