@@ -1,0 +1,347 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.file	"8seg.c"
+  21              	.Ltext0:
+  22              		.file 1 "../8seg.c"
+ 1997              		.align	2
+ 2000              	Symbol:
+ 2001 0000 80000000 		.word	128
+ 2002 0004 40000000 		.word	64
+ 2003 0008 20000000 		.word	32
+ 2004 000c 08000000 		.word	8
+ 2005 0010 04000000 		.word	4
+ 2006 0014 01000000 		.word	1
+ 2007 0018 02000000 		.word	2
+ 2008              		.text
+ 2009              		.align	2
+ 2010              		.global	D8Led_init
+ 2012              	D8Led_init:
+ 2013              	.LFB0:
+   1:../8seg.c     **** /*********************************************************************************************
+   2:../8seg.c     **** * Fichero:	8led.c
+   3:../8seg.c     **** * Autor:		
+   4:../8seg.c     **** * Descrip:	Funciones de control del display 8-segmentos
+   5:../8seg.c     **** * Version:	
+   6:../8seg.c     **** *********************************************************************************************/
+   7:../8seg.c     **** 
+   8:../8seg.c     **** /*--- ficheros de cabecera ---*/
+   9:../8seg.c     **** #include "44b.h"
+  10:../8seg.c     **** #include "def.h"
+  11:../8seg.c     **** 
+  12:../8seg.c     **** /*--- definicion de macros ---*/
+  13:../8seg.c     **** #define	LED8ADDR	(*(volatile unsigned char *)(0x2140000))
+  14:../8seg.c     **** 
+  15:../8seg.c     **** /* Mapa de bits de cada segmento 
+  16:../8seg.c     ****   (valor que se debe escribir en el display para que se ilumine el segmento) */
+  17:../8seg.c     **** #define SEGMENT_A		0x80
+  18:../8seg.c     **** #define SEGMENT_B		0x40
+  19:../8seg.c     **** #define SEGMENT_C		0x20
+  20:../8seg.c     **** #define SEGMENT_D		0x08
+  21:../8seg.c     **** #define SEGMENT_E		0x04
+  22:../8seg.c     **** #define SEGMENT_F		0x02
+  23:../8seg.c     **** #define SEGMENT_G		0x01
+  24:../8seg.c     **** #define SEGMENT_P		0x10
+  25:../8seg.c     **** 
+  26:../8seg.c     **** /*--- variables globales ---*/
+  27:../8seg.c     **** 
+  28:../8seg.c     **** #define DIGIT_F (SEGMENT_A | SEGMENT_G | SEGMENT_E | SEGMENT_F)
+  29:../8seg.c     **** #define DIGIT_E (SEGMENT_A | SEGMENT_G | SEGMENT_E | SEGMENT_F | SEGMENT_D)
+  30:../8seg.c     **** #define DIGIT_D (SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_F |  SEGMENT_E)
+  31:../8seg.c     **** #define DIGIT_C (SEGMENT_A | SEGMENT_G | SEGMENT_E | SEGMENT_D)
+  32:../8seg.c     **** #define DIGIT_B (SEGMENT_C | SEGMENT_G | SEGMENT_E | SEGMENT_F |  SEGMENT_D)
+  33:../8seg.c     **** #define DIGIT_A (SEGMENT_A | SEGMENT_G | SEGMENT_E | SEGMENT_F | SEGMENT_B | SEGMENT_C)
+  34:../8seg.c     **** 
+  35:../8seg.c     **** #define DIGIT_9 (SEGMENT_A | SEGMENT_G | SEGMENT_B | SEGMENT_F |  SEGMENT_C)
+  36:../8seg.c     **** #define DIGIT_8 (SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D |  SEGMENT_E |  SEGMENT_F |  SEGMENT
+  37:../8seg.c     **** #define DIGIT_7 (SEGMENT_A | SEGMENT_B | SEGMENT_C)
+  38:../8seg.c     **** #define DIGIT_6 (SEGMENT_A | SEGMENT_G | SEGMENT_E | SEGMENT_F |  SEGMENT_D |  SEGMENT_C)
+  39:../8seg.c     **** #define DIGIT_5 (SEGMENT_A | SEGMENT_G | SEGMENT_C | SEGMENT_F |  SEGMENT_D)
+  40:../8seg.c     **** #define DIGIT_4 (SEGMENT_B | SEGMENT_G | SEGMENT_C | SEGMENT_F)
+  41:../8seg.c     **** #define DIGIT_3 (SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_F |  SEGMENT_D)
+  42:../8seg.c     **** #define DIGIT_2 (SEGMENT_A | SEGMENT_B | SEGMENT_E | SEGMENT_F |  SEGMENT_D)
+  43:../8seg.c     **** #define DIGIT_1 (SEGMENT_B | SEGMENT_C)
+  44:../8seg.c     **** #define DIGIT_0 (SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_E | SEGMENT_G)
+  45:../8seg.c     **** 
+  46:../8seg.c     **** /* tabla de segmentos */
+  47:../8seg.c     **** int Symbol[] = { SEGMENT_A, SEGMENT_B, SEGMENT_C, SEGMENT_D, SEGMENT_E, SEGMENT_G,SEGMENT_F};
+  48:../8seg.c     **** 			  					  
+  49:../8seg.c     **** /*--- declaración de funciones ---*/
+  50:../8seg.c     **** void D8Led_init(void);
+  51:../8seg.c     **** void D8Led_symbol(int value); 
+  52:../8seg.c     **** 
+  53:../8seg.c     **** /*--- código de las funciones ---*/
+  54:../8seg.c     **** void D8Led_init(void)
+  55:../8seg.c     **** {
+ 2014              		.loc 1 55 0
+ 2015              		.cfi_startproc
+ 2016              		@ Function supports interworking.
+ 2017              		@ args = 0, pretend = 0, frame = 0
+ 2018              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2019 0000 0DC0A0E1 		mov	ip, sp
+ 2020              	.LCFI0:
+ 2021              		.cfi_def_cfa_register 12
+ 2022 0004 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2023 0008 04B04CE2 		sub	fp, ip, #4
+ 2024              		.cfi_offset 14, -8
+ 2025              		.cfi_offset 13, -12
+ 2026              		.cfi_offset 11, -16
+ 2027              	.LCFI1:
+ 2028              		.cfi_def_cfa 11, 4
+  56:../8seg.c     ****     /* Estado inicial del display con todos los segmentos iluminados 
+  57:../8seg.c     ****        (buscar en los ficheros de cabera la direccion implicada) */
+  58:../8seg.c     ****     LED8ADDR = 0 ;
+ 2029              		.loc 1 58 0
+ 2030 000c 8537A0E3 		mov	r3, #34865152
+ 2031 0010 0020A0E3 		mov	r2, #0
+ 2032 0014 0020C3E5 		strb	r2, [r3, #0]
+  59:../8seg.c     **** }
+ 2033              		.loc 1 59 0
+ 2034 0018 0CD04BE2 		sub	sp, fp, #12
+ 2035 001c 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2036 0020 1EFF2FE1 		bx	lr
+ 2037              		.cfi_endproc
+ 2038              	.LFE0:
+ 2040              		.align	2
+ 2041              		.global	D8Led_symbol
+ 2043              	D8Led_symbol:
+ 2044              	.LFB1:
+  60:../8seg.c     **** 
+  61:../8seg.c     **** void D8Led_symbol(int value)
+  62:../8seg.c     **** {
+ 2045              		.loc 1 62 0
+ 2046              		.cfi_startproc
+ 2047              		@ Function supports interworking.
+ 2048              		@ args = 0, pretend = 0, frame = 8
+ 2049              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2050 0024 0DC0A0E1 		mov	ip, sp
+ 2051              	.LCFI2:
+ 2052              		.cfi_def_cfa_register 12
+ 2053 0028 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2054 002c 04B04CE2 		sub	fp, ip, #4
+ 2055              		.cfi_offset 14, -8
+ 2056              		.cfi_offset 13, -12
+ 2057              		.cfi_offset 11, -16
+ 2058              	.LCFI3:
+ 2059              		.cfi_def_cfa 11, 4
+ 2060 0030 08D04DE2 		sub	sp, sp, #8
+ 2061 0034 10000BE5 		str	r0, [fp, #-16]
+  63:../8seg.c     **** /*Tarea 3*/
+  64:../8seg.c     **** 	//int num = value%16;
+  65:../8seg.c     **** 	switch (value){
+ 2062              		.loc 1 65 0
+ 2063 0038 10301BE5 		ldr	r3, [fp, #-16]
+ 2064 003c 0E0053E3 		cmp	r3, #14
+ 2065 0040 03F19F97 		ldrls	pc, [pc, r3, asl #2]
+ 2066 0044 4A0000EA 		b	.L3
+ 2067              	.L19:
+ 2068 0048 84000000 		.word	.L4
+ 2069 004c 94000000 		.word	.L5
+ 2070 0050 A4000000 		.word	.L6
+ 2071 0054 B4000000 		.word	.L7
+ 2072 0058 C4000000 		.word	.L8
+ 2073 005c D4000000 		.word	.L9
+ 2074 0060 E4000000 		.word	.L10
+ 2075 0064 F4000000 		.word	.L11
+ 2076 0068 04010000 		.word	.L12
+ 2077 006c 14010000 		.word	.L13
+ 2078 0070 24010000 		.word	.L14
+ 2079 0074 34010000 		.word	.L15
+ 2080 0078 44010000 		.word	.L16
+ 2081 007c 54010000 		.word	.L17
+ 2082 0080 64010000 		.word	.L18
+ 2083              	.L4:
+  66:../8seg.c     **** 		case 0:
+  67:../8seg.c     **** 			LED8ADDR = ~DIGIT_0;
+ 2084              		.loc 1 67 0
+ 2085 0084 8537A0E3 		mov	r3, #34865152
+ 2086 0088 1220A0E3 		mov	r2, #18
+ 2087 008c 0020C3E5 		strb	r2, [r3, #0]
+  68:../8seg.c     **** 			break;
+ 2088              		.loc 1 68 0
+ 2089 0090 3B0000EA 		b	.L2
+ 2090              	.L5:
+  69:../8seg.c     **** 		case 1:
+  70:../8seg.c     **** 			LED8ADDR = ~DIGIT_1;
+ 2091              		.loc 1 70 0
+ 2092 0094 8537A0E3 		mov	r3, #34865152
+ 2093 0098 6020E0E3 		mvn	r2, #96
+ 2094 009c 0020C3E5 		strb	r2, [r3, #0]
+  71:../8seg.c     **** 			break;
+ 2095              		.loc 1 71 0
+ 2096 00a0 370000EA 		b	.L2
+ 2097              	.L6:
+  72:../8seg.c     **** 		case 2:
+  73:../8seg.c     **** 			LED8ADDR = ~DIGIT_2;
+ 2098              		.loc 1 73 0
+ 2099 00a4 8537A0E3 		mov	r3, #34865152
+ 2100 00a8 3120A0E3 		mov	r2, #49
+ 2101 00ac 0020C3E5 		strb	r2, [r3, #0]
+  74:../8seg.c     **** 			break;
+ 2102              		.loc 1 74 0
+ 2103 00b0 330000EA 		b	.L2
+ 2104              	.L7:
+  75:../8seg.c     **** 		case 3:
+  76:../8seg.c     **** 			LED8ADDR = ~DIGIT_3;
+ 2105              		.loc 1 76 0
+ 2106 00b4 8537A0E3 		mov	r3, #34865152
+ 2107 00b8 1520A0E3 		mov	r2, #21
+ 2108 00bc 0020C3E5 		strb	r2, [r3, #0]
+  77:../8seg.c     **** 			break;
+ 2109              		.loc 1 77 0
+ 2110 00c0 2F0000EA 		b	.L2
+ 2111              	.L8:
+  78:../8seg.c     **** 		case 4:
+  79:../8seg.c     **** 			LED8ADDR = ~DIGIT_4;
+ 2112              		.loc 1 79 0
+ 2113 00c4 8537A0E3 		mov	r3, #34865152
+ 2114 00c8 6320E0E3 		mvn	r2, #99
+ 2115 00cc 0020C3E5 		strb	r2, [r3, #0]
+  80:../8seg.c     **** 			break;
+ 2116              		.loc 1 80 0
+ 2117 00d0 2B0000EA 		b	.L2
+ 2118              	.L9:
+  81:../8seg.c     **** 		case 5:
+  82:../8seg.c     **** 			LED8ADDR = ~DIGIT_5;
+ 2119              		.loc 1 82 0
+ 2120 00d4 8537A0E3 		mov	r3, #34865152
+ 2121 00d8 5420A0E3 		mov	r2, #84
+ 2122 00dc 0020C3E5 		strb	r2, [r3, #0]
+  83:../8seg.c     **** 			break;
+ 2123              		.loc 1 83 0
+ 2124 00e0 270000EA 		b	.L2
+ 2125              	.L10:
+  84:../8seg.c     **** 		case 6:
+  85:../8seg.c     **** 			LED8ADDR = ~DIGIT_6;
+ 2126              		.loc 1 85 0
+ 2127 00e4 8537A0E3 		mov	r3, #34865152
+ 2128 00e8 5020A0E3 		mov	r2, #80
+ 2129 00ec 0020C3E5 		strb	r2, [r3, #0]
+  86:../8seg.c     **** 			break;
+ 2130              		.loc 1 86 0
+ 2131 00f0 230000EA 		b	.L2
+ 2132              	.L11:
+  87:../8seg.c     **** 		case 7:
+  88:../8seg.c     **** 			LED8ADDR = ~DIGIT_7;
+ 2133              		.loc 1 88 0
+ 2134 00f4 8537A0E3 		mov	r3, #34865152
+ 2135 00f8 1F20A0E3 		mov	r2, #31
+ 2136 00fc 0020C3E5 		strb	r2, [r3, #0]
+  89:../8seg.c     **** 			break;
+ 2137              		.loc 1 89 0
+ 2138 0100 1F0000EA 		b	.L2
+ 2139              	.L12:
+  90:../8seg.c     **** 		case 8:
+  91:../8seg.c     **** 			LED8ADDR = ~DIGIT_8;
+ 2140              		.loc 1 91 0
+ 2141 0104 8537A0E3 		mov	r3, #34865152
+ 2142 0108 1020A0E3 		mov	r2, #16
+ 2143 010c 0020C3E5 		strb	r2, [r3, #0]
+  92:../8seg.c     **** 			break;
+ 2144              		.loc 1 92 0
+ 2145 0110 1B0000EA 		b	.L2
+ 2146              	.L13:
+  93:../8seg.c     **** 		case 9:
+  94:../8seg.c     **** 			LED8ADDR = ~DIGIT_9;
+ 2147              		.loc 1 94 0
+ 2148 0114 8537A0E3 		mov	r3, #34865152
+ 2149 0118 1C20A0E3 		mov	r2, #28
+ 2150 011c 0020C3E5 		strb	r2, [r3, #0]
+  95:../8seg.c     **** 			break;
+ 2151              		.loc 1 95 0
+ 2152 0120 170000EA 		b	.L2
+ 2153              	.L14:
+  96:../8seg.c     **** 		case 10:
+  97:../8seg.c     **** 			LED8ADDR = ~DIGIT_A;
+ 2154              		.loc 1 97 0
+ 2155 0124 8537A0E3 		mov	r3, #34865152
+ 2156 0128 1820A0E3 		mov	r2, #24
+ 2157 012c 0020C3E5 		strb	r2, [r3, #0]
+  98:../8seg.c     **** 			break;
+ 2158              		.loc 1 98 0
+ 2159 0130 130000EA 		b	.L2
+ 2160              	.L15:
+  99:../8seg.c     **** 		case 11:
+ 100:../8seg.c     **** 			LED8ADDR = ~DIGIT_B;
+ 2161              		.loc 1 100 0
+ 2162 0134 8537A0E3 		mov	r3, #34865152
+ 2163 0138 2F20E0E3 		mvn	r2, #47
+ 2164 013c 0020C3E5 		strb	r2, [r3, #0]
+ 101:../8seg.c     **** 			break;
+ 2165              		.loc 1 101 0
+ 2166 0140 0F0000EA 		b	.L2
+ 2167              	.L16:
+ 102:../8seg.c     **** 		case 12:
+ 103:../8seg.c     **** 			LED8ADDR = ~DIGIT_C;
+ 2168              		.loc 1 103 0
+ 2169 0144 8537A0E3 		mov	r3, #34865152
+ 2170 0148 7220A0E3 		mov	r2, #114
+ 2171 014c 0020C3E5 		strb	r2, [r3, #0]
+ 104:../8seg.c     **** 			break;
+ 2172              		.loc 1 104 0
+ 2173 0150 0B0000EA 		b	.L2
+ 2174              	.L17:
+ 105:../8seg.c     **** 		case 13:
+ 106:../8seg.c     **** 			LED8ADDR = ~DIGIT_D;
+ 2175              		.loc 1 106 0
+ 2176 0154 8537A0E3 		mov	r3, #34865152
+ 2177 0158 6E20E0E3 		mvn	r2, #110
+ 2178 015c 0020C3E5 		strb	r2, [r3, #0]
+ 107:../8seg.c     **** 			break;
+ 2179              		.loc 1 107 0
+ 2180 0160 070000EA 		b	.L2
+ 2181              	.L18:
+ 108:../8seg.c     **** 		case 14:
+ 109:../8seg.c     **** 			LED8ADDR = ~DIGIT_E;
+ 2182              		.loc 1 109 0
+ 2183 0164 8537A0E3 		mov	r3, #34865152
+ 2184 0168 7020A0E3 		mov	r2, #112
+ 2185 016c 0020C3E5 		strb	r2, [r3, #0]
+ 110:../8seg.c     **** 			break;
+ 2186              		.loc 1 110 0
+ 2187 0170 030000EA 		b	.L2
+ 2188              	.L3:
+ 111:../8seg.c     **** 		default:
+ 112:../8seg.c     **** 			LED8ADDR = ~DIGIT_F;
+ 2189              		.loc 1 112 0
+ 2190 0174 8537A0E3 		mov	r3, #34865152
+ 2191 0178 7820A0E3 		mov	r2, #120
+ 2192 017c 0020C3E5 		strb	r2, [r3, #0]
+ 113:../8seg.c     **** 			break;
+ 2193              		.loc 1 113 0
+ 2194 0180 0000A0E1 		mov	r0, r0	@ nop
+ 2195              	.L2:
+ 114:../8seg.c     **** 
+ 115:../8seg.c     **** 	/* muestra el Symbol[value] en el display   */
+ 116:../8seg.c     **** 
+ 117:../8seg.c     **** 	}
+ 118:../8seg.c     **** 		
+ 119:../8seg.c     **** 		
+ 120:../8seg.c     **** /*fin Tarea 3*/		
+ 121:../8seg.c     **** }
+ 2196              		.loc 1 121 0
+ 2197 0184 0CD04BE2 		sub	sp, fp, #12
+ 2198 0188 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2199 018c 1EFF2FE1 		bx	lr
+ 2200              		.cfi_endproc
+ 2201              	.LFE1:
+ 2203              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 8seg.c
+C:\Users\USUARI~1\AppData\Local\Temp\ccc2RHpY.s:2000   .data:00000000 Symbol
+C:\Users\USUARI~1\AppData\Local\Temp\ccc2RHpY.s:1997   .data:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccc2RHpY.s:2009   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccc2RHpY.s:2012   .text:00000000 D8Led_init
+C:\Users\USUARI~1\AppData\Local\Temp\ccc2RHpY.s:2043   .text:00000024 D8Led_symbol
+C:\Users\USUARI~1\AppData\Local\Temp\ccc2RHpY.s:2068   .text:00000048 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccc2RHpY.s:2085   .text:00000084 $a
+                     .debug_frame:00000010 $d
+
+NO UNDEFINED SYMBOLS

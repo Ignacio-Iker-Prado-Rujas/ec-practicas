@@ -14,14 +14,14 @@
 
 /* Mapa de bits de cada segmento 
   (valor que se debe escribir en el display para que se ilumine el segmento) */
-#define SEGMENT_A		~0x80		
-#define SEGMENT_B		~0x40
-#define SEGMENT_C		~0x20
-#define SEGMENT_D		~0x08
-#define SEGMENT_E		~0x04
-#define SEGMENT_F		~0x02
-#define SEGMENT_G		~0x01
-#define SEGMENT_P		~0x10
+#define SEGMENT_A		0x80
+#define SEGMENT_B		0x40
+#define SEGMENT_C		0x20
+#define SEGMENT_D		0x08
+#define SEGMENT_E		0x04
+#define SEGMENT_F		0x02
+#define SEGMENT_G		0x01
+#define SEGMENT_P		0x10
 
 /*--- variables globales ---*/
 
@@ -61,55 +61,55 @@ void D8Led_init(void)
 void D8Led_symbol(int value)
 {
 /*Tarea 3*/
-	int num = value%16;
-	switch (num){
+	//int num = value%16;
+	switch (value){
 		case 0:
-			LED8ADDR = DIGIT_0;
+			LED8ADDR = ~DIGIT_0;
 			break;
 		case 1:
-			LED8ADDR = DIGIT_1;
+			LED8ADDR = ~DIGIT_1;
 			break;
 		case 2:
-			LED8ADDR = DIGIT_2;
+			LED8ADDR = ~DIGIT_2;
 			break;
 		case 3:
-			LED8ADDR = DIGIT_3;
+			LED8ADDR = ~DIGIT_3;
 			break;
 		case 4:
-			LED8ADDR = DIGIT_4;
+			LED8ADDR = ~DIGIT_4;
 			break;
 		case 5:
-			LED8ADDR = DIGIT_5;
+			LED8ADDR = ~DIGIT_5;
 			break;
 		case 6:
-			LED8ADDR = DIGIT_6;
+			LED8ADDR = ~DIGIT_6;
 			break;
 		case 7:
-			LED8ADDR = DIGIT_7;
+			LED8ADDR = ~DIGIT_7;
 			break;
 		case 8:
-			LED8ADDR = DIGIT_8;
+			LED8ADDR = ~DIGIT_8;
 			break;
 		case 9:
-			LED8ADDR = DIGIT_9;
+			LED8ADDR = ~DIGIT_9;
 			break;
 		case 10:
-			LED8ADDR = DIGIT_A;
+			LED8ADDR = ~DIGIT_A;
 			break;
 		case 11:
-			LED8ADDR = DIGIT_B;
+			LED8ADDR = ~DIGIT_B;
 			break;
 		case 12:
-			LED8ADDR = DIGIT_C;
+			LED8ADDR = ~DIGIT_C;
 			break;
 		case 13:
-			LED8ADDR = DIGIT_D;
+			LED8ADDR = ~DIGIT_D;
 			break;
 		case 14:
-			LED8ADDR = DIGIT_E;
+			LED8ADDR = ~DIGIT_E;
 			break;
 		default:
-			LED8ADDR = DIGIT_F;
+			LED8ADDR = ~DIGIT_F;
 			break;
 
 	/* muestra el Symbol[value] en el display   */

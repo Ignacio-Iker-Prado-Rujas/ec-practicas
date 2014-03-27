@@ -9,7 +9,9 @@
 #include "44b.h"
 #include "44blib.h"
 
- 
+extern int resetsymbol;
+extern int symbol;
+ extern int pausa;
 
 
 //*--- declaracion de funciones ---*/
@@ -26,12 +28,12 @@ void timer_ISR(void)
 				pausa = 1;
 		} else if (pausa == 0) {
 			if (symbol == 0)
-				symbol = 15;
+				symbol = 0;
 			else
 				symbol = symbol-1;	 /* actualiza el contador segun proceda */
 		}
 		D8Led_symbol(symbol); 		     /* muestra el contador en el display */
-		leds_switch(); 
+		leds_switch(); 	/* intercambia los leds*/
 	/* borrar bit en I_ISPC */
 	rI_ISPC |= BIT_TIMER0;
 	/*fin Tarea 2a*/
@@ -41,9 +43,9 @@ void timer_init(void)
 {
 /*TAREA 2b*/
 	/* Configuraion controlador de interrupciones */
-	....  // Configura las linas como de tipo IRQ
-	....  // Habilita int. vectorizadas y la linea IRQ (FIQ no)
-	....  // habilita Timer0 y el bit global
+	rINTMOD=0x0; // Configura las linas como de tipo IRQ
+	rINTCON  =0x1;  // Habilita int. vectorizadas y la linea IRQ (FIQ no)
+	rINTMSK &= ~(BIT_GLOBAL|BIT_TIMER0);  // habilita Timer0 y el bit global
 		
 	/* Establece la rutina de servicio para TIMER0 */
 	pISR_TIMER0=(unsigned)timer_ISR;
