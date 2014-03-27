@@ -21,16 +21,19 @@ void timer_ISR(void)
 {  /*  TAREA 2a */
         /*Actualizar leds con cada int. del timer */
 		if (resetsymbol == 1){
-				.........	 /* actualizamos el contador a 9 */
+				symbol = 15;	 /* actualizamos el contador a F */
 				resetsymbol=0;
 				pausa = 1;
 		} else if (pausa == 0) {
-				.........	 /* actualiza el contador segun proceda */
+			if (symbol == 0)
+				symbol = 15;
+			else
+				symbol = symbol-1;	 /* actualiza el contador segun proceda */
 		}
 		D8Led_symbol(symbol); 		     /* muestra el contador en el display */
 		leds_switch(); 
 	/* borrar bit en I_ISPC */
-    .....
+	rI_ISPC |= BIT_TIMER0;
 	/*fin Tarea 2a*/
 }
 
@@ -48,7 +51,7 @@ void timer_init(void)
 /*fin TAREA 2b*/	
 
 	/* Configura el Timer0 */
-    rTCFG0 = 63;
+    rTCFG0 = 255;
     rTCFG1 = 0x0;
     rTCNTB0 = 65535;
     rTCMPB0 = 12800;
