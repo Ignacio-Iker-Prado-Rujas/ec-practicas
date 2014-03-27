@@ -58,17 +58,18 @@ void Eint4567_ISR(void)
     int which_int;
 	/*TAREA 1b*/
     /* Idenficiar la interrupcion */
-     ....... 
+
+	which_int = rEXTINTPND&0xC;
 
     /* Codigo para eliminar rebotes*/
-	eliminaRebotes();
+	EliminaRebotes();
 	/* Reflejar en update el sentido de la actualizacion 
 	   Nota: para solucionar los problemas de rebotes en el pulsador 
              solo se modifica update cuando se encuentra a cero */ 
 
        switch (which_int) {
-      	case ??:
-      		pausa= ! pausa;
+      	case 4:
+      		pausa =! pausa;
          	update = 1; // actualizar al simbolo siguiente
          	break;
       	case 8:
