@@ -10,7 +10,7 @@
 #include "44b.h"
 
 /*--- variables globales ---*/
-int symbol = 0;
+int symbol = 15;
 extern int update;
 extern int pausa;
 extern int resetsymbol;
