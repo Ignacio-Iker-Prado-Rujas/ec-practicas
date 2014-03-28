@@ -33,7 +33,7 @@ void Eint4567_init(void)
 {
 /*TAREA 1a*/
 	/* Configuracion del controlador de interrupciones */
-	rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
+	rI_ISPC=0xFFFFFFFF;	   // Borra INTPND
 	rEXTINTPND = 0xf; 		   // Borra EXTINTPND
 	rINTMOD=0x0;	   // Configura las lineas como de tipo IRQ mediante rINTMOD
 	rINTCON  =0x1; // Habilita int. vectorizadas y la linea IRQ (FIQ no) mediante rINTCON
@@ -57,33 +57,34 @@ void Eint4567_ISR(void)
 {          
     int which_int;
 	/*TAREA 1b*/
-    /* Idenficiar la interrupcion */
 	if(rI_ISPR == 0x00200000 ){
-		which_int = rEXTINTPND&0xC;
+    /* Idenficiar la interrupcion */
 
-		/* Codigo para eliminar rebotes*/
-		EliminaRebotes();
-		/* Reflejar en update el sentido de la actualizacion 
-		   Nota: para solucionar los problemas de rebotes en el pulsador 
-				 solo se modifica update cuando se encuentra a cero */ 
+	which_int = rEXTINTPND&0xC;
 
-		   switch (which_int) {
-			case 4:
-				pausa =! pausa;
-				update = 1; // actualizar al simbolo siguiente
-				break;
-			case 8:
-				resetsymbol=1;
-				update = 5; // actualizar al simbolo anterior
-				break;
-			default:
-				break;
-		   } 
-		
-		/* Finalizar ISR */    
-		   rEXTINTPND = 0xf;				// borra los bits en EXTINTPND
-		   rI_ISPC   |= BIT_EINT4567;		// borra el bit pendiente en INTPND
-		/*fin TAREA 1b*/	
+    /* Codigo para eliminar rebotes*/
+	EliminaRebotes();
+	/* Reflejar en update el sentido de la actualizacion 
+	   Nota: para solucionar los problemas de rebotes en el pulsador 
+             solo se modifica update cuando se encuentra a cero */ 
+
+       switch (which_int) {
+      	case 4:
+      		pausa =! pausa;
+         	update = 1; // actualizar al simbolo siguiente
+         	break;
+      	case 8:
+      		resetsymbol=1;
+      	 	update = 5; // actualizar al simbolo anterior
+      	 	break;
+      	default:
+         	break;
+       } 
+    
+    /* Finalizar ISR */    
+	   rEXTINTPND = 0xf;				// borra los bits en EXTINTPND
+	   rI_ISPC   |= BIT_EINT4567;		// borra el bit pendiente en INTPND
+	/*fin TAREA 1b*/
 	}
 }
 
