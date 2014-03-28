@@ -12,6 +12,7 @@
 unsigned int update = 0;
 unsigned int pausa = 0;
 unsigned int resetsymbol=0;
+char actual = 'a';
 
 /*--- declaracion de funciones ---*/
 void Eint4567_ISR(void) __attribute__ ((interrupt ("IRQ"))); 
@@ -70,11 +71,17 @@ void Eint4567_ISR(void)
 
        switch (which_int) {
       	case 4:
-      		pausa =! pausa;
+      		if (actual == 'g')
+      			actual = 'p';
+      		else if (actual == 'p')
+      			actual = 'a';
+      		else
+      			actual += 1;
          	update = 1; // actualizar al simbolo siguiente
+         	D8Led_pintaSeg();
          	break;
       	case 8:
-      		resetsymbol=1;
+      		D8Led_swicht();
       	 	update = 5; // actualizar al simbolo anterior
       	 	break;
       	default:

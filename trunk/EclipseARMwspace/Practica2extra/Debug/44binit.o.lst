@@ -221,39 +221,39 @@
  216              		# b HandlerIRQ  ->  subs pc,lr,#4
  217              	
  218              	VECTOR_BRANCH:
- 219 0020 7CF59FE5 	    ldr pc,=HandlerEINT0    /*mGA    H/W interrupt vector table  */
- 220 0024 7CF59FE5 	    ldr pc,=HandlerEINT1    /*	                                 */	
- 221 0028 7CF59FE5 	    ldr pc,=HandlerEINT2    /*                                   */  
- 222 002c 7CF59FE5 	    ldr pc,=HandlerEINT3    /*                                   */  
- 223 0030 7CF59FE5 	    ldr pc,=HandlerEINT4567 /*                                   */  
- 224 0034 7CF59FE5 	    ldr pc,=HandlerTICK	    /*mGA                                */   
+ 219 0020 70F59FE5 	    ldr pc,=HandlerEINT0    /*mGA    H/W interrupt vector table  */
+ 220 0024 70F59FE5 	    ldr pc,=HandlerEINT1    /*	                                 */	
+ 221 0028 70F59FE5 	    ldr pc,=HandlerEINT2    /*                                   */  
+ 222 002c 70F59FE5 	    ldr pc,=HandlerEINT3    /*                                   */  
+ 223 0030 70F59FE5 	    ldr pc,=HandlerEINT4567 /*                                   */  
+ 224 0034 70F59FE5 	    ldr pc,=HandlerTICK	    /*mGA                                */   
  225 0038 FEFFFFEA 	    b .                                                          
  226 003c FEFFFFEA 	    b .                                                         
- 227 0040 74F59FE5 	    ldr pc,=HandlerZDMA0    /*mGB                                */  
- 228 0044 74F59FE5 	    ldr pc,=HandlerZDMA1    /*                                   */  
- 229 0048 74F59FE5 	    ldr pc,=HandlerBDMA0    /*                                   */  
- 230 004c 74F59FE5 	    ldr pc,=HandlerBDMA1    /*                                   */  
- 231 0050 74F59FE5 	    ldr pc,=HandlerWDT	    /*                                   */   
- 232 0054 74F59FE5 	    ldr pc,=HandlerUERR01   /*mGB                                */  
+ 227 0040 68F59FE5 	    ldr pc,=HandlerZDMA0    /*mGB                                */  
+ 228 0044 68F59FE5 	    ldr pc,=HandlerZDMA1    /*                                   */  
+ 229 0048 68F59FE5 	    ldr pc,=HandlerBDMA0    /*                                   */  
+ 230 004c 68F59FE5 	    ldr pc,=HandlerBDMA1    /*                                   */  
+ 231 0050 68F59FE5 	    ldr pc,=HandlerWDT	    /*                                   */   
+ 232 0054 68F59FE5 	    ldr pc,=HandlerUERR01   /*mGB                                */  
  233 0058 FEFFFFEA 	    b .                                                          
  234 005c FEFFFFEA 	    b .                                                          
- 235 0060 6CF59FE5 	    ldr pc,=HandlerTIMER0   /*mGC                                */  
- 236 0064 6CF59FE5 	    ldr pc,=HandlerTIMER1   /*                                   */  
- 237 0068 6CF59FE5 	    ldr pc,=HandlerTIMER2   /*                                   */  
- 238 006c 6CF59FE5 	    ldr pc,=HandlerTIMER3   /*                                   */  
- 239 0070 6CF59FE5 	    ldr pc,=HandlerTIMER4   /*                                   */  
- 240 0074 6CF59FE5 	    ldr pc,=HandlerTIMER5   /*mGC                                */  
+ 235 0060 60F59FE5 	    ldr pc,=HandlerTIMER0   /*mGC                                */  
+ 236 0064 60F59FE5 	    ldr pc,=HandlerTIMER1   /*                                   */  
+ 237 0068 60F59FE5 	    ldr pc,=HandlerTIMER2   /*                                   */  
+ 238 006c 60F59FE5 	    ldr pc,=HandlerTIMER3   /*                                   */  
+ 239 0070 60F59FE5 	    ldr pc,=HandlerTIMER4   /*                                   */  
+ 240 0074 60F59FE5 	    ldr pc,=HandlerTIMER5   /*mGC                                */  
  241 0078 FEFFFFEA 	    b .                                                          
  242 007c FEFFFFEA 	    b .                                                          
- 243 0080 64F59FE5 	    ldr pc,=HandlerURXD0    /*mGD                                */  
- 244 0084 64F59FE5 	    ldr pc,=HandlerURXD1    /*                                   */  
- 245 0088 64F59FE5 	    ldr pc,=HandlerIIC	    /*                                   */   
- 246 008c 64F59FE5 	    ldr pc,=HandlerSIO	    /*                                   */   
- 247 0090 64F59FE5 	    ldr pc,=HandlerUTXD0    /*                                   */  
- 248 0094 64F59FE5 	    ldr pc,=HandlerUTXD1    /*mGD                                */  
+ 243 0080 58F59FE5 	    ldr pc,=HandlerURXD0    /*mGD                                */  
+ 244 0084 58F59FE5 	    ldr pc,=HandlerURXD1    /*                                   */  
+ 245 0088 58F59FE5 	    ldr pc,=HandlerIIC	    /*                                   */   
+ 246 008c 58F59FE5 	    ldr pc,=HandlerSIO	    /*                                   */   
+ 247 0090 58F59FE5 	    ldr pc,=HandlerUTXD0    /*                                   */  
+ 248 0094 58F59FE5 	    ldr pc,=HandlerUTXD1    /*mGD                                */  
  249 0098 FEFFFFEA 	    b .                                                          
  250 009c FEFFFFEA 	    b .                                                          
- 251 00a0 5CF59FE5 	    ldr pc,=HandlerRTC	    /*mGKA                               */   
+ 251 00a0 50F59FE5 	    ldr pc,=HandlerRTC	    /*mGKA                               */   
  252 00a4 FEFFFFEA 	    b .					    /*                     		         */
  253 00a8 FEFFFFEA 	    b .					    /*                     		         */
  254 00ac FEFFFFEA 	    b .					    /*                     		         */
@@ -261,7 +261,7 @@
  256 00b4 FEFFFFEA 	    b .					    /*mGKA                 			     */
  257 00b8 FEFFFFEA 	    b .                                                          
  258 00bc FEFFFFEA 	    b .                                                          
- 259 00c0 40F59FE5 	    ldr pc,=HandlerADC	    /*mGKB                               */  
+ 259 00c0 34F59FE5 	    ldr pc,=HandlerADC	    /*mGKB                               */  
  260 00c4 FEFFFFEA 	    b .					    /*                     		         */
  261 00c8 FEFFFFEA 	    b .					    /*                     		         */
  262 00cc FEFFFFEA 	    b .					    /*                     		         */
@@ -270,7 +270,7 @@
  265 00d8 FEFFFFEA 	    b .                                                          
  266 00dc FEFFFFEA 	    b .                                                          
  267              	@0xe0=EnterPWDN                                                 
- 268 00e0 24F59FE5 	    ldr pc,=EnterPWDN
+ 268 00e0 18F59FE5 	    ldr pc,=EnterPWDN
  269              	
  270              	@   .ltorg
  271              	          	/* the current contents of the literal pool\
@@ -281,162 +281,162 @@
  276              	
  277 00e4 04D04DE2 	HandlerFIQ:		HANDLER HandleFIQ
  277      04002DE5 
- 277      1C059FE5 
+ 277      10059FE5 
  277      000090E5 
  277      04008DE5 
  278 00fc 04D04DE2 	HandlerIRQ:		HANDLER HandleIRQ
  278      04002DE5 
- 278      08059FE5 
+ 278      FC049FE5 
  278      000090E5 
  278      04008DE5 
  279 0114 04D04DE2 	HandlerUndef:	HANDLER HandleUndef
  279      04002DE5 
- 279      F4049FE5 
+ 279      E8049FE5 
  279      000090E5 
  279      04008DE5 
  280 012c 04D04DE2 	HandlerSWI:		HANDLER HandleSWI
  280      04002DE5 
- 280      E0049FE5 
+ 280      D4049FE5 
  280      000090E5 
  280      04008DE5 
  281 0144 04D04DE2 	HandlerDabort:	HANDLER HandleDabort
  281      04002DE5 
- 281      CC049FE5 
+ 281      C0049FE5 
  281      000090E5 
  281      04008DE5 
  282 015c 04D04DE2 	HandlerPabort:	HANDLER HandlePabort
  282      04002DE5 
- 282      B8049FE5 
+ 282      AC049FE5 
  282      000090E5 
  282      04008DE5 
  283 0174 04D04DE2 	HandlerADC:		HANDLER HandleADC
  283      04002DE5 
- 283      A4049FE5 
+ 283      98049FE5 
  283      000090E5 
  283      04008DE5 
  284 018c 04D04DE2 	HandlerRTC:		HANDLER HandleRTC
  284      04002DE5 
- 284      90049FE5 
+ 284      84049FE5 
  284      000090E5 
  284      04008DE5 
  285 01a4 04D04DE2 	HandlerUTXD1:	HANDLER HandleUTXD1
  285      04002DE5 
- 285      7C049FE5 
+ 285      70049FE5 
  285      000090E5 
  285      04008DE5 
  286 01bc 04D04DE2 	HandlerUTXD0:	HANDLER HandleUTXD0
  286      04002DE5 
- 286      68049FE5 
+ 286      5C049FE5 
  286      000090E5 
  286      04008DE5 
  287 01d4 04D04DE2 	HandlerSIO:		HANDLER HandleSIO
  287      04002DE5 
- 287      54049FE5 
+ 287      48049FE5 
  287      000090E5 
  287      04008DE5 
  288 01ec 04D04DE2 	HandlerIIC:		HANDLER HandleIIC
  288      04002DE5 
- 288      40049FE5 
+ 288      34049FE5 
  288      000090E5 
  288      04008DE5 
  289 0204 04D04DE2 	HandlerURXD1:	HANDLER HandleURXD1
  289      04002DE5 
- 289      2C049FE5 
+ 289      20049FE5 
  289      000090E5 
  289      04008DE5 
  290 021c 04D04DE2 	HandlerURXD0:	HANDLER HandleURXD0
  290      04002DE5 
- 290      18049FE5 
+ 290      0C049FE5 
  290      000090E5 
  290      04008DE5 
  291 0234 04D04DE2 	HandlerTIMER5:	HANDLER HandleTIMER5
  291      04002DE5 
- 291      04049FE5 
+ 291      F8039FE5 
  291      000090E5 
  291      04008DE5 
  292 024c 04D04DE2 	HandlerTIMER4:	HANDLER HandleTIMER4
  292      04002DE5 
- 292      F0039FE5 
+ 292      E4039FE5 
  292      000090E5 
  292      04008DE5 
  293 0264 04D04DE2 	HandlerTIMER3:	HANDLER HandleTIMER3
  293      04002DE5 
- 293      DC039FE5 
+ 293      D0039FE5 
  293      000090E5 
  293      04008DE5 
  294 027c 04D04DE2 	HandlerTIMER2:	HANDLER HandleTIMER2
  294      04002DE5 
- 294      C8039FE5 
+ 294      BC039FE5 
  294      000090E5 
  294      04008DE5 
  295 0294 04D04DE2 	HandlerTIMER1:	HANDLER HandleTIMER1
  295      04002DE5 
- 295      B4039FE5 
+ 295      A8039FE5 
  295      000090E5 
  295      04008DE5 
  296 02ac 04D04DE2 	HandlerTIMER0:	HANDLER HandleTIMER0
  296      04002DE5 
- 296      A0039FE5 
+ 296      94039FE5 
  296      000090E5 
  296      04008DE5 
  297 02c4 04D04DE2 	HandlerUERR01:	HANDLER HandleUERR01
  297      04002DE5 
- 297      8C039FE5 
+ 297      80039FE5 
  297      000090E5 
  297      04008DE5 
  298 02dc 04D04DE2 	HandlerWDT:		HANDLER HandleWDT
  298      04002DE5 
- 298      78039FE5 
+ 298      6C039FE5 
  298      000090E5 
  298      04008DE5 
  299 02f4 04D04DE2 	HandlerBDMA1:	HANDLER HandleBDMA1
  299      04002DE5 
- 299      64039FE5 
+ 299      58039FE5 
  299      000090E5 
  299      04008DE5 
  300 030c 04D04DE2 	HandlerBDMA0:	HANDLER HandleBDMA0
  300      04002DE5 
- 300      50039FE5 
+ 300      44039FE5 
  300      000090E5 
  300      04008DE5 
  301 0324 04D04DE2 	HandlerZDMA1:	HANDLER HandleZDMA1
  301      04002DE5 
- 301      3C039FE5 
+ 301      30039FE5 
  301      000090E5 
  301      04008DE5 
  302 033c 04D04DE2 	HandlerZDMA0:	HANDLER HandleZDMA0
  302      04002DE5 
- 302      28039FE5 
+ 302      1C039FE5 
  302      000090E5 
  302      04008DE5 
  303 0354 04D04DE2 	HandlerTICK:	HANDLER HandleTICK
  303      04002DE5 
- 303      14039FE5 
+ 303      08039FE5 
  303      000090E5 
  303      04008DE5 
  304 036c 04D04DE2 	HandlerEINT4567:HANDLER HandleEINT4567
  304      04002DE5 
- 304      00039FE5 
+ 304      F4029FE5 
  304      000090E5 
  304      04008DE5 
  305 0384 04D04DE2 	HandlerEINT3:	HANDLER HandleEINT3
  305      04002DE5 
- 305      EC029FE5 
+ 305      E0029FE5 
  305      000090E5 
  305      04008DE5 
  306 039c 04D04DE2 	HandlerEINT2:	HANDLER HandleEINT2
  306      04002DE5 
- 306      D8029FE5 
+ 306      CC029FE5 
  306      000090E5 
  306      04008DE5 
  307 03b4 04D04DE2 	HandlerEINT1:	HANDLER HandleEINT1
  307      04002DE5 
- 307      C4029FE5 
+ 307      B8029FE5 
  307      000090E5 
  307      04008DE5 
  308 03cc 04D04DE2 	HandlerEINT0:	HANDLER HandleEINT0
  308      04002DE5 
- 308      B0029FE5 
+ 308      A4029FE5 
  308      000090E5 
  308      04008DE5 
  309              	
@@ -448,7 +448,7 @@
  315              	
  316              		#IMPORTANT CAUTION
  317              	
- 318 03ec 9C929FE5 	    ldr	    r9,=I_ISPR
+ 318 03ec 90929FE5 	    ldr	    r9,=I_ISPR
  319 03f0 009099E5 	    ldr	    r9,[r9]
  320              	
  321 03f4 000059E3 		cmp		r9, #0x0		/* If the IDLE mode work-around is used, 	*/
@@ -463,7 +463,7 @@
  330 040c FBFFFFEA 	    b	    l0
  331              	
  332              	l1:
- 333 0410 10929FE5 	    ldr	    r9,=HandleADC
+ 333 0410 04929FE5 	    ldr	    r9,=HandleADC
  334 0414 089089E0 	    add	    r9,r9,r8
  335 0418 009099E5 	    ldr	    r9,[r9]
  336 041c 08908DE5 	    str	    r9,[sp,#8]
@@ -479,19 +479,19 @@
  346              	#****************************************************
  347              	ResetHandler:
  348              	start:
- 349 0430 5C029FE5 	    ldr	    r0,=WTCON	    	/* watch dog disable*/
+ 349 0430 50029FE5 	    ldr	    r0,=WTCON	    	/* watch dog disable*/
  350 0434 0010A0E3 	    ldr	    r1,=0x0 		
  351 0438 001080E5 	    str	    r1,[r0]
  352              	
- 353 043c 54029FE5 	    ldr	    r0,=INTMSK
+ 353 043c 48029FE5 	    ldr	    r0,=INTMSK
  354 0440 3E13E0E3 	    ldr	    r1,=0x07ffffff  	/* all interrupt disable */
  355 0444 001080E5 	    str	    r1,[r0]
  356              	
  357              	    #****************************************************
  358              	    #*	Set clock control registers						*
  359              	    #****************************************************
- 360 0448 4C029FE5 	    ldr		r0,=LOCKTIME
- 361 044c 4C129FE5 	    ldr		r1,=0xfff
+ 360 0448 40029FE5 	    ldr		r0,=LOCKTIME
+ 361 044c 40129FE5 	    ldr		r1,=0xfff
  362 0450 001080E5 	    str		r1,[r0]
  363              	
  364              	#**
@@ -501,25 +501,25 @@
  368              	#	str		r1,[r0]
  369              	# .endif
  370              	#****
- 371 0454 48029FE5 	    ldr	    r0,=CLKCON		
- 372 0458 48129FE5 	    ldr	    r1,=0x7ff8	    	/* All unit block CLK enable */
+ 371 0454 3C029FE5 	    ldr	    r0,=CLKCON		
+ 372 0458 3C129FE5 	    ldr	    r1,=0x7ff8	    	/* All unit block CLK enable */
  373 045c 001080E5 	    str	    r1,[r0]
  374              	
  375              	    #****************************************
  376              	    #*  change BDMACON reset value for BDMA *   
  377              	    #****************************************
- 378 0460 44029FE5 	    ldr     r0,=BDIDES0      
+ 378 0460 38029FE5 	    ldr     r0,=BDIDES0      
  379 0464 0111A0E3 	    ldr     r1,=0x40000000   	/* BDIDESn reset value should be 0x40000000 */
  380 0468 001080E5 	    str     r1,[r0]
  381              	
- 382 046c 3C029FE5 	    ldr     r0,=BDIDES1      
+ 382 046c 30029FE5 	    ldr     r0,=BDIDES1      
  383 0470 0111A0E3 	    ldr     r1,=0x40000000   	/* BDIDESn reset value should be 0x40000000 */	 
  384 0474 001080E5 	    str     r1,[r0]
  385              	
  386              	    #****************************************************
  387              	    #*	Set memory control registers					* 	
  388              	    #****************************************************
- 389 0478 34029FE5 	    ldr	    r0,=SMRDATA
+ 389 0478 28029FE5 	    ldr	    r0,=SMRDATA
  390 047c FE3F90E8 	    ldmia   r0,{r1-r13}
  391 0480 7207A0E3 	    ldr	    r0,=0x01c80000  	/* BWSCON Address */
  392 0484 FE3F80E8 	    stmia   r0,{r1-r13}
@@ -527,22 +527,22 @@
  394              	    #;****************************************************
  395              	    #;*	Initialize stacks								* 
  396              	    #;****************************************************
- 397 0488 28D29FE5 	    ldr	    sp, =SVCStack		/* Why	*/		
- 398 048c 1C0000EB 	    bl	    InitStacks
+ 397 0488 1CD29FE5 	    ldr	    sp, =SVCStack		/* Why	*/		
+ 398 048c 190000EB 	    bl	    InitStacks
  399              	
  400              	    #;****************************************************
  401              	    #;*	Setup IRQ handler								*
  402              	    #;****************************************************
- 403 0490 7C019FE5 	    ldr	    r0,=HandleIRQ		/* This routine is needed */
- 404 0494 20129FE5 	    ldr	    r1,=IsrIRQ			/* if there isn't 'subs pc,lr,#4' at 0x18, 0x1c */
+ 403 0490 70019FE5 	    ldr	    r0,=HandleIRQ		/* This routine is needed */
+ 404 0494 14129FE5 	    ldr	    r1,=IsrIRQ			/* if there isn't 'subs pc,lr,#4' at 0x18, 0x1c */
  405 0498 001080E5 	    str	    r1,[r0]
  406              	
  407              	    #********************************************************
  408              	    #*	Copy and paste RW data/zero initialized data	    *
  409              	    #********************************************************
- 410 049c 1C029FE5 	    LDR	    r0, =Image_RO_Limit	/* Get pointer to ROM data */
- 411 04a0 1C129FE5 	    LDR	    r1, =Image_RW_Base	/* and RAM copy	*/
- 412 04a4 1C329FE5 	    LDR	    r3, =Image_ZI_Base	
+ 410 049c 10029FE5 	    LDR	    r0, =Image_RO_Limit	/* Get pointer to ROM data */
+ 411 04a0 10129FE5 	    LDR	    r1, =Image_RW_Base	/* and RAM copy	*/
+ 412 04a4 10329FE5 	    LDR	    r3, =Image_ZI_Base	
  413              		/* Zero init base => top of initialised data */
  414              				
  415 04a8 010050E1 	    CMP	    r0, r1	    		/* Check that they are different */
@@ -553,7 +553,7 @@
  420 04b8 04208134 	    STRCC   r2, [r1], #4        /* --> STRCC r2, [r1] + ADD r1, r1, #4   */ 
  421 04bc FBFFFF3A 	    BCC	    F0
  422              	F1:
- 423 04c0 04129FE5 	    LDR	    r1, =Image_ZI_Limit	/* Top of zero init segment */
+ 423 04c0 F8119FE5 	    LDR	    r1, =Image_ZI_Limit	/* Top of zero init segment */
  424 04c4 0020A0E3 	    MOV	    r2, #0
  425              	F2:
  426 04c8 010053E1 	    CMP	    r3, r1	    		/* Zero init */
@@ -561,23 +561,23 @@
  428 04d0 FCFFFF3A 	    BCC	    F2
  429              	
  430              	
- 431 04d4 00000FE1 		MRS	r0, CPSR
- 432 04d8 C000C0E3 		BIC	r0, r0, #NOINT /* enable interrupt */
- 433 04dc 00F02FE1 		MSR	CPSR_cxsf, r0
+ 431              	@	MRS	r0, CPSR
+ 432              	@	BIC	r0, r0, #NOINT /* enable interrupt */
+ 433              	@	MSR	CPSR_cxsf, r0
  434              		
  435              		/* Pasamos a modo usuario, inicializamos su pila
  436              	       y ponemos a cero el frame pointer*/
- 437 04e0 00000FE1 	    MRS	r0, CPSR
- 438 04e4 1F00C0E3 	   	BIC	r0,r0,#MODEMASK
- 439 04e8 101080E3 	    ORR	r1,r0,#USERMODE
- 440 04ec C010C1E3 	    BIC r1,r1,#NOINT
- 441 04f0 01F02FE1 	    MSR	CPSR_cxsf,r1 	    
- 442 04f4 D4D19FE5 	    ldr sp,=UserStack
- 443 04f8 00B0A0E3 	    mov fp,#0
+ 437 04d4 00000FE1 	    MRS	r0, CPSR
+ 438 04d8 1F00C0E3 	   	BIC	r0,r0,#MODEMASK
+ 439 04dc 101080E3 	    ORR	r1,r0,#USERMODE
+ 440 04e0 C010C1E3 	    BIC r1,r1,#NOINT
+ 441 04e4 01F02FE1 	    MSR	CPSR_cxsf,r1 	    
+ 442 04e8 D4D19FE5 	    ldr sp,=UserStack
+ 443 04ec 00B0A0E3 	    mov fp,#0
  444              		
  445              		/* jump to main() */
- 446 04fc FEFFFFEB 	   	BL	main
- 447 0500 FEFFFFEA 	   	B   .	    
+ 446 04f0 FEFFFFEB 	   	BL	main
+ 447 04f4 FEFFFFEA 	   	B   .	    
  448              	
  449              	#;****************************************************
  450              	#;*	The function for initializing stack				*
@@ -587,67 +587,67 @@
  454              		#SVCstack is initialized before
  455              		#Under toolkit ver 2.50, 'msr cpsr,r1' can be used instead of 'msr cpsr_cxsf,r1'
  456              	
- 457 0504 00000FE1 	    mrs	    r0,cpsr
- 458 0508 1F00C0E3 	    bic	    r0,r0,#MODEMASK
- 459 050c 1B1080E3 	    orr	    r1,r0,#UNDEFMODE
- 460 0510 01F02FE1 	    msr	    cpsr_cxsf,r1		/* UndefMode */
- 461 0514 B8D19FE5 	    ldr	    sp,=UndefStack
+ 457 04f8 00000FE1 	    mrs	    r0,cpsr
+ 458 04fc 1F00C0E3 	    bic	    r0,r0,#MODEMASK
+ 459 0500 1B1080E3 	    orr	    r1,r0,#UNDEFMODE
+ 460 0504 01F02FE1 	    msr	    cpsr_cxsf,r1		/* UndefMode */
+ 461 0508 B8D19FE5 	    ldr	    sp,=UndefStack
  462              		
- 463 0518 D71080E3 	    orr	    r1,r0,#ABORTMODE|NOINT
- 464 051c 01F02FE1 	    msr	    cpsr_cxsf,r1 	    /* AbortMode */	
- 465 0520 B0D19FE5 	    ldr	    sp,=AbortStack
+ 463 050c D71080E3 	    orr	    r1,r0,#ABORTMODE|NOINT
+ 464 0510 01F02FE1 	    msr	    cpsr_cxsf,r1 	    /* AbortMode */	
+ 465 0514 B0D19FE5 	    ldr	    sp,=AbortStack
  466              	
- 467 0524 921080E3 	    orr	    r1,r0,#IRQMODE|FIQ_MODE
- 468 0528 01F02FE1 	    msr	    cpsr_cxsf,r1 	    /* IRQMode */
- 469 052c A8D19FE5 	    ldr	    sp,=IRQStack
+ 467 0518 921080E3 	    orr	    r1,r0,#IRQMODE|FIQ_MODE
+ 468 051c 01F02FE1 	    msr	    cpsr_cxsf,r1 	    /* IRQMode */
+ 469 0520 A8D19FE5 	    ldr	    sp,=IRQStack
  470              		
- 471 0530 511080E3 	    orr	    r1,r0,#FIQMODE|IRQ_MODE
- 472 0534 01F02FE1 	    msr	    cpsr_cxsf,r1 	    /* FIQMode */
- 473 0538 A0D19FE5 	    ldr	    sp,=FIQStack
+ 471 0524 511080E3 	    orr	    r1,r0,#FIQMODE|IRQ_MODE
+ 472 0528 01F02FE1 	    msr	    cpsr_cxsf,r1 	    /* FIQMode */
+ 473 052c A0D19FE5 	    ldr	    sp,=FIQStack
  474              	
- 475 053c 1F00C0E3 	    bic	    r0,r0,#MODEMASK
- 476 0540 131080E3 	    orr	    r1,r0,#SVCMODE
- 477 0544 01F02FE1 	    msr	    cpsr_cxsf,r1 	    /* SVCMode */
- 478 0548 68D19FE5 	    ldr	    sp,=SVCStack
+ 475 0530 1F00C0E3 	    bic	    r0,r0,#MODEMASK
+ 476 0534 131080E3 	    orr	    r1,r0,#SVCMODE
+ 477 0538 01F02FE1 	    msr	    cpsr_cxsf,r1 	    /* SVCMode */
+ 478 053c 68D19FE5 	    ldr	    sp,=SVCStack
  479              	
  480              		#USER mode is not initialized.
- 481 054c 0EF0A0E1 	    mov	    pc,lr 				/* The LR register may be not valid for the mode changes. */
+ 481 0540 0EF0A0E1 	    mov	    pc,lr 				/* The LR register may be not valid for the mode changes. */
  482              	
  483              	#****************************************************
  484              	#*	The function for entering power down mode		*
  485              	#****************************************************
  486              	#void EnterPWDN(int CLKCON);
  487              	EnterPWDN:
- 488 0550 0020A0E1 	    mov	    r2,r0               /* r0=CLKCON */
- 489 0554 88019FE5 	    ldr	    r0,=REFRESH		
- 490 0558 003090E5 	    ldr	    r3,[r0]
- 491 055c 0310A0E1 	    mov	    r1, r3
- 492 0560 011581E3 	    orr	    r1, r1, #0x400000   /* self-refresh enable */
- 493 0564 001080E5 	    str	    r1, [r0]
+ 488 0544 0020A0E1 	    mov	    r2,r0               /* r0=CLKCON */
+ 489 0548 88019FE5 	    ldr	    r0,=REFRESH		
+ 490 054c 003090E5 	    ldr	    r3,[r0]
+ 491 0550 0310A0E1 	    mov	    r1, r3
+ 492 0554 011581E3 	    orr	    r1, r1, #0x400000   /* self-refresh enable */
+ 493 0558 001080E5 	    str	    r1, [r0]
  494              	
- 495 0568 0000A0E1 	    nop     /* Wait until self-refresh is issued. May not be needed. */
- 496 056c 0000A0E1 	    nop     /* If the other bus master holds the bus, ... */
- 497 0570 0000A0E1 	    nop	    /* mov r0, r0 */
- 498 0574 0000A0E1 	    nop
- 499 0578 0000A0E1 	    nop
- 500 057c 0000A0E1 	    nop
- 501 0580 0000A0E1 	    nop
+ 495 055c 0000A0E1 	    nop     /* Wait until self-refresh is issued. May not be needed. */
+ 496 0560 0000A0E1 	    nop     /* If the other bus master holds the bus, ... */
+ 497 0564 0000A0E1 	    nop	    /* mov r0, r0 */
+ 498 0568 0000A0E1 	    nop
+ 499 056c 0000A0E1 	    nop
+ 500 0570 0000A0E1 	    nop
+ 501 0574 0000A0E1 	    nop
  502              	
  503              	#enter POWERDN mode
- 504 0584 18019FE5 	    ldr	    r0,=CLKCON
- 505 0588 002080E5 	    str	    r2,[r0]
+ 504 0578 18019FE5 	    ldr	    r0,=CLKCON
+ 505 057c 002080E5 	    str	    r2,[r0]
  506              	
  507              	#wait until enter SL_IDLE,STOP mode and until wake-up
- 508 058c 1000A0E3 	    ldr	    r0,=0x10
- 509 0590 010050E2 	U0: subs    r0,r0,#1
- 510 0594 FDFFFF1A 	    bne	    U0
+ 508 0580 1000A0E3 	    ldr	    r0,=0x10
+ 509 0584 010050E2 	U0: subs    r0,r0,#1
+ 510 0588 FDFFFF1A 	    bne	    U0
  511              	
  512              	#exit from DRAM/SDRAM self refresh mode.
- 513 0598 44019FE5 	    ldr	    r0,=REFRESH
- 514 059c 003080E5 	    str	    r3,[r0]
- 515 05a0 0EF0A0E1 	    mov	    pc,lr
+ 513 058c 44019FE5 	    ldr	    r0,=REFRESH
+ 514 0590 003080E5 	    str	    r3,[r0]
+ 515 0594 0EF0A0E1 	    mov	    pc,lr
  516              	    
- 517 05a4 CC030000 	    .ltorg
+ 517 0598 CC030000 	    .ltorg
  517      B4030000 
  517      9C030000 
  517      84030000 
@@ -675,27 +675,27 @@
  538              	#bank7	No use
  539              	
  540              	.ifeq BUSWIDTH-16
- 541 06e8 02011111 		.long 0x11110102		/* Bank0=16bit BootRom(AT29C010A*2) :0x0 */
+ 541 06dc 02011111 		.long 0x11110102		/* Bank0=16bit BootRom(AT29C010A*2) :0x0 */
  542              	.else
  543              	   	.long 0x22222220		/* Bank0=OM[1:0], Bank1~Bank7=32bit 	 */
  544              	.endif
- 545 06ec 00060000 		.long ((B0_Tacs<<13)+(B0_Tcos<<11)+(B0_Tacc<<8)+(B0_Tcoh<<6)+(B0_Tah<<4)+(B0_Tacp<<2)+(B0_PMC))	/*
- 546 06f0 FC7F0000 		.long ((B1_Tacs<<13)+(B1_Tcos<<11)+(B1_Tacc<<8)+(B1_Tcoh<<6)+(B1_Tah<<4)+(B1_Tacp<<2)+(B1_PMC))	/*
- 547 06f4 FC7F0000 		.long ((B2_Tacs<<13)+(B2_Tcos<<11)+(B2_Tacc<<8)+(B2_Tcoh<<6)+(B2_Tah<<4)+(B2_Tacp<<2)+(B2_PMC))	/*
- 548 06f8 FC7F0000 		.long ((B3_Tacs<<13)+(B3_Tcos<<11)+(B3_Tacc<<8)+(B3_Tcoh<<6)+(B3_Tah<<4)+(B3_Tacp<<2)+(B3_PMC))	/*
- 549 06fc FC7F0000 		.long ((B4_Tacs<<13)+(B4_Tcos<<11)+(B4_Tacc<<8)+(B4_Tcoh<<6)+(B4_Tah<<4)+(B4_Tacp<<2)+(B4_PMC))	/*
- 550 0700 FC7F0000 		.long ((B5_Tacs<<13)+(B5_Tcos<<11)+(B5_Tacc<<8)+(B5_Tcoh<<6)+(B5_Tah<<4)+(B5_Tacp<<2)+(B5_PMC))	/*
+ 545 06e0 00060000 		.long ((B0_Tacs<<13)+(B0_Tcos<<11)+(B0_Tacc<<8)+(B0_Tcoh<<6)+(B0_Tah<<4)+(B0_Tacp<<2)+(B0_PMC))	/*
+ 546 06e4 FC7F0000 		.long ((B1_Tacs<<13)+(B1_Tcos<<11)+(B1_Tacc<<8)+(B1_Tcoh<<6)+(B1_Tah<<4)+(B1_Tacp<<2)+(B1_PMC))	/*
+ 547 06e8 FC7F0000 		.long ((B2_Tacs<<13)+(B2_Tcos<<11)+(B2_Tacc<<8)+(B2_Tcoh<<6)+(B2_Tah<<4)+(B2_Tacp<<2)+(B2_PMC))	/*
+ 548 06ec FC7F0000 		.long ((B3_Tacs<<13)+(B3_Tcos<<11)+(B3_Tacc<<8)+(B3_Tcoh<<6)+(B3_Tah<<4)+(B3_Tacp<<2)+(B3_PMC))	/*
+ 549 06f0 FC7F0000 		.long ((B4_Tacs<<13)+(B4_Tcos<<11)+(B4_Tacc<<8)+(B4_Tcoh<<6)+(B4_Tah<<4)+(B4_Tacp<<2)+(B4_PMC))	/*
+ 550 06f4 FC7F0000 		.long ((B5_Tacs<<13)+(B5_Tcos<<11)+(B5_Tacc<<8)+(B5_Tcoh<<6)+(B5_Tah<<4)+(B5_Tacp<<2)+(B5_PMC))	/*
  551              		.ifc "DRAM",BDRAMTYPE
  552              		    .long ((B6_MT<<15)+(B6_Trcd<<4)+(B6_Tcas<<3)+(B6_Tcp<<2)+(B6_CAN))	/* GCS6 check the MT value 
  553              		    .long ((B7_MT<<15)+(B7_Trcd<<4)+(B7_Tcas<<3)+(B7_Tcp<<2)+(B7_CAN))	/* GCS7                    
  554              		.else
- 555 0704 00800100 			.long ((B6_MT<<15)+(B6_Trcd<<2)+(B6_SCAN))	/* GCS6 */
- 556 0708 00800100 			.long ((B7_MT<<15)+(B7_Trcd<<2)+(B7_SCAN))	/* GCS7 */
+ 555 06f8 00800100 			.long ((B6_MT<<15)+(B6_Trcd<<2)+(B6_SCAN))	/* GCS6 */
+ 556 06fc 00800100 			.long ((B7_MT<<15)+(B7_Trcd<<2)+(B7_SCAN))	/* GCS7 */
  557              		.endif
- 558 070c 59048600 		.long ((REFEN<<23)+(TREFMD<<22)+(Trp<<20)+(Trc<<18)+(Tchr<<16)+REFCNT)	/* REFRESH RFEN=1, TREFMD=0
- 559 0710 10000000 		.long 0x10				/* SCLK power down mode, BANKSIZE 32M/32M */
- 560 0714 20000000 		.long 0x20				/* MRSR6 CL=2clk                          */
- 561 0718 20000000 		.long 0x20				/* MRSR7                                  */
+ 558 0700 59048600 		.long ((REFEN<<23)+(TREFMD<<22)+(Trp<<20)+(Trc<<18)+(Tchr<<16)+REFCNT)	/* REFRESH RFEN=1, TREFMD=0
+ 559 0704 10000000 		.long 0x10				/* SCLK power down mode, BANKSIZE 32M/32M */
+ 560 0708 20000000 		.long 0x20				/* MRSR6 CL=2clk                          */
+ 561 070c 20000000 		.long 0x20				/* MRSR7                                  */
  562              	
  563              	
  564              	.equ 	UserStack,	_ISR_STARTADDRESS-0xf00    		/* c7ff000 */   	
@@ -881,7 +881,7 @@ DEFINED SYMBOLS
       ../44binit.asm:285    .text:000001a4 HandlerUTXD1
       ../44binit.asm:284    .text:0000018c HandlerRTC
       ../44binit.asm:283    .text:00000174 HandlerADC
-      ../44binit.asm:487    .text:00000550 EnterPWDN
+      ../44binit.asm:487    .text:00000544 EnterPWDN
                             *ABS*:0c7fff1c HandleFIQ
                             *ABS*:0c7fff18 HandleIRQ
                             *ABS*:0c7fff04 HandleUndef
@@ -919,9 +919,9 @@ DEFINED SYMBOLS
       ../44binit.asm:326    .text:00000400 l0
       ../44binit.asm:332    .text:00000410 l1
       ../44binit.asm:348    .text:00000430 start
-      ../44binit.asm:519    .text:000006e8 SMRDATA
+      ../44binit.asm:519    .text:000006dc SMRDATA
                             *ABS*:0c7ff100 SVCStack
-      ../44binit.asm:452    .text:00000504 InitStacks
+      ../44binit.asm:452    .text:000004f8 InitStacks
       ../44binit.asm:422    .text:000004c0 F1
       ../44binit.asm:417    .text:000004b0 F0
       ../44binit.asm:425    .text:000004c8 F2
@@ -930,8 +930,8 @@ DEFINED SYMBOLS
                             *ABS*:0c7ff300 AbortStack
                             *ABS*:0c7ff400 IRQStack
                             *ABS*:0c7ff500 FIQStack
-      ../44binit.asm:509    .text:00000590 U0
-      ../44binit.asm:517    .text:000005a4 $d
+      ../44binit.asm:509    .text:00000584 U0
+      ../44binit.asm:517    .text:00000598 $d
       ../44binit.asm:571    *ABS*:0c7fff00 HandleReset
       ../44binit.asm:576    *ABS*:0c7fff14 HandleReserved
                    .debug_aranges:0000000c $d
