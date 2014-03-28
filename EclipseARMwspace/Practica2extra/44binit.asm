@@ -428,9 +428,9 @@ F2:
     BCC	    F2
 
 
-	MRS	r0, CPSR
-	BIC	r0, r0, #NOINT /* enable interrupt */
-	MSR	CPSR_cxsf, r0
+@	MRS	r0, CPSR
+@	BIC	r0, r0, #NOINT /* enable interrupt */
+@	MSR	CPSR_cxsf, r0
 	
 	/* Pasamos a modo usuario, inicializamos su pila
        y ponemos a cero el frame pointer*/

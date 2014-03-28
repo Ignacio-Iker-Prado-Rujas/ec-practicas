@@ -15,6 +15,7 @@ extern int update;
 extern int pausa;
 extern int resetsymbol;
 extern int switch_leds;
+extern char actual;
 
 /*--- funciones externas ---*/
 extern void Eint4567_init(void);
@@ -31,9 +32,9 @@ int main(void)
 	timer_init();	   // Inicializacion del temporizador
 
 	leds_off();
-	led1_on();
+	//led1_on();
 
-	D8Led_symbol(symbol);  	/* muestra el simbolo inicial en el display */
+	//D8Led_symbol(symbol);  	/* muestra el simbolo inicial en el display */
 		
     while(1) {
 

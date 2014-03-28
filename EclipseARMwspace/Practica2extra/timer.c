@@ -11,7 +11,8 @@
 
 extern int resetsymbol;
 extern int symbol;
- extern int pausa;
+extern int pausa;
+extern char actual;
 
 
 //*--- declaracion de funciones ---*/
@@ -21,19 +22,10 @@ void timer_init(void);
 /*--- codigo de las funciones ---*/
 void timer_ISR(void)
 {  /*  TAREA 2a */
-        /*Actualizar leds con cada int. del timer */
-		if (resetsymbol == 1){
-				symbol = 15;	 /* actualizamos el contador a F */
-				resetsymbol=0;
-				pausa = 1;
-		} else if (pausa == 0) {
-			if (symbol == 0)
-				symbol = 0;
-			else
-				symbol = symbol-1;	 /* actualiza el contador segun proceda */
-		}
-		D8Led_symbol(symbol); 		     /* muestra el contador en el display */
-		leds_switch(); 	/* intercambia los leds*/
+        /*Actualizar ocho seg con cada int. del timer */
+	D8Led_parpadear();
+
+	leds_switch(); 	/* intercambia los leds*/
 	/* borrar bit en I_ISPC */
 	rI_ISPC |= BIT_TIMER0;
 	/*fin Tarea 2a*/

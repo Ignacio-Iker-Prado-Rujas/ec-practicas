@@ -11,7 +11,8 @@
 
 /*--- definicion de macros ---*/
 #define	LED8ADDR	(*(volatile unsigned char *)(0x2140000))
-
+// typedef enum{false, true} bool;
+extern char actual;
 /* Mapa de bits de cada segmento 
   (valor que se debe escribir en el display para que se ilumine el segmento) */
 #define SEGMENT_A		0x80
@@ -43,19 +44,155 @@
 #define DIGIT_1 (SEGMENT_B | SEGMENT_C)
 #define DIGIT_0 (SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_E | SEGMENT_G)
 
+int segmentOn[] = {0, 0, 0, 0, 0, 0, 0, 0};
+
 /* tabla de segmentos */
-int Symbol[] = { SEGMENT_A, SEGMENT_B, SEGMENT_C, SEGMENT_D, SEGMENT_E, SEGMENT_G,SEGMENT_F};
+int Symbol[] = { SEGMENT_A, SEGMENT_B, SEGMENT_C, SEGMENT_D, SEGMENT_E, SEGMENT_G,SEGMENT_F, SEGMENT_P};
 			  					  
+
 /*--- declaración de funciones ---*/
 void D8Led_init(void);
 void D8Led_symbol(int value); 
-
+void D8Led_parpadear();
+void D8Led_swicht();
+void D8Led_pintaSeg();
 /*--- código de las funciones ---*/
 void D8Led_init(void)
 {
     /* Estado inicial del display con todos los segmentos iluminados 
        (buscar en los ficheros de cabera la direccion implicada) */
     LED8ADDR = 0 ;
+}
+void D8Led_parpadear() {
+	switch (actual){
+		case 'a':
+			if(LED8ADDR&SEGMENT_A == SEGMENT_A) {
+				LED8ADDR &= ~SEGMENT_A;
+			} else {
+				LED8ADDR |= SEGMENT_A;
+			}
+			break;
+		case 'b':
+			if(LED8ADDR&SEGMENT_B == SEGMENT_B) {
+				LED8ADDR &= ~SEGMENT_B;
+			} else {
+				LED8ADDR |= SEGMENT_B;
+			}
+			break;
+		case 'c':
+			if(LED8ADDR&SEGMENT_C == SEGMENT_C) {
+				LED8ADDR &= ~SEGMENT_C;
+			} else {
+				LED8ADDR |= SEGMENT_C;
+			}
+			break;
+		case 'd':
+			if(LED8ADDR&SEGMENT_D == SEGMENT_D) {
+				LED8ADDR &= ~SEGMENT_D;
+			} else {
+				LED8ADDR |= SEGMENT_D;
+			}
+			break;
+		case 'e':
+			if(LED8ADDR&SEGMENT_E == SEGMENT_E) {
+				LED8ADDR &= ~SEGMENT_E;
+			} else {
+				LED8ADDR |= SEGMENT_E;
+			}
+			break;
+		case 'f':
+			if(LED8ADDR&SEGMENT_F == SEGMENT_F) {
+				LED8ADDR &= ~SEGMENT_F;
+			} else {
+				LED8ADDR |= SEGMENT_F;
+			}
+			break;
+		case 'g':
+			if(LED8ADDR&SEGMENT_G == SEGMENT_G) {
+				LED8ADDR &= ~SEGMENT_G;
+			} else {
+				LED8ADDR |= SEGMENT_G;
+			}
+			break;
+		default:
+			if(LED8ADDR&SEGMENT_P == SEGMENT_P) {
+				LED8ADDR &= ~SEGMENT_P;
+			} else {
+				LED8ADDR |= SEGMENT_P;
+			}
+			break;
+		}
+
+}
+
+void D8Led_swicht(){
+	switch (actual){
+		case 'a':
+			if(segmentOn[0] == 1) {
+				segmentOn[0] = 0;
+			} else {
+				segmentOn[0] = 1;
+			}
+			break;
+		case 'b':
+			if(segmentOn[1] == 1) {
+				segmentOn[1] = 0;
+			} else {
+				segmentOn[1] = 1;
+			}
+			break;
+		case 'c':
+			if(segmentOn[2] == 1) {
+				segmentOn[2] = 0;
+			} else {
+				segmentOn[2] = 1;
+			}
+			break;
+		case 'd':
+			if(segmentOn[3] == 1) {
+				segmentOn[3] = 0;
+			} else {
+				segmentOn[3] = 1;
+			}
+			break;
+		case 'e':
+			if(segmentOn[4] == 1) {
+				segmentOn[4] = 0;
+			} else {
+				segmentOn[4] = 1;
+			}
+			break;
+		case 'f':
+			if(segmentOn[5] == 1) {
+				segmentOn[5] = 0;
+			} else {
+				segmentOn[5] = 1;
+			}
+			break;
+		case 'g':
+			if(segmentOn[6] == 1) {
+				segmentOn[6] = 0;
+			} else {
+				segmentOn[6] = 1;
+			}
+			break;
+		default:
+			if(segmentOn[7] == 1) {
+				segmentOn[7] = 0;
+			} else {
+				segmentOn[7] = 1;
+			}
+			break;
+		}
+}
+
+void D8Led_pintaSeg(){
+	int i = 0;
+	while( i < 8){
+		if (segmentOn[i]==1)
+			LED8ADDR &= ~Symbol[i];
+		i++;
+	}
 }
 
 void D8Led_symbol(int value)
