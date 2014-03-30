@@ -3,35 +3,35 @@ Practica2extra.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000019a0  0c000000  0c000000  00008000  2**2
+  0 .text         000019ac  0c000000  0c000000  00008000  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000035  0c0019a0  0c0019a0  000099a0  2**2
+  1 .data         00000035  0c0019ac  0c0019ac  000099ac  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000040  0c0019d8  0c0019d8  000099d5  2**2
+  2 .bss          00000040  0c0019e4  0c0019e4  000099e1  2**2
                   ALLOC
-  3 .ARM.attributes 0000002e  00000000  00000000  000099d5  2**0
+  3 .ARM.attributes 0000002e  00000000  00000000  000099e1  2**0
                   CONTENTS, READONLY
-  4 .comment      0000002a  00000000  00000000  00009a03  2**0
+  4 .comment      0000002a  00000000  00000000  00009a0f  2**0
                   CONTENTS, READONLY
-  5 .debug_info   000006ef  00000000  00000000  00009a2d  2**0
+  5 .debug_info   0000070d  00000000  00000000  00009a39  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   000007c7  00000000  00000000  0000a11c  2**0
+  6 .debug_line   000007e4  00000000  00000000  0000a146  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000040a  00000000  00000000  0000a8e3  2**0
+  7 .debug_abbrev 0000040a  00000000  00000000  0000a92a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000003b8  00000000  00000000  0000acf0  2**2
+  8 .debug_frame  000003b8  00000000  00000000  0000ad34  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_aranges 000000e0  00000000  00000000  0000b0a8  2**3
+  9 .debug_aranges 000000e0  00000000  00000000  0000b0f0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_macinfo 00021b96  00000000  00000000  0000b188  2**0
+ 10 .debug_macinfo 00021b96  00000000  00000000  0000b1d0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000044c  00000000  00000000  0002cd1e  2**0
+ 11 .debug_loc    0000044c  00000000  00000000  0002cd66  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_pubnames 0000026b  00000000  00000000  0002d16a  2**0
+ 12 .debug_pubnames 0000026b  00000000  00000000  0002d1b2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_pubtypes 00000012  00000000  00000000  0002d3d5  2**0
+ 13 .debug_pubtypes 00000012  00000000  00000000  0002d41d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00000280  00000000  00000000  0002d3e7  2**0
+ 14 .debug_str    0000029e  00000000  00000000  0002d42f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -671,7 +671,7 @@ F2:
 	
 	/* jump to main() */
    	BL	main
- c0004f0:	eb00048e 	bl	c001730 <main>
+ c0004f0:	eb000491 	bl	c00173c <main>
    	B   .	    
  c0004f4:	eafffffe 	b	c0004f4 <F2+0x2c>
 
@@ -854,10 +854,10 @@ U0: subs    r0,r0,#1
  c0006a8:	0c0006dc 	.word	0x0c0006dc
  c0006ac:	0c7ff100 	.word	0x0c7ff100
  c0006b0:	0c0003e4 	.word	0x0c0003e4
- c0006b4:	0c0019a0 	.word	0x0c0019a0
- c0006b8:	0c0019a0 	.word	0x0c0019a0
- c0006bc:	0c0019d5 	.word	0x0c0019d5
- c0006c0:	0c001a18 	.word	0x0c001a18
+ c0006b4:	0c0019ac 	.word	0x0c0019ac
+ c0006b8:	0c0019ac 	.word	0x0c0019ac
+ c0006bc:	0c0019e1 	.word	0x0c0019e1
+ c0006c0:	0c001a24 	.word	0x0c001a24
  c0006c4:	0c7ff000 	.word	0x0c7ff000
  c0006c8:	0c7ff200 	.word	0x0c7ff200
  c0006cc:	0c7ff300 	.word	0x0c7ff300
@@ -974,7 +974,7 @@ void Delay(int time)
  c0007fc:	e1a03303 	lsl	r3, r3, #6
  c000800:	e59f003c 	ldr	r0, [pc, #60]	; c000844 <Delay+0x134>
  c000804:	e1a01003 	mov	r1, r3
- c000808:	eb000411 	bl	c001854 <__aeabi_idiv>
+ c000808:	eb000414 	bl	c001860 <__aeabi_idiv>
  c00080c:	e1a03000 	mov	r3, r0
  c000810:	e1a02003 	mov	r2, r3
  c000814:	e59f300c 	ldr	r3, [pc, #12]	; c000828 <Delay+0x118>
@@ -984,7 +984,7 @@ void Delay(int time)
  c00081c:	e24bd00c 	sub	sp, fp, #12
  c000820:	e89d6800 	ldm	sp, {fp, sp, lr}
  c000824:	e12fff1e 	bx	lr
- c000828:	0c0019b0 	.word	0x0c0019b0
+ c000828:	0c0019bc 	.word	0x0c0019bc
  c00082c:	01d30000 	.word	0x01d30000
  c000830:	00003f10 	.word	0x00003f10
  c000834:	01d30004 	.word	0x01d30004
@@ -1251,7 +1251,7 @@ void * malloc(unsigned nbyte)
  c000ac8:	e24bd00c 	sub	sp, fp, #12
  c000acc:	e89d6800 	ldm	sp, {fp, sp, lr}
  c000ad0:	e12fff1e 	bx	lr
- c000ad4:	0c0019a8 	.word	0x0c0019a8
+ c000ad4:	0c0019b4 	.word	0x0c0019b4
  c000ad8:	0c7ff000 	.word	0x0c7ff000
 
 0c000adc <free>:
@@ -1271,7 +1271,7 @@ void free(void *pt)
  c000afc:	e24bd00c 	sub	sp, fp, #12
  c000b00:	e89d6800 	ldm	sp, {fp, sp, lr}
  c000b04:	e12fff1e 	bx	lr
- c000b08:	0c0019a8 	.word	0x0c0019a8
+ c000b08:	0c0019b4 	.word	0x0c0019b4
 
 0c000b0c <sys_init>:
 
@@ -1339,1481 +1339,1490 @@ void D8Led_init(void)
  c000b9c:	e12fff1e 	bx	lr
 
 0c000ba0 <D8Led_parpadear>:
+
+//Esta funcion hace parpadear el segmento solicitado
+//Cada vez que se la llama enciende o apaga el segmento adecuado
 void D8Led_parpadear() {
  c000ba0:	e1a0c00d 	mov	ip, sp
  c000ba4:	e92dd800 	push	{fp, ip, lr, pc}
  c000ba8:	e24cb004 	sub	fp, ip, #4
 	switch (actual){
- c000bac:	e59f331c 	ldr	r3, [pc, #796]	; c000ed0 <D8Led_parpadear+0x330>
+ c000bac:	e59f3304 	ldr	r3, [pc, #772]	; c000eb8 <D8Led_parpadear+0x318>
  c000bb0:	e5d33000 	ldrb	r3, [r3]
  c000bb4:	e2433061 	sub	r3, r3, #97	; 0x61
  c000bb8:	e3530006 	cmp	r3, #6
  c000bbc:	979ff103 	ldrls	pc, [pc, r3, lsl #2]
- c000bc0:	ea0000a8 	b	c000e68 <D8Led_parpadear+0x2c8>
+ c000bc0:	ea0000a3 	b	c000e54 <D8Led_parpadear+0x2b4>
  c000bc4:	0c000be0 	.word	0x0c000be0
- c000bc8:	0c000c40 	.word	0x0c000c40
+ c000bc8:	0c000c44 	.word	0x0c000c44
  c000bcc:	0c000c9c 	.word	0x0c000c9c
- c000bd0:	0c000cf8 	.word	0x0c000cf8
- c000bd4:	0c000d54 	.word	0x0c000d54
- c000bd8:	0c000db0 	.word	0x0c000db0
- c000bdc:	0c000e0c 	.word	0x0c000e0c
+ c000bd0:	0c000cf4 	.word	0x0c000cf4
+ c000bd4:	0c000d4c 	.word	0x0c000d4c
+ c000bd8:	0c000da4 	.word	0x0c000da4
+ c000bdc:	0c000dfc 	.word	0x0c000dfc
 		case 'a':
-			if(LED8ADDR&SEGMENT_A == SEGMENT_A) {
+			if(((~LED8ADDR) & SEGMENT_A) == SEGMENT_A) {	//Estaba encendido => lo apago
  c000be0:	e3a03785 	mov	r3, #34865152	; 0x2140000
  c000be4:	e5d33000 	ldrb	r3, [r3]
  c000be8:	e20330ff 	and	r3, r3, #255	; 0xff
- c000bec:	e2033001 	and	r3, r3, #1
- c000bf0:	e20330ff 	and	r3, r3, #255	; 0xff
- c000bf4:	e3530000 	cmp	r3, #0
- c000bf8:	0a000007 	beq	c000c1c <D8Led_parpadear+0x7c>
-				LED8ADDR &= ~SEGMENT_A;
- c000bfc:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000c00:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000c04:	e5d22000 	ldrb	r2, [r2]
- c000c08:	e20220ff 	and	r2, r2, #255	; 0xff
- c000c0c:	e202207f 	and	r2, r2, #127	; 0x7f
- c000c10:	e20220ff 	and	r2, r2, #255	; 0xff
- c000c14:	e5c32000 	strb	r2, [r3]
-			} else {
+ c000bec:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000bf0:	e1a03c03 	lsl	r3, r3, #24
+ c000bf4:	e1a03c43 	asr	r3, r3, #24
+ c000bf8:	e3530000 	cmp	r3, #0
+ c000bfc:	ba000008 	blt	c000c24 <D8Led_parpadear+0x84>
 				LED8ADDR |= SEGMENT_A;
+ c000c00:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000c04:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000c08:	e5d33000 	ldrb	r3, [r3]
+ c000c0c:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000c10:	e1e03c83 	mvn	r3, r3, lsl #25
+ c000c14:	e1e03ca3 	mvn	r3, r3, lsr #25
+ c000c18:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000c1c:	e5c23000 	strb	r3, [r2]
+			} else {										//Estaba apagado => lo enciendo
+				LED8ADDR &= ~SEGMENT_A;
 			}
 			break;
- c000c18:	ea0000a9 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000c20:	ea0000a1 	b	c000eac <D8Led_parpadear+0x30c>
 	switch (actual){
 		case 'a':
-			if(LED8ADDR&SEGMENT_A == SEGMENT_A) {
-				LED8ADDR &= ~SEGMENT_A;
-			} else {
+			if(((~LED8ADDR) & SEGMENT_A) == SEGMENT_A) {	//Estaba encendido => lo apago
 				LED8ADDR |= SEGMENT_A;
- c000c1c:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000c20:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000c24:	e5d33000 	ldrb	r3, [r3]
- c000c28:	e20330ff 	and	r3, r3, #255	; 0xff
- c000c2c:	e1e03c83 	mvn	r3, r3, lsl #25
- c000c30:	e1e03ca3 	mvn	r3, r3, lsr #25
- c000c34:	e20330ff 	and	r3, r3, #255	; 0xff
- c000c38:	e5c23000 	strb	r3, [r2]
+			} else {										//Estaba apagado => lo enciendo
+				LED8ADDR &= ~SEGMENT_A;
+ c000c24:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000c28:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000c2c:	e5d22000 	ldrb	r2, [r2]
+ c000c30:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000c34:	e202207f 	and	r2, r2, #127	; 0x7f
+ c000c38:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000c3c:	e5c32000 	strb	r2, [r3]
 			}
 			break;
- c000c3c:	ea0000a0 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000c40:	ea000099 	b	c000eac <D8Led_parpadear+0x30c>
 		case 'b':
-			if(LED8ADDR&SEGMENT_B == SEGMENT_B) {
- c000c40:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000c44:	e5d33000 	ldrb	r3, [r3]
- c000c48:	e20330ff 	and	r3, r3, #255	; 0xff
- c000c4c:	e2033001 	and	r3, r3, #1
- c000c50:	e20330ff 	and	r3, r3, #255	; 0xff
+			if(((~LED8ADDR) & SEGMENT_B) == SEGMENT_B) {
+ c000c44:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000c48:	e5d33000 	ldrb	r3, [r3]
+ c000c4c:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000c50:	e2033040 	and	r3, r3, #64	; 0x40
  c000c54:	e3530000 	cmp	r3, #0
- c000c58:	0a000007 	beq	c000c7c <D8Led_parpadear+0xdc>
-				LED8ADDR &= ~SEGMENT_B;
+ c000c58:	1a000007 	bne	c000c7c <D8Led_parpadear+0xdc>
+				LED8ADDR |= SEGMENT_B;
  c000c5c:	e3a03785 	mov	r3, #34865152	; 0x2140000
  c000c60:	e3a02785 	mov	r2, #34865152	; 0x2140000
  c000c64:	e5d22000 	ldrb	r2, [r2]
  c000c68:	e20220ff 	and	r2, r2, #255	; 0xff
- c000c6c:	e3c22040 	bic	r2, r2, #64	; 0x40
+ c000c6c:	e3822040 	orr	r2, r2, #64	; 0x40
  c000c70:	e20220ff 	and	r2, r2, #255	; 0xff
  c000c74:	e5c32000 	strb	r2, [r3]
 			} else {
-				LED8ADDR |= SEGMENT_B;
+				LED8ADDR &= ~SEGMENT_B;
 			}
 			break;
- c000c78:	ea000091 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000c78:	ea00008b 	b	c000eac <D8Led_parpadear+0x30c>
 			break;
 		case 'b':
-			if(LED8ADDR&SEGMENT_B == SEGMENT_B) {
-				LED8ADDR &= ~SEGMENT_B;
-			} else {
+			if(((~LED8ADDR) & SEGMENT_B) == SEGMENT_B) {
 				LED8ADDR |= SEGMENT_B;
+			} else {
+				LED8ADDR &= ~SEGMENT_B;
  c000c7c:	e3a03785 	mov	r3, #34865152	; 0x2140000
  c000c80:	e3a02785 	mov	r2, #34865152	; 0x2140000
  c000c84:	e5d22000 	ldrb	r2, [r2]
  c000c88:	e20220ff 	and	r2, r2, #255	; 0xff
- c000c8c:	e3822040 	orr	r2, r2, #64	; 0x40
+ c000c8c:	e3c22040 	bic	r2, r2, #64	; 0x40
  c000c90:	e20220ff 	and	r2, r2, #255	; 0xff
  c000c94:	e5c32000 	strb	r2, [r3]
 			}
 			break;
- c000c98:	ea000089 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000c98:	ea000083 	b	c000eac <D8Led_parpadear+0x30c>
 		case 'c':
-			if(LED8ADDR&SEGMENT_C == SEGMENT_C) {
+			if(((~LED8ADDR) & SEGMENT_C) == SEGMENT_C) {
  c000c9c:	e3a03785 	mov	r3, #34865152	; 0x2140000
  c000ca0:	e5d33000 	ldrb	r3, [r3]
  c000ca4:	e20330ff 	and	r3, r3, #255	; 0xff
- c000ca8:	e2033001 	and	r3, r3, #1
- c000cac:	e20330ff 	and	r3, r3, #255	; 0xff
- c000cb0:	e3530000 	cmp	r3, #0
- c000cb4:	0a000007 	beq	c000cd8 <D8Led_parpadear+0x138>
-				LED8ADDR &= ~SEGMENT_C;
- c000cb8:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000cbc:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000cc0:	e5d22000 	ldrb	r2, [r2]
- c000cc4:	e20220ff 	and	r2, r2, #255	; 0xff
- c000cc8:	e3c22020 	bic	r2, r2, #32
- c000ccc:	e20220ff 	and	r2, r2, #255	; 0xff
- c000cd0:	e5c32000 	strb	r2, [r3]
-			} else {
+ c000ca8:	e2033020 	and	r3, r3, #32
+ c000cac:	e3530000 	cmp	r3, #0
+ c000cb0:	1a000007 	bne	c000cd4 <D8Led_parpadear+0x134>
 				LED8ADDR |= SEGMENT_C;
+ c000cb4:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000cb8:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000cbc:	e5d22000 	ldrb	r2, [r2]
+ c000cc0:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000cc4:	e3822020 	orr	r2, r2, #32
+ c000cc8:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000ccc:	e5c32000 	strb	r2, [r3]
+			} else {
+				LED8ADDR &= ~SEGMENT_C;
 			}
 			break;
- c000cd4:	ea00007a 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000cd0:	ea000075 	b	c000eac <D8Led_parpadear+0x30c>
 			break;
 		case 'c':
-			if(LED8ADDR&SEGMENT_C == SEGMENT_C) {
-				LED8ADDR &= ~SEGMENT_C;
-			} else {
+			if(((~LED8ADDR) & SEGMENT_C) == SEGMENT_C) {
 				LED8ADDR |= SEGMENT_C;
- c000cd8:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000cdc:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000ce0:	e5d22000 	ldrb	r2, [r2]
- c000ce4:	e20220ff 	and	r2, r2, #255	; 0xff
- c000ce8:	e3822020 	orr	r2, r2, #32
- c000cec:	e20220ff 	and	r2, r2, #255	; 0xff
- c000cf0:	e5c32000 	strb	r2, [r3]
+			} else {
+				LED8ADDR &= ~SEGMENT_C;
+ c000cd4:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000cd8:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000cdc:	e5d22000 	ldrb	r2, [r2]
+ c000ce0:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000ce4:	e3c22020 	bic	r2, r2, #32
+ c000ce8:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000cec:	e5c32000 	strb	r2, [r3]
 			}
 			break;
- c000cf4:	ea000072 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000cf0:	ea00006d 	b	c000eac <D8Led_parpadear+0x30c>
 		case 'd':
-			if(LED8ADDR&SEGMENT_D == SEGMENT_D) {
- c000cf8:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000cfc:	e5d33000 	ldrb	r3, [r3]
- c000d00:	e20330ff 	and	r3, r3, #255	; 0xff
- c000d04:	e2033001 	and	r3, r3, #1
- c000d08:	e20330ff 	and	r3, r3, #255	; 0xff
- c000d0c:	e3530000 	cmp	r3, #0
- c000d10:	0a000007 	beq	c000d34 <D8Led_parpadear+0x194>
-				LED8ADDR &= ~SEGMENT_D;
- c000d14:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000d18:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000d1c:	e5d22000 	ldrb	r2, [r2]
+			if(((~LED8ADDR) & SEGMENT_D) == SEGMENT_D) {
+ c000cf4:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000cf8:	e5d33000 	ldrb	r3, [r3]
+ c000cfc:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000d00:	e2033008 	and	r3, r3, #8
+ c000d04:	e3530000 	cmp	r3, #0
+ c000d08:	1a000007 	bne	c000d2c <D8Led_parpadear+0x18c>
+				LED8ADDR |= SEGMENT_D;
+ c000d0c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000d10:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000d14:	e5d22000 	ldrb	r2, [r2]
+ c000d18:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000d1c:	e3822008 	orr	r2, r2, #8
  c000d20:	e20220ff 	and	r2, r2, #255	; 0xff
- c000d24:	e3c22008 	bic	r2, r2, #8
- c000d28:	e20220ff 	and	r2, r2, #255	; 0xff
- c000d2c:	e5c32000 	strb	r2, [r3]
+ c000d24:	e5c32000 	strb	r2, [r3]
 			} else {
-				LED8ADDR |= SEGMENT_D;
-			}
-			break;
- c000d30:	ea000063 	b	c000ec4 <D8Led_parpadear+0x324>
-			break;
-		case 'd':
-			if(LED8ADDR&SEGMENT_D == SEGMENT_D) {
 				LED8ADDR &= ~SEGMENT_D;
-			} else {
+			}
+			break;
+ c000d28:	ea00005f 	b	c000eac <D8Led_parpadear+0x30c>
+			break;
+		case 'd':
+			if(((~LED8ADDR) & SEGMENT_D) == SEGMENT_D) {
 				LED8ADDR |= SEGMENT_D;
- c000d34:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000d38:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000d3c:	e5d22000 	ldrb	r2, [r2]
+			} else {
+				LED8ADDR &= ~SEGMENT_D;
+ c000d2c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000d30:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000d34:	e5d22000 	ldrb	r2, [r2]
+ c000d38:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000d3c:	e3c22008 	bic	r2, r2, #8
  c000d40:	e20220ff 	and	r2, r2, #255	; 0xff
- c000d44:	e3822008 	orr	r2, r2, #8
- c000d48:	e20220ff 	and	r2, r2, #255	; 0xff
- c000d4c:	e5c32000 	strb	r2, [r3]
+ c000d44:	e5c32000 	strb	r2, [r3]
 			}
 			break;
- c000d50:	ea00005b 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000d48:	ea000057 	b	c000eac <D8Led_parpadear+0x30c>
 		case 'e':
-			if(LED8ADDR&SEGMENT_E == SEGMENT_E) {
- c000d54:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000d58:	e5d33000 	ldrb	r3, [r3]
- c000d5c:	e20330ff 	and	r3, r3, #255	; 0xff
- c000d60:	e2033001 	and	r3, r3, #1
- c000d64:	e20330ff 	and	r3, r3, #255	; 0xff
- c000d68:	e3530000 	cmp	r3, #0
- c000d6c:	0a000007 	beq	c000d90 <D8Led_parpadear+0x1f0>
-				LED8ADDR &= ~SEGMENT_E;
- c000d70:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000d74:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000d78:	e5d22000 	ldrb	r2, [r2]
- c000d7c:	e20220ff 	and	r2, r2, #255	; 0xff
- c000d80:	e3c22004 	bic	r2, r2, #4
- c000d84:	e20220ff 	and	r2, r2, #255	; 0xff
- c000d88:	e5c32000 	strb	r2, [r3]
-			} else {
+			if(((~LED8ADDR) & SEGMENT_E) == SEGMENT_E) {
+ c000d4c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000d50:	e5d33000 	ldrb	r3, [r3]
+ c000d54:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000d58:	e2033004 	and	r3, r3, #4
+ c000d5c:	e3530000 	cmp	r3, #0
+ c000d60:	1a000007 	bne	c000d84 <D8Led_parpadear+0x1e4>
 				LED8ADDR |= SEGMENT_E;
+ c000d64:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000d68:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000d6c:	e5d22000 	ldrb	r2, [r2]
+ c000d70:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000d74:	e3822004 	orr	r2, r2, #4
+ c000d78:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000d7c:	e5c32000 	strb	r2, [r3]
+			} else {
+				LED8ADDR &= ~SEGMENT_E;
 			}
 			break;
- c000d8c:	ea00004c 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000d80:	ea000049 	b	c000eac <D8Led_parpadear+0x30c>
 			break;
 		case 'e':
-			if(LED8ADDR&SEGMENT_E == SEGMENT_E) {
-				LED8ADDR &= ~SEGMENT_E;
-			} else {
+			if(((~LED8ADDR) & SEGMENT_E) == SEGMENT_E) {
 				LED8ADDR |= SEGMENT_E;
- c000d90:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000d94:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000d98:	e5d22000 	ldrb	r2, [r2]
- c000d9c:	e20220ff 	and	r2, r2, #255	; 0xff
- c000da0:	e3822004 	orr	r2, r2, #4
- c000da4:	e20220ff 	and	r2, r2, #255	; 0xff
- c000da8:	e5c32000 	strb	r2, [r3]
+			} else {
+				LED8ADDR &= ~SEGMENT_E;
+ c000d84:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000d88:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000d8c:	e5d22000 	ldrb	r2, [r2]
+ c000d90:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000d94:	e3c22004 	bic	r2, r2, #4
+ c000d98:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000d9c:	e5c32000 	strb	r2, [r3]
 			}
 			break;
- c000dac:	ea000044 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000da0:	ea000041 	b	c000eac <D8Led_parpadear+0x30c>
 		case 'f':
-			if(LED8ADDR&SEGMENT_F == SEGMENT_F) {
- c000db0:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000db4:	e5d33000 	ldrb	r3, [r3]
- c000db8:	e20330ff 	and	r3, r3, #255	; 0xff
- c000dbc:	e2033001 	and	r3, r3, #1
- c000dc0:	e20330ff 	and	r3, r3, #255	; 0xff
- c000dc4:	e3530000 	cmp	r3, #0
- c000dc8:	0a000007 	beq	c000dec <D8Led_parpadear+0x24c>
-				LED8ADDR &= ~SEGMENT_F;
- c000dcc:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000dd0:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000dd4:	e5d22000 	ldrb	r2, [r2]
- c000dd8:	e20220ff 	and	r2, r2, #255	; 0xff
- c000ddc:	e3c22002 	bic	r2, r2, #2
- c000de0:	e20220ff 	and	r2, r2, #255	; 0xff
- c000de4:	e5c32000 	strb	r2, [r3]
-			} else {
+			if(((~LED8ADDR) & SEGMENT_F) == SEGMENT_F) {
+ c000da4:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000da8:	e5d33000 	ldrb	r3, [r3]
+ c000dac:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000db0:	e2033002 	and	r3, r3, #2
+ c000db4:	e3530000 	cmp	r3, #0
+ c000db8:	1a000007 	bne	c000ddc <D8Led_parpadear+0x23c>
 				LED8ADDR |= SEGMENT_F;
+ c000dbc:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000dc0:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000dc4:	e5d22000 	ldrb	r2, [r2]
+ c000dc8:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000dcc:	e3822002 	orr	r2, r2, #2
+ c000dd0:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000dd4:	e5c32000 	strb	r2, [r3]
+			} else {
+				LED8ADDR &= ~SEGMENT_F;
 			}
 			break;
- c000de8:	ea000035 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000dd8:	ea000033 	b	c000eac <D8Led_parpadear+0x30c>
 			break;
 		case 'f':
-			if(LED8ADDR&SEGMENT_F == SEGMENT_F) {
-				LED8ADDR &= ~SEGMENT_F;
-			} else {
+			if(((~LED8ADDR) & SEGMENT_F) == SEGMENT_F) {
 				LED8ADDR |= SEGMENT_F;
- c000dec:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000df0:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000df4:	e5d22000 	ldrb	r2, [r2]
- c000df8:	e20220ff 	and	r2, r2, #255	; 0xff
- c000dfc:	e3822002 	orr	r2, r2, #2
- c000e00:	e20220ff 	and	r2, r2, #255	; 0xff
- c000e04:	e5c32000 	strb	r2, [r3]
-			}
-			break;
- c000e08:	ea00002d 	b	c000ec4 <D8Led_parpadear+0x324>
-		case 'g':
-			if(LED8ADDR&SEGMENT_G == SEGMENT_G) {
- c000e0c:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000e10:	e5d33000 	ldrb	r3, [r3]
- c000e14:	e20330ff 	and	r3, r3, #255	; 0xff
- c000e18:	e2033001 	and	r3, r3, #1
- c000e1c:	e20330ff 	and	r3, r3, #255	; 0xff
- c000e20:	e3530000 	cmp	r3, #0
- c000e24:	0a000007 	beq	c000e48 <D8Led_parpadear+0x2a8>
-				LED8ADDR &= ~SEGMENT_G;
- c000e28:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000e2c:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000e30:	e5d22000 	ldrb	r2, [r2]
- c000e34:	e20220ff 	and	r2, r2, #255	; 0xff
- c000e38:	e3c22001 	bic	r2, r2, #1
- c000e3c:	e20220ff 	and	r2, r2, #255	; 0xff
- c000e40:	e5c32000 	strb	r2, [r3]
 			} else {
-				LED8ADDR |= SEGMENT_G;
+				LED8ADDR &= ~SEGMENT_F;
+ c000ddc:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000de0:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000de4:	e5d22000 	ldrb	r2, [r2]
+ c000de8:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000dec:	e3c22002 	bic	r2, r2, #2
+ c000df0:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000df4:	e5c32000 	strb	r2, [r3]
 			}
 			break;
- c000e44:	ea00001e 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000df8:	ea00002b 	b	c000eac <D8Led_parpadear+0x30c>
+		case 'g':
+			if(((~LED8ADDR) & SEGMENT_G) == SEGMENT_G) {
+ c000dfc:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000e00:	e5d33000 	ldrb	r3, [r3]
+ c000e04:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000e08:	e2033001 	and	r3, r3, #1
+ c000e0c:	e3530000 	cmp	r3, #0
+ c000e10:	1a000007 	bne	c000e34 <D8Led_parpadear+0x294>
+				LED8ADDR |= SEGMENT_G;
+ c000e14:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000e18:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000e1c:	e5d22000 	ldrb	r2, [r2]
+ c000e20:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000e24:	e3822001 	orr	r2, r2, #1
+ c000e28:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000e2c:	e5c32000 	strb	r2, [r3]
+			} else {
+				LED8ADDR &= ~SEGMENT_G;
+			}
+			break;
+ c000e30:	ea00001d 	b	c000eac <D8Led_parpadear+0x30c>
 			break;
 		case 'g':
-			if(LED8ADDR&SEGMENT_G == SEGMENT_G) {
-				LED8ADDR &= ~SEGMENT_G;
-			} else {
+			if(((~LED8ADDR) & SEGMENT_G) == SEGMENT_G) {
 				LED8ADDR |= SEGMENT_G;
- c000e48:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000e4c:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000e50:	e5d22000 	ldrb	r2, [r2]
- c000e54:	e20220ff 	and	r2, r2, #255	; 0xff
- c000e58:	e3822001 	orr	r2, r2, #1
- c000e5c:	e20220ff 	and	r2, r2, #255	; 0xff
- c000e60:	e5c32000 	strb	r2, [r3]
+			} else {
+				LED8ADDR &= ~SEGMENT_G;
+ c000e34:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000e38:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000e3c:	e5d22000 	ldrb	r2, [r2]
+ c000e40:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000e44:	e3c22001 	bic	r2, r2, #1
+ c000e48:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000e4c:	e5c32000 	strb	r2, [r3]
 			}
 			break;
- c000e64:	ea000016 	b	c000ec4 <D8Led_parpadear+0x324>
+ c000e50:	ea000015 	b	c000eac <D8Led_parpadear+0x30c>
 		default:
-			if(LED8ADDR&SEGMENT_P == SEGMENT_P) {
- c000e68:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000e6c:	e5d33000 	ldrb	r3, [r3]
- c000e70:	e20330ff 	and	r3, r3, #255	; 0xff
- c000e74:	e2033001 	and	r3, r3, #1
- c000e78:	e20330ff 	and	r3, r3, #255	; 0xff
- c000e7c:	e3530000 	cmp	r3, #0
- c000e80:	0a000007 	beq	c000ea4 <D8Led_parpadear+0x304>
+			if(((~LED8ADDR) & SEGMENT_P) == SEGMENT_P) {
+ c000e54:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000e58:	e5d33000 	ldrb	r3, [r3]
+ c000e5c:	e20330ff 	and	r3, r3, #255	; 0xff
+ c000e60:	e2033010 	and	r3, r3, #16
+ c000e64:	e3530000 	cmp	r3, #0
+ c000e68:	1a000007 	bne	c000e8c <D8Led_parpadear+0x2ec>
+				LED8ADDR |= SEGMENT_P;
+ c000e6c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000e70:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000e74:	e5d22000 	ldrb	r2, [r2]
+ c000e78:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000e7c:	e3822010 	orr	r2, r2, #16
+ c000e80:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000e84:	e5c32000 	strb	r2, [r3]
+			} else {
 				LED8ADDR &= ~SEGMENT_P;
- c000e84:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000e88:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000e8c:	e5d22000 	ldrb	r2, [r2]
- c000e90:	e20220ff 	and	r2, r2, #255	; 0xff
- c000e94:	e3c22010 	bic	r2, r2, #16
+			}
+			break;
+ c000e88:	ea000007 	b	c000eac <D8Led_parpadear+0x30c>
+			break;
+		default:
+			if(((~LED8ADDR) & SEGMENT_P) == SEGMENT_P) {
+				LED8ADDR |= SEGMENT_P;
+			} else {
+				LED8ADDR &= ~SEGMENT_P;
+ c000e8c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c000e90:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c000e94:	e5d22000 	ldrb	r2, [r2]
  c000e98:	e20220ff 	and	r2, r2, #255	; 0xff
- c000e9c:	e5c32000 	strb	r2, [r3]
-			} else {
-				LED8ADDR |= SEGMENT_P;
+ c000e9c:	e3c22010 	bic	r2, r2, #16
+ c000ea0:	e20220ff 	and	r2, r2, #255	; 0xff
+ c000ea4:	e5c32000 	strb	r2, [r3]
 			}
 			break;
- c000ea0:	ea000007 	b	c000ec4 <D8Led_parpadear+0x324>
-			break;
-		default:
-			if(LED8ADDR&SEGMENT_P == SEGMENT_P) {
-				LED8ADDR &= ~SEGMENT_P;
-			} else {
-				LED8ADDR |= SEGMENT_P;
- c000ea4:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c000ea8:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c000eac:	e5d22000 	ldrb	r2, [r2]
- c000eb0:	e20220ff 	and	r2, r2, #255	; 0xff
- c000eb4:	e3822010 	orr	r2, r2, #16
- c000eb8:	e20220ff 	and	r2, r2, #255	; 0xff
- c000ebc:	e5c32000 	strb	r2, [r3]
-			}
-			break;
- c000ec0:	e1a00000 	nop			; (mov r0, r0)
+ c000ea8:	e1a00000 	nop			; (mov r0, r0)
 		}
 
 }
- c000ec4:	e24bd00c 	sub	sp, fp, #12
- c000ec8:	e89d6800 	ldm	sp, {fp, sp, lr}
- c000ecc:	e12fff1e 	bx	lr
- c000ed0:	0c0019d4 	.word	0x0c0019d4
+ c000eac:	e24bd00c 	sub	sp, fp, #12
+ c000eb0:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c000eb4:	e12fff1e 	bx	lr
+ c000eb8:	0c0019e0 	.word	0x0c0019e0
 
-0c000ed4 <D8Led_swicht>:
+0c000ebc <D8Led_swicht>:
 
+//Esta funcion enciende o apaga un segmento concreto
 void D8Led_swicht(){
- c000ed4:	e1a0c00d 	mov	ip, sp
- c000ed8:	e92dd800 	push	{fp, ip, lr, pc}
- c000edc:	e24cb004 	sub	fp, ip, #4
+ c000ebc:	e1a0c00d 	mov	ip, sp
+ c000ec0:	e92dd800 	push	{fp, ip, lr, pc}
+ c000ec4:	e24cb004 	sub	fp, ip, #4
 	switch (actual){
- c000ee0:	e59f31b8 	ldr	r3, [pc, #440]	; c0010a0 <D8Led_swicht+0x1cc>
- c000ee4:	e5d33000 	ldrb	r3, [r3]
- c000ee8:	e2433061 	sub	r3, r3, #97	; 0x61
- c000eec:	e3530006 	cmp	r3, #6
- c000ef0:	979ff103 	ldrls	pc, [pc, r3, lsl #2]
- c000ef4:	ea00005a 	b	c001064 <D8Led_swicht+0x190>
- c000ef8:	0c000f14 	.word	0x0c000f14
- c000efc:	0c000f44 	.word	0x0c000f44
- c000f00:	0c000f74 	.word	0x0c000f74
- c000f04:	0c000fa4 	.word	0x0c000fa4
- c000f08:	0c000fd4 	.word	0x0c000fd4
- c000f0c:	0c001004 	.word	0x0c001004
- c000f10:	0c001034 	.word	0x0c001034
+ c000ec8:	e59f31dc 	ldr	r3, [pc, #476]	; c0010ac <D8Led_swicht+0x1f0>
+ c000ecc:	e5d33000 	ldrb	r3, [r3]
+ c000ed0:	e2433061 	sub	r3, r3, #97	; 0x61
+ c000ed4:	e353000f 	cmp	r3, #15
+ c000ed8:	979ff103 	ldrls	pc, [pc, r3, lsl #2]
+ c000edc:	ea000063 	b	c001070 <D8Led_swicht+0x1b4>
+ c000ee0:	0c000f20 	.word	0x0c000f20
+ c000ee4:	0c000f50 	.word	0x0c000f50
+ c000ee8:	0c000f80 	.word	0x0c000f80
+ c000eec:	0c000fe0 	.word	0x0c000fe0
+ c000ef0:	0c001010 	.word	0x0c001010
+ c000ef4:	0c001040 	.word	0x0c001040
+ c000ef8:	0c001070 	.word	0x0c001070
+ c000efc:	0c001070 	.word	0x0c001070
+ c000f00:	0c001070 	.word	0x0c001070
+ c000f04:	0c001070 	.word	0x0c001070
+ c000f08:	0c001070 	.word	0x0c001070
+ c000f0c:	0c001070 	.word	0x0c001070
+ c000f10:	0c001070 	.word	0x0c001070
+ c000f14:	0c001070 	.word	0x0c001070
+ c000f18:	0c001070 	.word	0x0c001070
+ c000f1c:	0c000fb0 	.word	0x0c000fb0
 		case 'a':
 			if(segmentOn[0] == 1) {
- c000f14:	e59f3188 	ldr	r3, [pc, #392]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f18:	e5933000 	ldr	r3, [r3]
- c000f1c:	e3530001 	cmp	r3, #1
- c000f20:	1a000003 	bne	c000f34 <D8Led_swicht+0x60>
+ c000f20:	e59f3188 	ldr	r3, [pc, #392]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000f24:	e5933000 	ldr	r3, [r3]
+ c000f28:	e3530001 	cmp	r3, #1
+ c000f2c:	1a000003 	bne	c000f40 <D8Led_swicht+0x84>
 				segmentOn[0] = 0;
- c000f24:	e59f3178 	ldr	r3, [pc, #376]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f28:	e3a02000 	mov	r2, #0
- c000f2c:	e5832000 	str	r2, [r3]
+ c000f30:	e59f3178 	ldr	r3, [pc, #376]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000f34:	e3a02000 	mov	r2, #0
+ c000f38:	e5832000 	str	r2, [r3]
 			} else {
 				segmentOn[0] = 1;
 			}
 			break;
- c000f30:	ea000057 	b	c001094 <D8Led_swicht+0x1c0>
+ c000f3c:	ea000057 	b	c0010a0 <D8Led_swicht+0x1e4>
 	switch (actual){
 		case 'a':
 			if(segmentOn[0] == 1) {
 				segmentOn[0] = 0;
 			} else {
 				segmentOn[0] = 1;
- c000f34:	e59f3168 	ldr	r3, [pc, #360]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f38:	e3a02001 	mov	r2, #1
- c000f3c:	e5832000 	str	r2, [r3]
+ c000f40:	e59f3168 	ldr	r3, [pc, #360]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000f44:	e3a02001 	mov	r2, #1
+ c000f48:	e5832000 	str	r2, [r3]
 			}
 			break;
- c000f40:	ea000053 	b	c001094 <D8Led_swicht+0x1c0>
+ c000f4c:	ea000053 	b	c0010a0 <D8Led_swicht+0x1e4>
 		case 'b':
 			if(segmentOn[1] == 1) {
- c000f44:	e59f3158 	ldr	r3, [pc, #344]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f48:	e5933004 	ldr	r3, [r3, #4]
- c000f4c:	e3530001 	cmp	r3, #1
- c000f50:	1a000003 	bne	c000f64 <D8Led_swicht+0x90>
+ c000f50:	e59f3158 	ldr	r3, [pc, #344]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000f54:	e5933004 	ldr	r3, [r3, #4]
+ c000f58:	e3530001 	cmp	r3, #1
+ c000f5c:	1a000003 	bne	c000f70 <D8Led_swicht+0xb4>
 				segmentOn[1] = 0;
- c000f54:	e59f3148 	ldr	r3, [pc, #328]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f58:	e3a02000 	mov	r2, #0
- c000f5c:	e5832004 	str	r2, [r3, #4]
+ c000f60:	e59f3148 	ldr	r3, [pc, #328]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000f64:	e3a02000 	mov	r2, #0
+ c000f68:	e5832004 	str	r2, [r3, #4]
 			} else {
 				segmentOn[1] = 1;
 			}
 			break;
- c000f60:	ea00004b 	b	c001094 <D8Led_swicht+0x1c0>
+ c000f6c:	ea00004b 	b	c0010a0 <D8Led_swicht+0x1e4>
 			break;
 		case 'b':
 			if(segmentOn[1] == 1) {
 				segmentOn[1] = 0;
 			} else {
 				segmentOn[1] = 1;
- c000f64:	e59f3138 	ldr	r3, [pc, #312]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f68:	e3a02001 	mov	r2, #1
- c000f6c:	e5832004 	str	r2, [r3, #4]
+ c000f70:	e59f3138 	ldr	r3, [pc, #312]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000f74:	e3a02001 	mov	r2, #1
+ c000f78:	e5832004 	str	r2, [r3, #4]
 			}
 			break;
- c000f70:	ea000047 	b	c001094 <D8Led_swicht+0x1c0>
+ c000f7c:	ea000047 	b	c0010a0 <D8Led_swicht+0x1e4>
 		case 'c':
 			if(segmentOn[2] == 1) {
- c000f74:	e59f3128 	ldr	r3, [pc, #296]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f78:	e5933008 	ldr	r3, [r3, #8]
- c000f7c:	e3530001 	cmp	r3, #1
- c000f80:	1a000003 	bne	c000f94 <D8Led_swicht+0xc0>
+ c000f80:	e59f3128 	ldr	r3, [pc, #296]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000f84:	e5933008 	ldr	r3, [r3, #8]
+ c000f88:	e3530001 	cmp	r3, #1
+ c000f8c:	1a000003 	bne	c000fa0 <D8Led_swicht+0xe4>
 				segmentOn[2] = 0;
- c000f84:	e59f3118 	ldr	r3, [pc, #280]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f88:	e3a02000 	mov	r2, #0
- c000f8c:	e5832008 	str	r2, [r3, #8]
+ c000f90:	e59f3118 	ldr	r3, [pc, #280]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000f94:	e3a02000 	mov	r2, #0
+ c000f98:	e5832008 	str	r2, [r3, #8]
 			} else {
 				segmentOn[2] = 1;
 			}
 			break;
- c000f90:	ea00003f 	b	c001094 <D8Led_swicht+0x1c0>
+ c000f9c:	ea00003f 	b	c0010a0 <D8Led_swicht+0x1e4>
 			break;
 		case 'c':
 			if(segmentOn[2] == 1) {
 				segmentOn[2] = 0;
 			} else {
 				segmentOn[2] = 1;
- c000f94:	e59f3108 	ldr	r3, [pc, #264]	; c0010a4 <D8Led_swicht+0x1d0>
- c000f98:	e3a02001 	mov	r2, #1
- c000f9c:	e5832008 	str	r2, [r3, #8]
+ c000fa0:	e59f3108 	ldr	r3, [pc, #264]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000fa4:	e3a02001 	mov	r2, #1
+ c000fa8:	e5832008 	str	r2, [r3, #8]
 			}
 			break;
- c000fa0:	ea00003b 	b	c001094 <D8Led_swicht+0x1c0>
-		case 'd':
+ c000fac:	ea00003b 	b	c0010a0 <D8Led_swicht+0x1e4>
+		case 'p':
 			if(segmentOn[3] == 1) {
- c000fa4:	e59f30f8 	ldr	r3, [pc, #248]	; c0010a4 <D8Led_swicht+0x1d0>
- c000fa8:	e593300c 	ldr	r3, [r3, #12]
- c000fac:	e3530001 	cmp	r3, #1
- c000fb0:	1a000003 	bne	c000fc4 <D8Led_swicht+0xf0>
+ c000fb0:	e59f30f8 	ldr	r3, [pc, #248]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000fb4:	e593300c 	ldr	r3, [r3, #12]
+ c000fb8:	e3530001 	cmp	r3, #1
+ c000fbc:	1a000003 	bne	c000fd0 <D8Led_swicht+0x114>
 				segmentOn[3] = 0;
- c000fb4:	e59f30e8 	ldr	r3, [pc, #232]	; c0010a4 <D8Led_swicht+0x1d0>
- c000fb8:	e3a02000 	mov	r2, #0
- c000fbc:	e583200c 	str	r2, [r3, #12]
+ c000fc0:	e59f30e8 	ldr	r3, [pc, #232]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000fc4:	e3a02000 	mov	r2, #0
+ c000fc8:	e583200c 	str	r2, [r3, #12]
 			} else {
 				segmentOn[3] = 1;
 			}
 			break;
- c000fc0:	ea000033 	b	c001094 <D8Led_swicht+0x1c0>
+ c000fcc:	ea000033 	b	c0010a0 <D8Led_swicht+0x1e4>
 			break;
-		case 'd':
+		case 'p':
 			if(segmentOn[3] == 1) {
 				segmentOn[3] = 0;
 			} else {
 				segmentOn[3] = 1;
- c000fc4:	e59f30d8 	ldr	r3, [pc, #216]	; c0010a4 <D8Led_swicht+0x1d0>
- c000fc8:	e3a02001 	mov	r2, #1
- c000fcc:	e583200c 	str	r2, [r3, #12]
+ c000fd0:	e59f30d8 	ldr	r3, [pc, #216]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000fd4:	e3a02001 	mov	r2, #1
+ c000fd8:	e583200c 	str	r2, [r3, #12]
 			}
 			break;
- c000fd0:	ea00002f 	b	c001094 <D8Led_swicht+0x1c0>
-		case 'e':
+ c000fdc:	ea00002f 	b	c0010a0 <D8Led_swicht+0x1e4>
+		case 'd':
 			if(segmentOn[4] == 1) {
- c000fd4:	e59f30c8 	ldr	r3, [pc, #200]	; c0010a4 <D8Led_swicht+0x1d0>
- c000fd8:	e5933010 	ldr	r3, [r3, #16]
- c000fdc:	e3530001 	cmp	r3, #1
- c000fe0:	1a000003 	bne	c000ff4 <D8Led_swicht+0x120>
+ c000fe0:	e59f30c8 	ldr	r3, [pc, #200]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000fe4:	e5933010 	ldr	r3, [r3, #16]
+ c000fe8:	e3530001 	cmp	r3, #1
+ c000fec:	1a000003 	bne	c001000 <D8Led_swicht+0x144>
 				segmentOn[4] = 0;
- c000fe4:	e59f30b8 	ldr	r3, [pc, #184]	; c0010a4 <D8Led_swicht+0x1d0>
- c000fe8:	e3a02000 	mov	r2, #0
- c000fec:	e5832010 	str	r2, [r3, #16]
+ c000ff0:	e59f30b8 	ldr	r3, [pc, #184]	; c0010b0 <D8Led_swicht+0x1f4>
+ c000ff4:	e3a02000 	mov	r2, #0
+ c000ff8:	e5832010 	str	r2, [r3, #16]
 			} else {
 				segmentOn[4] = 1;
 			}
 			break;
- c000ff0:	ea000027 	b	c001094 <D8Led_swicht+0x1c0>
+ c000ffc:	ea000027 	b	c0010a0 <D8Led_swicht+0x1e4>
 			break;
-		case 'e':
+		case 'd':
 			if(segmentOn[4] == 1) {
 				segmentOn[4] = 0;
 			} else {
 				segmentOn[4] = 1;
- c000ff4:	e59f30a8 	ldr	r3, [pc, #168]	; c0010a4 <D8Led_swicht+0x1d0>
- c000ff8:	e3a02001 	mov	r2, #1
- c000ffc:	e5832010 	str	r2, [r3, #16]
+ c001000:	e59f30a8 	ldr	r3, [pc, #168]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001004:	e3a02001 	mov	r2, #1
+ c001008:	e5832010 	str	r2, [r3, #16]
 			}
 			break;
- c001000:	ea000023 	b	c001094 <D8Led_swicht+0x1c0>
-		case 'f':
+ c00100c:	ea000023 	b	c0010a0 <D8Led_swicht+0x1e4>
+		case 'e':
 			if(segmentOn[5] == 1) {
- c001004:	e59f3098 	ldr	r3, [pc, #152]	; c0010a4 <D8Led_swicht+0x1d0>
- c001008:	e5933014 	ldr	r3, [r3, #20]
- c00100c:	e3530001 	cmp	r3, #1
- c001010:	1a000003 	bne	c001024 <D8Led_swicht+0x150>
+ c001010:	e59f3098 	ldr	r3, [pc, #152]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001014:	e5933014 	ldr	r3, [r3, #20]
+ c001018:	e3530001 	cmp	r3, #1
+ c00101c:	1a000003 	bne	c001030 <D8Led_swicht+0x174>
 				segmentOn[5] = 0;
- c001014:	e59f3088 	ldr	r3, [pc, #136]	; c0010a4 <D8Led_swicht+0x1d0>
- c001018:	e3a02000 	mov	r2, #0
- c00101c:	e5832014 	str	r2, [r3, #20]
+ c001020:	e59f3088 	ldr	r3, [pc, #136]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001024:	e3a02000 	mov	r2, #0
+ c001028:	e5832014 	str	r2, [r3, #20]
 			} else {
 				segmentOn[5] = 1;
 			}
 			break;
- c001020:	ea00001b 	b	c001094 <D8Led_swicht+0x1c0>
+ c00102c:	ea00001b 	b	c0010a0 <D8Led_swicht+0x1e4>
 			break;
-		case 'f':
+		case 'e':
 			if(segmentOn[5] == 1) {
 				segmentOn[5] = 0;
 			} else {
 				segmentOn[5] = 1;
- c001024:	e59f3078 	ldr	r3, [pc, #120]	; c0010a4 <D8Led_swicht+0x1d0>
- c001028:	e3a02001 	mov	r2, #1
- c00102c:	e5832014 	str	r2, [r3, #20]
+ c001030:	e59f3078 	ldr	r3, [pc, #120]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001034:	e3a02001 	mov	r2, #1
+ c001038:	e5832014 	str	r2, [r3, #20]
 			}
 			break;
- c001030:	ea000017 	b	c001094 <D8Led_swicht+0x1c0>
-		case 'g':
+ c00103c:	ea000017 	b	c0010a0 <D8Led_swicht+0x1e4>
+		case 'f':
 			if(segmentOn[6] == 1) {
- c001034:	e59f3068 	ldr	r3, [pc, #104]	; c0010a4 <D8Led_swicht+0x1d0>
- c001038:	e5933018 	ldr	r3, [r3, #24]
- c00103c:	e3530001 	cmp	r3, #1
- c001040:	1a000003 	bne	c001054 <D8Led_swicht+0x180>
+ c001040:	e59f3068 	ldr	r3, [pc, #104]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001044:	e5933018 	ldr	r3, [r3, #24]
+ c001048:	e3530001 	cmp	r3, #1
+ c00104c:	1a000003 	bne	c001060 <D8Led_swicht+0x1a4>
 				segmentOn[6] = 0;
- c001044:	e59f3058 	ldr	r3, [pc, #88]	; c0010a4 <D8Led_swicht+0x1d0>
- c001048:	e3a02000 	mov	r2, #0
- c00104c:	e5832018 	str	r2, [r3, #24]
+ c001050:	e59f3058 	ldr	r3, [pc, #88]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001054:	e3a02000 	mov	r2, #0
+ c001058:	e5832018 	str	r2, [r3, #24]
 			} else {
 				segmentOn[6] = 1;
 			}
 			break;
- c001050:	ea00000f 	b	c001094 <D8Led_swicht+0x1c0>
+ c00105c:	ea00000f 	b	c0010a0 <D8Led_swicht+0x1e4>
 			break;
-		case 'g':
+		case 'f':
 			if(segmentOn[6] == 1) {
 				segmentOn[6] = 0;
 			} else {
 				segmentOn[6] = 1;
- c001054:	e59f3048 	ldr	r3, [pc, #72]	; c0010a4 <D8Led_swicht+0x1d0>
- c001058:	e3a02001 	mov	r2, #1
- c00105c:	e5832018 	str	r2, [r3, #24]
+ c001060:	e59f3048 	ldr	r3, [pc, #72]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001064:	e3a02001 	mov	r2, #1
+ c001068:	e5832018 	str	r2, [r3, #24]
 			}
 			break;
- c001060:	ea00000b 	b	c001094 <D8Led_swicht+0x1c0>
+ c00106c:	ea00000b 	b	c0010a0 <D8Led_swicht+0x1e4>
 		default:
 			if(segmentOn[7] == 1) {
- c001064:	e59f3038 	ldr	r3, [pc, #56]	; c0010a4 <D8Led_swicht+0x1d0>
- c001068:	e593301c 	ldr	r3, [r3, #28]
- c00106c:	e3530001 	cmp	r3, #1
- c001070:	1a000003 	bne	c001084 <D8Led_swicht+0x1b0>
+ c001070:	e59f3038 	ldr	r3, [pc, #56]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001074:	e593301c 	ldr	r3, [r3, #28]
+ c001078:	e3530001 	cmp	r3, #1
+ c00107c:	1a000003 	bne	c001090 <D8Led_swicht+0x1d4>
 				segmentOn[7] = 0;
- c001074:	e59f3028 	ldr	r3, [pc, #40]	; c0010a4 <D8Led_swicht+0x1d0>
- c001078:	e3a02000 	mov	r2, #0
- c00107c:	e583201c 	str	r2, [r3, #28]
+ c001080:	e59f3028 	ldr	r3, [pc, #40]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001084:	e3a02000 	mov	r2, #0
+ c001088:	e583201c 	str	r2, [r3, #28]
 			} else {
 				segmentOn[7] = 1;
 			}
 			break;
- c001080:	ea000003 	b	c001094 <D8Led_swicht+0x1c0>
+ c00108c:	ea000003 	b	c0010a0 <D8Led_swicht+0x1e4>
 			break;
 		default:
 			if(segmentOn[7] == 1) {
 				segmentOn[7] = 0;
 			} else {
 				segmentOn[7] = 1;
- c001084:	e59f3018 	ldr	r3, [pc, #24]	; c0010a4 <D8Led_swicht+0x1d0>
- c001088:	e3a02001 	mov	r2, #1
- c00108c:	e583201c 	str	r2, [r3, #28]
+ c001090:	e59f3018 	ldr	r3, [pc, #24]	; c0010b0 <D8Led_swicht+0x1f4>
+ c001094:	e3a02001 	mov	r2, #1
+ c001098:	e583201c 	str	r2, [r3, #28]
 			}
 			break;
- c001090:	e1a00000 	nop			; (mov r0, r0)
+ c00109c:	e1a00000 	nop			; (mov r0, r0)
 		}
 }
- c001094:	e24bd00c 	sub	sp, fp, #12
- c001098:	e89d6800 	ldm	sp, {fp, sp, lr}
- c00109c:	e12fff1e 	bx	lr
- c0010a0:	0c0019d4 	.word	0x0c0019d4
- c0010a4:	0c0019dc 	.word	0x0c0019dc
+ c0010a0:	e24bd00c 	sub	sp, fp, #12
+ c0010a4:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c0010a8:	e12fff1e 	bx	lr
+ c0010ac:	0c0019e0 	.word	0x0c0019e0
+ c0010b0:	0c0019e8 	.word	0x0c0019e8
 
-0c0010a8 <D8Led_pintaSeg>:
+0c0010b4 <D8Led_pintaSeg>:
 
+//Esta funcion actualiza LED8ADDR pintando los segmentos adecuados en funcion de segmentOn
 void D8Led_pintaSeg(){
- c0010a8:	e1a0c00d 	mov	ip, sp
- c0010ac:	e92dd800 	push	{fp, ip, lr, pc}
- c0010b0:	e24cb004 	sub	fp, ip, #4
- c0010b4:	e24dd008 	sub	sp, sp, #8
+ c0010b4:	e1a0c00d 	mov	ip, sp
+ c0010b8:	e92dd800 	push	{fp, ip, lr, pc}
+ c0010bc:	e24cb004 	sub	fp, ip, #4
+ c0010c0:	e24dd008 	sub	sp, sp, #8
 	int i = 0;
- c0010b8:	e3a03000 	mov	r3, #0
- c0010bc:	e50b3010 	str	r3, [fp, #-16]
+ c0010c4:	e3a03000 	mov	r3, #0
+ c0010c8:	e50b3010 	str	r3, [fp, #-16]
 	while( i < 8){
- c0010c0:	ea000016 	b	c001120 <D8Led_pintaSeg+0x78>
+ c0010cc:	ea000016 	b	c00112c <D8Led_pintaSeg+0x78>
 		if (segmentOn[i]==1)
- c0010c4:	e59f306c 	ldr	r3, [pc, #108]	; c001138 <D8Led_pintaSeg+0x90>
- c0010c8:	e51b2010 	ldr	r2, [fp, #-16]
- c0010cc:	e7933102 	ldr	r3, [r3, r2, lsl #2]
- c0010d0:	e3530001 	cmp	r3, #1
- c0010d4:	1a00000e 	bne	c001114 <D8Led_pintaSeg+0x6c>
+ c0010d0:	e59f306c 	ldr	r3, [pc, #108]	; c001144 <D8Led_pintaSeg+0x90>
+ c0010d4:	e51b2010 	ldr	r2, [fp, #-16]
+ c0010d8:	e7933102 	ldr	r3, [r3, r2, lsl #2]
+ c0010dc:	e3530001 	cmp	r3, #1
+ c0010e0:	1a00000e 	bne	c001120 <D8Led_pintaSeg+0x6c>
 			LED8ADDR &= ~Symbol[i];
- c0010d8:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c0010dc:	e3a02785 	mov	r2, #34865152	; 0x2140000
- c0010e0:	e5d22000 	ldrb	r2, [r2]
- c0010e4:	e20220ff 	and	r2, r2, #255	; 0xff
- c0010e8:	e20210ff 	and	r1, r2, #255	; 0xff
- c0010ec:	e59f2048 	ldr	r2, [pc, #72]	; c00113c <D8Led_pintaSeg+0x94>
- c0010f0:	e51b0010 	ldr	r0, [fp, #-16]
- c0010f4:	e7922100 	ldr	r2, [r2, r0, lsl #2]
- c0010f8:	e20220ff 	and	r2, r2, #255	; 0xff
- c0010fc:	e1e02002 	mvn	r2, r2
- c001100:	e20220ff 	and	r2, r2, #255	; 0xff
- c001104:	e0012002 	and	r2, r1, r2
- c001108:	e20220ff 	and	r2, r2, #255	; 0xff
+ c0010e4:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c0010e8:	e3a02785 	mov	r2, #34865152	; 0x2140000
+ c0010ec:	e5d22000 	ldrb	r2, [r2]
+ c0010f0:	e20220ff 	and	r2, r2, #255	; 0xff
+ c0010f4:	e20210ff 	and	r1, r2, #255	; 0xff
+ c0010f8:	e59f2048 	ldr	r2, [pc, #72]	; c001148 <D8Led_pintaSeg+0x94>
+ c0010fc:	e51b0010 	ldr	r0, [fp, #-16]
+ c001100:	e7922100 	ldr	r2, [r2, r0, lsl #2]
+ c001104:	e20220ff 	and	r2, r2, #255	; 0xff
+ c001108:	e1e02002 	mvn	r2, r2
  c00110c:	e20220ff 	and	r2, r2, #255	; 0xff
- c001110:	e5c32000 	strb	r2, [r3]
+ c001110:	e0012002 	and	r2, r1, r2
+ c001114:	e20220ff 	and	r2, r2, #255	; 0xff
+ c001118:	e20220ff 	and	r2, r2, #255	; 0xff
+ c00111c:	e5c32000 	strb	r2, [r3]
 		i++;
- c001114:	e51b3010 	ldr	r3, [fp, #-16]
- c001118:	e2833001 	add	r3, r3, #1
- c00111c:	e50b3010 	str	r3, [fp, #-16]
-		}
+ c001120:	e51b3010 	ldr	r3, [fp, #-16]
+ c001124:	e2833001 	add	r3, r3, #1
+ c001128:	e50b3010 	str	r3, [fp, #-16]
 }
 
+//Esta funcion actualiza LED8ADDR pintando los segmentos adecuados en funcion de segmentOn
 void D8Led_pintaSeg(){
 	int i = 0;
 	while( i < 8){
- c001120:	e51b3010 	ldr	r3, [fp, #-16]
- c001124:	e3530007 	cmp	r3, #7
- c001128:	daffffe5 	ble	c0010c4 <D8Led_pintaSeg+0x1c>
+ c00112c:	e51b3010 	ldr	r3, [fp, #-16]
+ c001130:	e3530007 	cmp	r3, #7
+ c001134:	daffffe5 	ble	c0010d0 <D8Led_pintaSeg+0x1c>
 		if (segmentOn[i]==1)
 			LED8ADDR &= ~Symbol[i];
 		i++;
 	}
 }
- c00112c:	e24bd00c 	sub	sp, fp, #12
- c001130:	e89d6800 	ldm	sp, {fp, sp, lr}
- c001134:	e12fff1e 	bx	lr
- c001138:	0c0019dc 	.word	0x0c0019dc
- c00113c:	0c0019b4 	.word	0x0c0019b4
+ c001138:	e24bd00c 	sub	sp, fp, #12
+ c00113c:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c001140:	e12fff1e 	bx	lr
+ c001144:	0c0019e8 	.word	0x0c0019e8
+ c001148:	0c0019c0 	.word	0x0c0019c0
 
-0c001140 <D8Led_symbol>:
+0c00114c <D8Led_symbol>:
 
+//D8Led_symbol() no se usa en el extra
 void D8Led_symbol(int value)
 {
- c001140:	e1a0c00d 	mov	ip, sp
- c001144:	e92dd800 	push	{fp, ip, lr, pc}
- c001148:	e24cb004 	sub	fp, ip, #4
- c00114c:	e24dd008 	sub	sp, sp, #8
- c001150:	e50b0010 	str	r0, [fp, #-16]
+ c00114c:	e1a0c00d 	mov	ip, sp
+ c001150:	e92dd800 	push	{fp, ip, lr, pc}
+ c001154:	e24cb004 	sub	fp, ip, #4
+ c001158:	e24dd008 	sub	sp, sp, #8
+ c00115c:	e50b0010 	str	r0, [fp, #-16]
 /*Tarea 3*/
 	//int num = value%16;
 	switch (value){
- c001154:	e51b3010 	ldr	r3, [fp, #-16]
- c001158:	e353000e 	cmp	r3, #14
- c00115c:	979ff103 	ldrls	pc, [pc, r3, lsl #2]
- c001160:	ea00004a 	b	c001290 <D8Led_symbol+0x150>
- c001164:	0c0011a0 	.word	0x0c0011a0
- c001168:	0c0011b0 	.word	0x0c0011b0
- c00116c:	0c0011c0 	.word	0x0c0011c0
- c001170:	0c0011d0 	.word	0x0c0011d0
- c001174:	0c0011e0 	.word	0x0c0011e0
- c001178:	0c0011f0 	.word	0x0c0011f0
- c00117c:	0c001200 	.word	0x0c001200
- c001180:	0c001210 	.word	0x0c001210
- c001184:	0c001220 	.word	0x0c001220
- c001188:	0c001230 	.word	0x0c001230
- c00118c:	0c001240 	.word	0x0c001240
- c001190:	0c001250 	.word	0x0c001250
- c001194:	0c001260 	.word	0x0c001260
- c001198:	0c001270 	.word	0x0c001270
- c00119c:	0c001280 	.word	0x0c001280
+ c001160:	e51b3010 	ldr	r3, [fp, #-16]
+ c001164:	e353000e 	cmp	r3, #14
+ c001168:	979ff103 	ldrls	pc, [pc, r3, lsl #2]
+ c00116c:	ea00004a 	b	c00129c <D8Led_symbol+0x150>
+ c001170:	0c0011ac 	.word	0x0c0011ac
+ c001174:	0c0011bc 	.word	0x0c0011bc
+ c001178:	0c0011cc 	.word	0x0c0011cc
+ c00117c:	0c0011dc 	.word	0x0c0011dc
+ c001180:	0c0011ec 	.word	0x0c0011ec
+ c001184:	0c0011fc 	.word	0x0c0011fc
+ c001188:	0c00120c 	.word	0x0c00120c
+ c00118c:	0c00121c 	.word	0x0c00121c
+ c001190:	0c00122c 	.word	0x0c00122c
+ c001194:	0c00123c 	.word	0x0c00123c
+ c001198:	0c00124c 	.word	0x0c00124c
+ c00119c:	0c00125c 	.word	0x0c00125c
+ c0011a0:	0c00126c 	.word	0x0c00126c
+ c0011a4:	0c00127c 	.word	0x0c00127c
+ c0011a8:	0c00128c 	.word	0x0c00128c
 		case 0:
 			LED8ADDR = ~DIGIT_0;
- c0011a0:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c0011a4:	e3a02012 	mov	r2, #18
- c0011a8:	e5c32000 	strb	r2, [r3]
+ c0011ac:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c0011b0:	e3a02012 	mov	r2, #18
+ c0011b4:	e5c32000 	strb	r2, [r3]
 			break;
- c0011ac:	ea00003b 	b	c0012a0 <D8Led_symbol+0x160>
+ c0011b8:	ea00003b 	b	c0012ac <D8Led_symbol+0x160>
 		case 1:
 			LED8ADDR = ~DIGIT_1;
- c0011b0:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c0011b4:	e3e02060 	mvn	r2, #96	; 0x60
- c0011b8:	e5c32000 	strb	r2, [r3]
+ c0011bc:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c0011c0:	e3e02060 	mvn	r2, #96	; 0x60
+ c0011c4:	e5c32000 	strb	r2, [r3]
 			break;
- c0011bc:	ea000037 	b	c0012a0 <D8Led_symbol+0x160>
+ c0011c8:	ea000037 	b	c0012ac <D8Led_symbol+0x160>
 		case 2:
 			LED8ADDR = ~DIGIT_2;
- c0011c0:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c0011c4:	e3a02031 	mov	r2, #49	; 0x31
- c0011c8:	e5c32000 	strb	r2, [r3]
+ c0011cc:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c0011d0:	e3a02031 	mov	r2, #49	; 0x31
+ c0011d4:	e5c32000 	strb	r2, [r3]
 			break;
- c0011cc:	ea000033 	b	c0012a0 <D8Led_symbol+0x160>
+ c0011d8:	ea000033 	b	c0012ac <D8Led_symbol+0x160>
 		case 3:
 			LED8ADDR = ~DIGIT_3;
- c0011d0:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c0011d4:	e3a02015 	mov	r2, #21
- c0011d8:	e5c32000 	strb	r2, [r3]
+ c0011dc:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c0011e0:	e3a02015 	mov	r2, #21
+ c0011e4:	e5c32000 	strb	r2, [r3]
 			break;
- c0011dc:	ea00002f 	b	c0012a0 <D8Led_symbol+0x160>
+ c0011e8:	ea00002f 	b	c0012ac <D8Led_symbol+0x160>
 		case 4:
 			LED8ADDR = ~DIGIT_4;
- c0011e0:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c0011e4:	e3e02063 	mvn	r2, #99	; 0x63
- c0011e8:	e5c32000 	strb	r2, [r3]
+ c0011ec:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c0011f0:	e3e02063 	mvn	r2, #99	; 0x63
+ c0011f4:	e5c32000 	strb	r2, [r3]
 			break;
- c0011ec:	ea00002b 	b	c0012a0 <D8Led_symbol+0x160>
+ c0011f8:	ea00002b 	b	c0012ac <D8Led_symbol+0x160>
 		case 5:
 			LED8ADDR = ~DIGIT_5;
- c0011f0:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c0011f4:	e3a02054 	mov	r2, #84	; 0x54
- c0011f8:	e5c32000 	strb	r2, [r3]
+ c0011fc:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001200:	e3a02054 	mov	r2, #84	; 0x54
+ c001204:	e5c32000 	strb	r2, [r3]
 			break;
- c0011fc:	ea000027 	b	c0012a0 <D8Led_symbol+0x160>
+ c001208:	ea000027 	b	c0012ac <D8Led_symbol+0x160>
 		case 6:
 			LED8ADDR = ~DIGIT_6;
- c001200:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001204:	e3a02050 	mov	r2, #80	; 0x50
- c001208:	e5c32000 	strb	r2, [r3]
+ c00120c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001210:	e3a02050 	mov	r2, #80	; 0x50
+ c001214:	e5c32000 	strb	r2, [r3]
 			break;
- c00120c:	ea000023 	b	c0012a0 <D8Led_symbol+0x160>
+ c001218:	ea000023 	b	c0012ac <D8Led_symbol+0x160>
 		case 7:
 			LED8ADDR = ~DIGIT_7;
- c001210:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001214:	e3a0201f 	mov	r2, #31
- c001218:	e5c32000 	strb	r2, [r3]
+ c00121c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001220:	e3a0201f 	mov	r2, #31
+ c001224:	e5c32000 	strb	r2, [r3]
 			break;
- c00121c:	ea00001f 	b	c0012a0 <D8Led_symbol+0x160>
+ c001228:	ea00001f 	b	c0012ac <D8Led_symbol+0x160>
 		case 8:
 			LED8ADDR = ~DIGIT_8;
- c001220:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001224:	e3a02010 	mov	r2, #16
- c001228:	e5c32000 	strb	r2, [r3]
+ c00122c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001230:	e3a02010 	mov	r2, #16
+ c001234:	e5c32000 	strb	r2, [r3]
 			break;
- c00122c:	ea00001b 	b	c0012a0 <D8Led_symbol+0x160>
+ c001238:	ea00001b 	b	c0012ac <D8Led_symbol+0x160>
 		case 9:
 			LED8ADDR = ~DIGIT_9;
- c001230:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001234:	e3a0201c 	mov	r2, #28
- c001238:	e5c32000 	strb	r2, [r3]
+ c00123c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001240:	e3a0201c 	mov	r2, #28
+ c001244:	e5c32000 	strb	r2, [r3]
 			break;
- c00123c:	ea000017 	b	c0012a0 <D8Led_symbol+0x160>
+ c001248:	ea000017 	b	c0012ac <D8Led_symbol+0x160>
 		case 10:
 			LED8ADDR = ~DIGIT_A;
- c001240:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001244:	e3a02018 	mov	r2, #24
- c001248:	e5c32000 	strb	r2, [r3]
+ c00124c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001250:	e3a02018 	mov	r2, #24
+ c001254:	e5c32000 	strb	r2, [r3]
 			break;
- c00124c:	ea000013 	b	c0012a0 <D8Led_symbol+0x160>
+ c001258:	ea000013 	b	c0012ac <D8Led_symbol+0x160>
 		case 11:
 			LED8ADDR = ~DIGIT_B;
- c001250:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001254:	e3e0202f 	mvn	r2, #47	; 0x2f
- c001258:	e5c32000 	strb	r2, [r3]
+ c00125c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001260:	e3e0202f 	mvn	r2, #47	; 0x2f
+ c001264:	e5c32000 	strb	r2, [r3]
 			break;
- c00125c:	ea00000f 	b	c0012a0 <D8Led_symbol+0x160>
+ c001268:	ea00000f 	b	c0012ac <D8Led_symbol+0x160>
 		case 12:
 			LED8ADDR = ~DIGIT_C;
- c001260:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001264:	e3a02072 	mov	r2, #114	; 0x72
- c001268:	e5c32000 	strb	r2, [r3]
+ c00126c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001270:	e3a02072 	mov	r2, #114	; 0x72
+ c001274:	e5c32000 	strb	r2, [r3]
 			break;
- c00126c:	ea00000b 	b	c0012a0 <D8Led_symbol+0x160>
+ c001278:	ea00000b 	b	c0012ac <D8Led_symbol+0x160>
 		case 13:
 			LED8ADDR = ~DIGIT_D;
- c001270:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001274:	e3e0206e 	mvn	r2, #110	; 0x6e
- c001278:	e5c32000 	strb	r2, [r3]
+ c00127c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001280:	e3e0206e 	mvn	r2, #110	; 0x6e
+ c001284:	e5c32000 	strb	r2, [r3]
 			break;
- c00127c:	ea000007 	b	c0012a0 <D8Led_symbol+0x160>
+ c001288:	ea000007 	b	c0012ac <D8Led_symbol+0x160>
 		case 14:
 			LED8ADDR = ~DIGIT_E;
- c001280:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001284:	e3a02070 	mov	r2, #112	; 0x70
- c001288:	e5c32000 	strb	r2, [r3]
+ c00128c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c001290:	e3a02070 	mov	r2, #112	; 0x70
+ c001294:	e5c32000 	strb	r2, [r3]
 			break;
- c00128c:	ea000003 	b	c0012a0 <D8Led_symbol+0x160>
+ c001298:	ea000003 	b	c0012ac <D8Led_symbol+0x160>
 		default:
 			LED8ADDR = ~DIGIT_F;
- c001290:	e3a03785 	mov	r3, #34865152	; 0x2140000
- c001294:	e3a02078 	mov	r2, #120	; 0x78
- c001298:	e5c32000 	strb	r2, [r3]
+ c00129c:	e3a03785 	mov	r3, #34865152	; 0x2140000
+ c0012a0:	e3a02078 	mov	r2, #120	; 0x78
+ c0012a4:	e5c32000 	strb	r2, [r3]
 			break;
- c00129c:	e1a00000 	nop			; (mov r0, r0)
+ c0012a8:	e1a00000 	nop			; (mov r0, r0)
 
 	}
 		
 		
 /*fin Tarea 3*/		
 }
- c0012a0:	e24bd00c 	sub	sp, fp, #12
- c0012a4:	e89d6800 	ldm	sp, {fp, sp, lr}
- c0012a8:	e12fff1e 	bx	lr
+ c0012ac:	e24bd00c 	sub	sp, fp, #12
+ c0012b0:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c0012b4:	e12fff1e 	bx	lr
 
-0c0012ac <EliminaRebotes>:
+0c0012b8 <EliminaRebotes>:
 void Eint4567_ISR(void) __attribute__ ((interrupt ("IRQ"))); 
 void Eint4567_init(void);
 
 #define INTPND  (*(volatile unsigned *)0x01E00004)
 
 void EliminaRebotes(void) {
- c0012ac:	e1a0c00d 	mov	ip, sp
- c0012b0:	e92dd800 	push	{fp, ip, lr, pc}
- c0012b4:	e24cb004 	sub	fp, ip, #4
- c0012b8:	e24dd010 	sub	sp, sp, #16
+ c0012b8:	e1a0c00d 	mov	ip, sp
+ c0012bc:	e92dd800 	push	{fp, ip, lr, pc}
+ c0012c0:	e24cb004 	sub	fp, ip, #4
+ c0012c4:	e24dd010 	sub	sp, sp, #16
 	int i,j,k;
 	i=200000;
- c0012bc:	e59f3044 	ldr	r3, [pc, #68]	; c001308 <EliminaRebotes+0x5c>
- c0012c0:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
+ c0012c8:	e59f3044 	ldr	r3, [pc, #68]	; c001314 <EliminaRebotes+0x5c>
+ c0012cc:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
 	j=0;
- c0012c4:	e3a03000 	mov	r3, #0
- c0012c8:	e50b3010 	str	r3, [fp, #-16]
+ c0012d0:	e3a03000 	mov	r3, #0
+ c0012d4:	e50b3010 	str	r3, [fp, #-16]
 	while (j!=i){
- c0012cc:	ea000006 	b	c0012ec <EliminaRebotes+0x40>
+ c0012d8:	ea000006 	b	c0012f8 <EliminaRebotes+0x40>
 		k=k*j;
- c0012d0:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
- c0012d4:	e51b2010 	ldr	r2, [fp, #-16]
- c0012d8:	e0030392 	mul	r3, r2, r3
- c0012dc:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
+ c0012dc:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
+ c0012e0:	e51b2010 	ldr	r2, [fp, #-16]
+ c0012e4:	e0030392 	mul	r3, r2, r3
+ c0012e8:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
 		j+=1;
- c0012e0:	e51b3010 	ldr	r3, [fp, #-16]
- c0012e4:	e2833001 	add	r3, r3, #1
- c0012e8:	e50b3010 	str	r3, [fp, #-16]
+ c0012ec:	e51b3010 	ldr	r3, [fp, #-16]
+ c0012f0:	e2833001 	add	r3, r3, #1
+ c0012f4:	e50b3010 	str	r3, [fp, #-16]
 
 void EliminaRebotes(void) {
 	int i,j,k;
 	i=200000;
 	j=0;
 	while (j!=i){
- c0012ec:	e51b2010 	ldr	r2, [fp, #-16]
- c0012f0:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
- c0012f4:	e1520003 	cmp	r2, r3
- c0012f8:	1afffff4 	bne	c0012d0 <EliminaRebotes+0x24>
+ c0012f8:	e51b2010 	ldr	r2, [fp, #-16]
+ c0012fc:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+ c001300:	e1520003 	cmp	r2, r3
+ c001304:	1afffff4 	bne	c0012dc <EliminaRebotes+0x24>
 		k=k*j;
 		j+=1;
 	}
 }
- c0012fc:	e24bd00c 	sub	sp, fp, #12
- c001300:	e89d6800 	ldm	sp, {fp, sp, lr}
- c001304:	e12fff1e 	bx	lr
- c001308:	00030d40 	.word	0x00030d40
+ c001308:	e24bd00c 	sub	sp, fp, #12
+ c00130c:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c001310:	e12fff1e 	bx	lr
+ c001314:	00030d40 	.word	0x00030d40
 
-0c00130c <Eint4567_init>:
+0c001318 <Eint4567_init>:
 /*--- codigo de funciones ---*/
 void Eint4567_init(void)
 {
- c00130c:	e1a0c00d 	mov	ip, sp
- c001310:	e92dd800 	push	{fp, ip, lr, pc}
- c001314:	e24cb004 	sub	fp, ip, #4
+ c001318:	e1a0c00d 	mov	ip, sp
+ c00131c:	e92dd800 	push	{fp, ip, lr, pc}
+ c001320:	e24cb004 	sub	fp, ip, #4
 /*TAREA 1a*/
 	/* Configuracion del controlador de interrupciones */
 	rI_ISPC=0xFFFFFFFF;	   // Borra INTPND
- c001318:	e59f3094 	ldr	r3, [pc, #148]	; c0013b4 <Eint4567_init+0xa8>
- c00131c:	e3e02000 	mvn	r2, #0
- c001320:	e5832000 	str	r2, [r3]
-	rEXTINTPND = 0xf; 		   // Borra EXTINTPND
- c001324:	e59f308c 	ldr	r3, [pc, #140]	; c0013b8 <Eint4567_init+0xac>
- c001328:	e3a0200f 	mov	r2, #15
+ c001324:	e59f3094 	ldr	r3, [pc, #148]	; c0013c0 <Eint4567_init+0xa8>
+ c001328:	e3e02000 	mvn	r2, #0
  c00132c:	e5832000 	str	r2, [r3]
-	rINTMOD=0x0;	   // Configura las lineas como de tipo IRQ mediante rINTMOD
- c001330:	e59f3084 	ldr	r3, [pc, #132]	; c0013bc <Eint4567_init+0xb0>
- c001334:	e3a02000 	mov	r2, #0
+	rEXTINTPND = 0xf; 		   // Borra EXTINTPND
+ c001330:	e59f308c 	ldr	r3, [pc, #140]	; c0013c4 <Eint4567_init+0xac>
+ c001334:	e3a0200f 	mov	r2, #15
  c001338:	e5832000 	str	r2, [r3]
-	rINTCON  =0x1; // Habilita int. vectorizadas y la linea IRQ (FIQ no) mediante rINTCON
- c00133c:	e3a0361e 	mov	r3, #31457280	; 0x1e00000
- c001340:	e3a02001 	mov	r2, #1
+	rINTMOD=0x0;	   // Configura las lineas como de tipo IRQ mediante rINTMOD
+ c00133c:	e59f3084 	ldr	r3, [pc, #132]	; c0013c8 <Eint4567_init+0xb0>
+ c001340:	e3a02000 	mov	r2, #0
  c001344:	e5832000 	str	r2, [r3]
-	rINTMSK = ~(BIT_GLOBAL|BIT_EINT4567); // Emascara todas las lineas excepto eint4567 y el bit global mediante rINTMSK
- c001348:	e59f3070 	ldr	r3, [pc, #112]	; c0013c0 <Eint4567_init+0xb4>
- c00134c:	e3e02642 	mvn	r2, #69206016	; 0x4200000
+	rINTCON  =0x1; // Habilita int. vectorizadas y la linea IRQ (FIQ no) mediante rINTCON
+ c001348:	e3a0361e 	mov	r3, #31457280	; 0x1e00000
+ c00134c:	e3a02001 	mov	r2, #1
  c001350:	e5832000 	str	r2, [r3]
+	rINTMSK = ~(BIT_GLOBAL|BIT_EINT4567); // Emascara todas las lineas excepto eint4567 y el bit global mediante rINTMSK
+ c001354:	e59f3070 	ldr	r3, [pc, #112]	; c0013cc <Eint4567_init+0xb4>
+ c001358:	e3e02642 	mvn	r2, #69206016	; 0x4200000
+ c00135c:	e5832000 	str	r2, [r3]
 		
 	/* Establece la rutina de servicio para Eint4567 */
     pISR_EINT4567 = (int)Eint4567_ISR;
- c001354:	e59f3068 	ldr	r3, [pc, #104]	; c0013c4 <Eint4567_init+0xb8>
- c001358:	e59f2068 	ldr	r2, [pc, #104]	; c0013c8 <Eint4567_init+0xbc>
- c00135c:	e5832000 	str	r2, [r3]
+ c001360:	e59f3068 	ldr	r3, [pc, #104]	; c0013d0 <Eint4567_init+0xb8>
+ c001364:	e59f2068 	ldr	r2, [pc, #104]	; c0013d4 <Eint4567_init+0xbc>
+ c001368:	e5832000 	str	r2, [r3]
     
     /* Configuracion del puerto G */
     rPCONG  = 0xffff;        		// Establece la funcion de los pines (EINT0-7)
- c001360:	e59f3064 	ldr	r3, [pc, #100]	; c0013cc <Eint4567_init+0xc0>
- c001364:	e59f2064 	ldr	r2, [pc, #100]	; c0013d0 <Eint4567_init+0xc4>
- c001368:	e5832000 	str	r2, [r3]
-	rPUPG   = 0x0;                  // Habilita el "pull up" del puerto	    
- c00136c:	e59f3060 	ldr	r3, [pc, #96]	; c0013d4 <Eint4567_init+0xc8>
- c001370:	e3a02000 	mov	r2, #0
+ c00136c:	e59f3064 	ldr	r3, [pc, #100]	; c0013d8 <Eint4567_init+0xc0>
+ c001370:	e59f2064 	ldr	r2, [pc, #100]	; c0013dc <Eint4567_init+0xc4>
  c001374:	e5832000 	str	r2, [r3]
+	rPUPG   = 0x0;                  // Habilita el "pull up" del puerto	    
+ c001378:	e59f3060 	ldr	r3, [pc, #96]	; c0013e0 <Eint4567_init+0xc8>
+ c00137c:	e3a02000 	mov	r2, #0
+ c001380:	e5832000 	str	r2, [r3]
 	rEXTINT = rEXTINT|0x22222222;   // Configura las lineas de int. como de flanco de bajada	
- c001378:	e59f2058 	ldr	r2, [pc, #88]	; c0013d8 <Eint4567_init+0xcc>
- c00137c:	e59f3054 	ldr	r3, [pc, #84]	; c0013d8 <Eint4567_init+0xcc>
- c001380:	e5931000 	ldr	r1, [r3]
- c001384:	e59f3050 	ldr	r3, [pc, #80]	; c0013dc <Eint4567_init+0xd0>
- c001388:	e1813003 	orr	r3, r1, r3
- c00138c:	e5823000 	str	r3, [r2]
+ c001384:	e59f2058 	ldr	r2, [pc, #88]	; c0013e4 <Eint4567_init+0xcc>
+ c001388:	e59f3054 	ldr	r3, [pc, #84]	; c0013e4 <Eint4567_init+0xcc>
+ c00138c:	e5931000 	ldr	r1, [r3]
+ c001390:	e59f3050 	ldr	r3, [pc, #80]	; c0013e8 <Eint4567_init+0xd0>
+ c001394:	e1813003 	orr	r3, r1, r3
+ c001398:	e5823000 	str	r3, [r2]
 
     /* Por precaucion, se vuelven a borrar los bits de INTPND y EXTINTPND */
 	rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
- c001390:	e59f301c 	ldr	r3, [pc, #28]	; c0013b4 <Eint4567_init+0xa8>
- c001394:	e3e02000 	mvn	r2, #0
- c001398:	e5832000 	str	r2, [r3]
- 	rEXTINTPND = 0xf;	   // Borra EXTINTPND
- c00139c:	e59f3014 	ldr	r3, [pc, #20]	; c0013b8 <Eint4567_init+0xac>
- c0013a0:	e3a0200f 	mov	r2, #15
+ c00139c:	e59f301c 	ldr	r3, [pc, #28]	; c0013c0 <Eint4567_init+0xa8>
+ c0013a0:	e3e02000 	mvn	r2, #0
  c0013a4:	e5832000 	str	r2, [r3]
+ 	rEXTINTPND = 0xf;	   // Borra EXTINTPND
+ c0013a8:	e59f3014 	ldr	r3, [pc, #20]	; c0013c4 <Eint4567_init+0xac>
+ c0013ac:	e3a0200f 	mov	r2, #15
+ c0013b0:	e5832000 	str	r2, [r3]
 /*fin TAREA 1a*/  
 }
- c0013a8:	e24bd00c 	sub	sp, fp, #12
- c0013ac:	e89d6800 	ldm	sp, {fp, sp, lr}
- c0013b0:	e12fff1e 	bx	lr
- c0013b4:	01e00024 	.word	0x01e00024
- c0013b8:	01d20054 	.word	0x01d20054
- c0013bc:	01e00008 	.word	0x01e00008
- c0013c0:	01e0000c 	.word	0x01e0000c
- c0013c4:	0c7fff74 	.word	0x0c7fff74
- c0013c8:	0c0013e0 	.word	0x0c0013e0
- c0013cc:	01d20040 	.word	0x01d20040
- c0013d0:	0000ffff 	.word	0x0000ffff
- c0013d4:	01d20048 	.word	0x01d20048
- c0013d8:	01d20050 	.word	0x01d20050
- c0013dc:	22222222 	.word	0x22222222
+ c0013b4:	e24bd00c 	sub	sp, fp, #12
+ c0013b8:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c0013bc:	e12fff1e 	bx	lr
+ c0013c0:	01e00024 	.word	0x01e00024
+ c0013c4:	01d20054 	.word	0x01d20054
+ c0013c8:	01e00008 	.word	0x01e00008
+ c0013cc:	01e0000c 	.word	0x01e0000c
+ c0013d0:	0c7fff74 	.word	0x0c7fff74
+ c0013d4:	0c0013ec 	.word	0x0c0013ec
+ c0013d8:	01d20040 	.word	0x01d20040
+ c0013dc:	0000ffff 	.word	0x0000ffff
+ c0013e0:	01d20048 	.word	0x01d20048
+ c0013e4:	01d20050 	.word	0x01d20050
+ c0013e8:	22222222 	.word	0x22222222
 
-0c0013e0 <Eint4567_ISR>:
+0c0013ec <Eint4567_ISR>:
 
 void Eint4567_ISR(void)
 {          
- c0013e0:	e52dc004 	push	{ip}		; (str ip, [sp, #-4]!)
- c0013e4:	e1a0c00d 	mov	ip, sp
- c0013e8:	e92dd80f 	push	{r0, r1, r2, r3, fp, ip, lr, pc}
- c0013ec:	e24cb004 	sub	fp, ip, #4
- c0013f0:	e24dd008 	sub	sp, sp, #8
+ c0013ec:	e52dc004 	push	{ip}		; (str ip, [sp, #-4]!)
+ c0013f0:	e1a0c00d 	mov	ip, sp
+ c0013f4:	e92dd80f 	push	{r0, r1, r2, r3, fp, ip, lr, pc}
+ c0013f8:	e24cb004 	sub	fp, ip, #4
+ c0013fc:	e24dd008 	sub	sp, sp, #8
     int which_int;
 	/*TAREA 1b*/
 	if(rI_ISPR == 0x00200000 ){
- c0013f4:	e59f30e4 	ldr	r3, [pc, #228]	; c0014e0 <Eint4567_ISR+0x100>
- c0013f8:	e5933000 	ldr	r3, [r3]
- c0013fc:	e3530602 	cmp	r3, #2097152	; 0x200000
- c001400:	1a000032 	bne	c0014d0 <Eint4567_ISR+0xf0>
+ c001400:	e59f30e4 	ldr	r3, [pc, #228]	; c0014ec <Eint4567_ISR+0x100>
+ c001404:	e5933000 	ldr	r3, [r3]
+ c001408:	e3530602 	cmp	r3, #2097152	; 0x200000
+ c00140c:	1a000032 	bne	c0014dc <Eint4567_ISR+0xf0>
     /* Idenficiar la interrupcion */
 
 	which_int = rEXTINTPND&0xC;
- c001404:	e59f30d8 	ldr	r3, [pc, #216]	; c0014e4 <Eint4567_ISR+0x104>
- c001408:	e5933000 	ldr	r3, [r3]
- c00140c:	e203300c 	and	r3, r3, #12
- c001410:	e50b3020 	str	r3, [fp, #-32]	; 0xffffffe0
+ c001410:	e59f30d8 	ldr	r3, [pc, #216]	; c0014f0 <Eint4567_ISR+0x104>
+ c001414:	e5933000 	ldr	r3, [r3]
+ c001418:	e203300c 	and	r3, r3, #12
+ c00141c:	e50b3020 	str	r3, [fp, #-32]	; 0xffffffe0
 
     /* Codigo para eliminar rebotes*/
 	EliminaRebotes();
- c001414:	ebffffa4 	bl	c0012ac <EliminaRebotes>
+ c001420:	ebffffa4 	bl	c0012b8 <EliminaRebotes>
 	/* Reflejar en update el sentido de la actualizacion 
 	   Nota: para solucionar los problemas de rebotes en el pulsador 
              solo se modifica update cuando se encuentra a cero */ 
 
        switch (which_int) {
- c001418:	e51b3020 	ldr	r3, [fp, #-32]	; 0xffffffe0
- c00141c:	e3530004 	cmp	r3, #4
- c001420:	0a000002 	beq	c001430 <Eint4567_ISR+0x50>
- c001424:	e3530008 	cmp	r3, #8
- c001428:	0a00001b 	beq	c00149c <Eint4567_ISR+0xbc>
+ c001424:	e51b3020 	ldr	r3, [fp, #-32]	; 0xffffffe0
+ c001428:	e3530004 	cmp	r3, #4
+ c00142c:	0a000002 	beq	c00143c <Eint4567_ISR+0x50>
+ c001430:	e3530008 	cmp	r3, #8
+ c001434:	0a00001b 	beq	c0014a8 <Eint4567_ISR+0xbc>
       	case 8:
       		D8Led_swicht();
       	 	update = 5; // actualizar al simbolo anterior
       	 	break;
       	default:
          	break;
- c00142c:	ea00001f 	b	c0014b0 <Eint4567_ISR+0xd0>
+ c001438:	ea00001f 	b	c0014bc <Eint4567_ISR+0xd0>
 	   Nota: para solucionar los problemas de rebotes en el pulsador 
              solo se modifica update cuando se encuentra a cero */ 
 
        switch (which_int) {
       	case 4:
       		if (actual == 'g')
- c001430:	e59f30b0 	ldr	r3, [pc, #176]	; c0014e8 <Eint4567_ISR+0x108>
- c001434:	e5d33000 	ldrb	r3, [r3]
- c001438:	e3530067 	cmp	r3, #103	; 0x67
- c00143c:	1a000003 	bne	c001450 <Eint4567_ISR+0x70>
+ c00143c:	e59f30b0 	ldr	r3, [pc, #176]	; c0014f4 <Eint4567_ISR+0x108>
+ c001440:	e5d33000 	ldrb	r3, [r3]
+ c001444:	e3530067 	cmp	r3, #103	; 0x67
+ c001448:	1a000003 	bne	c00145c <Eint4567_ISR+0x70>
       			actual = 'p';
- c001440:	e59f30a0 	ldr	r3, [pc, #160]	; c0014e8 <Eint4567_ISR+0x108>
- c001444:	e3a02070 	mov	r2, #112	; 0x70
- c001448:	e5c32000 	strb	r2, [r3]
- c00144c:	ea00000d 	b	c001488 <Eint4567_ISR+0xa8>
+ c00144c:	e59f30a0 	ldr	r3, [pc, #160]	; c0014f4 <Eint4567_ISR+0x108>
+ c001450:	e3a02070 	mov	r2, #112	; 0x70
+ c001454:	e5c32000 	strb	r2, [r3]
+ c001458:	ea00000d 	b	c001494 <Eint4567_ISR+0xa8>
       		else if (actual == 'p')
- c001450:	e59f3090 	ldr	r3, [pc, #144]	; c0014e8 <Eint4567_ISR+0x108>
- c001454:	e5d33000 	ldrb	r3, [r3]
- c001458:	e3530070 	cmp	r3, #112	; 0x70
- c00145c:	1a000003 	bne	c001470 <Eint4567_ISR+0x90>
+ c00145c:	e59f3090 	ldr	r3, [pc, #144]	; c0014f4 <Eint4567_ISR+0x108>
+ c001460:	e5d33000 	ldrb	r3, [r3]
+ c001464:	e3530070 	cmp	r3, #112	; 0x70
+ c001468:	1a000003 	bne	c00147c <Eint4567_ISR+0x90>
       			actual = 'a';
- c001460:	e59f3080 	ldr	r3, [pc, #128]	; c0014e8 <Eint4567_ISR+0x108>
- c001464:	e3a02061 	mov	r2, #97	; 0x61
- c001468:	e5c32000 	strb	r2, [r3]
- c00146c:	ea000005 	b	c001488 <Eint4567_ISR+0xa8>
+ c00146c:	e59f3080 	ldr	r3, [pc, #128]	; c0014f4 <Eint4567_ISR+0x108>
+ c001470:	e3a02061 	mov	r2, #97	; 0x61
+ c001474:	e5c32000 	strb	r2, [r3]
+ c001478:	ea000005 	b	c001494 <Eint4567_ISR+0xa8>
       		else
       			actual += 1;
- c001470:	e59f3070 	ldr	r3, [pc, #112]	; c0014e8 <Eint4567_ISR+0x108>
- c001474:	e5d33000 	ldrb	r3, [r3]
- c001478:	e2833001 	add	r3, r3, #1
- c00147c:	e20320ff 	and	r2, r3, #255	; 0xff
- c001480:	e59f3060 	ldr	r3, [pc, #96]	; c0014e8 <Eint4567_ISR+0x108>
- c001484:	e5c32000 	strb	r2, [r3]
+ c00147c:	e59f3070 	ldr	r3, [pc, #112]	; c0014f4 <Eint4567_ISR+0x108>
+ c001480:	e5d33000 	ldrb	r3, [r3]
+ c001484:	e2833001 	add	r3, r3, #1
+ c001488:	e20320ff 	and	r2, r3, #255	; 0xff
+ c00148c:	e59f3060 	ldr	r3, [pc, #96]	; c0014f4 <Eint4567_ISR+0x108>
+ c001490:	e5c32000 	strb	r2, [r3]
          	update = 1; // actualizar al simbolo siguiente
- c001488:	e59f305c 	ldr	r3, [pc, #92]	; c0014ec <Eint4567_ISR+0x10c>
- c00148c:	e3a02001 	mov	r2, #1
- c001490:	e5832000 	str	r2, [r3]
+ c001494:	e59f305c 	ldr	r3, [pc, #92]	; c0014f8 <Eint4567_ISR+0x10c>
+ c001498:	e3a02001 	mov	r2, #1
+ c00149c:	e5832000 	str	r2, [r3]
          	D8Led_pintaSeg();
- c001494:	ebffff03 	bl	c0010a8 <D8Led_pintaSeg>
+ c0014a0:	ebffff03 	bl	c0010b4 <D8Led_pintaSeg>
          	break;
- c001498:	ea000004 	b	c0014b0 <Eint4567_ISR+0xd0>
+ c0014a4:	ea000004 	b	c0014bc <Eint4567_ISR+0xd0>
       	case 8:
       		D8Led_swicht();
- c00149c:	ebfffe8c 	bl	c000ed4 <D8Led_swicht>
+ c0014a8:	ebfffe83 	bl	c000ebc <D8Led_swicht>
       	 	update = 5; // actualizar al simbolo anterior
- c0014a0:	e59f3044 	ldr	r3, [pc, #68]	; c0014ec <Eint4567_ISR+0x10c>
- c0014a4:	e3a02005 	mov	r2, #5
- c0014a8:	e5832000 	str	r2, [r3]
+ c0014ac:	e59f3044 	ldr	r3, [pc, #68]	; c0014f8 <Eint4567_ISR+0x10c>
+ c0014b0:	e3a02005 	mov	r2, #5
+ c0014b4:	e5832000 	str	r2, [r3]
       	 	break;
- c0014ac:	e1a00000 	nop			; (mov r0, r0)
+ c0014b8:	e1a00000 	nop			; (mov r0, r0)
       	default:
          	break;
        } 
     
     /* Finalizar ISR */    
 	   rEXTINTPND = 0xf;				// borra los bits en EXTINTPND
- c0014b0:	e59f302c 	ldr	r3, [pc, #44]	; c0014e4 <Eint4567_ISR+0x104>
- c0014b4:	e3a0200f 	mov	r2, #15
- c0014b8:	e5832000 	str	r2, [r3]
+ c0014bc:	e59f302c 	ldr	r3, [pc, #44]	; c0014f0 <Eint4567_ISR+0x104>
+ c0014c0:	e3a0200f 	mov	r2, #15
+ c0014c4:	e5832000 	str	r2, [r3]
 	   rI_ISPC   |= BIT_EINT4567;		// borra el bit pendiente en INTPND
- c0014bc:	e59f302c 	ldr	r3, [pc, #44]	; c0014f0 <Eint4567_ISR+0x110>
- c0014c0:	e59f2028 	ldr	r2, [pc, #40]	; c0014f0 <Eint4567_ISR+0x110>
- c0014c4:	e5922000 	ldr	r2, [r2]
- c0014c8:	e3822602 	orr	r2, r2, #2097152	; 0x200000
- c0014cc:	e5832000 	str	r2, [r3]
+ c0014c8:	e59f302c 	ldr	r3, [pc, #44]	; c0014fc <Eint4567_ISR+0x110>
+ c0014cc:	e59f2028 	ldr	r2, [pc, #40]	; c0014fc <Eint4567_ISR+0x110>
+ c0014d0:	e5922000 	ldr	r2, [r2]
+ c0014d4:	e3822602 	orr	r2, r2, #2097152	; 0x200000
+ c0014d8:	e5832000 	str	r2, [r3]
 	/*fin TAREA 1b*/
 	}
 }
- c0014d0:	e24bd01c 	sub	sp, fp, #28
- c0014d4:	e89d680f 	ldm	sp, {r0, r1, r2, r3, fp, sp, lr}
- c0014d8:	e49dc004 	pop	{ip}		; (ldr ip, [sp], #4)
- c0014dc:	e25ef004 	subs	pc, lr, #4
- c0014e0:	01e00020 	.word	0x01e00020
- c0014e4:	01d20054 	.word	0x01d20054
- c0014e8:	0c0019d4 	.word	0x0c0019d4
- c0014ec:	0c0019fc 	.word	0x0c0019fc
- c0014f0:	01e00024 	.word	0x01e00024
+ c0014dc:	e24bd01c 	sub	sp, fp, #28
+ c0014e0:	e89d680f 	ldm	sp, {r0, r1, r2, r3, fp, sp, lr}
+ c0014e4:	e49dc004 	pop	{ip}		; (ldr ip, [sp], #4)
+ c0014e8:	e25ef004 	subs	pc, lr, #4
+ c0014ec:	01e00020 	.word	0x01e00020
+ c0014f0:	01d20054 	.word	0x01d20054
+ c0014f4:	0c0019e0 	.word	0x0c0019e0
+ c0014f8:	0c001a08 	.word	0x0c001a08
+ c0014fc:	01e00024 	.word	0x01e00024
 
-0c0014f4 <leds_on>:
+0c001500 <leds_on>:
 void leds_switch();						// invierte el valor de los leds 
 void Led_Display(int LedStatus);		// control directo del LED 	
 
 /*--- codigo de las funciones ---*/
 void leds_on()
 {
- c0014f4:	e1a0c00d 	mov	ip, sp
- c0014f8:	e92dd800 	push	{fp, ip, lr, pc}
- c0014fc:	e24cb004 	sub	fp, ip, #4
+ c001500:	e1a0c00d 	mov	ip, sp
+ c001504:	e92dd800 	push	{fp, ip, lr, pc}
+ c001508:	e24cb004 	sub	fp, ip, #4
 	Led_Display(0x3);
- c001500:	e3a00003 	mov	r0, #3
- c001504:	eb00005a 	bl	c001674 <Led_Display>
+ c00150c:	e3a00003 	mov	r0, #3
+ c001510:	eb00005a 	bl	c001680 <Led_Display>
 }
- c001508:	e24bd00c 	sub	sp, fp, #12
- c00150c:	e89d6800 	ldm	sp, {fp, sp, lr}
- c001510:	e12fff1e 	bx	lr
+ c001514:	e24bd00c 	sub	sp, fp, #12
+ c001518:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c00151c:	e12fff1e 	bx	lr
 
-0c001514 <leds_off>:
+0c001520 <leds_off>:
 
 void leds_off()
 {
- c001514:	e1a0c00d 	mov	ip, sp
- c001518:	e92dd800 	push	{fp, ip, lr, pc}
- c00151c:	e24cb004 	sub	fp, ip, #4
+ c001520:	e1a0c00d 	mov	ip, sp
+ c001524:	e92dd800 	push	{fp, ip, lr, pc}
+ c001528:	e24cb004 	sub	fp, ip, #4
 	Led_Display(0x0);
- c001520:	e3a00000 	mov	r0, #0
- c001524:	eb000052 	bl	c001674 <Led_Display>
+ c00152c:	e3a00000 	mov	r0, #0
+ c001530:	eb000052 	bl	c001680 <Led_Display>
 }
- c001528:	e24bd00c 	sub	sp, fp, #12
- c00152c:	e89d6800 	ldm	sp, {fp, sp, lr}
- c001530:	e12fff1e 	bx	lr
+ c001534:	e24bd00c 	sub	sp, fp, #12
+ c001538:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c00153c:	e12fff1e 	bx	lr
 
-0c001534 <led1_on>:
+0c001540 <led1_on>:
 
 void led1_on()
 {
- c001534:	e1a0c00d 	mov	ip, sp
- c001538:	e92dd800 	push	{fp, ip, lr, pc}
- c00153c:	e24cb004 	sub	fp, ip, #4
+ c001540:	e1a0c00d 	mov	ip, sp
+ c001544:	e92dd800 	push	{fp, ip, lr, pc}
+ c001548:	e24cb004 	sub	fp, ip, #4
 	led_state = led_state | 0x1;
- c001540:	e59f3028 	ldr	r3, [pc, #40]	; c001570 <led1_on+0x3c>
- c001544:	e5933000 	ldr	r3, [r3]
- c001548:	e3832001 	orr	r2, r3, #1
- c00154c:	e59f301c 	ldr	r3, [pc, #28]	; c001570 <led1_on+0x3c>
- c001550:	e5832000 	str	r2, [r3]
+ c00154c:	e59f3028 	ldr	r3, [pc, #40]	; c00157c <led1_on+0x3c>
+ c001550:	e5933000 	ldr	r3, [r3]
+ c001554:	e3832001 	orr	r2, r3, #1
+ c001558:	e59f301c 	ldr	r3, [pc, #28]	; c00157c <led1_on+0x3c>
+ c00155c:	e5832000 	str	r2, [r3]
 	Led_Display(led_state);
- c001554:	e59f3014 	ldr	r3, [pc, #20]	; c001570 <led1_on+0x3c>
- c001558:	e5933000 	ldr	r3, [r3]
- c00155c:	e1a00003 	mov	r0, r3
- c001560:	eb000043 	bl	c001674 <Led_Display>
+ c001560:	e59f3014 	ldr	r3, [pc, #20]	; c00157c <led1_on+0x3c>
+ c001564:	e5933000 	ldr	r3, [r3]
+ c001568:	e1a00003 	mov	r0, r3
+ c00156c:	eb000043 	bl	c001680 <Led_Display>
 }
- c001564:	e24bd00c 	sub	sp, fp, #12
- c001568:	e89d6800 	ldm	sp, {fp, sp, lr}
- c00156c:	e12fff1e 	bx	lr
- c001570:	0c001a14 	.word	0x0c001a14
+ c001570:	e24bd00c 	sub	sp, fp, #12
+ c001574:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c001578:	e12fff1e 	bx	lr
+ c00157c:	0c001a20 	.word	0x0c001a20
 
-0c001574 <led1_off>:
+0c001580 <led1_off>:
 
 void led1_off()
 {
- c001574:	e1a0c00d 	mov	ip, sp
- c001578:	e92dd800 	push	{fp, ip, lr, pc}
- c00157c:	e24cb004 	sub	fp, ip, #4
+ c001580:	e1a0c00d 	mov	ip, sp
+ c001584:	e92dd800 	push	{fp, ip, lr, pc}
+ c001588:	e24cb004 	sub	fp, ip, #4
 	led_state = led_state & 0xfe;
- c001580:	e59f3028 	ldr	r3, [pc, #40]	; c0015b0 <led1_off+0x3c>
- c001584:	e5933000 	ldr	r3, [r3]
- c001588:	e20320fe 	and	r2, r3, #254	; 0xfe
- c00158c:	e59f301c 	ldr	r3, [pc, #28]	; c0015b0 <led1_off+0x3c>
- c001590:	e5832000 	str	r2, [r3]
+ c00158c:	e59f3028 	ldr	r3, [pc, #40]	; c0015bc <led1_off+0x3c>
+ c001590:	e5933000 	ldr	r3, [r3]
+ c001594:	e20320fe 	and	r2, r3, #254	; 0xfe
+ c001598:	e59f301c 	ldr	r3, [pc, #28]	; c0015bc <led1_off+0x3c>
+ c00159c:	e5832000 	str	r2, [r3]
 	Led_Display(led_state);
- c001594:	e59f3014 	ldr	r3, [pc, #20]	; c0015b0 <led1_off+0x3c>
- c001598:	e5933000 	ldr	r3, [r3]
- c00159c:	e1a00003 	mov	r0, r3
- c0015a0:	eb000033 	bl	c001674 <Led_Display>
+ c0015a0:	e59f3014 	ldr	r3, [pc, #20]	; c0015bc <led1_off+0x3c>
+ c0015a4:	e5933000 	ldr	r3, [r3]
+ c0015a8:	e1a00003 	mov	r0, r3
+ c0015ac:	eb000033 	bl	c001680 <Led_Display>
 }
- c0015a4:	e24bd00c 	sub	sp, fp, #12
- c0015a8:	e89d6800 	ldm	sp, {fp, sp, lr}
- c0015ac:	e12fff1e 	bx	lr
- c0015b0:	0c001a14 	.word	0x0c001a14
+ c0015b0:	e24bd00c 	sub	sp, fp, #12
+ c0015b4:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c0015b8:	e12fff1e 	bx	lr
+ c0015bc:	0c001a20 	.word	0x0c001a20
 
-0c0015b4 <led2_on>:
+0c0015c0 <led2_on>:
 
 void led2_on()
 {
- c0015b4:	e1a0c00d 	mov	ip, sp
- c0015b8:	e92dd800 	push	{fp, ip, lr, pc}
- c0015bc:	e24cb004 	sub	fp, ip, #4
+ c0015c0:	e1a0c00d 	mov	ip, sp
+ c0015c4:	e92dd800 	push	{fp, ip, lr, pc}
+ c0015c8:	e24cb004 	sub	fp, ip, #4
 	led_state = led_state | 0x2;
- c0015c0:	e59f3028 	ldr	r3, [pc, #40]	; c0015f0 <led2_on+0x3c>
- c0015c4:	e5933000 	ldr	r3, [r3]
- c0015c8:	e3832002 	orr	r2, r3, #2
- c0015cc:	e59f301c 	ldr	r3, [pc, #28]	; c0015f0 <led2_on+0x3c>
- c0015d0:	e5832000 	str	r2, [r3]
+ c0015cc:	e59f3028 	ldr	r3, [pc, #40]	; c0015fc <led2_on+0x3c>
+ c0015d0:	e5933000 	ldr	r3, [r3]
+ c0015d4:	e3832002 	orr	r2, r3, #2
+ c0015d8:	e59f301c 	ldr	r3, [pc, #28]	; c0015fc <led2_on+0x3c>
+ c0015dc:	e5832000 	str	r2, [r3]
 	Led_Display(led_state);
- c0015d4:	e59f3014 	ldr	r3, [pc, #20]	; c0015f0 <led2_on+0x3c>
- c0015d8:	e5933000 	ldr	r3, [r3]
- c0015dc:	e1a00003 	mov	r0, r3
- c0015e0:	eb000023 	bl	c001674 <Led_Display>
+ c0015e0:	e59f3014 	ldr	r3, [pc, #20]	; c0015fc <led2_on+0x3c>
+ c0015e4:	e5933000 	ldr	r3, [r3]
+ c0015e8:	e1a00003 	mov	r0, r3
+ c0015ec:	eb000023 	bl	c001680 <Led_Display>
 }
- c0015e4:	e24bd00c 	sub	sp, fp, #12
- c0015e8:	e89d6800 	ldm	sp, {fp, sp, lr}
- c0015ec:	e12fff1e 	bx	lr
- c0015f0:	0c001a14 	.word	0x0c001a14
+ c0015f0:	e24bd00c 	sub	sp, fp, #12
+ c0015f4:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c0015f8:	e12fff1e 	bx	lr
+ c0015fc:	0c001a20 	.word	0x0c001a20
 
-0c0015f4 <led2_off>:
+0c001600 <led2_off>:
 
 void led2_off()
 {
- c0015f4:	e1a0c00d 	mov	ip, sp
- c0015f8:	e92dd800 	push	{fp, ip, lr, pc}
- c0015fc:	e24cb004 	sub	fp, ip, #4
+ c001600:	e1a0c00d 	mov	ip, sp
+ c001604:	e92dd800 	push	{fp, ip, lr, pc}
+ c001608:	e24cb004 	sub	fp, ip, #4
 	led_state = led_state & 0xfd;
- c001600:	e59f3028 	ldr	r3, [pc, #40]	; c001630 <led2_off+0x3c>
- c001604:	e5933000 	ldr	r3, [r3]
- c001608:	e20320fd 	and	r2, r3, #253	; 0xfd
- c00160c:	e59f301c 	ldr	r3, [pc, #28]	; c001630 <led2_off+0x3c>
- c001610:	e5832000 	str	r2, [r3]
+ c00160c:	e59f3028 	ldr	r3, [pc, #40]	; c00163c <led2_off+0x3c>
+ c001610:	e5933000 	ldr	r3, [r3]
+ c001614:	e20320fd 	and	r2, r3, #253	; 0xfd
+ c001618:	e59f301c 	ldr	r3, [pc, #28]	; c00163c <led2_off+0x3c>
+ c00161c:	e5832000 	str	r2, [r3]
 	Led_Display(led_state);
- c001614:	e59f3014 	ldr	r3, [pc, #20]	; c001630 <led2_off+0x3c>
- c001618:	e5933000 	ldr	r3, [r3]
- c00161c:	e1a00003 	mov	r0, r3
- c001620:	eb000013 	bl	c001674 <Led_Display>
+ c001620:	e59f3014 	ldr	r3, [pc, #20]	; c00163c <led2_off+0x3c>
+ c001624:	e5933000 	ldr	r3, [r3]
+ c001628:	e1a00003 	mov	r0, r3
+ c00162c:	eb000013 	bl	c001680 <Led_Display>
 }
- c001624:	e24bd00c 	sub	sp, fp, #12
- c001628:	e89d6800 	ldm	sp, {fp, sp, lr}
- c00162c:	e12fff1e 	bx	lr
- c001630:	0c001a14 	.word	0x0c001a14
+ c001630:	e24bd00c 	sub	sp, fp, #12
+ c001634:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c001638:	e12fff1e 	bx	lr
+ c00163c:	0c001a20 	.word	0x0c001a20
 
-0c001634 <leds_switch>:
+0c001640 <leds_switch>:
 
 void leds_switch ()
 {
- c001634:	e1a0c00d 	mov	ip, sp
- c001638:	e92dd800 	push	{fp, ip, lr, pc}
- c00163c:	e24cb004 	sub	fp, ip, #4
+ c001640:	e1a0c00d 	mov	ip, sp
+ c001644:	e92dd800 	push	{fp, ip, lr, pc}
+ c001648:	e24cb004 	sub	fp, ip, #4
     led_state ^= 0x03;
- c001640:	e59f3028 	ldr	r3, [pc, #40]	; c001670 <leds_switch+0x3c>
- c001644:	e5933000 	ldr	r3, [r3]
- c001648:	e2232003 	eor	r2, r3, #3
- c00164c:	e59f301c 	ldr	r3, [pc, #28]	; c001670 <leds_switch+0x3c>
- c001650:	e5832000 	str	r2, [r3]
+ c00164c:	e59f3028 	ldr	r3, [pc, #40]	; c00167c <leds_switch+0x3c>
+ c001650:	e5933000 	ldr	r3, [r3]
+ c001654:	e2232003 	eor	r2, r3, #3
+ c001658:	e59f301c 	ldr	r3, [pc, #28]	; c00167c <leds_switch+0x3c>
+ c00165c:	e5832000 	str	r2, [r3]
     Led_Display(led_state);
- c001654:	e59f3014 	ldr	r3, [pc, #20]	; c001670 <leds_switch+0x3c>
- c001658:	e5933000 	ldr	r3, [r3]
- c00165c:	e1a00003 	mov	r0, r3
- c001660:	eb000003 	bl	c001674 <Led_Display>
+ c001660:	e59f3014 	ldr	r3, [pc, #20]	; c00167c <leds_switch+0x3c>
+ c001664:	e5933000 	ldr	r3, [r3]
+ c001668:	e1a00003 	mov	r0, r3
+ c00166c:	eb000003 	bl	c001680 <Led_Display>
     
 }
- c001664:	e24bd00c 	sub	sp, fp, #12
- c001668:	e89d6800 	ldm	sp, {fp, sp, lr}
- c00166c:	e12fff1e 	bx	lr
- c001670:	0c001a14 	.word	0x0c001a14
+ c001670:	e24bd00c 	sub	sp, fp, #12
+ c001674:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c001678:	e12fff1e 	bx	lr
+ c00167c:	0c001a20 	.word	0x0c001a20
 
-0c001674 <Led_Display>:
+0c001680 <Led_Display>:
 
 void Led_Display(int LedStatus)
 {	
- c001674:	e1a0c00d 	mov	ip, sp
- c001678:	e92dd800 	push	{fp, ip, lr, pc}
- c00167c:	e24cb004 	sub	fp, ip, #4
- c001680:	e24dd008 	sub	sp, sp, #8
- c001684:	e50b0010 	str	r0, [fp, #-16]
+ c001680:	e1a0c00d 	mov	ip, sp
+ c001684:	e92dd800 	push	{fp, ip, lr, pc}
+ c001688:	e24cb004 	sub	fp, ip, #4
+ c00168c:	e24dd008 	sub	sp, sp, #8
+ c001690:	e50b0010 	str	r0, [fp, #-16]
 	led_state = LedStatus;
- c001688:	e59f3094 	ldr	r3, [pc, #148]	; c001724 <Led_Display+0xb0>
- c00168c:	e51b2010 	ldr	r2, [fp, #-16]
- c001690:	e5832000 	str	r2, [r3]
+ c001694:	e59f3094 	ldr	r3, [pc, #148]	; c001730 <Led_Display+0xb0>
+ c001698:	e51b2010 	ldr	r2, [fp, #-16]
+ c00169c:	e5832000 	str	r2, [r3]
 	
 	if((LedStatus&0x01)==0x01)
- c001694:	e51b3010 	ldr	r3, [fp, #-16]
- c001698:	e2033001 	and	r3, r3, #1
- c00169c:	e20330ff 	and	r3, r3, #255	; 0xff
- c0016a0:	e3530000 	cmp	r3, #0
- c0016a4:	0a000006 	beq	c0016c4 <Led_Display+0x50>
+ c0016a0:	e51b3010 	ldr	r3, [fp, #-16]
+ c0016a4:	e2033001 	and	r3, r3, #1
+ c0016a8:	e20330ff 	and	r3, r3, #255	; 0xff
+ c0016ac:	e3530000 	cmp	r3, #0
+ c0016b0:	0a000006 	beq	c0016d0 <Led_Display+0x50>
 		rPDATB=rPDATB&0x5ff; /* poner a 0 el bit 9 del puerto B */
- c0016a8:	e59f2078 	ldr	r2, [pc, #120]	; c001728 <Led_Display+0xb4>
- c0016ac:	e59f3074 	ldr	r3, [pc, #116]	; c001728 <Led_Display+0xb4>
- c0016b0:	e5931000 	ldr	r1, [r3]
- c0016b4:	e59f3070 	ldr	r3, [pc, #112]	; c00172c <Led_Display+0xb8>
- c0016b8:	e0013003 	and	r3, r1, r3
- c0016bc:	e5823000 	str	r3, [r2]
- c0016c0:	ea000004 	b	c0016d8 <Led_Display+0x64>
+ c0016b4:	e59f2078 	ldr	r2, [pc, #120]	; c001734 <Led_Display+0xb4>
+ c0016b8:	e59f3074 	ldr	r3, [pc, #116]	; c001734 <Led_Display+0xb4>
+ c0016bc:	e5931000 	ldr	r1, [r3]
+ c0016c0:	e59f3070 	ldr	r3, [pc, #112]	; c001738 <Led_Display+0xb8>
+ c0016c4:	e0013003 	and	r3, r1, r3
+ c0016c8:	e5823000 	str	r3, [r2]
+ c0016cc:	ea000004 	b	c0016e4 <Led_Display+0x64>
 	else
 		rPDATB=rPDATB|0x200; /* poner a 1 el bit 9 del puerto B */
- c0016c4:	e59f305c 	ldr	r3, [pc, #92]	; c001728 <Led_Display+0xb4>
- c0016c8:	e59f2058 	ldr	r2, [pc, #88]	; c001728 <Led_Display+0xb4>
- c0016cc:	e5922000 	ldr	r2, [r2]
- c0016d0:	e3822c02 	orr	r2, r2, #512	; 0x200
- c0016d4:	e5832000 	str	r2, [r3]
+ c0016d0:	e59f305c 	ldr	r3, [pc, #92]	; c001734 <Led_Display+0xb4>
+ c0016d4:	e59f2058 	ldr	r2, [pc, #88]	; c001734 <Led_Display+0xb4>
+ c0016d8:	e5922000 	ldr	r2, [r2]
+ c0016dc:	e3822c02 	orr	r2, r2, #512	; 0x200
+ c0016e0:	e5832000 	str	r2, [r3]
 	
 	if((LedStatus&0x02)==0x02)
- c0016d8:	e51b3010 	ldr	r3, [fp, #-16]
- c0016dc:	e2033002 	and	r3, r3, #2
- c0016e0:	e3530000 	cmp	r3, #0
- c0016e4:	0a000006 	beq	c001704 <Led_Display+0x90>
+ c0016e4:	e51b3010 	ldr	r3, [fp, #-16]
+ c0016e8:	e2033002 	and	r3, r3, #2
+ c0016ec:	e3530000 	cmp	r3, #0
+ c0016f0:	0a000006 	beq	c001710 <Led_Display+0x90>
 		rPDATB=rPDATB&0x3ff; /* poner a 0 el bit 10 del puerto B */
- c0016e8:	e59f2038 	ldr	r2, [pc, #56]	; c001728 <Led_Display+0xb4>
- c0016ec:	e59f3034 	ldr	r3, [pc, #52]	; c001728 <Led_Display+0xb4>
- c0016f0:	e5933000 	ldr	r3, [r3]
- c0016f4:	e1a03b03 	lsl	r3, r3, #22
- c0016f8:	e1a03b23 	lsr	r3, r3, #22
- c0016fc:	e5823000 	str	r3, [r2]
- c001700:	ea000004 	b	c001718 <Led_Display+0xa4>
+ c0016f4:	e59f2038 	ldr	r2, [pc, #56]	; c001734 <Led_Display+0xb4>
+ c0016f8:	e59f3034 	ldr	r3, [pc, #52]	; c001734 <Led_Display+0xb4>
+ c0016fc:	e5933000 	ldr	r3, [r3]
+ c001700:	e1a03b03 	lsl	r3, r3, #22
+ c001704:	e1a03b23 	lsr	r3, r3, #22
+ c001708:	e5823000 	str	r3, [r2]
+ c00170c:	ea000004 	b	c001724 <Led_Display+0xa4>
 	else
 		rPDATB=rPDATB|0x400; /* poner a 1 el bit 10 del puerto B */
- c001704:	e59f301c 	ldr	r3, [pc, #28]	; c001728 <Led_Display+0xb4>
- c001708:	e59f2018 	ldr	r2, [pc, #24]	; c001728 <Led_Display+0xb4>
- c00170c:	e5922000 	ldr	r2, [r2]
- c001710:	e3822b01 	orr	r2, r2, #1024	; 0x400
- c001714:	e5832000 	str	r2, [r3]
+ c001710:	e59f301c 	ldr	r3, [pc, #28]	; c001734 <Led_Display+0xb4>
+ c001714:	e59f2018 	ldr	r2, [pc, #24]	; c001734 <Led_Display+0xb4>
+ c001718:	e5922000 	ldr	r2, [r2]
+ c00171c:	e3822b01 	orr	r2, r2, #1024	; 0x400
+ c001720:	e5832000 	str	r2, [r3]
 }
- c001718:	e24bd00c 	sub	sp, fp, #12
- c00171c:	e89d6800 	ldm	sp, {fp, sp, lr}
- c001720:	e12fff1e 	bx	lr
- c001724:	0c001a14 	.word	0x0c001a14
- c001728:	01d2000c 	.word	0x01d2000c
- c00172c:	000005ff 	.word	0x000005ff
+ c001724:	e24bd00c 	sub	sp, fp, #12
+ c001728:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c00172c:	e12fff1e 	bx	lr
+ c001730:	0c001a20 	.word	0x0c001a20
+ c001734:	01d2000c 	.word	0x01d2000c
+ c001738:	000005ff 	.word	0x000005ff
 
-0c001730 <main>:
+0c00173c <main>:
 extern void leds_off();
 extern void led1_on();
 extern void leds_switch();
 /*--- codigo de las funciones ---*/
 int main(void)
 {	
- c001730:	e1a0c00d 	mov	ip, sp
- c001734:	e92dd800 	push	{fp, ip, lr, pc}
- c001738:	e24cb004 	sub	fp, ip, #4
+ c00173c:	e1a0c00d 	mov	ip, sp
+ c001740:	e92dd800 	push	{fp, ip, lr, pc}
+ c001744:	e24cb004 	sub	fp, ip, #4
     sys_init();     		/* Inicializacion de la placa, interrupciones, puertos y UART */
- c00173c:	ebfffcf2 	bl	c000b0c <sys_init>
+ c001748:	ebfffcef 	bl	c000b0c <sys_init>
 	Eint4567_init(); 	    /* Inicializacion de EINT6/7 y del puerto G */
- c001740:	ebfffef1 	bl	c00130c <Eint4567_init>
+ c00174c:	ebfffef1 	bl	c001318 <Eint4567_init>
 	timer_init();	   // Inicializacion del temporizador
- c001744:	eb000011 	bl	c001790 <timer_init>
+ c001750:	eb000011 	bl	c00179c <timer_init>
 
 	leds_off();
- c001748:	ebffff71 	bl	c001514 <leds_off>
+ c001754:	ebffff71 	bl	c001520 <leds_off>
 	//D8Led_symbol(symbol);  	/* muestra el simbolo inicial en el display */
 		
     while(1) {
 
 
 	}
- c00174c:	eafffffe 	b	c00174c <main+0x1c>
+ c001758:	eafffffe 	b	c001758 <main+0x1c>
 
-0c001750 <timer_ISR>:
+0c00175c <timer_ISR>:
 void timer_ISR(void) __attribute__ ((interrupt ("IRQ")));
 void timer_init(void);
 
 /*--- codigo de las funciones ---*/
 void timer_ISR(void)
 {  /*  TAREA 2a */
- c001750:	e52dc004 	push	{ip}		; (str ip, [sp, #-4]!)
- c001754:	e1a0c00d 	mov	ip, sp
- c001758:	e92dd80f 	push	{r0, r1, r2, r3, fp, ip, lr, pc}
- c00175c:	e24cb004 	sub	fp, ip, #4
+ c00175c:	e52dc004 	push	{ip}		; (str ip, [sp, #-4]!)
+ c001760:	e1a0c00d 	mov	ip, sp
+ c001764:	e92dd80f 	push	{r0, r1, r2, r3, fp, ip, lr, pc}
+ c001768:	e24cb004 	sub	fp, ip, #4
         /*Actualizar ocho seg con cada int. del timer */
 	D8Led_parpadear();
- c001760:	ebfffd0e 	bl	c000ba0 <D8Led_parpadear>
+ c00176c:	ebfffd0b 	bl	c000ba0 <D8Led_parpadear>
 
 	leds_switch(); 	/* intercambia los leds*/
- c001764:	ebffffb2 	bl	c001634 <leds_switch>
+ c001770:	ebffffb2 	bl	c001640 <leds_switch>
 	/* borrar bit en I_ISPC */
 	rI_ISPC |= BIT_TIMER0;
- c001768:	e59f301c 	ldr	r3, [pc, #28]	; c00178c <timer_ISR+0x3c>
- c00176c:	e59f2018 	ldr	r2, [pc, #24]	; c00178c <timer_ISR+0x3c>
- c001770:	e5922000 	ldr	r2, [r2]
- c001774:	e3822a02 	orr	r2, r2, #8192	; 0x2000
- c001778:	e5832000 	str	r2, [r3]
+ c001774:	e59f301c 	ldr	r3, [pc, #28]	; c001798 <timer_ISR+0x3c>
+ c001778:	e59f2018 	ldr	r2, [pc, #24]	; c001798 <timer_ISR+0x3c>
+ c00177c:	e5922000 	ldr	r2, [r2]
+ c001780:	e3822a02 	orr	r2, r2, #8192	; 0x2000
+ c001784:	e5832000 	str	r2, [r3]
 	/*fin Tarea 2a*/
 }
- c00177c:	e24bd01c 	sub	sp, fp, #28
- c001780:	e89d680f 	ldm	sp, {r0, r1, r2, r3, fp, sp, lr}
- c001784:	e49dc004 	pop	{ip}		; (ldr ip, [sp], #4)
- c001788:	e25ef004 	subs	pc, lr, #4
- c00178c:	01e00024 	.word	0x01e00024
+ c001788:	e24bd01c 	sub	sp, fp, #28
+ c00178c:	e89d680f 	ldm	sp, {r0, r1, r2, r3, fp, sp, lr}
+ c001790:	e49dc004 	pop	{ip}		; (ldr ip, [sp], #4)
+ c001794:	e25ef004 	subs	pc, lr, #4
+ c001798:	01e00024 	.word	0x01e00024
 
-0c001790 <timer_init>:
+0c00179c <timer_init>:
 
 void timer_init(void)
 {
- c001790:	e1a0c00d 	mov	ip, sp
- c001794:	e92dd800 	push	{fp, ip, lr, pc}
- c001798:	e24cb004 	sub	fp, ip, #4
+ c00179c:	e1a0c00d 	mov	ip, sp
+ c0017a0:	e92dd800 	push	{fp, ip, lr, pc}
+ c0017a4:	e24cb004 	sub	fp, ip, #4
 /*TAREA 2b*/
 	/* Configuraion controlador de interrupciones */
 	rINTMOD=0x0; // Configura las linas como de tipo IRQ
- c00179c:	e59f3088 	ldr	r3, [pc, #136]	; c00182c <timer_init+0x9c>
- c0017a0:	e3a02000 	mov	r2, #0
- c0017a4:	e5832000 	str	r2, [r3]
-	rINTCON  =0x1;  // Habilita int. vectorizadas y la linea IRQ (FIQ no)
- c0017a8:	e3a0361e 	mov	r3, #31457280	; 0x1e00000
- c0017ac:	e3a02001 	mov	r2, #1
+ c0017a8:	e59f3088 	ldr	r3, [pc, #136]	; c001838 <timer_init+0x9c>
+ c0017ac:	e3a02000 	mov	r2, #0
  c0017b0:	e5832000 	str	r2, [r3]
+	rINTCON  =0x1;  // Habilita int. vectorizadas y la linea IRQ (FIQ no)
+ c0017b4:	e3a0361e 	mov	r3, #31457280	; 0x1e00000
+ c0017b8:	e3a02001 	mov	r2, #1
+ c0017bc:	e5832000 	str	r2, [r3]
 	rINTMSK &= ~(BIT_GLOBAL|BIT_TIMER0);  // habilita Timer0 y el bit global
- c0017b4:	e59f2074 	ldr	r2, [pc, #116]	; c001830 <timer_init+0xa0>
- c0017b8:	e59f3070 	ldr	r3, [pc, #112]	; c001830 <timer_init+0xa0>
- c0017bc:	e5933000 	ldr	r3, [r3]
- c0017c0:	e3c33301 	bic	r3, r3, #67108864	; 0x4000000
- c0017c4:	e3c33a02 	bic	r3, r3, #8192	; 0x2000
- c0017c8:	e5823000 	str	r3, [r2]
+ c0017c0:	e59f2074 	ldr	r2, [pc, #116]	; c00183c <timer_init+0xa0>
+ c0017c4:	e59f3070 	ldr	r3, [pc, #112]	; c00183c <timer_init+0xa0>
+ c0017c8:	e5933000 	ldr	r3, [r3]
+ c0017cc:	e3c33301 	bic	r3, r3, #67108864	; 0x4000000
+ c0017d0:	e3c33a02 	bic	r3, r3, #8192	; 0x2000
+ c0017d4:	e5823000 	str	r3, [r2]
 		
 	/* Establece la rutina de servicio para TIMER0 */
 	pISR_TIMER0=(unsigned)timer_ISR;
- c0017cc:	e59f3060 	ldr	r3, [pc, #96]	; c001834 <timer_init+0xa4>
- c0017d0:	e59f2060 	ldr	r2, [pc, #96]	; c001838 <timer_init+0xa8>
- c0017d4:	e5832000 	str	r2, [r3]
+ c0017d8:	e59f3060 	ldr	r3, [pc, #96]	; c001840 <timer_init+0xa4>
+ c0017dc:	e59f2060 	ldr	r2, [pc, #96]	; c001844 <timer_init+0xa8>
+ c0017e0:	e5832000 	str	r2, [r3]
 
 /*fin TAREA 2b*/	
 
 	/* Configura el Timer0 */
     rTCFG0 = 255;
- c0017d8:	e59f305c 	ldr	r3, [pc, #92]	; c00183c <timer_init+0xac>
- c0017dc:	e3a020ff 	mov	r2, #255	; 0xff
- c0017e0:	e5832000 	str	r2, [r3]
-    rTCFG1 = 0x0;
- c0017e4:	e59f3054 	ldr	r3, [pc, #84]	; c001840 <timer_init+0xb0>
- c0017e8:	e3a02000 	mov	r2, #0
+ c0017e4:	e59f305c 	ldr	r3, [pc, #92]	; c001848 <timer_init+0xac>
+ c0017e8:	e3a020ff 	mov	r2, #255	; 0xff
  c0017ec:	e5832000 	str	r2, [r3]
-    rTCNTB0 = 65535;
- c0017f0:	e59f304c 	ldr	r3, [pc, #76]	; c001844 <timer_init+0xb4>
- c0017f4:	e59f204c 	ldr	r2, [pc, #76]	; c001848 <timer_init+0xb8>
+    rTCFG1 = 0x0;
+ c0017f0:	e59f3054 	ldr	r3, [pc, #84]	; c00184c <timer_init+0xb0>
+ c0017f4:	e3a02000 	mov	r2, #0
  c0017f8:	e5832000 	str	r2, [r3]
-    rTCMPB0 = 12800;
- c0017fc:	e59f3048 	ldr	r3, [pc, #72]	; c00184c <timer_init+0xbc>
- c001800:	e3a02c32 	mov	r2, #12800	; 0x3200
+    rTCNTB0 = 65535;
+ c0017fc:	e59f304c 	ldr	r3, [pc, #76]	; c001850 <timer_init+0xb4>
+ c001800:	e59f204c 	ldr	r2, [pc, #76]	; c001854 <timer_init+0xb8>
  c001804:	e5832000 	str	r2, [r3]
+    rTCMPB0 = 12800;
+ c001808:	e59f3048 	ldr	r3, [pc, #72]	; c001858 <timer_init+0xbc>
+ c00180c:	e3a02c32 	mov	r2, #12800	; 0x3200
+ c001810:	e5832000 	str	r2, [r3]
     /* establecer update=manual + inverter=on */
 	rTCON = 0x2;
- c001808:	e59f3040 	ldr	r3, [pc, #64]	; c001850 <timer_init+0xc0>
- c00180c:	e3a02002 	mov	r2, #2
- c001810:	e5832000 	str	r2, [r3]
+ c001814:	e59f3040 	ldr	r3, [pc, #64]	; c00185c <timer_init+0xc0>
+ c001818:	e3a02002 	mov	r2, #2
+ c00181c:	e5832000 	str	r2, [r3]
 	/* inicial timer con auto-reload */
     rTCON  = 0x09;
- c001814:	e59f3034 	ldr	r3, [pc, #52]	; c001850 <timer_init+0xc0>
- c001818:	e3a02009 	mov	r2, #9
- c00181c:	e5832000 	str	r2, [r3]
+ c001820:	e59f3034 	ldr	r3, [pc, #52]	; c00185c <timer_init+0xc0>
+ c001824:	e3a02009 	mov	r2, #9
+ c001828:	e5832000 	str	r2, [r3]
 
 }
- c001820:	e24bd00c 	sub	sp, fp, #12
- c001824:	e89d6800 	ldm	sp, {fp, sp, lr}
- c001828:	e12fff1e 	bx	lr
- c00182c:	01e00008 	.word	0x01e00008
- c001830:	01e0000c 	.word	0x01e0000c
- c001834:	0c7fff54 	.word	0x0c7fff54
- c001838:	0c001750 	.word	0x0c001750
- c00183c:	01d50000 	.word	0x01d50000
- c001840:	01d50004 	.word	0x01d50004
- c001844:	01d5000c 	.word	0x01d5000c
- c001848:	0000ffff 	.word	0x0000ffff
- c00184c:	01d50010 	.word	0x01d50010
- c001850:	01d50008 	.word	0x01d50008
+ c00182c:	e24bd00c 	sub	sp, fp, #12
+ c001830:	e89d6800 	ldm	sp, {fp, sp, lr}
+ c001834:	e12fff1e 	bx	lr
+ c001838:	01e00008 	.word	0x01e00008
+ c00183c:	01e0000c 	.word	0x01e0000c
+ c001840:	0c7fff54 	.word	0x0c7fff54
+ c001844:	0c00175c 	.word	0x0c00175c
+ c001848:	01d50000 	.word	0x01d50000
+ c00184c:	01d50004 	.word	0x01d50004
+ c001850:	01d5000c 	.word	0x01d5000c
+ c001854:	0000ffff 	.word	0x0000ffff
+ c001858:	01d50010 	.word	0x01d50010
+ c00185c:	01d50008 	.word	0x01d50008
 
-0c001854 <__aeabi_idiv>:
- c001854:	e3510000 	cmp	r1, #0
- c001858:	0a000043 	beq	c00196c <.divsi3_skip_div0_test+0x110>
+0c001860 <__aeabi_idiv>:
+ c001860:	e3510000 	cmp	r1, #0
+ c001864:	0a000043 	beq	c001978 <.divsi3_skip_div0_test+0x110>
 
-0c00185c <.divsi3_skip_div0_test>:
- c00185c:	e020c001 	eor	ip, r0, r1
- c001860:	42611000 	rsbmi	r1, r1, #0
- c001864:	e2512001 	subs	r2, r1, #1
- c001868:	0a000027 	beq	c00190c <.divsi3_skip_div0_test+0xb0>
- c00186c:	e1b03000 	movs	r3, r0
- c001870:	42603000 	rsbmi	r3, r0, #0
- c001874:	e1530001 	cmp	r3, r1
- c001878:	9a000026 	bls	c001918 <.divsi3_skip_div0_test+0xbc>
- c00187c:	e1110002 	tst	r1, r2
- c001880:	0a000028 	beq	c001928 <.divsi3_skip_div0_test+0xcc>
- c001884:	e311020e 	tst	r1, #-536870912	; 0xe0000000
- c001888:	01a01181 	lsleq	r1, r1, #3
- c00188c:	03a02008 	moveq	r2, #8
- c001890:	13a02001 	movne	r2, #1
- c001894:	e3510201 	cmp	r1, #268435456	; 0x10000000
- c001898:	31510003 	cmpcc	r1, r3
- c00189c:	31a01201 	lslcc	r1, r1, #4
- c0018a0:	31a02202 	lslcc	r2, r2, #4
- c0018a4:	3afffffa 	bcc	c001894 <.divsi3_skip_div0_test+0x38>
- c0018a8:	e3510102 	cmp	r1, #-2147483648	; 0x80000000
- c0018ac:	31510003 	cmpcc	r1, r3
- c0018b0:	31a01081 	lslcc	r1, r1, #1
- c0018b4:	31a02082 	lslcc	r2, r2, #1
- c0018b8:	3afffffa 	bcc	c0018a8 <.divsi3_skip_div0_test+0x4c>
- c0018bc:	e3a00000 	mov	r0, #0
- c0018c0:	e1530001 	cmp	r3, r1
- c0018c4:	20433001 	subcs	r3, r3, r1
- c0018c8:	21800002 	orrcs	r0, r0, r2
- c0018cc:	e15300a1 	cmp	r3, r1, lsr #1
- c0018d0:	204330a1 	subcs	r3, r3, r1, lsr #1
- c0018d4:	218000a2 	orrcs	r0, r0, r2, lsr #1
- c0018d8:	e1530121 	cmp	r3, r1, lsr #2
- c0018dc:	20433121 	subcs	r3, r3, r1, lsr #2
- c0018e0:	21800122 	orrcs	r0, r0, r2, lsr #2
- c0018e4:	e15301a1 	cmp	r3, r1, lsr #3
- c0018e8:	204331a1 	subcs	r3, r3, r1, lsr #3
- c0018ec:	218001a2 	orrcs	r0, r0, r2, lsr #3
- c0018f0:	e3530000 	cmp	r3, #0
- c0018f4:	11b02222 	lsrsne	r2, r2, #4
- c0018f8:	11a01221 	lsrne	r1, r1, #4
- c0018fc:	1affffef 	bne	c0018c0 <.divsi3_skip_div0_test+0x64>
- c001900:	e35c0000 	cmp	ip, #0
- c001904:	42600000 	rsbmi	r0, r0, #0
- c001908:	e12fff1e 	bx	lr
- c00190c:	e13c0000 	teq	ip, r0
+0c001868 <.divsi3_skip_div0_test>:
+ c001868:	e020c001 	eor	ip, r0, r1
+ c00186c:	42611000 	rsbmi	r1, r1, #0
+ c001870:	e2512001 	subs	r2, r1, #1
+ c001874:	0a000027 	beq	c001918 <.divsi3_skip_div0_test+0xb0>
+ c001878:	e1b03000 	movs	r3, r0
+ c00187c:	42603000 	rsbmi	r3, r0, #0
+ c001880:	e1530001 	cmp	r3, r1
+ c001884:	9a000026 	bls	c001924 <.divsi3_skip_div0_test+0xbc>
+ c001888:	e1110002 	tst	r1, r2
+ c00188c:	0a000028 	beq	c001934 <.divsi3_skip_div0_test+0xcc>
+ c001890:	e311020e 	tst	r1, #-536870912	; 0xe0000000
+ c001894:	01a01181 	lsleq	r1, r1, #3
+ c001898:	03a02008 	moveq	r2, #8
+ c00189c:	13a02001 	movne	r2, #1
+ c0018a0:	e3510201 	cmp	r1, #268435456	; 0x10000000
+ c0018a4:	31510003 	cmpcc	r1, r3
+ c0018a8:	31a01201 	lslcc	r1, r1, #4
+ c0018ac:	31a02202 	lslcc	r2, r2, #4
+ c0018b0:	3afffffa 	bcc	c0018a0 <.divsi3_skip_div0_test+0x38>
+ c0018b4:	e3510102 	cmp	r1, #-2147483648	; 0x80000000
+ c0018b8:	31510003 	cmpcc	r1, r3
+ c0018bc:	31a01081 	lslcc	r1, r1, #1
+ c0018c0:	31a02082 	lslcc	r2, r2, #1
+ c0018c4:	3afffffa 	bcc	c0018b4 <.divsi3_skip_div0_test+0x4c>
+ c0018c8:	e3a00000 	mov	r0, #0
+ c0018cc:	e1530001 	cmp	r3, r1
+ c0018d0:	20433001 	subcs	r3, r3, r1
+ c0018d4:	21800002 	orrcs	r0, r0, r2
+ c0018d8:	e15300a1 	cmp	r3, r1, lsr #1
+ c0018dc:	204330a1 	subcs	r3, r3, r1, lsr #1
+ c0018e0:	218000a2 	orrcs	r0, r0, r2, lsr #1
+ c0018e4:	e1530121 	cmp	r3, r1, lsr #2
+ c0018e8:	20433121 	subcs	r3, r3, r1, lsr #2
+ c0018ec:	21800122 	orrcs	r0, r0, r2, lsr #2
+ c0018f0:	e15301a1 	cmp	r3, r1, lsr #3
+ c0018f4:	204331a1 	subcs	r3, r3, r1, lsr #3
+ c0018f8:	218001a2 	orrcs	r0, r0, r2, lsr #3
+ c0018fc:	e3530000 	cmp	r3, #0
+ c001900:	11b02222 	lsrsne	r2, r2, #4
+ c001904:	11a01221 	lsrne	r1, r1, #4
+ c001908:	1affffef 	bne	c0018cc <.divsi3_skip_div0_test+0x64>
+ c00190c:	e35c0000 	cmp	ip, #0
  c001910:	42600000 	rsbmi	r0, r0, #0
  c001914:	e12fff1e 	bx	lr
- c001918:	33a00000 	movcc	r0, #0
- c00191c:	01a00fcc 	asreq	r0, ip, #31
- c001920:	03800001 	orreq	r0, r0, #1
- c001924:	e12fff1e 	bx	lr
- c001928:	e3510801 	cmp	r1, #65536	; 0x10000
- c00192c:	21a01821 	lsrcs	r1, r1, #16
- c001930:	23a02010 	movcs	r2, #16
- c001934:	33a02000 	movcc	r2, #0
- c001938:	e3510c01 	cmp	r1, #256	; 0x100
- c00193c:	21a01421 	lsrcs	r1, r1, #8
- c001940:	22822008 	addcs	r2, r2, #8
- c001944:	e3510010 	cmp	r1, #16
- c001948:	21a01221 	lsrcs	r1, r1, #4
- c00194c:	22822004 	addcs	r2, r2, #4
- c001950:	e3510004 	cmp	r1, #4
- c001954:	82822003 	addhi	r2, r2, #3
- c001958:	908220a1 	addls	r2, r2, r1, lsr #1
- c00195c:	e35c0000 	cmp	ip, #0
- c001960:	e1a00233 	lsr	r0, r3, r2
- c001964:	42600000 	rsbmi	r0, r0, #0
- c001968:	e12fff1e 	bx	lr
- c00196c:	e3500000 	cmp	r0, #0
- c001970:	c3e00102 	mvngt	r0, #-2147483648	; 0x80000000
- c001974:	b3a00102 	movlt	r0, #-2147483648	; 0x80000000
- c001978:	ea000007 	b	c00199c <__aeabi_idiv0>
+ c001918:	e13c0000 	teq	ip, r0
+ c00191c:	42600000 	rsbmi	r0, r0, #0
+ c001920:	e12fff1e 	bx	lr
+ c001924:	33a00000 	movcc	r0, #0
+ c001928:	01a00fcc 	asreq	r0, ip, #31
+ c00192c:	03800001 	orreq	r0, r0, #1
+ c001930:	e12fff1e 	bx	lr
+ c001934:	e3510801 	cmp	r1, #65536	; 0x10000
+ c001938:	21a01821 	lsrcs	r1, r1, #16
+ c00193c:	23a02010 	movcs	r2, #16
+ c001940:	33a02000 	movcc	r2, #0
+ c001944:	e3510c01 	cmp	r1, #256	; 0x100
+ c001948:	21a01421 	lsrcs	r1, r1, #8
+ c00194c:	22822008 	addcs	r2, r2, #8
+ c001950:	e3510010 	cmp	r1, #16
+ c001954:	21a01221 	lsrcs	r1, r1, #4
+ c001958:	22822004 	addcs	r2, r2, #4
+ c00195c:	e3510004 	cmp	r1, #4
+ c001960:	82822003 	addhi	r2, r2, #3
+ c001964:	908220a1 	addls	r2, r2, r1, lsr #1
+ c001968:	e35c0000 	cmp	ip, #0
+ c00196c:	e1a00233 	lsr	r0, r3, r2
+ c001970:	42600000 	rsbmi	r0, r0, #0
+ c001974:	e12fff1e 	bx	lr
+ c001978:	e3500000 	cmp	r0, #0
+ c00197c:	c3e00102 	mvngt	r0, #-2147483648	; 0x80000000
+ c001980:	b3a00102 	movlt	r0, #-2147483648	; 0x80000000
+ c001984:	ea000007 	b	c0019a8 <__aeabi_idiv0>
 
-0c00197c <__aeabi_idivmod>:
- c00197c:	e3510000 	cmp	r1, #0
- c001980:	0afffff9 	beq	c00196c <.divsi3_skip_div0_test+0x110>
- c001984:	e92d4003 	push	{r0, r1, lr}
- c001988:	ebffffb3 	bl	c00185c <.divsi3_skip_div0_test>
- c00198c:	e8bd4006 	pop	{r1, r2, lr}
- c001990:	e0030092 	mul	r3, r2, r0
- c001994:	e0411003 	sub	r1, r1, r3
- c001998:	e12fff1e 	bx	lr
+0c001988 <__aeabi_idivmod>:
+ c001988:	e3510000 	cmp	r1, #0
+ c00198c:	0afffff9 	beq	c001978 <.divsi3_skip_div0_test+0x110>
+ c001990:	e92d4003 	push	{r0, r1, lr}
+ c001994:	ebffffb3 	bl	c001868 <.divsi3_skip_div0_test>
+ c001998:	e8bd4006 	pop	{r1, r2, lr}
+ c00199c:	e0030092 	mul	r3, r2, r0
+ c0019a0:	e0411003 	sub	r1, r1, r3
+ c0019a4:	e12fff1e 	bx	lr
 
-0c00199c <__aeabi_idiv0>:
- c00199c:	e12fff1e 	bx	lr
+0c0019a8 <__aeabi_idiv0>:
+ c0019a8:	e12fff1e 	bx	lr

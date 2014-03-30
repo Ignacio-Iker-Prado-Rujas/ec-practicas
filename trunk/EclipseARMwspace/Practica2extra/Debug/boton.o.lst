@@ -400,20 +400,20 @@
  2203              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 boton.c
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1914   .bss:00000000 update
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1911   .bss:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1920   .bss:00000004 pausa
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1926   .bss:00000008 resetsymbol
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1932   .data:00000000 actual
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1935   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1938   .text:00000000 EliminaRebotes
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1987   .text:0000005c $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1991   .text:00000060 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:1994   .text:00000060 Eint4567_init
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:2065   .text:00000108 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:2082   .text:00000134 Eint4567_ISR
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:2079   .text:00000134 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEg6VQJ.s:2195   .text:00000234 $d
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1914   .bss:00000000 update
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1911   .bss:00000000 $d
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1920   .bss:00000004 pausa
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1926   .bss:00000008 resetsymbol
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1932   .data:00000000 actual
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1935   .text:00000000 $a
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1938   .text:00000000 EliminaRebotes
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1987   .text:0000005c $d
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1991   .text:00000060 $a
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:1994   .text:00000060 Eint4567_init
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:2065   .text:00000108 $d
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:2082   .text:00000134 Eint4567_ISR
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:2079   .text:00000134 $a
+C:\Users\usuario\AppData\Local\Temp\ccgOoBUl.s:2195   .text:00000234 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

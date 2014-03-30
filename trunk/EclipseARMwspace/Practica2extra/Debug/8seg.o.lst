@@ -25,11 +25,11 @@
  2008 0000 80000000 		.word	128
  2009 0004 40000000 		.word	64
  2010 0008 20000000 		.word	32
- 2011 000c 08000000 		.word	8
- 2012 0010 04000000 		.word	4
- 2013 0014 01000000 		.word	1
+ 2011 000c 10000000 		.word	16
+ 2012 0010 08000000 		.word	8
+ 2013 0014 04000000 		.word	4
  2014 0018 02000000 		.word	2
- 2015 001c 10000000 		.word	16
+ 2015 001c 01000000 		.word	1
  2016              		.text
  2017              		.align	2
  2018              		.global	D8Led_init
@@ -84,7 +84,7 @@
   47:../8seg.c     **** int segmentOn[] = {0, 0, 0, 0, 0, 0, 0, 0};
   48:../8seg.c     **** 
   49:../8seg.c     **** /* tabla de segmentos */
-  50:../8seg.c     **** int Symbol[] = { SEGMENT_A, SEGMENT_B, SEGMENT_C, SEGMENT_D, SEGMENT_E, SEGMENT_G,SEGMENT_F, SEGMEN
+  50:../8seg.c     **** int Symbol[] = { SEGMENT_A, SEGMENT_B, SEGMENT_C, SEGMENT_P, SEGMENT_D, SEGMENT_E, SEGMENT_F, SEGME
   51:../8seg.c     **** 			  					  
   52:../8seg.c     **** 
   53:../8seg.c     **** /*--- declaración de funciones ---*/
@@ -129,8 +129,11 @@
  2049              		.global	D8Led_parpadear
  2051              	D8Led_parpadear:
  2052              	.LFB1:
-  66:../8seg.c     **** void D8Led_parpadear() {
- 2053              		.loc 1 66 0
+  66:../8seg.c     **** 
+  67:../8seg.c     **** //Esta funcion hace parpadear el segmento solicitado
+  68:../8seg.c     **** //Cada vez que se la llama enciende o apaga el segmento adecuado
+  69:../8seg.c     **** void D8Led_parpadear() {
+ 2053              		.loc 1 69 0
  2054              		.cfi_startproc
  2055              		@ Function supports interworking.
  2056              		@ args = 0, pretend = 0, frame = 0
@@ -145,935 +148,941 @@
  2065              		.cfi_offset 11, -16
  2066              	.LCFI3:
  2067              		.cfi_def_cfa 11, 4
-  67:../8seg.c     **** 	switch (actual){
- 2068              		.loc 1 67 0
- 2069 0030 1C339FE5 		ldr	r3, .L29
+  70:../8seg.c     **** 	switch (actual){
+ 2068              		.loc 1 70 0
+ 2069 0030 04339FE5 		ldr	r3, .L29
  2070 0034 0030D3E5 		ldrb	r3, [r3, #0]	@ zero_extendqisi2
  2071 0038 613043E2 		sub	r3, r3, #97
  2072 003c 060053E3 		cmp	r3, #6
  2073 0040 03F19F97 		ldrls	pc, [pc, r3, asl #2]
- 2074 0044 A80000EA 		b	.L3
+ 2074 0044 A30000EA 		b	.L3
  2075              	.L11:
  2076 0048 64000000 		.word	.L4
- 2077 004c C4000000 		.word	.L5
+ 2077 004c C8000000 		.word	.L5
  2078 0050 20010000 		.word	.L6
- 2079 0054 7C010000 		.word	.L7
- 2080 0058 D8010000 		.word	.L8
- 2081 005c 34020000 		.word	.L9
- 2082 0060 90020000 		.word	.L10
+ 2079 0054 78010000 		.word	.L7
+ 2080 0058 D0010000 		.word	.L8
+ 2081 005c 28020000 		.word	.L9
+ 2082 0060 80020000 		.word	.L10
  2083              	.L4:
-  68:../8seg.c     **** 		case 'a':
-  69:../8seg.c     **** 			if(LED8ADDR&SEGMENT_A == SEGMENT_A) {
- 2084              		.loc 1 69 0
+  71:../8seg.c     **** 		case 'a':
+  72:../8seg.c     **** 			if(((~LED8ADDR) & SEGMENT_A) == SEGMENT_A) {	//Estaba encendido => lo apago
+ 2084              		.loc 1 72 0
  2085 0064 8537A0E3 		mov	r3, #34865152
  2086 0068 0030D3E5 		ldrb	r3, [r3, #0]
  2087 006c FF3003E2 		and	r3, r3, #255
- 2088 0070 013003E2 		and	r3, r3, #1
- 2089 0074 FF3003E2 		and	r3, r3, #255
- 2090 0078 000053E3 		cmp	r3, #0
- 2091 007c 0700000A 		beq	.L12
-  70:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_A;
- 2092              		.loc 1 70 0
- 2093 0080 8537A0E3 		mov	r3, #34865152
+ 2088 0070 FF3003E2 		and	r3, r3, #255
+ 2089 0074 033CA0E1 		mov	r3, r3, asl #24
+ 2090 0078 433CA0E1 		mov	r3, r3, asr #24
+ 2091 007c 000053E3 		cmp	r3, #0
+ 2092 0080 080000BA 		blt	.L12
+  73:../8seg.c     **** 				LED8ADDR |= SEGMENT_A;
+ 2093              		.loc 1 73 0
  2094 0084 8527A0E3 		mov	r2, #34865152
- 2095 0088 0020D2E5 		ldrb	r2, [r2, #0]
- 2096 008c FF2002E2 		and	r2, r2, #255
- 2097 0090 7F2002E2 		and	r2, r2, #127
- 2098 0094 FF2002E2 		and	r2, r2, #255
- 2099 0098 0020C3E5 		strb	r2, [r3, #0]
-  71:../8seg.c     **** 			} else {
-  72:../8seg.c     **** 				LED8ADDR |= SEGMENT_A;
-  73:../8seg.c     **** 			}
-  74:../8seg.c     **** 			break;
- 2100              		.loc 1 74 0
- 2101 009c A90000EA 		b	.L2
- 2102              	.L12:
-  72:../8seg.c     **** 				LED8ADDR |= SEGMENT_A;
- 2103              		.loc 1 72 0
- 2104 00a0 8527A0E3 		mov	r2, #34865152
- 2105 00a4 8537A0E3 		mov	r3, #34865152
- 2106 00a8 0030D3E5 		ldrb	r3, [r3, #0]
- 2107 00ac FF3003E2 		and	r3, r3, #255
- 2108 00b0 833CE0E1 		mvn	r3, r3, asl #25
- 2109 00b4 A33CE0E1 		mvn	r3, r3, lsr #25
- 2110 00b8 FF3003E2 		and	r3, r3, #255
- 2111 00bc 0030C2E5 		strb	r3, [r2, #0]
- 2112              		.loc 1 74 0
- 2113 00c0 A00000EA 		b	.L2
- 2114              	.L5:
-  75:../8seg.c     **** 		case 'b':
-  76:../8seg.c     **** 			if(LED8ADDR&SEGMENT_B == SEGMENT_B) {
- 2115              		.loc 1 76 0
- 2116 00c4 8537A0E3 		mov	r3, #34865152
- 2117 00c8 0030D3E5 		ldrb	r3, [r3, #0]
- 2118 00cc FF3003E2 		and	r3, r3, #255
- 2119 00d0 013003E2 		and	r3, r3, #1
- 2120 00d4 FF3003E2 		and	r3, r3, #255
+ 2095 0088 8537A0E3 		mov	r3, #34865152
+ 2096 008c 0030D3E5 		ldrb	r3, [r3, #0]
+ 2097 0090 FF3003E2 		and	r3, r3, #255
+ 2098 0094 833CE0E1 		mvn	r3, r3, asl #25
+ 2099 0098 A33CE0E1 		mvn	r3, r3, lsr #25
+ 2100 009c FF3003E2 		and	r3, r3, #255
+ 2101 00a0 0030C2E5 		strb	r3, [r2, #0]
+  74:../8seg.c     **** 			} else {										//Estaba apagado => lo enciendo
+  75:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_A;
+  76:../8seg.c     **** 			}
+  77:../8seg.c     **** 			break;
+ 2102              		.loc 1 77 0
+ 2103 00a4 A10000EA 		b	.L2
+ 2104              	.L12:
+  75:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_A;
+ 2105              		.loc 1 75 0
+ 2106 00a8 8537A0E3 		mov	r3, #34865152
+ 2107 00ac 8527A0E3 		mov	r2, #34865152
+ 2108 00b0 0020D2E5 		ldrb	r2, [r2, #0]
+ 2109 00b4 FF2002E2 		and	r2, r2, #255
+ 2110 00b8 7F2002E2 		and	r2, r2, #127
+ 2111 00bc FF2002E2 		and	r2, r2, #255
+ 2112 00c0 0020C3E5 		strb	r2, [r3, #0]
+ 2113              		.loc 1 77 0
+ 2114 00c4 990000EA 		b	.L2
+ 2115              	.L5:
+  78:../8seg.c     **** 		case 'b':
+  79:../8seg.c     **** 			if(((~LED8ADDR) & SEGMENT_B) == SEGMENT_B) {
+ 2116              		.loc 1 79 0
+ 2117 00c8 8537A0E3 		mov	r3, #34865152
+ 2118 00cc 0030D3E5 		ldrb	r3, [r3, #0]
+ 2119 00d0 FF3003E2 		and	r3, r3, #255
+ 2120 00d4 403003E2 		and	r3, r3, #64
  2121 00d8 000053E3 		cmp	r3, #0
- 2122 00dc 0700000A 		beq	.L15
-  77:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_B;
- 2123              		.loc 1 77 0
+ 2122 00dc 0700001A 		bne	.L15
+  80:../8seg.c     **** 				LED8ADDR |= SEGMENT_B;
+ 2123              		.loc 1 80 0
  2124 00e0 8537A0E3 		mov	r3, #34865152
  2125 00e4 8527A0E3 		mov	r2, #34865152
  2126 00e8 0020D2E5 		ldrb	r2, [r2, #0]
  2127 00ec FF2002E2 		and	r2, r2, #255
- 2128 00f0 4020C2E3 		bic	r2, r2, #64
+ 2128 00f0 402082E3 		orr	r2, r2, #64
  2129 00f4 FF2002E2 		and	r2, r2, #255
  2130 00f8 0020C3E5 		strb	r2, [r3, #0]
-  78:../8seg.c     **** 			} else {
-  79:../8seg.c     **** 				LED8ADDR |= SEGMENT_B;
-  80:../8seg.c     **** 			}
-  81:../8seg.c     **** 			break;
- 2131              		.loc 1 81 0
- 2132 00fc 910000EA 		b	.L2
+  81:../8seg.c     **** 			} else {
+  82:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_B;
+  83:../8seg.c     **** 			}
+  84:../8seg.c     **** 			break;
+ 2131              		.loc 1 84 0
+ 2132 00fc 8B0000EA 		b	.L2
  2133              	.L15:
-  79:../8seg.c     **** 				LED8ADDR |= SEGMENT_B;
- 2134              		.loc 1 79 0
+  82:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_B;
+ 2134              		.loc 1 82 0
  2135 0100 8537A0E3 		mov	r3, #34865152
  2136 0104 8527A0E3 		mov	r2, #34865152
  2137 0108 0020D2E5 		ldrb	r2, [r2, #0]
  2138 010c FF2002E2 		and	r2, r2, #255
- 2139 0110 402082E3 		orr	r2, r2, #64
+ 2139 0110 4020C2E3 		bic	r2, r2, #64
  2140 0114 FF2002E2 		and	r2, r2, #255
  2141 0118 0020C3E5 		strb	r2, [r3, #0]
- 2142              		.loc 1 81 0
- 2143 011c 890000EA 		b	.L2
+ 2142              		.loc 1 84 0
+ 2143 011c 830000EA 		b	.L2
  2144              	.L6:
-  82:../8seg.c     **** 		case 'c':
-  83:../8seg.c     **** 			if(LED8ADDR&SEGMENT_C == SEGMENT_C) {
- 2145              		.loc 1 83 0
+  85:../8seg.c     **** 		case 'c':
+  86:../8seg.c     **** 			if(((~LED8ADDR) & SEGMENT_C) == SEGMENT_C) {
+ 2145              		.loc 1 86 0
  2146 0120 8537A0E3 		mov	r3, #34865152
  2147 0124 0030D3E5 		ldrb	r3, [r3, #0]
  2148 0128 FF3003E2 		and	r3, r3, #255
- 2149 012c 013003E2 		and	r3, r3, #1
- 2150 0130 FF3003E2 		and	r3, r3, #255
- 2151 0134 000053E3 		cmp	r3, #0
- 2152 0138 0700000A 		beq	.L17
-  84:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_C;
- 2153              		.loc 1 84 0
- 2154 013c 8537A0E3 		mov	r3, #34865152
- 2155 0140 8527A0E3 		mov	r2, #34865152
- 2156 0144 0020D2E5 		ldrb	r2, [r2, #0]
- 2157 0148 FF2002E2 		and	r2, r2, #255
- 2158 014c 2020C2E3 		bic	r2, r2, #32
- 2159 0150 FF2002E2 		and	r2, r2, #255
- 2160 0154 0020C3E5 		strb	r2, [r3, #0]
-  85:../8seg.c     **** 			} else {
-  86:../8seg.c     **** 				LED8ADDR |= SEGMENT_C;
-  87:../8seg.c     **** 			}
-  88:../8seg.c     **** 			break;
- 2161              		.loc 1 88 0
- 2162 0158 7A0000EA 		b	.L2
- 2163              	.L17:
-  86:../8seg.c     **** 				LED8ADDR |= SEGMENT_C;
- 2164              		.loc 1 86 0
- 2165 015c 8537A0E3 		mov	r3, #34865152
- 2166 0160 8527A0E3 		mov	r2, #34865152
- 2167 0164 0020D2E5 		ldrb	r2, [r2, #0]
- 2168 0168 FF2002E2 		and	r2, r2, #255
- 2169 016c 202082E3 		orr	r2, r2, #32
- 2170 0170 FF2002E2 		and	r2, r2, #255
- 2171 0174 0020C3E5 		strb	r2, [r3, #0]
- 2172              		.loc 1 88 0
- 2173 0178 720000EA 		b	.L2
- 2174              	.L7:
-  89:../8seg.c     **** 		case 'd':
-  90:../8seg.c     **** 			if(LED8ADDR&SEGMENT_D == SEGMENT_D) {
- 2175              		.loc 1 90 0
- 2176 017c 8537A0E3 		mov	r3, #34865152
- 2177 0180 0030D3E5 		ldrb	r3, [r3, #0]
- 2178 0184 FF3003E2 		and	r3, r3, #255
- 2179 0188 013003E2 		and	r3, r3, #1
- 2180 018c FF3003E2 		and	r3, r3, #255
- 2181 0190 000053E3 		cmp	r3, #0
- 2182 0194 0700000A 		beq	.L19
-  91:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_D;
- 2183              		.loc 1 91 0
- 2184 0198 8537A0E3 		mov	r3, #34865152
- 2185 019c 8527A0E3 		mov	r2, #34865152
- 2186 01a0 0020D2E5 		ldrb	r2, [r2, #0]
+ 2149 012c 203003E2 		and	r3, r3, #32
+ 2150 0130 000053E3 		cmp	r3, #0
+ 2151 0134 0700001A 		bne	.L17
+  87:../8seg.c     **** 				LED8ADDR |= SEGMENT_C;
+ 2152              		.loc 1 87 0
+ 2153 0138 8537A0E3 		mov	r3, #34865152
+ 2154 013c 8527A0E3 		mov	r2, #34865152
+ 2155 0140 0020D2E5 		ldrb	r2, [r2, #0]
+ 2156 0144 FF2002E2 		and	r2, r2, #255
+ 2157 0148 202082E3 		orr	r2, r2, #32
+ 2158 014c FF2002E2 		and	r2, r2, #255
+ 2159 0150 0020C3E5 		strb	r2, [r3, #0]
+  88:../8seg.c     **** 			} else {
+  89:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_C;
+  90:../8seg.c     **** 			}
+  91:../8seg.c     **** 			break;
+ 2160              		.loc 1 91 0
+ 2161 0154 750000EA 		b	.L2
+ 2162              	.L17:
+  89:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_C;
+ 2163              		.loc 1 89 0
+ 2164 0158 8537A0E3 		mov	r3, #34865152
+ 2165 015c 8527A0E3 		mov	r2, #34865152
+ 2166 0160 0020D2E5 		ldrb	r2, [r2, #0]
+ 2167 0164 FF2002E2 		and	r2, r2, #255
+ 2168 0168 2020C2E3 		bic	r2, r2, #32
+ 2169 016c FF2002E2 		and	r2, r2, #255
+ 2170 0170 0020C3E5 		strb	r2, [r3, #0]
+ 2171              		.loc 1 91 0
+ 2172 0174 6D0000EA 		b	.L2
+ 2173              	.L7:
+  92:../8seg.c     **** 		case 'd':
+  93:../8seg.c     **** 			if(((~LED8ADDR) & SEGMENT_D) == SEGMENT_D) {
+ 2174              		.loc 1 93 0
+ 2175 0178 8537A0E3 		mov	r3, #34865152
+ 2176 017c 0030D3E5 		ldrb	r3, [r3, #0]
+ 2177 0180 FF3003E2 		and	r3, r3, #255
+ 2178 0184 083003E2 		and	r3, r3, #8
+ 2179 0188 000053E3 		cmp	r3, #0
+ 2180 018c 0700001A 		bne	.L19
+  94:../8seg.c     **** 				LED8ADDR |= SEGMENT_D;
+ 2181              		.loc 1 94 0
+ 2182 0190 8537A0E3 		mov	r3, #34865152
+ 2183 0194 8527A0E3 		mov	r2, #34865152
+ 2184 0198 0020D2E5 		ldrb	r2, [r2, #0]
+ 2185 019c FF2002E2 		and	r2, r2, #255
+ 2186 01a0 082082E3 		orr	r2, r2, #8
  2187 01a4 FF2002E2 		and	r2, r2, #255
- 2188 01a8 0820C2E3 		bic	r2, r2, #8
- 2189 01ac FF2002E2 		and	r2, r2, #255
- 2190 01b0 0020C3E5 		strb	r2, [r3, #0]
-  92:../8seg.c     **** 			} else {
-  93:../8seg.c     **** 				LED8ADDR |= SEGMENT_D;
-  94:../8seg.c     **** 			}
-  95:../8seg.c     **** 			break;
- 2191              		.loc 1 95 0
- 2192 01b4 630000EA 		b	.L2
- 2193              	.L19:
-  93:../8seg.c     **** 				LED8ADDR |= SEGMENT_D;
- 2194              		.loc 1 93 0
- 2195 01b8 8537A0E3 		mov	r3, #34865152
- 2196 01bc 8527A0E3 		mov	r2, #34865152
- 2197 01c0 0020D2E5 		ldrb	r2, [r2, #0]
+ 2188 01a8 0020C3E5 		strb	r2, [r3, #0]
+  95:../8seg.c     **** 			} else {
+  96:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_D;
+  97:../8seg.c     **** 			}
+  98:../8seg.c     **** 			break;
+ 2189              		.loc 1 98 0
+ 2190 01ac 5F0000EA 		b	.L2
+ 2191              	.L19:
+  96:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_D;
+ 2192              		.loc 1 96 0
+ 2193 01b0 8537A0E3 		mov	r3, #34865152
+ 2194 01b4 8527A0E3 		mov	r2, #34865152
+ 2195 01b8 0020D2E5 		ldrb	r2, [r2, #0]
+ 2196 01bc FF2002E2 		and	r2, r2, #255
+ 2197 01c0 0820C2E3 		bic	r2, r2, #8
  2198 01c4 FF2002E2 		and	r2, r2, #255
- 2199 01c8 082082E3 		orr	r2, r2, #8
- 2200 01cc FF2002E2 		and	r2, r2, #255
- 2201 01d0 0020C3E5 		strb	r2, [r3, #0]
- 2202              		.loc 1 95 0
- 2203 01d4 5B0000EA 		b	.L2
- 2204              	.L8:
-  96:../8seg.c     **** 		case 'e':
-  97:../8seg.c     **** 			if(LED8ADDR&SEGMENT_E == SEGMENT_E) {
- 2205              		.loc 1 97 0
- 2206 01d8 8537A0E3 		mov	r3, #34865152
- 2207 01dc 0030D3E5 		ldrb	r3, [r3, #0]
- 2208 01e0 FF3003E2 		and	r3, r3, #255
- 2209 01e4 013003E2 		and	r3, r3, #1
- 2210 01e8 FF3003E2 		and	r3, r3, #255
- 2211 01ec 000053E3 		cmp	r3, #0
- 2212 01f0 0700000A 		beq	.L21
-  98:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_E;
- 2213              		.loc 1 98 0
- 2214 01f4 8537A0E3 		mov	r3, #34865152
- 2215 01f8 8527A0E3 		mov	r2, #34865152
- 2216 01fc 0020D2E5 		ldrb	r2, [r2, #0]
- 2217 0200 FF2002E2 		and	r2, r2, #255
- 2218 0204 0420C2E3 		bic	r2, r2, #4
- 2219 0208 FF2002E2 		and	r2, r2, #255
- 2220 020c 0020C3E5 		strb	r2, [r3, #0]
-  99:../8seg.c     **** 			} else {
- 100:../8seg.c     **** 				LED8ADDR |= SEGMENT_E;
- 101:../8seg.c     **** 			}
- 102:../8seg.c     **** 			break;
- 2221              		.loc 1 102 0
- 2222 0210 4C0000EA 		b	.L2
- 2223              	.L21:
- 100:../8seg.c     **** 				LED8ADDR |= SEGMENT_E;
- 2224              		.loc 1 100 0
- 2225 0214 8537A0E3 		mov	r3, #34865152
- 2226 0218 8527A0E3 		mov	r2, #34865152
- 2227 021c 0020D2E5 		ldrb	r2, [r2, #0]
- 2228 0220 FF2002E2 		and	r2, r2, #255
- 2229 0224 042082E3 		orr	r2, r2, #4
- 2230 0228 FF2002E2 		and	r2, r2, #255
- 2231 022c 0020C3E5 		strb	r2, [r3, #0]
- 2232              		.loc 1 102 0
- 2233 0230 440000EA 		b	.L2
- 2234              	.L9:
- 103:../8seg.c     **** 		case 'f':
- 104:../8seg.c     **** 			if(LED8ADDR&SEGMENT_F == SEGMENT_F) {
- 2235              		.loc 1 104 0
- 2236 0234 8537A0E3 		mov	r3, #34865152
- 2237 0238 0030D3E5 		ldrb	r3, [r3, #0]
- 2238 023c FF3003E2 		and	r3, r3, #255
- 2239 0240 013003E2 		and	r3, r3, #1
- 2240 0244 FF3003E2 		and	r3, r3, #255
- 2241 0248 000053E3 		cmp	r3, #0
- 2242 024c 0700000A 		beq	.L23
- 105:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_F;
- 2243              		.loc 1 105 0
- 2244 0250 8537A0E3 		mov	r3, #34865152
- 2245 0254 8527A0E3 		mov	r2, #34865152
- 2246 0258 0020D2E5 		ldrb	r2, [r2, #0]
- 2247 025c FF2002E2 		and	r2, r2, #255
- 2248 0260 0220C2E3 		bic	r2, r2, #2
- 2249 0264 FF2002E2 		and	r2, r2, #255
- 2250 0268 0020C3E5 		strb	r2, [r3, #0]
- 106:../8seg.c     **** 			} else {
- 107:../8seg.c     **** 				LED8ADDR |= SEGMENT_F;
- 108:../8seg.c     **** 			}
- 109:../8seg.c     **** 			break;
- 2251              		.loc 1 109 0
- 2252 026c 350000EA 		b	.L2
- 2253              	.L23:
- 107:../8seg.c     **** 				LED8ADDR |= SEGMENT_F;
- 2254              		.loc 1 107 0
- 2255 0270 8537A0E3 		mov	r3, #34865152
- 2256 0274 8527A0E3 		mov	r2, #34865152
- 2257 0278 0020D2E5 		ldrb	r2, [r2, #0]
- 2258 027c FF2002E2 		and	r2, r2, #255
- 2259 0280 022082E3 		orr	r2, r2, #2
- 2260 0284 FF2002E2 		and	r2, r2, #255
- 2261 0288 0020C3E5 		strb	r2, [r3, #0]
- 2262              		.loc 1 109 0
- 2263 028c 2D0000EA 		b	.L2
- 2264              	.L10:
- 110:../8seg.c     **** 		case 'g':
- 111:../8seg.c     **** 			if(LED8ADDR&SEGMENT_G == SEGMENT_G) {
- 2265              		.loc 1 111 0
- 2266 0290 8537A0E3 		mov	r3, #34865152
- 2267 0294 0030D3E5 		ldrb	r3, [r3, #0]
- 2268 0298 FF3003E2 		and	r3, r3, #255
- 2269 029c 013003E2 		and	r3, r3, #1
- 2270 02a0 FF3003E2 		and	r3, r3, #255
- 2271 02a4 000053E3 		cmp	r3, #0
- 2272 02a8 0700000A 		beq	.L25
- 112:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_G;
- 2273              		.loc 1 112 0
- 2274 02ac 8537A0E3 		mov	r3, #34865152
- 2275 02b0 8527A0E3 		mov	r2, #34865152
- 2276 02b4 0020D2E5 		ldrb	r2, [r2, #0]
- 2277 02b8 FF2002E2 		and	r2, r2, #255
- 2278 02bc 0120C2E3 		bic	r2, r2, #1
- 2279 02c0 FF2002E2 		and	r2, r2, #255
- 2280 02c4 0020C3E5 		strb	r2, [r3, #0]
- 113:../8seg.c     **** 			} else {
- 114:../8seg.c     **** 				LED8ADDR |= SEGMENT_G;
- 115:../8seg.c     **** 			}
- 116:../8seg.c     **** 			break;
- 2281              		.loc 1 116 0
- 2282 02c8 1E0000EA 		b	.L2
- 2283              	.L25:
- 114:../8seg.c     **** 				LED8ADDR |= SEGMENT_G;
- 2284              		.loc 1 114 0
- 2285 02cc 8537A0E3 		mov	r3, #34865152
- 2286 02d0 8527A0E3 		mov	r2, #34865152
- 2287 02d4 0020D2E5 		ldrb	r2, [r2, #0]
- 2288 02d8 FF2002E2 		and	r2, r2, #255
- 2289 02dc 012082E3 		orr	r2, r2, #1
- 2290 02e0 FF2002E2 		and	r2, r2, #255
- 2291 02e4 0020C3E5 		strb	r2, [r3, #0]
- 2292              		.loc 1 116 0
- 2293 02e8 160000EA 		b	.L2
- 2294              	.L3:
- 117:../8seg.c     **** 		default:
- 118:../8seg.c     **** 			if(LED8ADDR&SEGMENT_P == SEGMENT_P) {
- 2295              		.loc 1 118 0
- 2296 02ec 8537A0E3 		mov	r3, #34865152
- 2297 02f0 0030D3E5 		ldrb	r3, [r3, #0]
- 2298 02f4 FF3003E2 		and	r3, r3, #255
- 2299 02f8 013003E2 		and	r3, r3, #1
- 2300 02fc FF3003E2 		and	r3, r3, #255
- 2301 0300 000053E3 		cmp	r3, #0
- 2302 0304 0700000A 		beq	.L27
- 119:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_P;
- 2303              		.loc 1 119 0
- 2304 0308 8537A0E3 		mov	r3, #34865152
- 2305 030c 8527A0E3 		mov	r2, #34865152
- 2306 0310 0020D2E5 		ldrb	r2, [r2, #0]
- 2307 0314 FF2002E2 		and	r2, r2, #255
- 2308 0318 1020C2E3 		bic	r2, r2, #16
- 2309 031c FF2002E2 		and	r2, r2, #255
- 2310 0320 0020C3E5 		strb	r2, [r3, #0]
- 120:../8seg.c     **** 			} else {
- 121:../8seg.c     **** 				LED8ADDR |= SEGMENT_P;
- 122:../8seg.c     **** 			}
- 123:../8seg.c     **** 			break;
- 2311              		.loc 1 123 0
- 2312 0324 070000EA 		b	.L2
- 2313              	.L27:
- 121:../8seg.c     **** 				LED8ADDR |= SEGMENT_P;
- 2314              		.loc 1 121 0
- 2315 0328 8537A0E3 		mov	r3, #34865152
- 2316 032c 8527A0E3 		mov	r2, #34865152
- 2317 0330 0020D2E5 		ldrb	r2, [r2, #0]
- 2318 0334 FF2002E2 		and	r2, r2, #255
- 2319 0338 102082E3 		orr	r2, r2, #16
- 2320 033c FF2002E2 		and	r2, r2, #255
- 2321 0340 0020C3E5 		strb	r2, [r3, #0]
- 2322              		.loc 1 123 0
- 2323 0344 0000A0E1 		mov	r0, r0	@ nop
- 2324              	.L2:
- 124:../8seg.c     **** 		}
- 125:../8seg.c     **** 
- 126:../8seg.c     **** }
- 2325              		.loc 1 126 0
- 2326 0348 0CD04BE2 		sub	sp, fp, #12
- 2327 034c 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2328 0350 1EFF2FE1 		bx	lr
- 2329              	.L30:
+ 2199 01c8 0020C3E5 		strb	r2, [r3, #0]
+ 2200              		.loc 1 98 0
+ 2201 01cc 570000EA 		b	.L2
+ 2202              	.L8:
+  99:../8seg.c     **** 		case 'e':
+ 100:../8seg.c     **** 			if(((~LED8ADDR) & SEGMENT_E) == SEGMENT_E) {
+ 2203              		.loc 1 100 0
+ 2204 01d0 8537A0E3 		mov	r3, #34865152
+ 2205 01d4 0030D3E5 		ldrb	r3, [r3, #0]
+ 2206 01d8 FF3003E2 		and	r3, r3, #255
+ 2207 01dc 043003E2 		and	r3, r3, #4
+ 2208 01e0 000053E3 		cmp	r3, #0
+ 2209 01e4 0700001A 		bne	.L21
+ 101:../8seg.c     **** 				LED8ADDR |= SEGMENT_E;
+ 2210              		.loc 1 101 0
+ 2211 01e8 8537A0E3 		mov	r3, #34865152
+ 2212 01ec 8527A0E3 		mov	r2, #34865152
+ 2213 01f0 0020D2E5 		ldrb	r2, [r2, #0]
+ 2214 01f4 FF2002E2 		and	r2, r2, #255
+ 2215 01f8 042082E3 		orr	r2, r2, #4
+ 2216 01fc FF2002E2 		and	r2, r2, #255
+ 2217 0200 0020C3E5 		strb	r2, [r3, #0]
+ 102:../8seg.c     **** 			} else {
+ 103:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_E;
+ 104:../8seg.c     **** 			}
+ 105:../8seg.c     **** 			break;
+ 2218              		.loc 1 105 0
+ 2219 0204 490000EA 		b	.L2
+ 2220              	.L21:
+ 103:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_E;
+ 2221              		.loc 1 103 0
+ 2222 0208 8537A0E3 		mov	r3, #34865152
+ 2223 020c 8527A0E3 		mov	r2, #34865152
+ 2224 0210 0020D2E5 		ldrb	r2, [r2, #0]
+ 2225 0214 FF2002E2 		and	r2, r2, #255
+ 2226 0218 0420C2E3 		bic	r2, r2, #4
+ 2227 021c FF2002E2 		and	r2, r2, #255
+ 2228 0220 0020C3E5 		strb	r2, [r3, #0]
+ 2229              		.loc 1 105 0
+ 2230 0224 410000EA 		b	.L2
+ 2231              	.L9:
+ 106:../8seg.c     **** 		case 'f':
+ 107:../8seg.c     **** 			if(((~LED8ADDR) & SEGMENT_F) == SEGMENT_F) {
+ 2232              		.loc 1 107 0
+ 2233 0228 8537A0E3 		mov	r3, #34865152
+ 2234 022c 0030D3E5 		ldrb	r3, [r3, #0]
+ 2235 0230 FF3003E2 		and	r3, r3, #255
+ 2236 0234 023003E2 		and	r3, r3, #2
+ 2237 0238 000053E3 		cmp	r3, #0
+ 2238 023c 0700001A 		bne	.L23
+ 108:../8seg.c     **** 				LED8ADDR |= SEGMENT_F;
+ 2239              		.loc 1 108 0
+ 2240 0240 8537A0E3 		mov	r3, #34865152
+ 2241 0244 8527A0E3 		mov	r2, #34865152
+ 2242 0248 0020D2E5 		ldrb	r2, [r2, #0]
+ 2243 024c FF2002E2 		and	r2, r2, #255
+ 2244 0250 022082E3 		orr	r2, r2, #2
+ 2245 0254 FF2002E2 		and	r2, r2, #255
+ 2246 0258 0020C3E5 		strb	r2, [r3, #0]
+ 109:../8seg.c     **** 			} else {
+ 110:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_F;
+ 111:../8seg.c     **** 			}
+ 112:../8seg.c     **** 			break;
+ 2247              		.loc 1 112 0
+ 2248 025c 330000EA 		b	.L2
+ 2249              	.L23:
+ 110:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_F;
+ 2250              		.loc 1 110 0
+ 2251 0260 8537A0E3 		mov	r3, #34865152
+ 2252 0264 8527A0E3 		mov	r2, #34865152
+ 2253 0268 0020D2E5 		ldrb	r2, [r2, #0]
+ 2254 026c FF2002E2 		and	r2, r2, #255
+ 2255 0270 0220C2E3 		bic	r2, r2, #2
+ 2256 0274 FF2002E2 		and	r2, r2, #255
+ 2257 0278 0020C3E5 		strb	r2, [r3, #0]
+ 2258              		.loc 1 112 0
+ 2259 027c 2B0000EA 		b	.L2
+ 2260              	.L10:
+ 113:../8seg.c     **** 		case 'g':
+ 114:../8seg.c     **** 			if(((~LED8ADDR) & SEGMENT_G) == SEGMENT_G) {
+ 2261              		.loc 1 114 0
+ 2262 0280 8537A0E3 		mov	r3, #34865152
+ 2263 0284 0030D3E5 		ldrb	r3, [r3, #0]
+ 2264 0288 FF3003E2 		and	r3, r3, #255
+ 2265 028c 013003E2 		and	r3, r3, #1
+ 2266 0290 000053E3 		cmp	r3, #0
+ 2267 0294 0700001A 		bne	.L25
+ 115:../8seg.c     **** 				LED8ADDR |= SEGMENT_G;
+ 2268              		.loc 1 115 0
+ 2269 0298 8537A0E3 		mov	r3, #34865152
+ 2270 029c 8527A0E3 		mov	r2, #34865152
+ 2271 02a0 0020D2E5 		ldrb	r2, [r2, #0]
+ 2272 02a4 FF2002E2 		and	r2, r2, #255
+ 2273 02a8 012082E3 		orr	r2, r2, #1
+ 2274 02ac FF2002E2 		and	r2, r2, #255
+ 2275 02b0 0020C3E5 		strb	r2, [r3, #0]
+ 116:../8seg.c     **** 			} else {
+ 117:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_G;
+ 118:../8seg.c     **** 			}
+ 119:../8seg.c     **** 			break;
+ 2276              		.loc 1 119 0
+ 2277 02b4 1D0000EA 		b	.L2
+ 2278              	.L25:
+ 117:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_G;
+ 2279              		.loc 1 117 0
+ 2280 02b8 8537A0E3 		mov	r3, #34865152
+ 2281 02bc 8527A0E3 		mov	r2, #34865152
+ 2282 02c0 0020D2E5 		ldrb	r2, [r2, #0]
+ 2283 02c4 FF2002E2 		and	r2, r2, #255
+ 2284 02c8 0120C2E3 		bic	r2, r2, #1
+ 2285 02cc FF2002E2 		and	r2, r2, #255
+ 2286 02d0 0020C3E5 		strb	r2, [r3, #0]
+ 2287              		.loc 1 119 0
+ 2288 02d4 150000EA 		b	.L2
+ 2289              	.L3:
+ 120:../8seg.c     **** 		default:
+ 121:../8seg.c     **** 			if(((~LED8ADDR) & SEGMENT_P) == SEGMENT_P) {
+ 2290              		.loc 1 121 0
+ 2291 02d8 8537A0E3 		mov	r3, #34865152
+ 2292 02dc 0030D3E5 		ldrb	r3, [r3, #0]
+ 2293 02e0 FF3003E2 		and	r3, r3, #255
+ 2294 02e4 103003E2 		and	r3, r3, #16
+ 2295 02e8 000053E3 		cmp	r3, #0
+ 2296 02ec 0700001A 		bne	.L27
+ 122:../8seg.c     **** 				LED8ADDR |= SEGMENT_P;
+ 2297              		.loc 1 122 0
+ 2298 02f0 8537A0E3 		mov	r3, #34865152
+ 2299 02f4 8527A0E3 		mov	r2, #34865152
+ 2300 02f8 0020D2E5 		ldrb	r2, [r2, #0]
+ 2301 02fc FF2002E2 		and	r2, r2, #255
+ 2302 0300 102082E3 		orr	r2, r2, #16
+ 2303 0304 FF2002E2 		and	r2, r2, #255
+ 2304 0308 0020C3E5 		strb	r2, [r3, #0]
+ 123:../8seg.c     **** 			} else {
+ 124:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_P;
+ 125:../8seg.c     **** 			}
+ 126:../8seg.c     **** 			break;
+ 2305              		.loc 1 126 0
+ 2306 030c 070000EA 		b	.L2
+ 2307              	.L27:
+ 124:../8seg.c     **** 				LED8ADDR &= ~SEGMENT_P;
+ 2308              		.loc 1 124 0
+ 2309 0310 8537A0E3 		mov	r3, #34865152
+ 2310 0314 8527A0E3 		mov	r2, #34865152
+ 2311 0318 0020D2E5 		ldrb	r2, [r2, #0]
+ 2312 031c FF2002E2 		and	r2, r2, #255
+ 2313 0320 1020C2E3 		bic	r2, r2, #16
+ 2314 0324 FF2002E2 		and	r2, r2, #255
+ 2315 0328 0020C3E5 		strb	r2, [r3, #0]
+ 2316              		.loc 1 126 0
+ 2317 032c 0000A0E1 		mov	r0, r0	@ nop
+ 2318              	.L2:
+ 127:../8seg.c     **** 		}
+ 128:../8seg.c     **** 
+ 129:../8seg.c     **** }
+ 2319              		.loc 1 129 0
+ 2320 0330 0CD04BE2 		sub	sp, fp, #12
+ 2321 0334 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2322 0338 1EFF2FE1 		bx	lr
+ 2323              	.L30:
+ 2324              		.align	2
+ 2325              	.L29:
+ 2326 033c 00000000 		.word	actual
+ 2327              		.cfi_endproc
+ 2328              	.LFE1:
  2330              		.align	2
- 2331              	.L29:
- 2332 0354 00000000 		.word	actual
- 2333              		.cfi_endproc
- 2334              	.LFE1:
- 2336              		.align	2
- 2337              		.global	D8Led_swicht
- 2339              	D8Led_swicht:
- 2340              	.LFB2:
- 127:../8seg.c     **** 
- 128:../8seg.c     **** void D8Led_swicht(){
- 2341              		.loc 1 128 0
- 2342              		.cfi_startproc
- 2343              		@ Function supports interworking.
- 2344              		@ args = 0, pretend = 0, frame = 0
- 2345              		@ frame_needed = 1, uses_anonymous_args = 0
- 2346 0358 0DC0A0E1 		mov	ip, sp
- 2347              	.LCFI4:
- 2348              		.cfi_def_cfa_register 12
- 2349 035c 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 2350 0360 04B04CE2 		sub	fp, ip, #4
- 2351              		.cfi_offset 14, -8
- 2352              		.cfi_offset 13, -12
- 2353              		.cfi_offset 11, -16
- 2354              	.LCFI5:
- 2355              		.cfi_def_cfa 11, 4
- 129:../8seg.c     **** 	switch (actual){
- 2356              		.loc 1 129 0
- 2357 0364 B8319FE5 		ldr	r3, .L58
- 2358 0368 0030D3E5 		ldrb	r3, [r3, #0]	@ zero_extendqisi2
- 2359 036c 613043E2 		sub	r3, r3, #97
- 2360 0370 060053E3 		cmp	r3, #6
- 2361 0374 03F19F97 		ldrls	pc, [pc, r3, asl #2]
- 2362 0378 5A0000EA 		b	.L32
- 2363              	.L40:
- 2364 037c 98030000 		.word	.L33
- 2365 0380 C8030000 		.word	.L34
- 2366 0384 F8030000 		.word	.L35
- 2367 0388 28040000 		.word	.L36
- 2368 038c 58040000 		.word	.L37
- 2369 0390 88040000 		.word	.L38
- 2370 0394 B8040000 		.word	.L39
- 2371              	.L33:
- 130:../8seg.c     **** 		case 'a':
- 131:../8seg.c     **** 			if(segmentOn[0] == 1) {
- 2372              		.loc 1 131 0
- 2373 0398 88319FE5 		ldr	r3, .L58+4
- 2374 039c 003093E5 		ldr	r3, [r3, #0]
- 2375 03a0 010053E3 		cmp	r3, #1
- 2376 03a4 0300001A 		bne	.L41
- 132:../8seg.c     **** 				segmentOn[0] = 0;
- 2377              		.loc 1 132 0
- 2378 03a8 78319FE5 		ldr	r3, .L58+4
- 2379 03ac 0020A0E3 		mov	r2, #0
- 2380 03b0 002083E5 		str	r2, [r3, #0]
- 133:../8seg.c     **** 			} else {
- 134:../8seg.c     **** 				segmentOn[0] = 1;
- 135:../8seg.c     **** 			}
- 136:../8seg.c     **** 			break;
- 2381              		.loc 1 136 0
- 2382 03b4 570000EA 		b	.L31
- 2383              	.L41:
- 134:../8seg.c     **** 				segmentOn[0] = 1;
- 2384              		.loc 1 134 0
- 2385 03b8 68319FE5 		ldr	r3, .L58+4
- 2386 03bc 0120A0E3 		mov	r2, #1
- 2387 03c0 002083E5 		str	r2, [r3, #0]
- 2388              		.loc 1 136 0
- 2389 03c4 530000EA 		b	.L31
- 2390              	.L34:
- 137:../8seg.c     **** 		case 'b':
- 138:../8seg.c     **** 			if(segmentOn[1] == 1) {
- 2391              		.loc 1 138 0
- 2392 03c8 58319FE5 		ldr	r3, .L58+4
- 2393 03cc 043093E5 		ldr	r3, [r3, #4]
- 2394 03d0 010053E3 		cmp	r3, #1
- 2395 03d4 0300001A 		bne	.L44
- 139:../8seg.c     **** 				segmentOn[1] = 0;
- 2396              		.loc 1 139 0
- 2397 03d8 48319FE5 		ldr	r3, .L58+4
- 2398 03dc 0020A0E3 		mov	r2, #0
- 2399 03e0 042083E5 		str	r2, [r3, #4]
- 140:../8seg.c     **** 			} else {
- 141:../8seg.c     **** 				segmentOn[1] = 1;
- 142:../8seg.c     **** 			}
- 143:../8seg.c     **** 			break;
- 2400              		.loc 1 143 0
- 2401 03e4 4B0000EA 		b	.L31
- 2402              	.L44:
- 141:../8seg.c     **** 				segmentOn[1] = 1;
- 2403              		.loc 1 141 0
- 2404 03e8 38319FE5 		ldr	r3, .L58+4
- 2405 03ec 0120A0E3 		mov	r2, #1
- 2406 03f0 042083E5 		str	r2, [r3, #4]
- 2407              		.loc 1 143 0
- 2408 03f4 470000EA 		b	.L31
- 2409              	.L35:
- 144:../8seg.c     **** 		case 'c':
- 145:../8seg.c     **** 			if(segmentOn[2] == 1) {
- 2410              		.loc 1 145 0
- 2411 03f8 28319FE5 		ldr	r3, .L58+4
- 2412 03fc 083093E5 		ldr	r3, [r3, #8]
- 2413 0400 010053E3 		cmp	r3, #1
- 2414 0404 0300001A 		bne	.L46
- 146:../8seg.c     **** 				segmentOn[2] = 0;
- 2415              		.loc 1 146 0
- 2416 0408 18319FE5 		ldr	r3, .L58+4
- 2417 040c 0020A0E3 		mov	r2, #0
- 2418 0410 082083E5 		str	r2, [r3, #8]
- 147:../8seg.c     **** 			} else {
- 148:../8seg.c     **** 				segmentOn[2] = 1;
- 149:../8seg.c     **** 			}
- 150:../8seg.c     **** 			break;
- 2419              		.loc 1 150 0
- 2420 0414 3F0000EA 		b	.L31
- 2421              	.L46:
- 148:../8seg.c     **** 				segmentOn[2] = 1;
- 2422              		.loc 1 148 0
- 2423 0418 08319FE5 		ldr	r3, .L58+4
- 2424 041c 0120A0E3 		mov	r2, #1
- 2425 0420 082083E5 		str	r2, [r3, #8]
- 2426              		.loc 1 150 0
- 2427 0424 3B0000EA 		b	.L31
- 2428              	.L36:
- 151:../8seg.c     **** 		case 'd':
- 152:../8seg.c     **** 			if(segmentOn[3] == 1) {
- 2429              		.loc 1 152 0
- 2430 0428 F8309FE5 		ldr	r3, .L58+4
- 2431 042c 0C3093E5 		ldr	r3, [r3, #12]
- 2432 0430 010053E3 		cmp	r3, #1
- 2433 0434 0300001A 		bne	.L48
- 153:../8seg.c     **** 				segmentOn[3] = 0;
- 2434              		.loc 1 153 0
- 2435 0438 E8309FE5 		ldr	r3, .L58+4
- 2436 043c 0020A0E3 		mov	r2, #0
- 2437 0440 0C2083E5 		str	r2, [r3, #12]
- 154:../8seg.c     **** 			} else {
- 155:../8seg.c     **** 				segmentOn[3] = 1;
- 156:../8seg.c     **** 			}
- 157:../8seg.c     **** 			break;
- 2438              		.loc 1 157 0
- 2439 0444 330000EA 		b	.L31
- 2440              	.L48:
- 155:../8seg.c     **** 				segmentOn[3] = 1;
- 2441              		.loc 1 155 0
- 2442 0448 D8309FE5 		ldr	r3, .L58+4
- 2443 044c 0120A0E3 		mov	r2, #1
- 2444 0450 0C2083E5 		str	r2, [r3, #12]
- 2445              		.loc 1 157 0
- 2446 0454 2F0000EA 		b	.L31
- 2447              	.L37:
- 158:../8seg.c     **** 		case 'e':
- 159:../8seg.c     **** 			if(segmentOn[4] == 1) {
- 2448              		.loc 1 159 0
- 2449 0458 C8309FE5 		ldr	r3, .L58+4
- 2450 045c 103093E5 		ldr	r3, [r3, #16]
- 2451 0460 010053E3 		cmp	r3, #1
- 2452 0464 0300001A 		bne	.L50
- 160:../8seg.c     **** 				segmentOn[4] = 0;
- 2453              		.loc 1 160 0
- 2454 0468 B8309FE5 		ldr	r3, .L58+4
- 2455 046c 0020A0E3 		mov	r2, #0
- 2456 0470 102083E5 		str	r2, [r3, #16]
- 161:../8seg.c     **** 			} else {
- 162:../8seg.c     **** 				segmentOn[4] = 1;
- 163:../8seg.c     **** 			}
- 164:../8seg.c     **** 			break;
- 2457              		.loc 1 164 0
- 2458 0474 270000EA 		b	.L31
- 2459              	.L50:
- 162:../8seg.c     **** 				segmentOn[4] = 1;
- 2460              		.loc 1 162 0
- 2461 0478 A8309FE5 		ldr	r3, .L58+4
- 2462 047c 0120A0E3 		mov	r2, #1
- 2463 0480 102083E5 		str	r2, [r3, #16]
- 2464              		.loc 1 164 0
- 2465 0484 230000EA 		b	.L31
- 2466              	.L38:
- 165:../8seg.c     **** 		case 'f':
- 166:../8seg.c     **** 			if(segmentOn[5] == 1) {
- 2467              		.loc 1 166 0
- 2468 0488 98309FE5 		ldr	r3, .L58+4
- 2469 048c 143093E5 		ldr	r3, [r3, #20]
- 2470 0490 010053E3 		cmp	r3, #1
- 2471 0494 0300001A 		bne	.L52
- 167:../8seg.c     **** 				segmentOn[5] = 0;
- 2472              		.loc 1 167 0
- 2473 0498 88309FE5 		ldr	r3, .L58+4
- 2474 049c 0020A0E3 		mov	r2, #0
- 2475 04a0 142083E5 		str	r2, [r3, #20]
- 168:../8seg.c     **** 			} else {
- 169:../8seg.c     **** 				segmentOn[5] = 1;
- 170:../8seg.c     **** 			}
- 171:../8seg.c     **** 			break;
- 2476              		.loc 1 171 0
- 2477 04a4 1B0000EA 		b	.L31
- 2478              	.L52:
- 169:../8seg.c     **** 				segmentOn[5] = 1;
- 2479              		.loc 1 169 0
- 2480 04a8 78309FE5 		ldr	r3, .L58+4
- 2481 04ac 0120A0E3 		mov	r2, #1
- 2482 04b0 142083E5 		str	r2, [r3, #20]
- 2483              		.loc 1 171 0
- 2484 04b4 170000EA 		b	.L31
- 2485              	.L39:
- 172:../8seg.c     **** 		case 'g':
- 173:../8seg.c     **** 			if(segmentOn[6] == 1) {
- 2486              		.loc 1 173 0
- 2487 04b8 68309FE5 		ldr	r3, .L58+4
- 2488 04bc 183093E5 		ldr	r3, [r3, #24]
- 2489 04c0 010053E3 		cmp	r3, #1
- 2490 04c4 0300001A 		bne	.L54
- 174:../8seg.c     **** 				segmentOn[6] = 0;
- 2491              		.loc 1 174 0
- 2492 04c8 58309FE5 		ldr	r3, .L58+4
- 2493 04cc 0020A0E3 		mov	r2, #0
- 2494 04d0 182083E5 		str	r2, [r3, #24]
- 175:../8seg.c     **** 			} else {
- 176:../8seg.c     **** 				segmentOn[6] = 1;
- 177:../8seg.c     **** 			}
- 178:../8seg.c     **** 			break;
- 2495              		.loc 1 178 0
- 2496 04d4 0F0000EA 		b	.L31
- 2497              	.L54:
- 176:../8seg.c     **** 				segmentOn[6] = 1;
- 2498              		.loc 1 176 0
- 2499 04d8 48309FE5 		ldr	r3, .L58+4
- 2500 04dc 0120A0E3 		mov	r2, #1
- 2501 04e0 182083E5 		str	r2, [r3, #24]
- 2502              		.loc 1 178 0
- 2503 04e4 0B0000EA 		b	.L31
- 2504              	.L32:
- 179:../8seg.c     **** 		default:
- 180:../8seg.c     **** 			if(segmentOn[7] == 1) {
- 2505              		.loc 1 180 0
- 2506 04e8 38309FE5 		ldr	r3, .L58+4
- 2507 04ec 1C3093E5 		ldr	r3, [r3, #28]
- 2508 04f0 010053E3 		cmp	r3, #1
- 2509 04f4 0300001A 		bne	.L56
- 181:../8seg.c     **** 				segmentOn[7] = 0;
- 2510              		.loc 1 181 0
- 2511 04f8 28309FE5 		ldr	r3, .L58+4
- 2512 04fc 0020A0E3 		mov	r2, #0
- 2513 0500 1C2083E5 		str	r2, [r3, #28]
- 182:../8seg.c     **** 			} else {
- 183:../8seg.c     **** 				segmentOn[7] = 1;
- 184:../8seg.c     **** 			}
- 185:../8seg.c     **** 			break;
- 2514              		.loc 1 185 0
- 2515 0504 030000EA 		b	.L31
- 2516              	.L56:
- 183:../8seg.c     **** 				segmentOn[7] = 1;
- 2517              		.loc 1 183 0
- 2518 0508 18309FE5 		ldr	r3, .L58+4
- 2519 050c 0120A0E3 		mov	r2, #1
- 2520 0510 1C2083E5 		str	r2, [r3, #28]
- 2521              		.loc 1 185 0
- 2522 0514 0000A0E1 		mov	r0, r0	@ nop
- 2523              	.L31:
- 186:../8seg.c     **** 		}
- 187:../8seg.c     **** }
- 2524              		.loc 1 187 0
- 2525 0518 0CD04BE2 		sub	sp, fp, #12
- 2526 051c 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2527 0520 1EFF2FE1 		bx	lr
- 2528              	.L59:
- 2529              		.align	2
- 2530              	.L58:
- 2531 0524 00000000 		.word	actual
- 2532 0528 00000000 		.word	segmentOn
- 2533              		.cfi_endproc
- 2534              	.LFE2:
- 2536              		.align	2
- 2537              		.global	D8Led_pintaSeg
- 2539              	D8Led_pintaSeg:
- 2540              	.LFB3:
- 188:../8seg.c     **** 
- 189:../8seg.c     **** void D8Led_pintaSeg(){
- 2541              		.loc 1 189 0
- 2542              		.cfi_startproc
- 2543              		@ Function supports interworking.
- 2544              		@ args = 0, pretend = 0, frame = 8
- 2545              		@ frame_needed = 1, uses_anonymous_args = 0
- 2546 052c 0DC0A0E1 		mov	ip, sp
- 2547              	.LCFI6:
- 2548              		.cfi_def_cfa_register 12
- 2549 0530 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 2550 0534 04B04CE2 		sub	fp, ip, #4
- 2551              		.cfi_offset 14, -8
- 2552              		.cfi_offset 13, -12
- 2553              		.cfi_offset 11, -16
- 2554              	.LCFI7:
- 2555              		.cfi_def_cfa 11, 4
- 2556 0538 08D04DE2 		sub	sp, sp, #8
- 190:../8seg.c     **** 	int i = 0;
- 2557              		.loc 1 190 0
- 2558 053c 0030A0E3 		mov	r3, #0
- 2559 0540 10300BE5 		str	r3, [fp, #-16]
- 191:../8seg.c     **** 	while( i < 8){
- 2560              		.loc 1 191 0
- 2561 0544 160000EA 		b	.L61
- 2562              	.L63:
- 192:../8seg.c     **** 		if (segmentOn[i]==1)
- 2563              		.loc 1 192 0
- 2564 0548 6C309FE5 		ldr	r3, .L64
- 2565 054c 10201BE5 		ldr	r2, [fp, #-16]
- 2566 0550 023193E7 		ldr	r3, [r3, r2, asl #2]
- 2567 0554 010053E3 		cmp	r3, #1
- 2568 0558 0E00001A 		bne	.L62
- 193:../8seg.c     **** 			LED8ADDR &= ~Symbol[i];
- 2569              		.loc 1 193 0
- 2570 055c 8537A0E3 		mov	r3, #34865152
- 2571 0560 8527A0E3 		mov	r2, #34865152
- 2572 0564 0020D2E5 		ldrb	r2, [r2, #0]
- 2573 0568 FF2002E2 		and	r2, r2, #255
- 2574 056c FF1002E2 		and	r1, r2, #255
- 2575 0570 48209FE5 		ldr	r2, .L64+4
- 2576 0574 10001BE5 		ldr	r0, [fp, #-16]
- 2577 0578 002192E7 		ldr	r2, [r2, r0, asl #2]
- 2578 057c FF2002E2 		and	r2, r2, #255
- 2579 0580 0220E0E1 		mvn	r2, r2
- 2580 0584 FF2002E2 		and	r2, r2, #255
- 2581 0588 022001E0 		and	r2, r1, r2
- 2582 058c FF2002E2 		and	r2, r2, #255
+ 2331              		.global	D8Led_swicht
+ 2333              	D8Led_swicht:
+ 2334              	.LFB2:
+ 130:../8seg.c     **** 
+ 131:../8seg.c     **** //Esta funcion enciende o apaga un segmento concreto
+ 132:../8seg.c     **** void D8Led_swicht(){
+ 2335              		.loc 1 132 0
+ 2336              		.cfi_startproc
+ 2337              		@ Function supports interworking.
+ 2338              		@ args = 0, pretend = 0, frame = 0
+ 2339              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2340 0340 0DC0A0E1 		mov	ip, sp
+ 2341              	.LCFI4:
+ 2342              		.cfi_def_cfa_register 12
+ 2343 0344 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2344 0348 04B04CE2 		sub	fp, ip, #4
+ 2345              		.cfi_offset 14, -8
+ 2346              		.cfi_offset 13, -12
+ 2347              		.cfi_offset 11, -16
+ 2348              	.LCFI5:
+ 2349              		.cfi_def_cfa 11, 4
+ 133:../8seg.c     **** 	switch (actual){
+ 2350              		.loc 1 133 0
+ 2351 034c DC319FE5 		ldr	r3, .L58
+ 2352 0350 0030D3E5 		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 2353 0354 613043E2 		sub	r3, r3, #97
+ 2354 0358 0F0053E3 		cmp	r3, #15
+ 2355 035c 03F19F97 		ldrls	pc, [pc, r3, asl #2]
+ 2356 0360 630000EA 		b	.L32
+ 2357              	.L40:
+ 2358 0364 A4030000 		.word	.L33
+ 2359 0368 D4030000 		.word	.L34
+ 2360 036c 04040000 		.word	.L35
+ 2361 0370 64040000 		.word	.L36
+ 2362 0374 94040000 		.word	.L37
+ 2363 0378 C4040000 		.word	.L38
+ 2364 037c F4040000 		.word	.L32
+ 2365 0380 F4040000 		.word	.L32
+ 2366 0384 F4040000 		.word	.L32
+ 2367 0388 F4040000 		.word	.L32
+ 2368 038c F4040000 		.word	.L32
+ 2369 0390 F4040000 		.word	.L32
+ 2370 0394 F4040000 		.word	.L32
+ 2371 0398 F4040000 		.word	.L32
+ 2372 039c F4040000 		.word	.L32
+ 2373 03a0 34040000 		.word	.L39
+ 2374              	.L33:
+ 134:../8seg.c     **** 		case 'a':
+ 135:../8seg.c     **** 			if(segmentOn[0] == 1) {
+ 2375              		.loc 1 135 0
+ 2376 03a4 88319FE5 		ldr	r3, .L58+4
+ 2377 03a8 003093E5 		ldr	r3, [r3, #0]
+ 2378 03ac 010053E3 		cmp	r3, #1
+ 2379 03b0 0300001A 		bne	.L41
+ 136:../8seg.c     **** 				segmentOn[0] = 0;
+ 2380              		.loc 1 136 0
+ 2381 03b4 78319FE5 		ldr	r3, .L58+4
+ 2382 03b8 0020A0E3 		mov	r2, #0
+ 2383 03bc 002083E5 		str	r2, [r3, #0]
+ 137:../8seg.c     **** 			} else {
+ 138:../8seg.c     **** 				segmentOn[0] = 1;
+ 139:../8seg.c     **** 			}
+ 140:../8seg.c     **** 			break;
+ 2384              		.loc 1 140 0
+ 2385 03c0 570000EA 		b	.L31
+ 2386              	.L41:
+ 138:../8seg.c     **** 				segmentOn[0] = 1;
+ 2387              		.loc 1 138 0
+ 2388 03c4 68319FE5 		ldr	r3, .L58+4
+ 2389 03c8 0120A0E3 		mov	r2, #1
+ 2390 03cc 002083E5 		str	r2, [r3, #0]
+ 2391              		.loc 1 140 0
+ 2392 03d0 530000EA 		b	.L31
+ 2393              	.L34:
+ 141:../8seg.c     **** 		case 'b':
+ 142:../8seg.c     **** 			if(segmentOn[1] == 1) {
+ 2394              		.loc 1 142 0
+ 2395 03d4 58319FE5 		ldr	r3, .L58+4
+ 2396 03d8 043093E5 		ldr	r3, [r3, #4]
+ 2397 03dc 010053E3 		cmp	r3, #1
+ 2398 03e0 0300001A 		bne	.L44
+ 143:../8seg.c     **** 				segmentOn[1] = 0;
+ 2399              		.loc 1 143 0
+ 2400 03e4 48319FE5 		ldr	r3, .L58+4
+ 2401 03e8 0020A0E3 		mov	r2, #0
+ 2402 03ec 042083E5 		str	r2, [r3, #4]
+ 144:../8seg.c     **** 			} else {
+ 145:../8seg.c     **** 				segmentOn[1] = 1;
+ 146:../8seg.c     **** 			}
+ 147:../8seg.c     **** 			break;
+ 2403              		.loc 1 147 0
+ 2404 03f0 4B0000EA 		b	.L31
+ 2405              	.L44:
+ 145:../8seg.c     **** 				segmentOn[1] = 1;
+ 2406              		.loc 1 145 0
+ 2407 03f4 38319FE5 		ldr	r3, .L58+4
+ 2408 03f8 0120A0E3 		mov	r2, #1
+ 2409 03fc 042083E5 		str	r2, [r3, #4]
+ 2410              		.loc 1 147 0
+ 2411 0400 470000EA 		b	.L31
+ 2412              	.L35:
+ 148:../8seg.c     **** 		case 'c':
+ 149:../8seg.c     **** 			if(segmentOn[2] == 1) {
+ 2413              		.loc 1 149 0
+ 2414 0404 28319FE5 		ldr	r3, .L58+4
+ 2415 0408 083093E5 		ldr	r3, [r3, #8]
+ 2416 040c 010053E3 		cmp	r3, #1
+ 2417 0410 0300001A 		bne	.L46
+ 150:../8seg.c     **** 				segmentOn[2] = 0;
+ 2418              		.loc 1 150 0
+ 2419 0414 18319FE5 		ldr	r3, .L58+4
+ 2420 0418 0020A0E3 		mov	r2, #0
+ 2421 041c 082083E5 		str	r2, [r3, #8]
+ 151:../8seg.c     **** 			} else {
+ 152:../8seg.c     **** 				segmentOn[2] = 1;
+ 153:../8seg.c     **** 			}
+ 154:../8seg.c     **** 			break;
+ 2422              		.loc 1 154 0
+ 2423 0420 3F0000EA 		b	.L31
+ 2424              	.L46:
+ 152:../8seg.c     **** 				segmentOn[2] = 1;
+ 2425              		.loc 1 152 0
+ 2426 0424 08319FE5 		ldr	r3, .L58+4
+ 2427 0428 0120A0E3 		mov	r2, #1
+ 2428 042c 082083E5 		str	r2, [r3, #8]
+ 2429              		.loc 1 154 0
+ 2430 0430 3B0000EA 		b	.L31
+ 2431              	.L39:
+ 155:../8seg.c     **** 		case 'p':
+ 156:../8seg.c     **** 			if(segmentOn[3] == 1) {
+ 2432              		.loc 1 156 0
+ 2433 0434 F8309FE5 		ldr	r3, .L58+4
+ 2434 0438 0C3093E5 		ldr	r3, [r3, #12]
+ 2435 043c 010053E3 		cmp	r3, #1
+ 2436 0440 0300001A 		bne	.L48
+ 157:../8seg.c     **** 				segmentOn[3] = 0;
+ 2437              		.loc 1 157 0
+ 2438 0444 E8309FE5 		ldr	r3, .L58+4
+ 2439 0448 0020A0E3 		mov	r2, #0
+ 2440 044c 0C2083E5 		str	r2, [r3, #12]
+ 158:../8seg.c     **** 			} else {
+ 159:../8seg.c     **** 				segmentOn[3] = 1;
+ 160:../8seg.c     **** 			}
+ 161:../8seg.c     **** 			break;
+ 2441              		.loc 1 161 0
+ 2442 0450 330000EA 		b	.L31
+ 2443              	.L48:
+ 159:../8seg.c     **** 				segmentOn[3] = 1;
+ 2444              		.loc 1 159 0
+ 2445 0454 D8309FE5 		ldr	r3, .L58+4
+ 2446 0458 0120A0E3 		mov	r2, #1
+ 2447 045c 0C2083E5 		str	r2, [r3, #12]
+ 2448              		.loc 1 161 0
+ 2449 0460 2F0000EA 		b	.L31
+ 2450              	.L36:
+ 162:../8seg.c     **** 		case 'd':
+ 163:../8seg.c     **** 			if(segmentOn[4] == 1) {
+ 2451              		.loc 1 163 0
+ 2452 0464 C8309FE5 		ldr	r3, .L58+4
+ 2453 0468 103093E5 		ldr	r3, [r3, #16]
+ 2454 046c 010053E3 		cmp	r3, #1
+ 2455 0470 0300001A 		bne	.L50
+ 164:../8seg.c     **** 				segmentOn[4] = 0;
+ 2456              		.loc 1 164 0
+ 2457 0474 B8309FE5 		ldr	r3, .L58+4
+ 2458 0478 0020A0E3 		mov	r2, #0
+ 2459 047c 102083E5 		str	r2, [r3, #16]
+ 165:../8seg.c     **** 			} else {
+ 166:../8seg.c     **** 				segmentOn[4] = 1;
+ 167:../8seg.c     **** 			}
+ 168:../8seg.c     **** 			break;
+ 2460              		.loc 1 168 0
+ 2461 0480 270000EA 		b	.L31
+ 2462              	.L50:
+ 166:../8seg.c     **** 				segmentOn[4] = 1;
+ 2463              		.loc 1 166 0
+ 2464 0484 A8309FE5 		ldr	r3, .L58+4
+ 2465 0488 0120A0E3 		mov	r2, #1
+ 2466 048c 102083E5 		str	r2, [r3, #16]
+ 2467              		.loc 1 168 0
+ 2468 0490 230000EA 		b	.L31
+ 2469              	.L37:
+ 169:../8seg.c     **** 		case 'e':
+ 170:../8seg.c     **** 			if(segmentOn[5] == 1) {
+ 2470              		.loc 1 170 0
+ 2471 0494 98309FE5 		ldr	r3, .L58+4
+ 2472 0498 143093E5 		ldr	r3, [r3, #20]
+ 2473 049c 010053E3 		cmp	r3, #1
+ 2474 04a0 0300001A 		bne	.L52
+ 171:../8seg.c     **** 				segmentOn[5] = 0;
+ 2475              		.loc 1 171 0
+ 2476 04a4 88309FE5 		ldr	r3, .L58+4
+ 2477 04a8 0020A0E3 		mov	r2, #0
+ 2478 04ac 142083E5 		str	r2, [r3, #20]
+ 172:../8seg.c     **** 			} else {
+ 173:../8seg.c     **** 				segmentOn[5] = 1;
+ 174:../8seg.c     **** 			}
+ 175:../8seg.c     **** 			break;
+ 2479              		.loc 1 175 0
+ 2480 04b0 1B0000EA 		b	.L31
+ 2481              	.L52:
+ 173:../8seg.c     **** 				segmentOn[5] = 1;
+ 2482              		.loc 1 173 0
+ 2483 04b4 78309FE5 		ldr	r3, .L58+4
+ 2484 04b8 0120A0E3 		mov	r2, #1
+ 2485 04bc 142083E5 		str	r2, [r3, #20]
+ 2486              		.loc 1 175 0
+ 2487 04c0 170000EA 		b	.L31
+ 2488              	.L38:
+ 176:../8seg.c     **** 		case 'f':
+ 177:../8seg.c     **** 			if(segmentOn[6] == 1) {
+ 2489              		.loc 1 177 0
+ 2490 04c4 68309FE5 		ldr	r3, .L58+4
+ 2491 04c8 183093E5 		ldr	r3, [r3, #24]
+ 2492 04cc 010053E3 		cmp	r3, #1
+ 2493 04d0 0300001A 		bne	.L54
+ 178:../8seg.c     **** 				segmentOn[6] = 0;
+ 2494              		.loc 1 178 0
+ 2495 04d4 58309FE5 		ldr	r3, .L58+4
+ 2496 04d8 0020A0E3 		mov	r2, #0
+ 2497 04dc 182083E5 		str	r2, [r3, #24]
+ 179:../8seg.c     **** 			} else {
+ 180:../8seg.c     **** 				segmentOn[6] = 1;
+ 181:../8seg.c     **** 			}
+ 182:../8seg.c     **** 			break;
+ 2498              		.loc 1 182 0
+ 2499 04e0 0F0000EA 		b	.L31
+ 2500              	.L54:
+ 180:../8seg.c     **** 				segmentOn[6] = 1;
+ 2501              		.loc 1 180 0
+ 2502 04e4 48309FE5 		ldr	r3, .L58+4
+ 2503 04e8 0120A0E3 		mov	r2, #1
+ 2504 04ec 182083E5 		str	r2, [r3, #24]
+ 2505              		.loc 1 182 0
+ 2506 04f0 0B0000EA 		b	.L31
+ 2507              	.L32:
+ 183:../8seg.c     **** 		default:
+ 184:../8seg.c     **** 			if(segmentOn[7] == 1) {
+ 2508              		.loc 1 184 0
+ 2509 04f4 38309FE5 		ldr	r3, .L58+4
+ 2510 04f8 1C3093E5 		ldr	r3, [r3, #28]
+ 2511 04fc 010053E3 		cmp	r3, #1
+ 2512 0500 0300001A 		bne	.L56
+ 185:../8seg.c     **** 				segmentOn[7] = 0;
+ 2513              		.loc 1 185 0
+ 2514 0504 28309FE5 		ldr	r3, .L58+4
+ 2515 0508 0020A0E3 		mov	r2, #0
+ 2516 050c 1C2083E5 		str	r2, [r3, #28]
+ 186:../8seg.c     **** 			} else {
+ 187:../8seg.c     **** 				segmentOn[7] = 1;
+ 188:../8seg.c     **** 			}
+ 189:../8seg.c     **** 			break;
+ 2517              		.loc 1 189 0
+ 2518 0510 030000EA 		b	.L31
+ 2519              	.L56:
+ 187:../8seg.c     **** 				segmentOn[7] = 1;
+ 2520              		.loc 1 187 0
+ 2521 0514 18309FE5 		ldr	r3, .L58+4
+ 2522 0518 0120A0E3 		mov	r2, #1
+ 2523 051c 1C2083E5 		str	r2, [r3, #28]
+ 2524              		.loc 1 189 0
+ 2525 0520 0000A0E1 		mov	r0, r0	@ nop
+ 2526              	.L31:
+ 190:../8seg.c     **** 		}
+ 191:../8seg.c     **** }
+ 2527              		.loc 1 191 0
+ 2528 0524 0CD04BE2 		sub	sp, fp, #12
+ 2529 0528 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2530 052c 1EFF2FE1 		bx	lr
+ 2531              	.L59:
+ 2532              		.align	2
+ 2533              	.L58:
+ 2534 0530 00000000 		.word	actual
+ 2535 0534 00000000 		.word	segmentOn
+ 2536              		.cfi_endproc
+ 2537              	.LFE2:
+ 2539              		.align	2
+ 2540              		.global	D8Led_pintaSeg
+ 2542              	D8Led_pintaSeg:
+ 2543              	.LFB3:
+ 192:../8seg.c     **** 
+ 193:../8seg.c     **** //Esta funcion actualiza LED8ADDR pintando los segmentos adecuados en funcion de segmentOn
+ 194:../8seg.c     **** void D8Led_pintaSeg(){
+ 2544              		.loc 1 194 0
+ 2545              		.cfi_startproc
+ 2546              		@ Function supports interworking.
+ 2547              		@ args = 0, pretend = 0, frame = 8
+ 2548              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2549 0538 0DC0A0E1 		mov	ip, sp
+ 2550              	.LCFI6:
+ 2551              		.cfi_def_cfa_register 12
+ 2552 053c 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2553 0540 04B04CE2 		sub	fp, ip, #4
+ 2554              		.cfi_offset 14, -8
+ 2555              		.cfi_offset 13, -12
+ 2556              		.cfi_offset 11, -16
+ 2557              	.LCFI7:
+ 2558              		.cfi_def_cfa 11, 4
+ 2559 0544 08D04DE2 		sub	sp, sp, #8
+ 195:../8seg.c     **** 	int i = 0;
+ 2560              		.loc 1 195 0
+ 2561 0548 0030A0E3 		mov	r3, #0
+ 2562 054c 10300BE5 		str	r3, [fp, #-16]
+ 196:../8seg.c     **** 	while( i < 8){
+ 2563              		.loc 1 196 0
+ 2564 0550 160000EA 		b	.L61
+ 2565              	.L63:
+ 197:../8seg.c     **** 		if (segmentOn[i]==1)
+ 2566              		.loc 1 197 0
+ 2567 0554 6C309FE5 		ldr	r3, .L64
+ 2568 0558 10201BE5 		ldr	r2, [fp, #-16]
+ 2569 055c 023193E7 		ldr	r3, [r3, r2, asl #2]
+ 2570 0560 010053E3 		cmp	r3, #1
+ 2571 0564 0E00001A 		bne	.L62
+ 198:../8seg.c     **** 			LED8ADDR &= ~Symbol[i];
+ 2572              		.loc 1 198 0
+ 2573 0568 8537A0E3 		mov	r3, #34865152
+ 2574 056c 8527A0E3 		mov	r2, #34865152
+ 2575 0570 0020D2E5 		ldrb	r2, [r2, #0]
+ 2576 0574 FF2002E2 		and	r2, r2, #255
+ 2577 0578 FF1002E2 		and	r1, r2, #255
+ 2578 057c 48209FE5 		ldr	r2, .L64+4
+ 2579 0580 10001BE5 		ldr	r0, [fp, #-16]
+ 2580 0584 002192E7 		ldr	r2, [r2, r0, asl #2]
+ 2581 0588 FF2002E2 		and	r2, r2, #255
+ 2582 058c 0220E0E1 		mvn	r2, r2
  2583 0590 FF2002E2 		and	r2, r2, #255
- 2584 0594 0020C3E5 		strb	r2, [r3, #0]
- 2585              	.L62:
- 194:../8seg.c     **** 		i++;
- 2586              		.loc 1 194 0
- 2587 0598 10301BE5 		ldr	r3, [fp, #-16]
- 2588 059c 013083E2 		add	r3, r3, #1
- 2589 05a0 10300BE5 		str	r3, [fp, #-16]
- 2590              	.L61:
- 191:../8seg.c     **** 	while( i < 8){
- 2591              		.loc 1 191 0 discriminator 1
- 2592 05a4 10301BE5 		ldr	r3, [fp, #-16]
- 2593 05a8 070053E3 		cmp	r3, #7
- 2594 05ac E5FFFFDA 		ble	.L63
- 195:../8seg.c     **** 	}
- 196:../8seg.c     **** }
- 2595              		.loc 1 196 0
- 2596 05b0 0CD04BE2 		sub	sp, fp, #12
- 2597 05b4 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2598 05b8 1EFF2FE1 		bx	lr
- 2599              	.L65:
- 2600              		.align	2
- 2601              	.L64:
- 2602 05bc 00000000 		.word	segmentOn
- 2603 05c0 00000000 		.word	Symbol
- 2604              		.cfi_endproc
- 2605              	.LFE3:
- 2607              		.align	2
- 2608              		.global	D8Led_symbol
- 2610              	D8Led_symbol:
- 2611              	.LFB4:
- 197:../8seg.c     **** 
- 198:../8seg.c     **** void D8Led_symbol(int value)
- 199:../8seg.c     **** {
- 2612              		.loc 1 199 0
- 2613              		.cfi_startproc
- 2614              		@ Function supports interworking.
- 2615              		@ args = 0, pretend = 0, frame = 8
- 2616              		@ frame_needed = 1, uses_anonymous_args = 0
- 2617 05c4 0DC0A0E1 		mov	ip, sp
- 2618              	.LCFI8:
- 2619              		.cfi_def_cfa_register 12
- 2620 05c8 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 2621 05cc 04B04CE2 		sub	fp, ip, #4
- 2622              		.cfi_offset 14, -8
- 2623              		.cfi_offset 13, -12
- 2624              		.cfi_offset 11, -16
- 2625              	.LCFI9:
- 2626              		.cfi_def_cfa 11, 4
- 2627 05d0 08D04DE2 		sub	sp, sp, #8
- 2628 05d4 10000BE5 		str	r0, [fp, #-16]
- 200:../8seg.c     **** /*Tarea 3*/
- 201:../8seg.c     **** 	//int num = value%16;
- 202:../8seg.c     **** 	switch (value){
- 2629              		.loc 1 202 0
- 2630 05d8 10301BE5 		ldr	r3, [fp, #-16]
- 2631 05dc 0E0053E3 		cmp	r3, #14
- 2632 05e0 03F19F97 		ldrls	pc, [pc, r3, asl #2]
- 2633 05e4 4A0000EA 		b	.L67
- 2634              	.L83:
- 2635 05e8 24060000 		.word	.L68
- 2636 05ec 34060000 		.word	.L69
- 2637 05f0 44060000 		.word	.L70
- 2638 05f4 54060000 		.word	.L71
- 2639 05f8 64060000 		.word	.L72
- 2640 05fc 74060000 		.word	.L73
- 2641 0600 84060000 		.word	.L74
- 2642 0604 94060000 		.word	.L75
- 2643 0608 A4060000 		.word	.L76
- 2644 060c B4060000 		.word	.L77
- 2645 0610 C4060000 		.word	.L78
- 2646 0614 D4060000 		.word	.L79
- 2647 0618 E4060000 		.word	.L80
- 2648 061c F4060000 		.word	.L81
- 2649 0620 04070000 		.word	.L82
- 2650              	.L68:
- 203:../8seg.c     **** 		case 0:
- 204:../8seg.c     **** 			LED8ADDR = ~DIGIT_0;
- 2651              		.loc 1 204 0
- 2652 0624 8537A0E3 		mov	r3, #34865152
- 2653 0628 1220A0E3 		mov	r2, #18
- 2654 062c 0020C3E5 		strb	r2, [r3, #0]
- 205:../8seg.c     **** 			break;
- 2655              		.loc 1 205 0
- 2656 0630 3B0000EA 		b	.L66
- 2657              	.L69:
- 206:../8seg.c     **** 		case 1:
- 207:../8seg.c     **** 			LED8ADDR = ~DIGIT_1;
- 2658              		.loc 1 207 0
- 2659 0634 8537A0E3 		mov	r3, #34865152
- 2660 0638 6020E0E3 		mvn	r2, #96
- 2661 063c 0020C3E5 		strb	r2, [r3, #0]
- 208:../8seg.c     **** 			break;
- 2662              		.loc 1 208 0
- 2663 0640 370000EA 		b	.L66
- 2664              	.L70:
- 209:../8seg.c     **** 		case 2:
- 210:../8seg.c     **** 			LED8ADDR = ~DIGIT_2;
- 2665              		.loc 1 210 0
- 2666 0644 8537A0E3 		mov	r3, #34865152
- 2667 0648 3120A0E3 		mov	r2, #49
- 2668 064c 0020C3E5 		strb	r2, [r3, #0]
+ 2584 0594 022001E0 		and	r2, r1, r2
+ 2585 0598 FF2002E2 		and	r2, r2, #255
+ 2586 059c FF2002E2 		and	r2, r2, #255
+ 2587 05a0 0020C3E5 		strb	r2, [r3, #0]
+ 2588              	.L62:
+ 199:../8seg.c     **** 		i++;
+ 2589              		.loc 1 199 0
+ 2590 05a4 10301BE5 		ldr	r3, [fp, #-16]
+ 2591 05a8 013083E2 		add	r3, r3, #1
+ 2592 05ac 10300BE5 		str	r3, [fp, #-16]
+ 2593              	.L61:
+ 196:../8seg.c     **** 	while( i < 8){
+ 2594              		.loc 1 196 0 discriminator 1
+ 2595 05b0 10301BE5 		ldr	r3, [fp, #-16]
+ 2596 05b4 070053E3 		cmp	r3, #7
+ 2597 05b8 E5FFFFDA 		ble	.L63
+ 200:../8seg.c     **** 	}
+ 201:../8seg.c     **** }
+ 2598              		.loc 1 201 0
+ 2599 05bc 0CD04BE2 		sub	sp, fp, #12
+ 2600 05c0 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2601 05c4 1EFF2FE1 		bx	lr
+ 2602              	.L65:
+ 2603              		.align	2
+ 2604              	.L64:
+ 2605 05c8 00000000 		.word	segmentOn
+ 2606 05cc 00000000 		.word	Symbol
+ 2607              		.cfi_endproc
+ 2608              	.LFE3:
+ 2610              		.align	2
+ 2611              		.global	D8Led_symbol
+ 2613              	D8Led_symbol:
+ 2614              	.LFB4:
+ 202:../8seg.c     **** 
+ 203:../8seg.c     **** //D8Led_symbol() no se usa en el extra
+ 204:../8seg.c     **** void D8Led_symbol(int value)
+ 205:../8seg.c     **** {
+ 2615              		.loc 1 205 0
+ 2616              		.cfi_startproc
+ 2617              		@ Function supports interworking.
+ 2618              		@ args = 0, pretend = 0, frame = 8
+ 2619              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2620 05d0 0DC0A0E1 		mov	ip, sp
+ 2621              	.LCFI8:
+ 2622              		.cfi_def_cfa_register 12
+ 2623 05d4 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2624 05d8 04B04CE2 		sub	fp, ip, #4
+ 2625              		.cfi_offset 14, -8
+ 2626              		.cfi_offset 13, -12
+ 2627              		.cfi_offset 11, -16
+ 2628              	.LCFI9:
+ 2629              		.cfi_def_cfa 11, 4
+ 2630 05dc 08D04DE2 		sub	sp, sp, #8
+ 2631 05e0 10000BE5 		str	r0, [fp, #-16]
+ 206:../8seg.c     **** /*Tarea 3*/
+ 207:../8seg.c     **** 	//int num = value%16;
+ 208:../8seg.c     **** 	switch (value){
+ 2632              		.loc 1 208 0
+ 2633 05e4 10301BE5 		ldr	r3, [fp, #-16]
+ 2634 05e8 0E0053E3 		cmp	r3, #14
+ 2635 05ec 03F19F97 		ldrls	pc, [pc, r3, asl #2]
+ 2636 05f0 4A0000EA 		b	.L67
+ 2637              	.L83:
+ 2638 05f4 30060000 		.word	.L68
+ 2639 05f8 40060000 		.word	.L69
+ 2640 05fc 50060000 		.word	.L70
+ 2641 0600 60060000 		.word	.L71
+ 2642 0604 70060000 		.word	.L72
+ 2643 0608 80060000 		.word	.L73
+ 2644 060c 90060000 		.word	.L74
+ 2645 0610 A0060000 		.word	.L75
+ 2646 0614 B0060000 		.word	.L76
+ 2647 0618 C0060000 		.word	.L77
+ 2648 061c D0060000 		.word	.L78
+ 2649 0620 E0060000 		.word	.L79
+ 2650 0624 F0060000 		.word	.L80
+ 2651 0628 00070000 		.word	.L81
+ 2652 062c 10070000 		.word	.L82
+ 2653              	.L68:
+ 209:../8seg.c     **** 		case 0:
+ 210:../8seg.c     **** 			LED8ADDR = ~DIGIT_0;
+ 2654              		.loc 1 210 0
+ 2655 0630 8537A0E3 		mov	r3, #34865152
+ 2656 0634 1220A0E3 		mov	r2, #18
+ 2657 0638 0020C3E5 		strb	r2, [r3, #0]
  211:../8seg.c     **** 			break;
- 2669              		.loc 1 211 0
- 2670 0650 330000EA 		b	.L66
- 2671              	.L71:
- 212:../8seg.c     **** 		case 3:
- 213:../8seg.c     **** 			LED8ADDR = ~DIGIT_3;
- 2672              		.loc 1 213 0
- 2673 0654 8537A0E3 		mov	r3, #34865152
- 2674 0658 1520A0E3 		mov	r2, #21
- 2675 065c 0020C3E5 		strb	r2, [r3, #0]
+ 2658              		.loc 1 211 0
+ 2659 063c 3B0000EA 		b	.L66
+ 2660              	.L69:
+ 212:../8seg.c     **** 		case 1:
+ 213:../8seg.c     **** 			LED8ADDR = ~DIGIT_1;
+ 2661              		.loc 1 213 0
+ 2662 0640 8537A0E3 		mov	r3, #34865152
+ 2663 0644 6020E0E3 		mvn	r2, #96
+ 2664 0648 0020C3E5 		strb	r2, [r3, #0]
  214:../8seg.c     **** 			break;
- 2676              		.loc 1 214 0
- 2677 0660 2F0000EA 		b	.L66
- 2678              	.L72:
- 215:../8seg.c     **** 		case 4:
- 216:../8seg.c     **** 			LED8ADDR = ~DIGIT_4;
- 2679              		.loc 1 216 0
- 2680 0664 8537A0E3 		mov	r3, #34865152
- 2681 0668 6320E0E3 		mvn	r2, #99
- 2682 066c 0020C3E5 		strb	r2, [r3, #0]
+ 2665              		.loc 1 214 0
+ 2666 064c 370000EA 		b	.L66
+ 2667              	.L70:
+ 215:../8seg.c     **** 		case 2:
+ 216:../8seg.c     **** 			LED8ADDR = ~DIGIT_2;
+ 2668              		.loc 1 216 0
+ 2669 0650 8537A0E3 		mov	r3, #34865152
+ 2670 0654 3120A0E3 		mov	r2, #49
+ 2671 0658 0020C3E5 		strb	r2, [r3, #0]
  217:../8seg.c     **** 			break;
- 2683              		.loc 1 217 0
- 2684 0670 2B0000EA 		b	.L66
- 2685              	.L73:
- 218:../8seg.c     **** 		case 5:
- 219:../8seg.c     **** 			LED8ADDR = ~DIGIT_5;
- 2686              		.loc 1 219 0
- 2687 0674 8537A0E3 		mov	r3, #34865152
- 2688 0678 5420A0E3 		mov	r2, #84
- 2689 067c 0020C3E5 		strb	r2, [r3, #0]
+ 2672              		.loc 1 217 0
+ 2673 065c 330000EA 		b	.L66
+ 2674              	.L71:
+ 218:../8seg.c     **** 		case 3:
+ 219:../8seg.c     **** 			LED8ADDR = ~DIGIT_3;
+ 2675              		.loc 1 219 0
+ 2676 0660 8537A0E3 		mov	r3, #34865152
+ 2677 0664 1520A0E3 		mov	r2, #21
+ 2678 0668 0020C3E5 		strb	r2, [r3, #0]
  220:../8seg.c     **** 			break;
- 2690              		.loc 1 220 0
- 2691 0680 270000EA 		b	.L66
- 2692              	.L74:
- 221:../8seg.c     **** 		case 6:
- 222:../8seg.c     **** 			LED8ADDR = ~DIGIT_6;
- 2693              		.loc 1 222 0
- 2694 0684 8537A0E3 		mov	r3, #34865152
- 2695 0688 5020A0E3 		mov	r2, #80
- 2696 068c 0020C3E5 		strb	r2, [r3, #0]
+ 2679              		.loc 1 220 0
+ 2680 066c 2F0000EA 		b	.L66
+ 2681              	.L72:
+ 221:../8seg.c     **** 		case 4:
+ 222:../8seg.c     **** 			LED8ADDR = ~DIGIT_4;
+ 2682              		.loc 1 222 0
+ 2683 0670 8537A0E3 		mov	r3, #34865152
+ 2684 0674 6320E0E3 		mvn	r2, #99
+ 2685 0678 0020C3E5 		strb	r2, [r3, #0]
  223:../8seg.c     **** 			break;
- 2697              		.loc 1 223 0
- 2698 0690 230000EA 		b	.L66
- 2699              	.L75:
- 224:../8seg.c     **** 		case 7:
- 225:../8seg.c     **** 			LED8ADDR = ~DIGIT_7;
- 2700              		.loc 1 225 0
- 2701 0694 8537A0E3 		mov	r3, #34865152
- 2702 0698 1F20A0E3 		mov	r2, #31
- 2703 069c 0020C3E5 		strb	r2, [r3, #0]
+ 2686              		.loc 1 223 0
+ 2687 067c 2B0000EA 		b	.L66
+ 2688              	.L73:
+ 224:../8seg.c     **** 		case 5:
+ 225:../8seg.c     **** 			LED8ADDR = ~DIGIT_5;
+ 2689              		.loc 1 225 0
+ 2690 0680 8537A0E3 		mov	r3, #34865152
+ 2691 0684 5420A0E3 		mov	r2, #84
+ 2692 0688 0020C3E5 		strb	r2, [r3, #0]
  226:../8seg.c     **** 			break;
- 2704              		.loc 1 226 0
- 2705 06a0 1F0000EA 		b	.L66
- 2706              	.L76:
- 227:../8seg.c     **** 		case 8:
- 228:../8seg.c     **** 			LED8ADDR = ~DIGIT_8;
- 2707              		.loc 1 228 0
- 2708 06a4 8537A0E3 		mov	r3, #34865152
- 2709 06a8 1020A0E3 		mov	r2, #16
- 2710 06ac 0020C3E5 		strb	r2, [r3, #0]
+ 2693              		.loc 1 226 0
+ 2694 068c 270000EA 		b	.L66
+ 2695              	.L74:
+ 227:../8seg.c     **** 		case 6:
+ 228:../8seg.c     **** 			LED8ADDR = ~DIGIT_6;
+ 2696              		.loc 1 228 0
+ 2697 0690 8537A0E3 		mov	r3, #34865152
+ 2698 0694 5020A0E3 		mov	r2, #80
+ 2699 0698 0020C3E5 		strb	r2, [r3, #0]
  229:../8seg.c     **** 			break;
- 2711              		.loc 1 229 0
- 2712 06b0 1B0000EA 		b	.L66
- 2713              	.L77:
- 230:../8seg.c     **** 		case 9:
- 231:../8seg.c     **** 			LED8ADDR = ~DIGIT_9;
- 2714              		.loc 1 231 0
- 2715 06b4 8537A0E3 		mov	r3, #34865152
- 2716 06b8 1C20A0E3 		mov	r2, #28
- 2717 06bc 0020C3E5 		strb	r2, [r3, #0]
+ 2700              		.loc 1 229 0
+ 2701 069c 230000EA 		b	.L66
+ 2702              	.L75:
+ 230:../8seg.c     **** 		case 7:
+ 231:../8seg.c     **** 			LED8ADDR = ~DIGIT_7;
+ 2703              		.loc 1 231 0
+ 2704 06a0 8537A0E3 		mov	r3, #34865152
+ 2705 06a4 1F20A0E3 		mov	r2, #31
+ 2706 06a8 0020C3E5 		strb	r2, [r3, #0]
  232:../8seg.c     **** 			break;
- 2718              		.loc 1 232 0
- 2719 06c0 170000EA 		b	.L66
- 2720              	.L78:
- 233:../8seg.c     **** 		case 10:
- 234:../8seg.c     **** 			LED8ADDR = ~DIGIT_A;
- 2721              		.loc 1 234 0
- 2722 06c4 8537A0E3 		mov	r3, #34865152
- 2723 06c8 1820A0E3 		mov	r2, #24
- 2724 06cc 0020C3E5 		strb	r2, [r3, #0]
+ 2707              		.loc 1 232 0
+ 2708 06ac 1F0000EA 		b	.L66
+ 2709              	.L76:
+ 233:../8seg.c     **** 		case 8:
+ 234:../8seg.c     **** 			LED8ADDR = ~DIGIT_8;
+ 2710              		.loc 1 234 0
+ 2711 06b0 8537A0E3 		mov	r3, #34865152
+ 2712 06b4 1020A0E3 		mov	r2, #16
+ 2713 06b8 0020C3E5 		strb	r2, [r3, #0]
  235:../8seg.c     **** 			break;
- 2725              		.loc 1 235 0
- 2726 06d0 130000EA 		b	.L66
- 2727              	.L79:
- 236:../8seg.c     **** 		case 11:
- 237:../8seg.c     **** 			LED8ADDR = ~DIGIT_B;
- 2728              		.loc 1 237 0
- 2729 06d4 8537A0E3 		mov	r3, #34865152
- 2730 06d8 2F20E0E3 		mvn	r2, #47
- 2731 06dc 0020C3E5 		strb	r2, [r3, #0]
+ 2714              		.loc 1 235 0
+ 2715 06bc 1B0000EA 		b	.L66
+ 2716              	.L77:
+ 236:../8seg.c     **** 		case 9:
+ 237:../8seg.c     **** 			LED8ADDR = ~DIGIT_9;
+ 2717              		.loc 1 237 0
+ 2718 06c0 8537A0E3 		mov	r3, #34865152
+ 2719 06c4 1C20A0E3 		mov	r2, #28
+ 2720 06c8 0020C3E5 		strb	r2, [r3, #0]
  238:../8seg.c     **** 			break;
- 2732              		.loc 1 238 0
- 2733 06e0 0F0000EA 		b	.L66
- 2734              	.L80:
- 239:../8seg.c     **** 		case 12:
- 240:../8seg.c     **** 			LED8ADDR = ~DIGIT_C;
- 2735              		.loc 1 240 0
- 2736 06e4 8537A0E3 		mov	r3, #34865152
- 2737 06e8 7220A0E3 		mov	r2, #114
- 2738 06ec 0020C3E5 		strb	r2, [r3, #0]
+ 2721              		.loc 1 238 0
+ 2722 06cc 170000EA 		b	.L66
+ 2723              	.L78:
+ 239:../8seg.c     **** 		case 10:
+ 240:../8seg.c     **** 			LED8ADDR = ~DIGIT_A;
+ 2724              		.loc 1 240 0
+ 2725 06d0 8537A0E3 		mov	r3, #34865152
+ 2726 06d4 1820A0E3 		mov	r2, #24
+ 2727 06d8 0020C3E5 		strb	r2, [r3, #0]
  241:../8seg.c     **** 			break;
- 2739              		.loc 1 241 0
- 2740 06f0 0B0000EA 		b	.L66
- 2741              	.L81:
- 242:../8seg.c     **** 		case 13:
- 243:../8seg.c     **** 			LED8ADDR = ~DIGIT_D;
- 2742              		.loc 1 243 0
- 2743 06f4 8537A0E3 		mov	r3, #34865152
- 2744 06f8 6E20E0E3 		mvn	r2, #110
- 2745 06fc 0020C3E5 		strb	r2, [r3, #0]
+ 2728              		.loc 1 241 0
+ 2729 06dc 130000EA 		b	.L66
+ 2730              	.L79:
+ 242:../8seg.c     **** 		case 11:
+ 243:../8seg.c     **** 			LED8ADDR = ~DIGIT_B;
+ 2731              		.loc 1 243 0
+ 2732 06e0 8537A0E3 		mov	r3, #34865152
+ 2733 06e4 2F20E0E3 		mvn	r2, #47
+ 2734 06e8 0020C3E5 		strb	r2, [r3, #0]
  244:../8seg.c     **** 			break;
- 2746              		.loc 1 244 0
- 2747 0700 070000EA 		b	.L66
- 2748              	.L82:
- 245:../8seg.c     **** 		case 14:
- 246:../8seg.c     **** 			LED8ADDR = ~DIGIT_E;
- 2749              		.loc 1 246 0
- 2750 0704 8537A0E3 		mov	r3, #34865152
- 2751 0708 7020A0E3 		mov	r2, #112
- 2752 070c 0020C3E5 		strb	r2, [r3, #0]
+ 2735              		.loc 1 244 0
+ 2736 06ec 0F0000EA 		b	.L66
+ 2737              	.L80:
+ 245:../8seg.c     **** 		case 12:
+ 246:../8seg.c     **** 			LED8ADDR = ~DIGIT_C;
+ 2738              		.loc 1 246 0
+ 2739 06f0 8537A0E3 		mov	r3, #34865152
+ 2740 06f4 7220A0E3 		mov	r2, #114
+ 2741 06f8 0020C3E5 		strb	r2, [r3, #0]
  247:../8seg.c     **** 			break;
- 2753              		.loc 1 247 0
- 2754 0710 030000EA 		b	.L66
- 2755              	.L67:
- 248:../8seg.c     **** 		default:
- 249:../8seg.c     **** 			LED8ADDR = ~DIGIT_F;
- 2756              		.loc 1 249 0
- 2757 0714 8537A0E3 		mov	r3, #34865152
- 2758 0718 7820A0E3 		mov	r2, #120
- 2759 071c 0020C3E5 		strb	r2, [r3, #0]
+ 2742              		.loc 1 247 0
+ 2743 06fc 0B0000EA 		b	.L66
+ 2744              	.L81:
+ 248:../8seg.c     **** 		case 13:
+ 249:../8seg.c     **** 			LED8ADDR = ~DIGIT_D;
+ 2745              		.loc 1 249 0
+ 2746 0700 8537A0E3 		mov	r3, #34865152
+ 2747 0704 6E20E0E3 		mvn	r2, #110
+ 2748 0708 0020C3E5 		strb	r2, [r3, #0]
  250:../8seg.c     **** 			break;
- 2760              		.loc 1 250 0
- 2761 0720 0000A0E1 		mov	r0, r0	@ nop
- 2762              	.L66:
- 251:../8seg.c     **** 
- 252:../8seg.c     **** 	/* muestra el Symbol[value] en el display   */
- 253:../8seg.c     **** 
- 254:../8seg.c     **** 	}
- 255:../8seg.c     **** 		
- 256:../8seg.c     **** 		
- 257:../8seg.c     **** /*fin Tarea 3*/		
- 258:../8seg.c     **** }
- 2763              		.loc 1 258 0
- 2764 0724 0CD04BE2 		sub	sp, fp, #12
- 2765 0728 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2766 072c 1EFF2FE1 		bx	lr
- 2767              		.cfi_endproc
- 2768              	.LFE4:
- 2770              	.Letext0:
+ 2749              		.loc 1 250 0
+ 2750 070c 070000EA 		b	.L66
+ 2751              	.L82:
+ 251:../8seg.c     **** 		case 14:
+ 252:../8seg.c     **** 			LED8ADDR = ~DIGIT_E;
+ 2752              		.loc 1 252 0
+ 2753 0710 8537A0E3 		mov	r3, #34865152
+ 2754 0714 7020A0E3 		mov	r2, #112
+ 2755 0718 0020C3E5 		strb	r2, [r3, #0]
+ 253:../8seg.c     **** 			break;
+ 2756              		.loc 1 253 0
+ 2757 071c 030000EA 		b	.L66
+ 2758              	.L67:
+ 254:../8seg.c     **** 		default:
+ 255:../8seg.c     **** 			LED8ADDR = ~DIGIT_F;
+ 2759              		.loc 1 255 0
+ 2760 0720 8537A0E3 		mov	r3, #34865152
+ 2761 0724 7820A0E3 		mov	r2, #120
+ 2762 0728 0020C3E5 		strb	r2, [r3, #0]
+ 256:../8seg.c     **** 			break;
+ 2763              		.loc 1 256 0
+ 2764 072c 0000A0E1 		mov	r0, r0	@ nop
+ 2765              	.L66:
+ 257:../8seg.c     **** 
+ 258:../8seg.c     **** 	/* muestra el Symbol[value] en el display   */
+ 259:../8seg.c     **** 
+ 260:../8seg.c     **** 	}
+ 261:../8seg.c     **** 		
+ 262:../8seg.c     **** 		
+ 263:../8seg.c     **** /*fin Tarea 3*/		
+ 264:../8seg.c     **** }
+ 2766              		.loc 1 264 0
+ 2767 0730 0CD04BE2 		sub	sp, fp, #12
+ 2768 0734 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2769 0738 1EFF2FE1 		bx	lr
+ 2770              		.cfi_endproc
+ 2771              	.LFE4:
+ 2773              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 8seg.c
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2000   .bss:00000000 segmentOn
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:1997   .bss:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2007   .data:00000000 Symbol
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2004   .data:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2017   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2020   .text:00000000 D8Led_init
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2051   .text:00000024 D8Led_parpadear
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2076   .text:00000048 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2085   .text:00000064 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2332   .text:00000354 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2336   .text:00000358 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2339   .text:00000358 D8Led_swicht
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2364   .text:0000037c $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2373   .text:00000398 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2531   .text:00000524 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2536   .text:0000052c $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2539   .text:0000052c D8Led_pintaSeg
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2602   .text:000005bc $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2607   .text:000005c4 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2610   .text:000005c4 D8Led_symbol
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2635   .text:000005e8 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccEa55ly.s:2652   .text:00000624 $a
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2000   .bss:00000000 segmentOn
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:1997   .bss:00000000 $d
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2007   .data:00000000 Symbol
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2004   .data:00000000 $d
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2017   .text:00000000 $a
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2020   .text:00000000 D8Led_init
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2051   .text:00000024 D8Led_parpadear
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2076   .text:00000048 $d
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2085   .text:00000064 $a
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2326   .text:0000033c $d
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2330   .text:00000340 $a
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2333   .text:00000340 D8Led_swicht
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2358   .text:00000364 $d
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2376   .text:000003a4 $a
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2534   .text:00000530 $d
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2539   .text:00000538 $a
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2542   .text:00000538 D8Led_pintaSeg
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2605   .text:000005c8 $d
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2610   .text:000005d0 $a
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2613   .text:000005d0 D8Led_symbol
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2638   .text:000005f4 $d
+C:\Users\usuario\AppData\Local\Temp\ccFrLHIe.s:2655   .text:00000630 $a
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
