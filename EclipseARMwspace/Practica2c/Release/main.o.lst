@@ -1,0 +1,57 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.file	"main.c"
+  12              		.text
+  13              		.align	2
+  14              		.global	main
+  16              	main:
+  17              		@ Function supports interworking.
+  18              		@ args = 0, pretend = 0, frame = 0
+  19              		@ frame_needed = 1, uses_anonymous_args = 0
+  20 0000 0DC0A0E1 		mov	ip, sp
+  21 0004 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+  22 0008 04B04CE2 		sub	fp, ip, #4
+  23 000c FEFFFFEB 		bl	sys_init
+  24 0010 FEFFFFEB 		bl	Eint4567_init
+  25 0014 FEFFFFEB 		bl	timer_init
+  26 0018 FEFFFFEB 		bl	leds_off
+  27 001c FEFFFFEB 		bl	led1_on
+  28 0020 08309FE5 		ldr	r3, .L3
+  29 0024 000093E5 		ldr	r0, [r3, #0]
+  30 0028 FEFFFFEB 		bl	D8Led_symbol
+  31              	.L2:
+  32 002c FEFFFFEA 		b	.L2
+  33              	.L4:
+  34              		.align	2
+  35              	.L3:
+  36 0030 00000000 		.word	.LANCHOR0
+  38              		.global	symbol
+  39              		.bss
+  40              		.align	2
+  41              		.set	.LANCHOR0,. + 0
+  44              	symbol:
+  45 0000 00000000 		.space	4
+  46              		.ident	"GCC: (Sourcery G++ Lite 2011.03-42) 4.5.2"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\USUARI~1\AppData\Local\Temp\cc5tTrKn.s:13     .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc5tTrKn.s:16     .text:00000000 main
+C:\Users\USUARI~1\AppData\Local\Temp\cc5tTrKn.s:36     .text:00000030 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc5tTrKn.s:44     .bss:00000000 symbol
+C:\Users\USUARI~1\AppData\Local\Temp\cc5tTrKn.s:40     .bss:00000000 $d
+
+UNDEFINED SYMBOLS
+sys_init
+Eint4567_init
+timer_init
+leds_off
+led1_on
+D8Led_symbol

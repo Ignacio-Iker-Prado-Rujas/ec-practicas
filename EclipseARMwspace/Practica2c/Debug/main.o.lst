@@ -13,7 +13,7 @@
   22              		.file 1 "../main.c"
  1875              		.align	2
  1878              	symbol:
- 1879 0000 00000000 		.space	4
+ 1879 0000 0F000000 		.word	15
  1880              		.text
  1881              		.align	2
  1882              		.global	main
@@ -31,14 +31,14 @@
   10:../main.c     **** #include "44b.h"
   11:../main.c     **** 
   12:../main.c     **** /*--- variables globales ---*/
-  13:../main.c     **** int symbol = 0;
+  13:../main.c     **** int symbol = 15;
   14:../main.c     **** extern int update;
   15:../main.c     **** extern int pausa;
   16:../main.c     **** extern int resetsymbol;
   17:../main.c     **** extern int switch_leds;
   18:../main.c     **** 
   19:../main.c     **** /*--- funciones externas ---*/
-  20:../main.c     **** extern void Eint4567_init(void);
+  20:../main.c     **** extern void EINT4567_init(void);
   21:../main.c     **** extern void D8Led_symbol(int value);
   22:../main.c     **** extern void timer_init();
   23:../main.c     **** extern void leds_off();
@@ -65,12 +65,12 @@
   29:../main.c     ****     sys_init();     		/* Inicializacion de la placa, interrupciones, puertos y UART */
  1901              		.loc 1 29 0
  1902 000c FEFFFFEB 		bl	sys_init
-  30:../main.c     **** 	Eint4567_init(); 	    /* Inicializacion de EINT6/7 y del puerto G */
+  30:../main.c     ****     EINT4567_init(); 	    /* Inicializacion de EINT6/7 y del puerto G */
  1903              		.loc 1 30 0
- 1904 0010 FEFFFFEB 		bl	Eint4567_init
-  31:../main.c     **** 	timer_init();	   // Inicializacion del temporizador
+ 1904 0010 FEFFFFEB 		bl	EINT4567_init
+  31:../main.c     **** 	TIMER_init();	   // Inicializacion del temporizador
  1905              		.loc 1 31 0
- 1906 0014 FEFFFFEB 		bl	timer_init
+ 1906 0014 FEFFFFEB 		bl	TIMER_init
   32:../main.c     **** 
   33:../main.c     **** 	leds_off();
  1907              		.loc 1 33 0
@@ -102,17 +102,17 @@
  1926              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\USUARI~1\AppData\Local\Temp\ccCQl6P8.s:1878   .bss:00000000 symbol
-C:\Users\USUARI~1\AppData\Local\Temp\ccCQl6P8.s:1875   .bss:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccCQl6P8.s:1881   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccCQl6P8.s:1884   .text:00000000 main
-C:\Users\USUARI~1\AppData\Local\Temp\ccCQl6P8.s:1922   .text:00000034 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccQtisYd.s:1878   .data:00000000 symbol
+C:\Users\USUARI~1\AppData\Local\Temp\ccQtisYd.s:1875   .data:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccQtisYd.s:1881   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccQtisYd.s:1884   .text:00000000 main
+C:\Users\USUARI~1\AppData\Local\Temp\ccQtisYd.s:1922   .text:00000034 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
 sys_init
-Eint4567_init
-timer_init
+EINT4567_init
+TIMER_init
 leds_off
 led1_on
 D8Led_symbol

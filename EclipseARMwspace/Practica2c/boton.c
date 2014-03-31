@@ -15,7 +15,7 @@ unsigned int resetsymbol=0;
 
 /*--- declaracion de funciones ---*/
 void Eint4567_ISR(void) __attribute__ ((interrupt ("IRQ"))); 
-void Eint4567_init(void);
+//void Eint4567_init(void);
 
 #define INTPND  (*(volatile unsigned *)0x01E00004)
 
@@ -29,29 +29,29 @@ void EliminaRebotes(void) {
 	}
 }
 /*--- codigo de funciones ---*/
-void Eint4567_init(void)
+/*void Eint4567_init(void)
 {
 /*TAREA 1a*/
 	/* Configuracion del controlador de interrupciones */
-	rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
+	/*rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
 	rEXTINTPND = 0xf; 		   // Borra EXTINTPND
 	rINTMOD=0x0;	   // Configura las lineas como de tipo IRQ mediante rINTMOD
 	rINTCON  =0x1; // Habilita int. vectorizadas y la linea IRQ (FIQ no) mediante rINTCON
 	rINTMSK = ~(BIT_GLOBAL|BIT_EINT4567); // Emascara todas las lineas excepto eint4567 y el bit global mediante rINTMSK
 		
 	/* Establece la rutina de servicio para Eint4567 */
-    pISR_EINT4567 = (int)Eint4567_ISR;
+    //pISR_EINT4567 = (int)Eint4567_ISR;
     
     /* Configuracion del puerto G */
-    rPCONG  = 0xffff;        		// Establece la funcion de los pines (EINT0-7)
+   /* rPCONG  = 0xffff;        		// Establece la funcion de los pines (EINT0-7)
 	rPUPG   = 0x0;                  // Habilita el "pull up" del puerto	    
 	rEXTINT = rEXTINT|0x22222222;   // Configura las lineas de int. como de flanco de bajada	
 
     /* Por precaucion, se vuelven a borrar los bits de INTPND y EXTINTPND */
-	rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
- 	rEXTINTPND = 0xf;	   // Borra EXTINTPND
+	//rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
+ 	//rEXTINTPND = 0xf;	   // Borra EXTINTPND
 /*fin TAREA 1a*/  
-}
+//}
 
 void Eint4567_ISR(void)
 {          
@@ -69,7 +69,15 @@ void Eint4567_ISR(void)
 
 		   switch (which_int) {
 			case 4:
-				pausa =! pausa;
+				if (pausa == 1){
+					pausa = 0;
+					rINTMSK &= ~(BIT_GLOBAL|BIT_TIMER0);
+					//Habilitamos
+				}else{
+					pausa = 1;
+					rINTMSK |= 0x2000;
+				}
+
 				update = 1; // actualizar al simbolo siguiente
 				break;
 			case 8:

@@ -12,20 +12,16 @@ C_SRCS += \
 ../timer.c 
 
 ASM_SRCS += \
-../44binit.asm \
-../Eint4567_init.asm \
-../timer_init.asm 
+../44binit.asm 
 
 OBJS += \
 ./44binit.o \
 ./44blib.o \
 ./8seg.o \
-./Eint4567_init.o \
 ./boton.o \
 ./led.o \
 ./main.o \
-./timer.o \
-./timer_init.o 
+./timer.o 
 
 C_DEPS += \
 ./44blib.d \
@@ -36,23 +32,21 @@ C_DEPS += \
 ./timer.d 
 
 ASM_DEPS += \
-./44binit.d \
-./Eint4567_init.d \
-./timer_init.d 
+./44binit.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 %.o: ../%.asm
 	@echo 'Building file: $<'
 	@echo 'Invoking: ARM Sourcery Windows GCC Assembler'
-	arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="$@.lst" -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "$@" "$<"
+	arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="$@.lst" -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -mcpu=arm7tdmi -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 %.o: ../%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: ARM Sourcery Windows GCC C Compiler'
-	arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="$@.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "$@" "$<"
+	arm-none-eabi-gcc -Os -Wall -Wa,-adhlns="$@.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -mcpu=arm7tdmi -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

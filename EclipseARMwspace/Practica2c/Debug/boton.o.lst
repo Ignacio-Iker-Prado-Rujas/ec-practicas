@@ -44,7 +44,7 @@
   15:../boton.c    **** 
   16:../boton.c    **** /*--- declaracion de funciones ---*/
   17:../boton.c    **** void Eint4567_ISR(void) __attribute__ ((interrupt ("IRQ"))); 
-  18:../boton.c    **** void Eint4567_init(void);
+  18:../boton.c    **** //void Eint4567_init(void);
   19:../boton.c    **** 
   20:../boton.c    **** #define INTPND  (*(volatile unsigned *)0x01E00004)
   21:../boton.c    **** 
@@ -109,262 +109,215 @@
  1982              		.cfi_endproc
  1983              	.LFE0:
  1985              		.align	2
- 1986              		.global	Eint4567_init
- 1988              	Eint4567_init:
+ 1986              		.global	Eint4567_ISR
+ 1988              	Eint4567_ISR:
  1989              	.LFB1:
   31:../boton.c    **** /*--- codigo de funciones ---*/
-  32:../boton.c    **** void Eint4567_init(void)
+  32:../boton.c    **** /*void Eint4567_init(void)
   33:../boton.c    **** {
- 1990              		.loc 1 33 0
- 1991              		.cfi_startproc
- 1992              		@ Function supports interworking.
- 1993              		@ args = 0, pretend = 0, frame = 0
- 1994              		@ frame_needed = 1, uses_anonymous_args = 0
- 1995 0060 0DC0A0E1 		mov	ip, sp
- 1996              	.LCFI2:
- 1997              		.cfi_def_cfa_register 12
- 1998 0064 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 1999 0068 04B04CE2 		sub	fp, ip, #4
- 2000              		.cfi_offset 14, -8
- 2001              		.cfi_offset 13, -12
- 2002              		.cfi_offset 11, -16
- 2003              	.LCFI3:
- 2004              		.cfi_def_cfa 11, 4
   34:../boton.c    **** /*TAREA 1a*/
   35:../boton.c    **** 	/* Configuracion del controlador de interrupciones */
-  36:../boton.c    **** 	rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
- 2005              		.loc 1 36 0
- 2006 006c 94309FE5 		ldr	r3, .L7
- 2007 0070 0020E0E3 		mvn	r2, #0
- 2008 0074 002083E5 		str	r2, [r3, #0]
+  36:../boton.c    **** 	/*rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
   37:../boton.c    **** 	rEXTINTPND = 0xf; 		   // Borra EXTINTPND
- 2009              		.loc 1 37 0
- 2010 0078 8C309FE5 		ldr	r3, .L7+4
- 2011 007c 0F20A0E3 		mov	r2, #15
- 2012 0080 002083E5 		str	r2, [r3, #0]
   38:../boton.c    **** 	rINTMOD=0x0;	   // Configura las lineas como de tipo IRQ mediante rINTMOD
- 2013              		.loc 1 38 0
- 2014 0084 84309FE5 		ldr	r3, .L7+8
- 2015 0088 0020A0E3 		mov	r2, #0
- 2016 008c 002083E5 		str	r2, [r3, #0]
   39:../boton.c    **** 	rINTCON  =0x1; // Habilita int. vectorizadas y la linea IRQ (FIQ no) mediante rINTCON
- 2017              		.loc 1 39 0
- 2018 0090 1E36A0E3 		mov	r3, #31457280
- 2019 0094 0120A0E3 		mov	r2, #1
- 2020 0098 002083E5 		str	r2, [r3, #0]
   40:../boton.c    **** 	rINTMSK = ~(BIT_GLOBAL|BIT_EINT4567); // Emascara todas las lineas excepto eint4567 y el bit globa
- 2021              		.loc 1 40 0
- 2022 009c 70309FE5 		ldr	r3, .L7+12
- 2023 00a0 4226E0E3 		mvn	r2, #69206016
- 2024 00a4 002083E5 		str	r2, [r3, #0]
   41:../boton.c    **** 		
   42:../boton.c    **** 	/* Establece la rutina de servicio para Eint4567 */
-  43:../boton.c    ****     pISR_EINT4567 = (int)Eint4567_ISR;
- 2025              		.loc 1 43 0
- 2026 00a8 68309FE5 		ldr	r3, .L7+16
- 2027 00ac 68209FE5 		ldr	r2, .L7+20
- 2028 00b0 002083E5 		str	r2, [r3, #0]
+  43:../boton.c    ****     //pISR_EINT4567 = (int)Eint4567_ISR;
   44:../boton.c    ****     
   45:../boton.c    ****     /* Configuracion del puerto G */
-  46:../boton.c    ****     rPCONG  = 0xffff;        		// Establece la funcion de los pines (EINT0-7)
- 2029              		.loc 1 46 0
- 2030 00b4 64309FE5 		ldr	r3, .L7+24
- 2031 00b8 64209FE5 		ldr	r2, .L7+28
- 2032 00bc 002083E5 		str	r2, [r3, #0]
+  46:../boton.c    ****    /* rPCONG  = 0xffff;        		// Establece la funcion de los pines (EINT0-7)
   47:../boton.c    **** 	rPUPG   = 0x0;                  // Habilita el "pull up" del puerto	    
- 2033              		.loc 1 47 0
- 2034 00c0 60309FE5 		ldr	r3, .L7+32
- 2035 00c4 0020A0E3 		mov	r2, #0
- 2036 00c8 002083E5 		str	r2, [r3, #0]
   48:../boton.c    **** 	rEXTINT = rEXTINT|0x22222222;   // Configura las lineas de int. como de flanco de bajada	
- 2037              		.loc 1 48 0
- 2038 00cc 58209FE5 		ldr	r2, .L7+36
- 2039 00d0 54309FE5 		ldr	r3, .L7+36
- 2040 00d4 001093E5 		ldr	r1, [r3, #0]
- 2041 00d8 50309FE5 		ldr	r3, .L7+40
- 2042 00dc 033081E1 		orr	r3, r1, r3
- 2043 00e0 003082E5 		str	r3, [r2, #0]
   49:../boton.c    **** 
   50:../boton.c    ****     /* Por precaucion, se vuelven a borrar los bits de INTPND y EXTINTPND */
-  51:../boton.c    **** 	rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
- 2044              		.loc 1 51 0
- 2045 00e4 1C309FE5 		ldr	r3, .L7
- 2046 00e8 0020E0E3 		mvn	r2, #0
- 2047 00ec 002083E5 		str	r2, [r3, #0]
-  52:../boton.c    ****  	rEXTINTPND = 0xf;	   // Borra EXTINTPND
- 2048              		.loc 1 52 0
- 2049 00f0 14309FE5 		ldr	r3, .L7+4
- 2050 00f4 0F20A0E3 		mov	r2, #15
- 2051 00f8 002083E5 		str	r2, [r3, #0]
+  51:../boton.c    **** 	//rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
+  52:../boton.c    ****  	//rEXTINTPND = 0xf;	   // Borra EXTINTPND
   53:../boton.c    **** /*fin TAREA 1a*/  
-  54:../boton.c    **** }
- 2052              		.loc 1 54 0
- 2053 00fc 0CD04BE2 		sub	sp, fp, #12
- 2054 0100 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 2055 0104 1EFF2FE1 		bx	lr
- 2056              	.L8:
- 2057              		.align	2
- 2058              	.L7:
- 2059 0108 2400E001 		.word	31457316
- 2060 010c 5400D201 		.word	30539860
- 2061 0110 0800E001 		.word	31457288
- 2062 0114 0C00E001 		.word	31457292
- 2063 0118 74FF7F0C 		.word	209715060
- 2064 011c 00000000 		.word	Eint4567_ISR
- 2065 0120 4000D201 		.word	30539840
- 2066 0124 FFFF0000 		.word	65535
- 2067 0128 4800D201 		.word	30539848
- 2068 012c 5000D201 		.word	30539856
- 2069 0130 22222222 		.word	572662306
- 2070              		.cfi_endproc
- 2071              	.LFE1:
- 2073              		.align	2
- 2074              		.global	Eint4567_ISR
- 2076              	Eint4567_ISR:
- 2077              	.LFB2:
+  54:../boton.c    **** //}
   55:../boton.c    **** 
   56:../boton.c    **** void Eint4567_ISR(void)
   57:../boton.c    **** {          
- 2078              		.loc 1 57 0
- 2079              		.cfi_startproc
- 2080              		@ Interrupt Service Routine.
- 2081              		@ args = 0, pretend = 0, frame = 8
- 2082              		@ frame_needed = 1, uses_anonymous_args = 0
- 2083 0134 04C02DE5 		str	ip, [sp, #-4]!
- 2084 0138 0DC0A0E1 		mov	ip, sp
- 2085              	.LCFI4:
- 2086              		.cfi_def_cfa_register 12
- 2087 013c 0FD82DE9 		stmfd	sp!, {r0, r1, r2, r3, fp, ip, lr, pc}
- 2088 0140 04B04CE2 		sub	fp, ip, #4
- 2089              		.cfi_offset 14, -8
- 2090              		.cfi_offset 13, -12
- 2091              		.cfi_offset 11, -16
- 2092              		.cfi_offset 3, -20
- 2093              		.cfi_offset 2, -24
- 2094              		.cfi_offset 1, -28
- 2095              		.cfi_offset 0, -32
- 2096              	.LCFI5:
- 2097              		.cfi_def_cfa 11, 4
- 2098 0144 08D04DE2 		sub	sp, sp, #8
+ 1990              		.loc 1 57 0
+ 1991              		.cfi_startproc
+ 1992              		@ Interrupt Service Routine.
+ 1993              		@ args = 0, pretend = 0, frame = 8
+ 1994              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1995 0060 04C02DE5 		str	ip, [sp, #-4]!
+ 1996 0064 0DC0A0E1 		mov	ip, sp
+ 1997              	.LCFI2:
+ 1998              		.cfi_def_cfa_register 12
+ 1999 0068 0FD82DE9 		stmfd	sp!, {r0, r1, r2, r3, fp, ip, lr, pc}
+ 2000 006c 04B04CE2 		sub	fp, ip, #4
+ 2001              		.cfi_offset 14, -8
+ 2002              		.cfi_offset 13, -12
+ 2003              		.cfi_offset 11, -16
+ 2004              		.cfi_offset 3, -20
+ 2005              		.cfi_offset 2, -24
+ 2006              		.cfi_offset 1, -28
+ 2007              		.cfi_offset 0, -32
+ 2008              	.LCFI3:
+ 2009              		.cfi_def_cfa 11, 4
+ 2010 0070 08D04DE2 		sub	sp, sp, #8
   58:../boton.c    ****     int which_int;
   59:../boton.c    **** 	/*TAREA 1b*/
   60:../boton.c    ****     /* Idenficiar la interrupcion */
-  61:../boton.c    **** 
-  62:../boton.c    **** 	which_int = rEXTINTPND&0xC;
- 2099              		.loc 1 62 0
- 2100 0148 9C309FE5 		ldr	r3, .L14
- 2101 014c 003093E5 		ldr	r3, [r3, #0]
- 2102 0150 0C3003E2 		and	r3, r3, #12
- 2103 0154 20300BE5 		str	r3, [fp, #-32]
+  61:../boton.c    **** 	if(rI_ISPR == 0x00200000 ){
+ 2011              		.loc 1 61 0
+ 2012 0074 E8309FE5 		ldr	r3, .L14
+ 2013 0078 003093E5 		ldr	r3, [r3, #0]
+ 2014 007c 020653E3 		cmp	r3, #2097152
+ 2015 0080 3300001A 		bne	.L6
+  62:../boton.c    **** 		which_int = rEXTINTPND&0xC;
+ 2016              		.loc 1 62 0
+ 2017 0084 DC309FE5 		ldr	r3, .L14+4
+ 2018 0088 003093E5 		ldr	r3, [r3, #0]
+ 2019 008c 0C3003E2 		and	r3, r3, #12
+ 2020 0090 20300BE5 		str	r3, [fp, #-32]
   63:../boton.c    **** 
-  64:../boton.c    ****     /* Codigo para eliminar rebotes*/
-  65:../boton.c    **** 	EliminaRebotes();
- 2104              		.loc 1 65 0
- 2105 0158 FEFFFFEB 		bl	EliminaRebotes
-  66:../boton.c    **** 	/* Reflejar en update el sentido de la actualizacion 
-  67:../boton.c    **** 	   Nota: para solucionar los problemas de rebotes en el pulsador 
-  68:../boton.c    ****              solo se modifica update cuando se encuentra a cero */ 
+  64:../boton.c    **** 		/* Codigo para eliminar rebotes*/
+  65:../boton.c    **** 		EliminaRebotes();
+ 2021              		.loc 1 65 0
+ 2022 0094 FEFFFFEB 		bl	EliminaRebotes
+  66:../boton.c    **** 		/* Reflejar en update el sentido de la actualizacion 
+  67:../boton.c    **** 		   Nota: para solucionar los problemas de rebotes en el pulsador 
+  68:../boton.c    **** 				 solo se modifica update cuando se encuentra a cero */ 
   69:../boton.c    **** 
-  70:../boton.c    ****        switch (which_int) {
- 2106              		.loc 1 70 0
- 2107 015c 20301BE5 		ldr	r3, [fp, #-32]
- 2108 0160 040053E3 		cmp	r3, #4
- 2109 0164 0200000A 		beq	.L11
- 2110 0168 080053E3 		cmp	r3, #8
- 2111 016c 0B00000A 		beq	.L12
-  71:../boton.c    ****       	case 4:
-  72:../boton.c    ****       		pausa =! pausa;
-  73:../boton.c    ****          	update = 1; // actualizar al simbolo siguiente
-  74:../boton.c    ****          	break;
-  75:../boton.c    ****       	case 8:
-  76:../boton.c    ****       		resetsymbol=1;
-  77:../boton.c    ****       	 	update = 5; // actualizar al simbolo anterior
-  78:../boton.c    ****       	 	break;
-  79:../boton.c    ****       	default:
-  80:../boton.c    ****          	break;
- 2112              		.loc 1 80 0
- 2113 0170 110000EA 		b	.L13
- 2114              	.L11:
-  72:../boton.c    ****       		pausa =! pausa;
- 2115              		.loc 1 72 0
- 2116 0174 74309FE5 		ldr	r3, .L14+4
- 2117 0178 003093E5 		ldr	r3, [r3, #0]
- 2118 017c 000053E3 		cmp	r3, #0
- 2119 0180 0020A013 		movne	r2, #0
- 2120 0184 0120A003 		moveq	r2, #1
- 2121 0188 60309FE5 		ldr	r3, .L14+4
- 2122 018c 002083E5 		str	r2, [r3, #0]
-  73:../boton.c    ****          	update = 1; // actualizar al simbolo siguiente
- 2123              		.loc 1 73 0
- 2124 0190 5C309FE5 		ldr	r3, .L14+8
- 2125 0194 0120A0E3 		mov	r2, #1
- 2126 0198 002083E5 		str	r2, [r3, #0]
-  74:../boton.c    ****          	break;
- 2127              		.loc 1 74 0
- 2128 019c 060000EA 		b	.L13
- 2129              	.L12:
-  76:../boton.c    ****       		resetsymbol=1;
- 2130              		.loc 1 76 0
- 2131 01a0 50309FE5 		ldr	r3, .L14+12
- 2132 01a4 0120A0E3 		mov	r2, #1
- 2133 01a8 002083E5 		str	r2, [r3, #0]
-  77:../boton.c    ****       	 	update = 5; // actualizar al simbolo anterior
- 2134              		.loc 1 77 0
- 2135 01ac 40309FE5 		ldr	r3, .L14+8
- 2136 01b0 0520A0E3 		mov	r2, #5
- 2137 01b4 002083E5 		str	r2, [r3, #0]
-  78:../boton.c    ****       	 	break;
- 2138              		.loc 1 78 0
- 2139 01b8 0000A0E1 		mov	r0, r0	@ nop
- 2140              	.L13:
-  81:../boton.c    ****        } 
-  82:../boton.c    ****     
-  83:../boton.c    ****     /* Finalizar ISR */    
-  84:../boton.c    **** 	   rEXTINTPND = 0xf;				// borra los bits en EXTINTPND
- 2141              		.loc 1 84 0
- 2142 01bc 28309FE5 		ldr	r3, .L14
- 2143 01c0 0F20A0E3 		mov	r2, #15
- 2144 01c4 002083E5 		str	r2, [r3, #0]
-  85:../boton.c    **** 	   rI_ISPC   |= BIT_EINT4567;		// borra el bit pendiente en INTPND
- 2145              		.loc 1 85 0
- 2146 01c8 2C309FE5 		ldr	r3, .L14+16
- 2147 01cc 28209FE5 		ldr	r2, .L14+16
- 2148 01d0 002092E5 		ldr	r2, [r2, #0]
- 2149 01d4 022682E3 		orr	r2, r2, #2097152
- 2150 01d8 002083E5 		str	r2, [r3, #0]
-  86:../boton.c    **** 	/*fin TAREA 1b*/	
-  87:../boton.c    **** }
- 2151              		.loc 1 87 0
- 2152 01dc 1CD04BE2 		sub	sp, fp, #28
- 2153 01e0 0F689DE8 		ldmfd	sp, {r0, r1, r2, r3, fp, sp, lr}
- 2154 01e4 04C09DE4 		ldmfd	sp!, {ip}
- 2155 01e8 04F05EE2 		subs	pc, lr, #4
- 2156              	.L15:
- 2157              		.align	2
- 2158              	.L14:
- 2159 01ec 5400D201 		.word	30539860
- 2160 01f0 00000000 		.word	pausa
- 2161 01f4 00000000 		.word	update
- 2162 01f8 00000000 		.word	resetsymbol
- 2163 01fc 2400E001 		.word	31457316
- 2164              		.cfi_endproc
- 2165              	.LFE2:
- 2167              	.Letext0:
+  70:../boton.c    **** 		   switch (which_int) {
+ 2023              		.loc 1 70 0
+ 2024 0098 20301BE5 		ldr	r3, [fp, #-32]
+ 2025 009c 040053E3 		cmp	r3, #4
+ 2026 00a0 0200000A 		beq	.L9
+ 2027 00a4 080053E3 		cmp	r3, #8
+ 2028 00a8 1A00000A 		beq	.L10
+  71:../boton.c    **** 			case 4:
+  72:../boton.c    **** 				if (pausa == 1){
+  73:../boton.c    **** 					pausa = 0;
+  74:../boton.c    **** 					rINTMSK &= ~(BIT_GLOBAL|BIT_TIMER0);
+  75:../boton.c    **** 					//Habilitamos
+  76:../boton.c    **** 				}else{
+  77:../boton.c    **** 					pausa = 1;
+  78:../boton.c    **** 					rINTMSK |= 0x2000;
+  79:../boton.c    **** 				}
+  80:../boton.c    **** 
+  81:../boton.c    **** 				update = 1; // actualizar al simbolo siguiente
+  82:../boton.c    **** 				break;
+  83:../boton.c    **** 			case 8:
+  84:../boton.c    **** 				resetsymbol=1;
+  85:../boton.c    **** 				update = 5; // actualizar al simbolo anterior
+  86:../boton.c    **** 				break;
+  87:../boton.c    **** 			default:
+  88:../boton.c    **** 				break;
+ 2029              		.loc 1 88 0
+ 2030 00ac 200000EA 		b	.L13
+ 2031              	.L9:
+  72:../boton.c    **** 				if (pausa == 1){
+ 2032              		.loc 1 72 0
+ 2033 00b0 B4309FE5 		ldr	r3, .L14+8
+ 2034 00b4 003093E5 		ldr	r3, [r3, #0]
+ 2035 00b8 010053E3 		cmp	r3, #1
+ 2036 00bc 0900001A 		bne	.L11
+  73:../boton.c    **** 					pausa = 0;
+ 2037              		.loc 1 73 0
+ 2038 00c0 A4309FE5 		ldr	r3, .L14+8
+ 2039 00c4 0020A0E3 		mov	r2, #0
+ 2040 00c8 002083E5 		str	r2, [r3, #0]
+  74:../boton.c    **** 					rINTMSK &= ~(BIT_GLOBAL|BIT_TIMER0);
+ 2041              		.loc 1 74 0
+ 2042 00cc 9C209FE5 		ldr	r2, .L14+12
+ 2043 00d0 98309FE5 		ldr	r3, .L14+12
+ 2044 00d4 003093E5 		ldr	r3, [r3, #0]
+ 2045 00d8 0133C3E3 		bic	r3, r3, #67108864
+ 2046 00dc 023AC3E3 		bic	r3, r3, #8192
+ 2047 00e0 003082E5 		str	r3, [r2, #0]
+ 2048 00e4 070000EA 		b	.L12
+ 2049              	.L11:
+  77:../boton.c    **** 					pausa = 1;
+ 2050              		.loc 1 77 0
+ 2051 00e8 7C309FE5 		ldr	r3, .L14+8
+ 2052 00ec 0120A0E3 		mov	r2, #1
+ 2053 00f0 002083E5 		str	r2, [r3, #0]
+  78:../boton.c    **** 					rINTMSK |= 0x2000;
+ 2054              		.loc 1 78 0
+ 2055 00f4 74309FE5 		ldr	r3, .L14+12
+ 2056 00f8 70209FE5 		ldr	r2, .L14+12
+ 2057 00fc 002092E5 		ldr	r2, [r2, #0]
+ 2058 0100 022A82E3 		orr	r2, r2, #8192
+ 2059 0104 002083E5 		str	r2, [r3, #0]
+ 2060              	.L12:
+  81:../boton.c    **** 				update = 1; // actualizar al simbolo siguiente
+ 2061              		.loc 1 81 0
+ 2062 0108 64309FE5 		ldr	r3, .L14+16
+ 2063 010c 0120A0E3 		mov	r2, #1
+ 2064 0110 002083E5 		str	r2, [r3, #0]
+  82:../boton.c    **** 				break;
+ 2065              		.loc 1 82 0
+ 2066 0114 060000EA 		b	.L13
+ 2067              	.L10:
+  84:../boton.c    **** 				resetsymbol=1;
+ 2068              		.loc 1 84 0
+ 2069 0118 58309FE5 		ldr	r3, .L14+20
+ 2070 011c 0120A0E3 		mov	r2, #1
+ 2071 0120 002083E5 		str	r2, [r3, #0]
+  85:../boton.c    **** 				update = 5; // actualizar al simbolo anterior
+ 2072              		.loc 1 85 0
+ 2073 0124 48309FE5 		ldr	r3, .L14+16
+ 2074 0128 0520A0E3 		mov	r2, #5
+ 2075 012c 002083E5 		str	r2, [r3, #0]
+  86:../boton.c    **** 				break;
+ 2076              		.loc 1 86 0
+ 2077 0130 0000A0E1 		mov	r0, r0	@ nop
+ 2078              	.L13:
+  89:../boton.c    **** 		   } 
+  90:../boton.c    **** 		
+  91:../boton.c    **** 		/* Finalizar ISR */    
+  92:../boton.c    **** 		   rEXTINTPND = 0xf;				// borra los bits en EXTINTPND
+ 2079              		.loc 1 92 0
+ 2080 0134 2C309FE5 		ldr	r3, .L14+4
+ 2081 0138 0F20A0E3 		mov	r2, #15
+ 2082 013c 002083E5 		str	r2, [r3, #0]
+  93:../boton.c    **** 		   rI_ISPC   |= BIT_EINT4567;		// borra el bit pendiente en INTPND
+ 2083              		.loc 1 93 0
+ 2084 0140 34309FE5 		ldr	r3, .L14+24
+ 2085 0144 30209FE5 		ldr	r2, .L14+24
+ 2086 0148 002092E5 		ldr	r2, [r2, #0]
+ 2087 014c 022682E3 		orr	r2, r2, #2097152
+ 2088 0150 002083E5 		str	r2, [r3, #0]
+ 2089              	.L6:
+  94:../boton.c    **** 		/*fin TAREA 1b*/	
+  95:../boton.c    **** 	}
+  96:../boton.c    **** }
+ 2090              		.loc 1 96 0
+ 2091 0154 1CD04BE2 		sub	sp, fp, #28
+ 2092 0158 0F689DE8 		ldmfd	sp, {r0, r1, r2, r3, fp, sp, lr}
+ 2093 015c 04C09DE4 		ldmfd	sp!, {ip}
+ 2094 0160 04F05EE2 		subs	pc, lr, #4
+ 2095              	.L15:
+ 2096              		.align	2
+ 2097              	.L14:
+ 2098 0164 2000E001 		.word	31457312
+ 2099 0168 5400D201 		.word	30539860
+ 2100 016c 00000000 		.word	pausa
+ 2101 0170 0C00E001 		.word	31457292
+ 2102 0174 00000000 		.word	update
+ 2103 0178 00000000 		.word	resetsymbol
+ 2104 017c 2400E001 		.word	31457316
+ 2105              		.cfi_endproc
+ 2106              	.LFE1:
+ 2108              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 boton.c
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1914   .bss:00000000 update
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1911   .bss:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1920   .bss:00000004 pausa
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1926   .bss:00000008 resetsymbol
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1929   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1932   .text:00000000 EliminaRebotes
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1981   .text:0000005c $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1985   .text:00000060 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:1988   .text:00000060 Eint4567_init
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:2059   .text:00000108 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:2076   .text:00000134 Eint4567_ISR
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:2073   .text:00000134 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccKUjKaZ.s:2159   .text:000001ec $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1914   .bss:00000000 update
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1911   .bss:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1920   .bss:00000004 pausa
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1926   .bss:00000008 resetsymbol
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1929   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1932   .text:00000000 EliminaRebotes
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1981   .text:0000005c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1985   .text:00000060 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:1988   .text:00000060 Eint4567_ISR
+C:\Users\USUARI~1\AppData\Local\Temp\ccIwkEXX.s:2098   .text:00000164 $d
                      .debug_frame:00000010 $d
 
 NO UNDEFINED SYMBOLS
