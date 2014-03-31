@@ -1,0 +1,168 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.file	"led.c"
+  12              		.text
+  13              		.align	2
+  14              		.global	Led_Display
+  16              	Led_Display:
+  17              		@ Function supports interworking.
+  18              		@ args = 0, pretend = 0, frame = 0
+  19              		@ frame_needed = 0, uses_anonymous_args = 0
+  20              		@ link register save eliminated.
+  21 0000 3C309FE5 		ldr	r3, .L8
+  22 0004 000083E5 		str	r0, [r3, #0]
+  23 0008 38309FE5 		ldr	r3, .L8+4
+  24 000c 010010E3 		tst	r0, #1
+  25 0010 0C109315 		ldrne	r1, [r3, #12]
+  26 0014 0C209305 		ldreq	r2, [r3, #12]
+  27 0018 2C209F15 		ldrne	r2, .L8+8
+  28 001c 022C8203 		orreq	r2, r2, #512
+  29 0020 02200110 		andne	r2, r1, r2
+  30 0024 0C2083E5 		str	r2, [r3, #12]
+  31 0028 0C2093E5 		ldr	r2, [r3, #12]
+  32 002c 020010E3 		tst	r0, #2
+  33 0030 022BA011 		movne	r2, r2, asl #22
+  34 0034 222BA011 		movne	r2, r2, lsr #22
+  35 0038 012B8203 		orreq	r2, r2, #1024
+  36 003c 0C2083E5 		str	r2, [r3, #12]
+  37 0040 1EFF2FE1 		bx	lr
+  38              	.L9:
+  39              		.align	2
+  40              	.L8:
+  41 0044 00000000 		.word	led_state
+  42 0048 0000D201 		.word	30539776
+  43 004c FF050000 		.word	1535
+  45              		.align	2
+  46              		.global	leds_switch
+  48              	leds_switch:
+  49              		@ Function supports interworking.
+  50              		@ args = 0, pretend = 0, frame = 0
+  51              		@ frame_needed = 0, uses_anonymous_args = 0
+  52              		@ link register save eliminated.
+  53 0050 0C309FE5 		ldr	r3, .L11
+  54 0054 000093E5 		ldr	r0, [r3, #0]
+  55 0058 030020E2 		eor	r0, r0, #3
+  56 005c 000083E5 		str	r0, [r3, #0]
+  57 0060 FEFFFFEA 		b	Led_Display
+  58              	.L12:
+  59              		.align	2
+  60              	.L11:
+  61 0064 00000000 		.word	led_state
+  63              		.align	2
+  64              		.global	led2_off
+  66              	led2_off:
+  67              		@ Function supports interworking.
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70              		@ link register save eliminated.
+  71 0068 0C309FE5 		ldr	r3, .L14
+  72 006c 000093E5 		ldr	r0, [r3, #0]
+  73 0070 FD0000E2 		and	r0, r0, #253
+  74 0074 000083E5 		str	r0, [r3, #0]
+  75 0078 FEFFFFEA 		b	Led_Display
+  76              	.L15:
+  77              		.align	2
+  78              	.L14:
+  79 007c 00000000 		.word	led_state
+  81              		.align	2
+  82              		.global	led2_on
+  84              	led2_on:
+  85              		@ Function supports interworking.
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88              		@ link register save eliminated.
+  89 0080 0C309FE5 		ldr	r3, .L17
+  90 0084 000093E5 		ldr	r0, [r3, #0]
+  91 0088 020080E3 		orr	r0, r0, #2
+  92 008c 000083E5 		str	r0, [r3, #0]
+  93 0090 FEFFFFEA 		b	Led_Display
+  94              	.L18:
+  95              		.align	2
+  96              	.L17:
+  97 0094 00000000 		.word	led_state
+  99              		.align	2
+ 100              		.global	led1_off
+ 102              	led1_off:
+ 103              		@ Function supports interworking.
+ 104              		@ args = 0, pretend = 0, frame = 0
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106              		@ link register save eliminated.
+ 107 0098 0C309FE5 		ldr	r3, .L20
+ 108 009c 000093E5 		ldr	r0, [r3, #0]
+ 109 00a0 FE0000E2 		and	r0, r0, #254
+ 110 00a4 000083E5 		str	r0, [r3, #0]
+ 111 00a8 FEFFFFEA 		b	Led_Display
+ 112              	.L21:
+ 113              		.align	2
+ 114              	.L20:
+ 115 00ac 00000000 		.word	led_state
+ 117              		.align	2
+ 118              		.global	led1_on
+ 120              	led1_on:
+ 121              		@ Function supports interworking.
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124              		@ link register save eliminated.
+ 125 00b0 0C309FE5 		ldr	r3, .L23
+ 126 00b4 000093E5 		ldr	r0, [r3, #0]
+ 127 00b8 010080E3 		orr	r0, r0, #1
+ 128 00bc 000083E5 		str	r0, [r3, #0]
+ 129 00c0 FEFFFFEA 		b	Led_Display
+ 130              	.L24:
+ 131              		.align	2
+ 132              	.L23:
+ 133 00c4 00000000 		.word	led_state
+ 135              		.align	2
+ 136              		.global	leds_off
+ 138              	leds_off:
+ 139              		@ Function supports interworking.
+ 140              		@ args = 0, pretend = 0, frame = 0
+ 141              		@ frame_needed = 0, uses_anonymous_args = 0
+ 142              		@ link register save eliminated.
+ 143 00c8 0000A0E3 		mov	r0, #0
+ 144 00cc FEFFFFEA 		b	Led_Display
+ 146              		.align	2
+ 147              		.global	leds_on
+ 149              	leds_on:
+ 150              		@ Function supports interworking.
+ 151              		@ args = 0, pretend = 0, frame = 0
+ 152              		@ frame_needed = 0, uses_anonymous_args = 0
+ 153              		@ link register save eliminated.
+ 154 00d0 0300A0E3 		mov	r0, #3
+ 155 00d4 FEFFFFEA 		b	Led_Display
+ 157              		.comm	led_state,4,4
+ 158              		.ident	"GCC: (Sourcery G++ Lite 2011.03-42) 4.5.2"
+DEFINED SYMBOLS
+                            *ABS*:00000000 led.c
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:13     .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:16     .text:00000000 Led_Display
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:41     .text:00000044 $d
+                            *COM*:00000004 led_state
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:45     .text:00000050 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:48     .text:00000050 leds_switch
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:61     .text:00000064 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:63     .text:00000068 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:66     .text:00000068 led2_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:79     .text:0000007c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:81     .text:00000080 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:84     .text:00000080 led2_on
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:97     .text:00000094 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:99     .text:00000098 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:102    .text:00000098 led1_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:115    .text:000000ac $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:117    .text:000000b0 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:120    .text:000000b0 led1_on
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:133    .text:000000c4 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:135    .text:000000c8 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:138    .text:000000c8 leds_off
+C:\Users\USUARI~1\AppData\Local\Temp\ccrF4TEd.s:149    .text:000000d0 leds_on
+
+NO UNDEFINED SYMBOLS
