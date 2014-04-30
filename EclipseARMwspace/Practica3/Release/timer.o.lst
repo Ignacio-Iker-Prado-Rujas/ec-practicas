@@ -1,0 +1,115 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.file	"timer.c"
+  12              		.text
+  13              		.align	2
+  14              		.global	timer_ISR
+  16              	timer_ISR:
+  17              		@ Interrupt Service Routine.
+  18              		@ args = 0, pretend = 0, frame = 0
+  19              		@ frame_needed = 1, uses_anonymous_args = 0
+  20 0000 04C02DE5 		str	ip, [sp, #-4]!
+  21 0004 0DC0A0E1 		mov	ip, sp
+  22 0008 0FD82DE9 		stmfd	sp!, {r0, r1, r2, r3, fp, ip, lr, pc}
+  23 000c 74009FE5 		ldr	r0, .L5
+  24 0010 001090E5 		ldr	r1, [r0, #0]
+  25 0014 010051E3 		cmp	r1, #1
+  26 0018 04B04CE2 		sub	fp, ip, #4
+  27 001c 68309FE5 		ldr	r3, .L5+4
+  28 0020 68209FE5 		ldr	r2, .L5+8
+  29 0024 0500001A 		bne	.L2
+  30 0028 0FC0A0E3 		mov	ip, #15
+  31 002c 00C083E5 		str	ip, [r3, #0]
+  32 0030 00C0A0E3 		mov	ip, #0
+  33 0034 00C080E5 		str	ip, [r0, #0]
+  34 0038 001082E5 		str	r1, [r2, #0]
+  35 003c 060000EA 		b	.L3
+  36              	.L2:
+  37 0040 002092E5 		ldr	r2, [r2, #0]
+  38 0044 000052E3 		cmp	r2, #0
+  39 0048 0300001A 		bne	.L3
+  40 004c 002093E5 		ldr	r2, [r3, #0]
+  41 0050 000052E3 		cmp	r2, #0
+  42 0054 01204212 		subne	r2, r2, #1
+  43 0058 00208315 		strne	r2, [r3, #0]
+  44              	.L3:
+  45 005c 000093E5 		ldr	r0, [r3, #0]
+  46 0060 FEFFFFEB 		bl	D8Led_symbol
+  47 0064 FEFFFFEB 		bl	leds_switch
+  48 0068 1E36A0E3 		mov	r3, #31457280
+  49 006c 242093E5 		ldr	r2, [r3, #36]
+  50 0070 022A82E3 		orr	r2, r2, #8192
+  51 0074 242083E5 		str	r2, [r3, #36]
+  52 0078 1CD04BE2 		sub	sp, fp, #28
+  53 007c 0F689DE8 		ldmfd	sp, {r0, r1, r2, r3, fp, sp, lr}
+  54 0080 04C09DE4 		ldmfd	sp!, {ip}
+  55 0084 04F05EE2 		subs	pc, lr, #4
+  56              	.L6:
+  57              		.align	2
+  58              	.L5:
+  59 0088 00000000 		.word	resetsymbol
+  60 008c 00000000 		.word	symbol
+  61 0090 00000000 		.word	pausa
+  63              		.align	2
+  64              		.global	timer_init
+  66              	timer_init:
+  67              		@ Function supports interworking.
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70              		@ link register save eliminated.
+  71 0094 1E36A0E3 		mov	r3, #31457280
+  72 0098 0020A0E3 		mov	r2, #0
+  73 009c 0110A0E3 		mov	r1, #1
+  74 00a0 082083E5 		str	r2, [r3, #8]
+  75 00a4 001083E5 		str	r1, [r3, #0]
+  76 00a8 0C1093E5 		ldr	r1, [r3, #12]
+  77 00ac 0113C1E3 		bic	r1, r1, #67108864
+  78 00b0 021AC1E3 		bic	r1, r1, #8192
+  79 00b4 0C1083E5 		str	r1, [r3, #12]
+  80 00b8 38109FE5 		ldr	r1, .L8
+  81 00bc 38309FE5 		ldr	r3, .L8+4
+  82 00c0 AB1003E5 		str	r1, [r3, #-171]
+  83 00c4 34309FE5 		ldr	r3, .L8+8
+  84 00c8 FF10A0E3 		mov	r1, #255
+  85 00cc 001083E5 		str	r1, [r3, #0]
+  86 00d0 042083E5 		str	r2, [r3, #4]
+  87 00d4 28209FE5 		ldr	r2, .L8+12
+  88 00d8 0C2083E5 		str	r2, [r3, #12]
+  89 00dc 322CA0E3 		mov	r2, #12800
+  90 00e0 102083E5 		str	r2, [r3, #16]
+  91 00e4 0220A0E3 		mov	r2, #2
+  92 00e8 082083E5 		str	r2, [r3, #8]
+  93 00ec 072082E2 		add	r2, r2, #7
+  94 00f0 082083E5 		str	r2, [r3, #8]
+  95 00f4 1EFF2FE1 		bx	lr
+  96              	.L9:
+  97              		.align	2
+  98              	.L8:
+  99 00f8 00000000 		.word	timer_ISR
+ 100 00fc FFFF7F0C 		.word	209715199
+ 101 0100 0000D501 		.word	30736384
+ 102 0104 FFFF0000 		.word	65535
+ 104              		.ident	"GCC: (Sourcery G++ Lite 2011.03-42) 4.5.2"
+DEFINED SYMBOLS
+                            *ABS*:00000000 timer.c
+C:\Users\USUARI~1\AppData\Local\Temp\ccJILB0t.s:13     .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccJILB0t.s:16     .text:00000000 timer_ISR
+C:\Users\USUARI~1\AppData\Local\Temp\ccJILB0t.s:59     .text:00000088 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccJILB0t.s:63     .text:00000094 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccJILB0t.s:66     .text:00000094 timer_init
+C:\Users\USUARI~1\AppData\Local\Temp\ccJILB0t.s:99     .text:000000f8 $d
+
+UNDEFINED SYMBOLS
+D8Led_symbol
+leds_switch
+resetsymbol
+symbol
+pausa
