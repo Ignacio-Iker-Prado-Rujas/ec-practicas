@@ -1,0 +1,123 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.file	"8seg.c"
+  12              		.text
+  13              		.align	2
+  14              		.global	D8Led_init
+  16              	D8Led_init:
+  17              		@ Function supports interworking.
+  18              		@ args = 0, pretend = 0, frame = 0
+  19              		@ frame_needed = 0, uses_anonymous_args = 0
+  20              		@ link register save eliminated.
+  21 0000 0020A0E3 		mov	r2, #0
+  22 0004 8537A0E3 		mov	r3, #34865152
+  23 0008 0020C3E5 		strb	r2, [r3, #0]
+  24 000c 1EFF2FE1 		bx	lr
+  26              		.align	2
+  27              		.global	D8Led_symbol
+  29              	D8Led_symbol:
+  30              		@ Function supports interworking.
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34 0010 8537A0E3 		mov	r3, #34865152
+  35 0014 0E0050E3 		cmp	r0, #14
+  36 0018 00F19F97 		ldrls	pc, [pc, r0, asl #2]
+  37 001c 2C0000EA 		b	.L3
+  38              	.L19:
+  39 0020 5C000000 		.word	.L4
+  40 0024 64000000 		.word	.L5
+  41 0028 6C000000 		.word	.L6
+  42 002c 74000000 		.word	.L7
+  43 0030 7C000000 		.word	.L8
+  44 0034 84000000 		.word	.L9
+  45 0038 8C000000 		.word	.L10
+  46 003c 94000000 		.word	.L11
+  47 0040 9C000000 		.word	.L12
+  48 0044 A4000000 		.word	.L13
+  49 0048 AC000000 		.word	.L14
+  50 004c B4000000 		.word	.L15
+  51 0050 BC000000 		.word	.L16
+  52 0054 C4000000 		.word	.L17
+  53 0058 CC000000 		.word	.L18
+  54              	.L4:
+  55 005c 1220A0E3 		mov	r2, #18
+  56 0060 1C0000EA 		b	.L21
+  57              	.L5:
+  58 0064 6020E0E3 		mvn	r2, #96
+  59 0068 1A0000EA 		b	.L21
+  60              	.L6:
+  61 006c 3120A0E3 		mov	r2, #49
+  62 0070 180000EA 		b	.L21
+  63              	.L7:
+  64 0074 1520A0E3 		mov	r2, #21
+  65 0078 160000EA 		b	.L21
+  66              	.L8:
+  67 007c 6320E0E3 		mvn	r2, #99
+  68 0080 140000EA 		b	.L21
+  69              	.L9:
+  70 0084 5420A0E3 		mov	r2, #84
+  71 0088 120000EA 		b	.L21
+  72              	.L10:
+  73 008c 5020A0E3 		mov	r2, #80
+  74 0090 100000EA 		b	.L21
+  75              	.L11:
+  76 0094 1F20A0E3 		mov	r2, #31
+  77 0098 0E0000EA 		b	.L21
+  78              	.L12:
+  79 009c 1020A0E3 		mov	r2, #16
+  80 00a0 0C0000EA 		b	.L21
+  81              	.L13:
+  82 00a4 1C20A0E3 		mov	r2, #28
+  83 00a8 0A0000EA 		b	.L21
+  84              	.L14:
+  85 00ac 1820A0E3 		mov	r2, #24
+  86 00b0 080000EA 		b	.L21
+  87              	.L15:
+  88 00b4 2F20E0E3 		mvn	r2, #47
+  89 00b8 060000EA 		b	.L21
+  90              	.L16:
+  91 00bc 7220A0E3 		mov	r2, #114
+  92 00c0 040000EA 		b	.L21
+  93              	.L17:
+  94 00c4 6E20E0E3 		mvn	r2, #110
+  95 00c8 020000EA 		b	.L21
+  96              	.L18:
+  97 00cc 7020A0E3 		mov	r2, #112
+  98 00d0 000000EA 		b	.L21
+  99              	.L3:
+ 100 00d4 7820A0E3 		mov	r2, #120
+ 101              	.L21:
+ 102 00d8 0020C3E5 		strb	r2, [r3, #0]
+ 103 00dc 1EFF2FE1 		bx	lr
+ 105              		.global	Symbol
+ 106              		.data
+ 107              		.align	2
+ 110              	Symbol:
+ 111 0000 80000000 		.word	128
+ 112 0004 40000000 		.word	64
+ 113 0008 20000000 		.word	32
+ 114 000c 08000000 		.word	8
+ 115 0010 04000000 		.word	4
+ 116 0014 01000000 		.word	1
+ 117 0018 02000000 		.word	2
+ 118              		.ident	"GCC: (Sourcery G++ Lite 2011.03-42) 4.5.2"
+DEFINED SYMBOLS
+                            *ABS*:00000000 8seg.c
+C:\Users\USUARI~1\AppData\Local\Temp\cca3kjS4.s:13     .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cca3kjS4.s:16     .text:00000000 D8Led_init
+C:\Users\USUARI~1\AppData\Local\Temp\cca3kjS4.s:29     .text:00000010 D8Led_symbol
+C:\Users\USUARI~1\AppData\Local\Temp\cca3kjS4.s:39     .text:00000020 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cca3kjS4.s:55     .text:0000005c $a
+C:\Users\USUARI~1\AppData\Local\Temp\cca3kjS4.s:110    .data:00000000 Symbol
+C:\Users\USUARI~1\AppData\Local\Temp\cca3kjS4.s:107    .data:00000000 $d
+
+NO UNDEFINED SYMBOLS

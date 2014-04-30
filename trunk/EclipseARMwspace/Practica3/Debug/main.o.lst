@@ -1,0 +1,103 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.file	"main.c"
+  21              	.Ltext0:
+  22              		.file 1 "../main.c"
+ 1875              		.align	2
+ 1878              	symbol:
+ 1879 0000 0B000000 		.word	11
+ 1880              		.text
+ 1881              		.align	2
+ 1882              		.global	main
+ 1884              	main:
+ 1885              	.LFB0:
+   1:../main.c     ****     /*********************************************************************************************
+   2:../main.c     **** * Fichero:	main.c
+   3:../main.c     **** * Autor:	
+   4:../main.c     **** * Descrip:	punto de entrada de C
+   5:../main.c     **** * Version:	<P4-ARM.8seg-button>
+   6:../main.c     **** *********************************************************************************************/
+   7:../main.c     **** 
+   8:../main.c     **** /*--- ficheros de cabecera ---*/
+   9:../main.c     **** #include "44blib.h"
+  10:../main.c     **** #include "44b.h"
+  11:../main.c     **** 
+  12:../main.c     **** /*--- variables globales ---*/
+  13:../main.c     **** int symbol = 11;
+  14:../main.c     **** 
+  15:../main.c     **** /*--- funciones externas ---*/
+  16:../main.c     **** extern void init_keyboard(void);
+  17:../main.c     **** extern void D8Led_symbol(int value);
+  18:../main.c     **** extern void TIMER_init(void);
+  19:../main.c     **** /*--- codigo de las funciones ---*/
+  20:../main.c     **** int main(void)
+  21:../main.c     **** {	
+ 1886              		.loc 1 21 0
+ 1887              		.cfi_startproc
+ 1888              		@ Function supports interworking.
+ 1889              		@ args = 0, pretend = 0, frame = 0
+ 1890              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1891 0000 0DC0A0E1 		mov	ip, sp
+ 1892              	.LCFI0:
+ 1893              		.cfi_def_cfa_register 12
+ 1894 0004 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 1895 0008 04B04CE2 		sub	fp, ip, #4
+ 1896              		.cfi_offset 14, -8
+ 1897              		.cfi_offset 13, -12
+ 1898              		.cfi_offset 11, -16
+ 1899              	.LCFI1:
+ 1900              		.cfi_def_cfa 11, 4
+  22:../main.c     **** 
+  23:../main.c     ****     sys_init();     		/* Inicializacion de la placa, interrupciones, puertos y UART */
+ 1901              		.loc 1 23 0
+ 1902 000c FEFFFFEB 		bl	sys_init
+  24:../main.c     ****     init_keyboard(); 	    /* Inicializacion de EINT6/7 y del puerto G */
+ 1903              		.loc 1 24 0
+ 1904 0010 FEFFFFEB 		bl	init_keyboard
+  25:../main.c     **** 	TIMER_init();	   // Inicializacion del temporizador
+ 1905              		.loc 1 25 0
+ 1906 0014 FEFFFFEB 		bl	TIMER_init
+  26:../main.c     **** 
+  27:../main.c     **** 	D8Led_symbol(symbol);  	/* muestra el simbolo inicial en el display */
+ 1907              		.loc 1 27 0
+ 1908 0018 0C309FE5 		ldr	r3, .L3
+ 1909 001c 003093E5 		ldr	r3, [r3, #0]
+ 1910 0020 0300A0E1 		mov	r0, r3
+ 1911 0024 FEFFFFEB 		bl	D8Led_symbol
+ 1912              	.L2:
+  28:../main.c     **** 		
+  29:../main.c     ****     while(1) {
+  30:../main.c     **** 
+  31:../main.c     **** 
+  32:../main.c     **** 	}
+ 1913              		.loc 1 32 0 discriminator 1
+ 1914 0028 FEFFFFEA 		b	.L2
+ 1915              	.L4:
+ 1916              		.align	2
+ 1917              	.L3:
+ 1918 002c 00000000 		.word	symbol
+ 1919              		.cfi_endproc
+ 1920              	.LFE0:
+ 1922              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1878   .data:00000000 symbol
+C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1875   .data:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1881   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1884   .text:00000000 main
+C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1918   .text:0000002c $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+sys_init
+init_keyboard
+TIMER_init
+D8Led_symbol

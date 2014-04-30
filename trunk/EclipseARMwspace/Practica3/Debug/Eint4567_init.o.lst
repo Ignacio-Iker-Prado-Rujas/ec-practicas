@@ -1,0 +1,132 @@
+   1              	# 1 "../Eint4567_init.asm"
+   1              	.global EINT4567_init
+   0              	
+   0              	
+   0              	
+   2              	
+   3              	.extern Eint4567_ISR
+   4              	
+   5              	.equ rI_ISPC, 0x1e00024
+   6              	.equ rEXTINTPND, 0x1d20054
+   7              	.equ rEXTINT, 0x1d20050
+   8              	.equ rINTMOD, 0x1e00008
+   9              	.equ rINTCON, 0x1e00000
+  10              	.equ rINTMSK, 0x1e0000c
+  11              	.equ BIT_GLOBAL, (0x1<<26)
+  12              	.equ BIT_EINT4567, (0x1<<21)
+  13              	.equ rPCONG, 0x1d20040
+  14              	.equ rPUPG, 0x1d20048
+  15              	.equ pISR_EINT4567, 0xc7fff74
+  16              	
+  17              	
+  18              	.equ BorraIspc, 0xFFFFFFFF;
+  19              	.equ BorraExtint, 0xf;
+  20              	.equ ConfigIntmod, 0x0;
+  21              	.equ Pines, 0xffff;
+  22              	.equ FlancoBajada, 0x22222222;
+  23              	.equ Bits, 0xFBDFFFFF;
+  24              	
+  25              	EINT4567_init:
+  26              		/* Configuracion del controlador de interrupciones */
+  27              		
+  28              		@ rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
+  29 0000 0000E0E3 		ldr r0, =BorraIspc;
+  30 0004 88109FE5 		ldr r1, =rI_ISPC;
+  31 0008 000081E5 		str r0,[r1]	
+  32              		
+  33              		@rEXTINTPND = 0xf; 		   // Borra EXTINTPND
+  34              		
+  35 000c 0F00A0E3 		ldr r0, =BorraExtint;
+  36 0010 80109FE5 		ldr r1, =rEXTINTPND;
+  37 0014 000081E5 		str r0,[r1]
+  38              		
+  39              		@rINTMOD=0x0;	   // Configura las lineas como de tipo IRQ mediante rINTMOD
+  40              		
+  41 0018 0000A0E3 		ldr r0, =ConfigIntmod;
+  42 001c 78109FE5 		ldr r1, =rINTMOD;
+  43 0020 000081E5 		str r0,[r1]
+  44              		
+  45              		@rINTCON  =0x1; // Habilita int. vectorizadas y la linea IRQ (FIQ no) mediante rINTCON
+  46              		
+  47 0024 0100A0E3 		mov r0, #1;
+  48 0028 1E16A0E3 		ldr r1, =rINTCON;
+  49 002c 000081E5 		str r0,[r1]
+  50              		
+  51              		@rINTMSK = ~(BIT_GLOBAL|BIT_EINT4567); // Emascara todas las lineas excepto eint4567 y el bit glob
+  52              		
+  53 0030 4206E0E3 		ldr r0, =Bits;
+  54 0034 64109FE5 		ldr r1, =rINTMSK;
+  55 0038 000081E5 		str r0, [r1];
+  56              		
+  57              			
+  58              		/* Establece la rutina de servicio para Eint4567 */
+  59              	    @pISR_EINT4567 = (int)Eint4567_ISR;
+  60 003c 60009FE5 	    ldr r0, =Eint4567_ISR;
+  61 0040 60109FE5 	    ldr r1, =pISR_EINT4567;
+  62 0044 000081E5 		str r0, [r1];
+  63              		
+  64              	    /* Configuracion del puerto G */
+  65              	    @rPCONG  = 0xffff;        		// Establece la funcion de los pines (EINT0-7)
+  66              		
+  67 0048 5C009FE5 		ldr r0, =Pines;
+  68 004c 5C109FE5 		ldr r1, =rPCONG;
+  69 0050 000081E5 		str r0,[r1]
+  70              		
+  71              		@rPUPG   = 0x0;                  // Habilita el "pull up" del puerto
+  72              		
+  73 0054 0000A0E3 		mov r0, #0;
+  74 0058 54109FE5 		ldr r1, =rPUPG;
+  75 005c 000081E5 		str r0,[r1]
+  76              		
+  77              		@rEXTINT = rEXTINT|0x22222222;   // Configura las lineas de int. como de flanco de bajada
+  78              		
+  79 0060 50009FE5 		ldr r0, =FlancoBajada;
+  80 0064 50109FE5 		ldr r1, =rEXTINT;
+  81 0068 002091E5 		ldr r2, [r1];
+  82 006c 000082E1 		orr r0, r2, r0;
+  83 0070 44109FE5 		ldr r1, =rEXTINT;
+  84 0074 000081E5 		str r0,[r1];
+  85              	
+  86              	    /* Por precaucion, se vuelven a borrar los bits de INTPND y EXTINTPND */
+  87              		@ rI_ISPC=0xFFFFFFFF	;	   // Borra INTPND
+  88              		
+  89 0078 0000E0E3 		ldr r0, =BorraIspc;
+  90 007c 10109FE5 		ldr r1, =rI_ISPC;
+  91 0080 000081E5 		str r0,[r1]	
+  92              		
+  93              		@rEXTINTPND = 0xf; 		   // Borra EXTINTPND
+  94              		
+  95 0084 0F00A0E3 		ldr r0, =BorraExtint;
+  96 0088 08109FE5 		ldr r1, =rEXTINTPND;
+  97 008c 000081E5 		str r0,[r1]
+  98              	
+  99 0090 0EF0A0E1 		mov pc,lr
+  99      2400E001 
+  99      5400D201 
+  99      0800E001 
+  99      0C00E001 
+DEFINED SYMBOLS
+../Eint4567_init.asm:25     .text:00000000 EINT4567_init
+../Eint4567_init.asm:5      *ABS*:01e00024 rI_ISPC
+../Eint4567_init.asm:6      *ABS*:01d20054 rEXTINTPND
+../Eint4567_init.asm:7      *ABS*:01d20050 rEXTINT
+../Eint4567_init.asm:8      *ABS*:01e00008 rINTMOD
+../Eint4567_init.asm:9      *ABS*:01e00000 rINTCON
+../Eint4567_init.asm:10     *ABS*:01e0000c rINTMSK
+../Eint4567_init.asm:11     *ABS*:04000000 BIT_GLOBAL
+../Eint4567_init.asm:12     *ABS*:00200000 BIT_EINT4567
+../Eint4567_init.asm:13     *ABS*:01d20040 rPCONG
+../Eint4567_init.asm:14     *ABS*:01d20048 rPUPG
+../Eint4567_init.asm:15     *ABS*:0c7fff74 pISR_EINT4567
+../Eint4567_init.asm:18     *ABS*:ffffffff BorraIspc
+../Eint4567_init.asm:19     *ABS*:0000000f BorraExtint
+../Eint4567_init.asm:20     *ABS*:00000000 ConfigIntmod
+../Eint4567_init.asm:21     *ABS*:0000ffff Pines
+../Eint4567_init.asm:22     *ABS*:22222222 FlancoBajada
+../Eint4567_init.asm:23     *ABS*:fbdfffff Bits
+../Eint4567_init.asm:29     .text:00000000 $a
+../Eint4567_init.asm:99     .text:00000094 $d
+                   .debug_aranges:0000000c $d
+
+UNDEFINED SYMBOLS
+Eint4567_ISR
