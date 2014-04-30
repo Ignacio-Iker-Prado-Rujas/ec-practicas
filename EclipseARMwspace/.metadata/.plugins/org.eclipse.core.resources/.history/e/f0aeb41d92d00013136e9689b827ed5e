@@ -1,0 +1,4 @@
+
+
+void insertar (int nuevo);
+int leer(int posicion);

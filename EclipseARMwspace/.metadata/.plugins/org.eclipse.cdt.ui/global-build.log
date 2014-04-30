@@ -1,302 +1,142 @@
-14:28:34 **** Incremental Build of configuration Debug for project Practica2 ****
+19:51:49 **** Incremental Build of configuration Debug for project Practica3 ****
 cs-make all 
-'Building file: ../boton.c'
+'Building file: ../keyboard.c'
 'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="boton.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"boton.d" -MT"boton.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "boton.o" "../boton.c"
-'Finished building: ../boton.c'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="keyboard.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"keyboard.d" -MT"keyboard.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "keyboard.o" "../keyboard.c"
+'Finished building: ../keyboard.c'
 ' '
-'Building file: ../init.asm'
-'Invoking: ARM Sourcery Windows GCC Assembler'
-arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="init.o.lst" -c -fmessage-length=0 -MMD -MP -MF"init.d" -MT"init.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "init.o" "../init.asm"
-'Finished building: ../init.asm'
+'Building target: Practica3.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EC\EclipseARMwspace\Practica2c\ram_ice.ld" -nostartfiles -Wl,-Map,Practica3.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica3.elf"  ./44binit.o ./44blib.o ./8seg.o ./buffer.o ./keyboard.o ./main.o ./timer.o ./timer_init.o   
+'Finished building target: Practica3.elf'
 ' '
-'Building file: ../led.c'
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary Practica3.elf  "Practica3.hex"
+'Finished building: Practica3.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S Practica3.elf > "Practica3.lst"
+'Finished building: Practica3.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica3.elf
+   text	   data	    bss	    dec	    hex	filename
+   5272	     56	     36	   5364	   14f4	Practica3.elf
+'Finished building: Practica3.siz'
+' '
+19:51:53 **** Incremental Build of configuration Debug for project Practica3 ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica3.elf
+   text	   data	    bss	    dec	    hex	filename
+   5272	     56	     36	   5364	   14f4	Practica3.elf
+'Finished building: Practica3.siz'
+' '
+19:51:58 **** Incremental Build of configuration Debug for project Practica3 ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley Practica3.elf
+   text	   data	    bss	    dec	    hex	filename
+   5272	     56	     36	   5364	   14f4	Practica3.elf
+'Finished building: Practica3.siz'
+' '
+20:05:05 **** Incremental Build of configuration Debug for project Practica3 ****
+cs-make all 
+'Building file: ../buffer.c'
 'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="led.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"led.d" -MT"led.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "led.o" "../led.c"
-'Finished building: ../led.c'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="buffer.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"buffer.d" -MT"buffer.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "buffer.o" "../buffer.c"
+'Finished building: ../buffer.c'
 ' '
 'Building file: ../main.c'
 'Invoking: ARM Sourcery Windows GCC C Compiler'
 arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
 'Finished building: ../main.c'
 ' '
-'Building target: Practica2.elf'
+'Building target: Practica3.elf'
 'Invoking: ARM Sourcery Windows GCC C Linker'
-arm-none-eabi-gcc -T"C:\hlocal\EComp\EclipseARMwspace\Practica2\script.ld" -nostartfiles -Wl,-Map,Practica2.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica2.elf"  ./boton.o ./init.o ./led.o ./main.o   
-'Finished building target: Practica2.elf'
+arm-none-eabi-gcc -T"C:\hlocal\EC\EclipseARMwspace\Practica2c\ram_ice.ld" -nostartfiles -Wl,-Map,Practica3.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica3.elf"  ./44binit.o ./44blib.o ./8seg.o ./buffer.o ./keyboard.o ./main.o ./timer.o ./timer_init.o   
+./keyboard.o: In function `Eint1_ISR':
+C:\hlocal\ec\EclipseARMwspace\Practica3\Debug/../keyboard.c:63: undefined reference to `insertar'
+./timer.o: In function `timer_ISR':
+C:\hlocal\ec\EclipseARMwspace\Practica3\Debug/../timer.c:23: undefined reference to `leer'
+collect2: ld returned 1 exit status
+cs-make: *** [Practica3.elf] Error 1
+20:06:24 **** Incremental Build of configuration Debug for project Practica3 ****
+cs-make all 
+'Building file: ../keyboard.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="keyboard.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"keyboard.d" -MT"keyboard.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "keyboard.o" "../keyboard.c"
+'Finished building: ../keyboard.c'
+' '
+'Building file: ../timer.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="timer.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"timer.d" -MT"timer.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "timer.o" "../timer.c"
+../timer.c: In function 'timer_ISR':
+../timer.c:23:2: warning: implicit declaration of function 'leer'
+'Finished building: ../timer.c'
+' '
+'Building target: Practica3.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EC\EclipseARMwspace\Practica2c\ram_ice.ld" -nostartfiles -Wl,-Map,Practica3.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica3.elf"  ./44binit.o ./44blib.o ./8seg.o ./buffer.o ./keyboard.o ./main.o ./timer.o ./timer_init.o   
+./timer.o: In function `timer_ISR':
+C:\hlocal\ec\EclipseARMwspace\Practica3\Debug/../timer.c:23: undefined reference to `leer'
+collect2: ld returned 1 exit status
+cs-make: *** [Practica3.elf] Error 1
+20:06:51 **** Incremental Build of configuration Debug for project Practica3 ****
+cs-make all 
+'Building file: ../timer.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="timer.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"timer.d" -MT"timer.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "timer.o" "../timer.c"
+'Finished building: ../timer.c'
+' '
+'Building target: Practica3.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\EC\EclipseARMwspace\Practica2c\ram_ice.ld" -nostartfiles -Wl,-Map,Practica3.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica3.elf"  ./44binit.o ./44blib.o ./8seg.o ./buffer.o ./keyboard.o ./main.o ./timer.o ./timer_init.o   
+'Finished building target: Practica3.elf'
 ' '
 'Invoking: ARM Sourcery Windows GNU Create Flash Image'
-arm-none-eabi-objcopy -O binary Practica2.elf  "Practica2.hex"
-'Finished building: Practica2.hex'
+arm-none-eabi-objcopy -O binary Practica3.elf  "Practica3.hex"
+'Finished building: Practica3.hex'
 ' '
 'Invoking: ARM Sourcery Windows GNU Create Listing'
-arm-none-eabi-objdump -h -S Practica2.elf > "Practica2.lst"
-'Finished building: Practica2.lst'
+arm-none-eabi-objdump -h -S Practica3.elf > "Practica3.lst"
+'Finished building: Practica3.lst'
 ' '
 'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2.elf
+arm-none-eabi-size  --format=berkeley Practica3.elf
    text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2.elf
-'Finished building: Practica2.siz'
+   5640	     56	     52	   5748	   1674	Practica3.elf
+'Finished building: Practica3.siz'
 ' '
-14:29:07 **** Clean-only build of configuration Debug for project Practica2 ****
-cs-make clean 
-cs-rm -rf  Practica2.siz  ./boton.o ./init.o ./led.o ./main.o  ./boton.d ./led.d ./main.d  ./init.d  Practica2.hex  Practica2.lst  Practica2.elf
-' '
-14:29:23 **** Build of configuration Debug for project Practica2 ****
-cs-make all 
-'Building file: ../boton.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="boton.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"boton.d" -MT"boton.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "boton.o" "../boton.c"
-'Finished building: ../boton.c'
-' '
-'Building file: ../init.asm'
-'Invoking: ARM Sourcery Windows GCC Assembler'
-arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="init.o.lst" -c -fmessage-length=0 -MMD -MP -MF"init.d" -MT"init.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "init.o" "../init.asm"
-'Finished building: ../init.asm'
-' '
-'Building file: ../led.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="led.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"led.d" -MT"led.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "led.o" "../led.c"
-'Finished building: ../led.c'
-' '
-'Building file: ../main.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
-'Finished building: ../main.c'
-' '
-'Building target: Practica2.elf'
-'Invoking: ARM Sourcery Windows GCC C Linker'
-arm-none-eabi-gcc -T"C:\hlocal\EComp\EclipseARMwspace\Practica2\script.ld" -nostartfiles -Wl,-Map,Practica2.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica2.elf"  ./boton.o ./init.o ./led.o ./main.o   
-'Finished building target: Practica2.elf'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Flash Image'
-arm-none-eabi-objcopy -O binary Practica2.elf  "Practica2.hex"
-'Finished building: Practica2.hex'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Listing'
-arm-none-eabi-objdump -h -S Practica2.elf > "Practica2.lst"
-'Finished building: Practica2.lst'
-' '
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2.elf
-   text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2.elf
-'Finished building: Practica2.siz'
-' '
-14:29:30 **** Incremental Build of configuration Debug for project Practica2 ****
+20:07:19 **** Incremental Build of configuration Debug for project Practica3 ****
 cs-make all 
 'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2.elf
+arm-none-eabi-size  --format=berkeley Practica3.elf
    text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2.elf
-'Finished building: Practica2.siz'
+   5640	     56	     52	   5748	   1674	Practica3.elf
+'Finished building: Practica3.siz'
 ' '
-14:33:14 **** Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Building file: ../boton.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="boton.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"boton.d" -MT"boton.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "boton.o" "../boton.c"
-'Finished building: ../boton.c'
-' '
-'Building file: ../init.asm'
-'Invoking: ARM Sourcery Windows GCC Assembler'
-arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="init.o.lst" -c -fmessage-length=0 -MMD -MP -MF"init.d" -MT"init.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "init.o" "../init.asm"
-'Finished building: ../init.asm'
-' '
-'Building file: ../led.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="led.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"led.d" -MT"led.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "led.o" "../led.c"
-'Finished building: ../led.c'
-' '
-'Building file: ../main.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
-'Finished building: ../main.c'
-' '
-'Building target: Practica2b.elf'
-'Invoking: ARM Sourcery Windows GCC C Linker'
-arm-none-eabi-gcc -T"C:\hlocal\EComp\EclipseARMwspace\Practica2\script.ld" -nostartfiles -Wl,-Map,Practica2b.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica2b.elf"  ./boton.o ./init.o ./led.o ./main.o   
-'Finished building target: Practica2b.elf'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Flash Image'
-arm-none-eabi-objcopy -O binary Practica2b.elf  "Practica2b.hex"
-'Finished building: Practica2b.hex'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Listing'
-arm-none-eabi-objdump -h -S Practica2b.elf > "Practica2b.lst"
-'Finished building: Practica2b.lst'
-' '
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:33:38 **** Incremental Build of configuration Debug for project Practica2b ****
+20:07:22 **** Incremental Build of configuration Debug for project Practica3 ****
 cs-make all 
 'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
+arm-none-eabi-size  --format=berkeley Practica3.elf
    text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2b.elf
-'Finished building: Practica2b.siz'
+   5640	     56	     52	   5748	   1674	Practica3.elf
+'Finished building: Practica3.siz'
 ' '
-14:33:47 **** Incremental Build of configuration Debug for project Practica2b ****
+20:07:27 **** Incremental Build of configuration Debug for project Practica3 ****
 cs-make all 
 'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
+arm-none-eabi-size  --format=berkeley Practica3.elf
    text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2b.elf
-'Finished building: Practica2b.siz'
+   5640	     56	     52	   5748	   1674	Practica3.elf
+'Finished building: Practica3.siz'
 ' '
-14:35:32 **** Incremental Build of configuration Debug for project Practica2b ****
+20:07:30 **** Incremental Build of configuration Debug for project Practica3 ****
 cs-make all 
 'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
+arm-none-eabi-size  --format=berkeley Practica3.elf
    text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:36:41 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:37:05 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:37:08 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:37:16 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3216	      4	      8	   3228	    c9c	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:39:25 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Building file: ../boton.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="boton.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"boton.d" -MT"boton.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "boton.o" "../boton.c"
-'Finished building: ../boton.c'
-' '
-'Building target: Practica2b.elf'
-'Invoking: ARM Sourcery Windows GCC C Linker'
-arm-none-eabi-gcc -T"C:\hlocal\EComp\EclipseARMwspace\Practica2\script.ld" -nostartfiles -Wl,-Map,Practica2b.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica2b.elf"  ./boton.o ./init.o ./led.o ./main.o   
-'Finished building target: Practica2b.elf'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Flash Image'
-arm-none-eabi-objcopy -O binary Practica2b.elf  "Practica2b.hex"
-'Finished building: Practica2b.hex'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Listing'
-arm-none-eabi-objdump -h -S Practica2b.elf > "Practica2b.lst"
-'Finished building: Practica2b.lst'
-' '
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3116	      4	      8	   3128	    c38	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:39:31 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3116	      4	      8	   3128	    c38	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:39:36 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3116	      4	      8	   3128	    c38	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:40:53 **** Clean-only build of configuration Debug for project Practica2b ****
-cs-make clean 
-cs-rm -rf  Practica2b.siz  ./boton.o ./init.o ./led.o ./main.o  ./boton.d ./led.d ./main.d  ./init.d  Practica2b.hex  Practica2b.lst  Practica2b.elf
-' '
-14:40:53 **** Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Building file: ../boton.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="boton.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"boton.d" -MT"boton.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "boton.o" "../boton.c"
-'Finished building: ../boton.c'
-' '
-'Building file: ../init.asm'
-'Invoking: ARM Sourcery Windows GCC Assembler'
-arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="init.o.lst" -c -fmessage-length=0 -MMD -MP -MF"init.d" -MT"init.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "init.o" "../init.asm"
-'Finished building: ../init.asm'
-' '
-'Building file: ../led.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="led.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"led.d" -MT"led.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "led.o" "../led.c"
-'Finished building: ../led.c'
-' '
-'Building file: ../main.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
-'Finished building: ../main.c'
-' '
-'Building target: Practica2b.elf'
-'Invoking: ARM Sourcery Windows GCC C Linker'
-arm-none-eabi-gcc -T"C:\hlocal\EComp\EclipseARMwspace\Practica2\script.ld" -nostartfiles -Wl,-Map,Practica2b.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica2b.elf"  ./boton.o ./init.o ./led.o ./main.o   
-'Finished building target: Practica2b.elf'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Flash Image'
-arm-none-eabi-objcopy -O binary Practica2b.elf  "Practica2b.hex"
-'Finished building: Practica2b.hex'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Listing'
-arm-none-eabi-objdump -h -S Practica2b.elf > "Practica2b.lst"
-'Finished building: Practica2b.lst'
-' '
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3116	      4	      8	   3128	    c38	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:40:58 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3116	      4	      8	   3128	    c38	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:41:03 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3116	      4	      8	   3128	    c38	Practica2b.elf
-'Finished building: Practica2b.siz'
-' '
-14:41:10 **** Incremental Build of configuration Debug for project Practica2b ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica2b.elf
-   text	   data	    bss	    dec	    hex	filename
-   3116	      4	      8	   3128	    c38	Practica2b.elf
-'Finished building: Practica2b.siz'
+   5640	     56	     52	   5748	   1674	Practica3.elf
+'Finished building: Practica3.siz'
 ' '

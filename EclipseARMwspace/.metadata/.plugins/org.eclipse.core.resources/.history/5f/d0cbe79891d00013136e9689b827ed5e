@@ -1,0 +1,16 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int buffer[] = {0,0,0,0};
+
+void insertar (int nuevo){
+
+	buffer[0] = buffer[1];
+	buffer[1] = buffer[2];
+	buffer[2] = buffer[3];
+	buffer[3] = nuevo;
+}
+int leer(int posicion){
+	return buffer[posicion];
+}
