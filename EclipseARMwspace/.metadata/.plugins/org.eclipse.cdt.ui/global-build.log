@@ -1,89 +1,10 @@
-19:51:49 **** Incremental Build of configuration Debug for project Practica3 ****
+12:14:49 **** Incremental Build of configuration Debug for project Practica3 ****
 cs-make all 
-'Building file: ../keyboard.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="keyboard.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"keyboard.d" -MT"keyboard.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "keyboard.o" "../keyboard.c"
-'Finished building: ../keyboard.c'
-' '
-'Building target: Practica3.elf'
-'Invoking: ARM Sourcery Windows GCC C Linker'
-arm-none-eabi-gcc -T"C:\hlocal\EC\EclipseARMwspace\Practica2c\ram_ice.ld" -nostartfiles -Wl,-Map,Practica3.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica3.elf"  ./44binit.o ./44blib.o ./8seg.o ./buffer.o ./keyboard.o ./main.o ./timer.o ./timer_init.o   
-'Finished building target: Practica3.elf'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Flash Image'
-arm-none-eabi-objcopy -O binary Practica3.elf  "Practica3.hex"
-'Finished building: Practica3.hex'
-' '
-'Invoking: ARM Sourcery Windows GNU Create Listing'
-arm-none-eabi-objdump -h -S Practica3.elf > "Practica3.lst"
-'Finished building: Practica3.lst'
-' '
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica3.elf
-   text	   data	    bss	    dec	    hex	filename
-   5272	     56	     36	   5364	   14f4	Practica3.elf
-'Finished building: Practica3.siz'
-' '
-19:51:53 **** Incremental Build of configuration Debug for project Practica3 ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica3.elf
-   text	   data	    bss	    dec	    hex	filename
-   5272	     56	     36	   5364	   14f4	Practica3.elf
-'Finished building: Practica3.siz'
-' '
-19:51:58 **** Incremental Build of configuration Debug for project Practica3 ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica3.elf
-   text	   data	    bss	    dec	    hex	filename
-   5272	     56	     36	   5364	   14f4	Practica3.elf
-'Finished building: Practica3.siz'
-' '
-20:05:05 **** Incremental Build of configuration Debug for project Practica3 ****
-cs-make all 
-'Building file: ../buffer.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="buffer.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"buffer.d" -MT"buffer.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "buffer.o" "../buffer.c"
-'Finished building: ../buffer.c'
-' '
 'Building file: ../main.c'
 'Invoking: ARM Sourcery Windows GCC C Compiler'
 arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
 'Finished building: ../main.c'
 ' '
-'Building target: Practica3.elf'
-'Invoking: ARM Sourcery Windows GCC C Linker'
-arm-none-eabi-gcc -T"C:\hlocal\EC\EclipseARMwspace\Practica2c\ram_ice.ld" -nostartfiles -Wl,-Map,Practica3.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica3.elf"  ./44binit.o ./44blib.o ./8seg.o ./buffer.o ./keyboard.o ./main.o ./timer.o ./timer_init.o   
-./keyboard.o: In function `Eint1_ISR':
-C:\hlocal\ec\EclipseARMwspace\Practica3\Debug/../keyboard.c:63: undefined reference to `insertar'
-./timer.o: In function `timer_ISR':
-C:\hlocal\ec\EclipseARMwspace\Practica3\Debug/../timer.c:23: undefined reference to `leer'
-collect2: ld returned 1 exit status
-cs-make: *** [Practica3.elf] Error 1
-20:06:24 **** Incremental Build of configuration Debug for project Practica3 ****
-cs-make all 
-'Building file: ../keyboard.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="keyboard.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"keyboard.d" -MT"keyboard.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "keyboard.o" "../keyboard.c"
-'Finished building: ../keyboard.c'
-' '
-'Building file: ../timer.c'
-'Invoking: ARM Sourcery Windows GCC C Compiler'
-arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="timer.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"timer.d" -MT"timer.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "timer.o" "../timer.c"
-../timer.c: In function 'timer_ISR':
-../timer.c:23:2: warning: implicit declaration of function 'leer'
-'Finished building: ../timer.c'
-' '
-'Building target: Practica3.elf'
-'Invoking: ARM Sourcery Windows GCC C Linker'
-arm-none-eabi-gcc -T"C:\hlocal\EC\EclipseARMwspace\Practica2c\ram_ice.ld" -nostartfiles -Wl,-Map,Practica3.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "Practica3.elf"  ./44binit.o ./44blib.o ./8seg.o ./buffer.o ./keyboard.o ./main.o ./timer.o ./timer_init.o   
-./timer.o: In function `timer_ISR':
-C:\hlocal\ec\EclipseARMwspace\Practica3\Debug/../timer.c:23: undefined reference to `leer'
-collect2: ld returned 1 exit status
-cs-make: *** [Practica3.elf] Error 1
-20:06:51 **** Incremental Build of configuration Debug for project Practica3 ****
-cs-make all 
 'Building file: ../timer.c'
 'Invoking: ARM Sourcery Windows GCC C Compiler'
 arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="timer.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"timer.d" -MT"timer.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "timer.o" "../timer.c"
@@ -105,38 +26,22 @@ arm-none-eabi-objdump -h -S Practica3.elf > "Practica3.lst"
 'Invoking: ARM Sourcery Windows GNU Print Size'
 arm-none-eabi-size  --format=berkeley Practica3.elf
    text	   data	    bss	    dec	    hex	filename
-   5640	     56	     52	   5748	   1674	Practica3.elf
+   6596	     60	     68	   6724	   1a44	Practica3.elf
 'Finished building: Practica3.siz'
 ' '
-20:07:19 **** Incremental Build of configuration Debug for project Practica3 ****
+12:14:57 **** Incremental Build of configuration Debug for project Practica3 ****
 cs-make all 
 'Invoking: ARM Sourcery Windows GNU Print Size'
 arm-none-eabi-size  --format=berkeley Practica3.elf
    text	   data	    bss	    dec	    hex	filename
-   5640	     56	     52	   5748	   1674	Practica3.elf
+   6596	     60	     68	   6724	   1a44	Practica3.elf
 'Finished building: Practica3.siz'
 ' '
-20:07:22 **** Incremental Build of configuration Debug for project Practica3 ****
+12:15:05 **** Incremental Build of configuration Debug for project Practica3 ****
 cs-make all 
 'Invoking: ARM Sourcery Windows GNU Print Size'
 arm-none-eabi-size  --format=berkeley Practica3.elf
    text	   data	    bss	    dec	    hex	filename
-   5640	     56	     52	   5748	   1674	Practica3.elf
-'Finished building: Practica3.siz'
-' '
-20:07:27 **** Incremental Build of configuration Debug for project Practica3 ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica3.elf
-   text	   data	    bss	    dec	    hex	filename
-   5640	     56	     52	   5748	   1674	Practica3.elf
-'Finished building: Practica3.siz'
-' '
-20:07:30 **** Incremental Build of configuration Debug for project Practica3 ****
-cs-make all 
-'Invoking: ARM Sourcery Windows GNU Print Size'
-arm-none-eabi-size  --format=berkeley Practica3.elf
-   text	   data	    bss	    dec	    hex	filename
-   5640	     56	     52	   5748	   1674	Practica3.elf
+   6596	     60	     68	   6724	   1a44	Practica3.elf
 'Finished building: Practica3.siz'
 ' '

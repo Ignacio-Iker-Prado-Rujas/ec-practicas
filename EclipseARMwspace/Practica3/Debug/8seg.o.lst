@@ -335,13 +335,13 @@
  2203              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 8seg.c
-C:\Users\USUARI~1\AppData\Local\Temp\ccZVp9l3.s:2000   .data:00000000 Symbol
-C:\Users\USUARI~1\AppData\Local\Temp\ccZVp9l3.s:1997   .data:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccZVp9l3.s:2009   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccZVp9l3.s:2012   .text:00000000 D8Led_init
-C:\Users\USUARI~1\AppData\Local\Temp\ccZVp9l3.s:2043   .text:00000024 D8Led_symbol
-C:\Users\USUARI~1\AppData\Local\Temp\ccZVp9l3.s:2068   .text:00000048 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccZVp9l3.s:2085   .text:00000084 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccGYOkmz.s:2000   .data:00000000 Symbol
+C:\Users\USUARI~1\AppData\Local\Temp\ccGYOkmz.s:1997   .data:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccGYOkmz.s:2009   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccGYOkmz.s:2012   .text:00000000 D8Led_init
+C:\Users\USUARI~1\AppData\Local\Temp\ccGYOkmz.s:2043   .text:00000024 D8Led_symbol
+C:\Users\USUARI~1\AppData\Local\Temp\ccGYOkmz.s:2068   .text:00000048 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccGYOkmz.s:2085   .text:00000084 $a
                      .debug_frame:00000010 $d
 
 NO UNDEFINED SYMBOLS

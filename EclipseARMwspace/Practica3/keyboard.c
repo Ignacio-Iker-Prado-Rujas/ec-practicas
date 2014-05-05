@@ -18,9 +18,11 @@
 /*--- Variables globales ---*/
 volatile UCHAR *keyboard_base = (UCHAR *)0x06000000;
 int key;
+int modo = 1;
 
 void Eint1_ISR(void) __attribute__ ((interrupt ("IRQ")));
 void init_keyboard(void);
+void modoClave(int i);
 int key_read();
 /*--- Codigo de las funciones ---*/
 
@@ -46,7 +48,6 @@ void init_keyboard()
 		rINTMSK &= ~(BIT_GLOBAL|BIT_EINT1);
 		/*Establece la rutina de servicio para Eint1 */
 		pISR_EINT1 = (int)Eint1_ISR;
-
 	    /* Configuracion del puerto G */
 	    rPCONG  = 0xffff;        		// Establece la funcion de los pines (EINT0-7)
 		rPUPG   = 0x0;                  // Habilita el "pull up" del puerto
@@ -60,12 +61,23 @@ void init_keyboard()
 }
 void Eint1_ISR(){
 	key = key_read();
-	insertarClave(key);
+	if (key == 15 || key == -1)
+		EliminaRebotes();
+	else{
+		if (modo == 1)
+			insertarClave(key);
+		else
+			insertarIntento(key);
+	}
+
 	EliminaRebotes();
 	rEXTINTPND = 0xf;				// borra los bits en EXTINTPND
 	rI_ISPC   |= BIT_EINT1;		// borra el bit pendiente en INTPND
 }
 
+void modoClave(int i){
+	modo = i;
+}
 // Funcion que devuelve un entero (0..15) que
 // representa la tecla pulsada
 // Debe invocarse desde la rutina de tratamiento de interrupci—n

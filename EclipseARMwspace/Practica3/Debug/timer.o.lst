@@ -14,11 +14,27 @@
  1885              		.align	2
  1888              	posicion:
  1889 0000 00000000 		.space	4
- 1890              		.text
+ 1890              		.global	modoT
  1891              		.align	2
- 1892              		.global	timer_ISR
- 1894              	timer_ISR:
- 1895              	.LFB0:
+ 1894              	modoT:
+ 1895 0004 00000000 		.space	4
+ 1896              		.global	cuentaClave
+ 1897              		.align	2
+ 1900              	cuentaClave:
+ 1901 0008 00000000 		.space	4
+ 1902              		.global	cuentaIntento
+ 1903              		.align	2
+ 1906              	cuentaIntento:
+ 1907 000c 00000000 		.space	4
+ 1908              		.global	cuentaAcierto
+ 1909              		.align	2
+ 1912              	cuentaAcierto:
+ 1913 0010 00000000 		.space	4
+ 1914              		.text
+ 1915              		.align	2
+ 1916              		.global	timer_ISR
+ 1918              	timer_ISR:
+ 1919              	.LFB0:
    1:../timer.c    **** /*********************************************************************************************
    2:../timer.c    **** * Fichero:		timer.c
    3:../timer.c    **** * Autor:		
@@ -33,98 +49,223 @@
   12:../timer.c    **** #include "8seg.h"
   13:../timer.c    **** 
   14:../timer.c    **** int posicion = 0;
-  15:../timer.c    **** //*--- declaracion de funciones ---*/
-  16:../timer.c    **** void timer_ISR(void) __attribute__ ((interrupt ("IRQ")));
-  17:../timer.c    **** 
-  18:../timer.c    **** 
-  19:../timer.c    **** /*--- codigo de las funciones ---*/
-  20:../timer.c    **** void timer_ISR(void)
-  21:../timer.c    **** {  /*  TAREA 2a */
- 1896              		.loc 1 21 0
- 1897              		.cfi_startproc
- 1898              		@ Interrupt Service Routine.
- 1899              		@ args = 0, pretend = 0, frame = 0
- 1900              		@ frame_needed = 1, uses_anonymous_args = 0
- 1901 0000 04C02DE5 		str	ip, [sp, #-4]!
- 1902 0004 0DC0A0E1 		mov	ip, sp
- 1903              	.LCFI0:
- 1904              		.cfi_def_cfa_register 12
- 1905 0008 0FD82DE9 		stmfd	sp!, {r0, r1, r2, r3, fp, ip, lr, pc}
- 1906 000c 04B04CE2 		sub	fp, ip, #4
- 1907              		.cfi_offset 14, -8
- 1908              		.cfi_offset 13, -12
- 1909              		.cfi_offset 11, -16
- 1910              		.cfi_offset 3, -20
- 1911              		.cfi_offset 2, -24
- 1912              		.cfi_offset 1, -28
- 1913              		.cfi_offset 0, -32
- 1914              	.LCFI1:
- 1915              		.cfi_def_cfa 11, 4
-  22:../timer.c    ****         /*Actualizar leds con cada int. del timer */
-  23:../timer.c    **** 	D8Led_symbol(leerClave(posicion));
- 1916              		.loc 1 23 0
- 1917 0010 6C309FE5 		ldr	r3, .L4
- 1918 0014 003093E5 		ldr	r3, [r3, #0]
- 1919 0018 0300A0E1 		mov	r0, r3
- 1920 001c FEFFFFEB 		bl	leerClave
- 1921 0020 0030A0E1 		mov	r3, r0
- 1922 0024 0300A0E1 		mov	r0, r3
- 1923 0028 FEFFFFEB 		bl	D8Led_symbol
-  24:../timer.c    **** 	if (posicion == 3)
- 1924              		.loc 1 24 0
- 1925 002c 50309FE5 		ldr	r3, .L4
- 1926 0030 003093E5 		ldr	r3, [r3, #0]
- 1927 0034 030053E3 		cmp	r3, #3
- 1928 0038 0300001A 		bne	.L2
-  25:../timer.c    **** 		posicion = 0;
- 1929              		.loc 1 25 0
- 1930 003c 40309FE5 		ldr	r3, .L4
- 1931 0040 0020A0E3 		mov	r2, #0
- 1932 0044 002083E5 		str	r2, [r3, #0]
- 1933 0048 040000EA 		b	.L3
- 1934              	.L2:
-  26:../timer.c    **** 	else
-  27:../timer.c    **** 		posicion = posicion + 1;
- 1935              		.loc 1 27 0
- 1936 004c 30309FE5 		ldr	r3, .L4
- 1937 0050 003093E5 		ldr	r3, [r3, #0]
- 1938 0054 012083E2 		add	r2, r3, #1
- 1939 0058 24309FE5 		ldr	r3, .L4
- 1940 005c 002083E5 		str	r2, [r3, #0]
- 1941              	.L3:
-  28:../timer.c    **** 	/* borrar bit en I_ISPC */
-  29:../timer.c    **** 	rI_ISPC |= BIT_TIMER0;
- 1942              		.loc 1 29 0
- 1943 0060 20309FE5 		ldr	r3, .L4+4
- 1944 0064 1C209FE5 		ldr	r2, .L4+4
- 1945 0068 002092E5 		ldr	r2, [r2, #0]
- 1946 006c 022A82E3 		orr	r2, r2, #8192
- 1947 0070 002083E5 		str	r2, [r3, #0]
-  30:../timer.c    **** 	/*fin Tarea 2a*/
-  31:../timer.c    **** 
-  32:../timer.c    **** }
- 1948              		.loc 1 32 0
- 1949 0074 1CD04BE2 		sub	sp, fp, #28
- 1950 0078 0F689DE8 		ldmfd	sp, {r0, r1, r2, r3, fp, sp, lr}
- 1951 007c 04C09DE4 		ldmfd	sp!, {ip}
- 1952 0080 04F05EE2 		subs	pc, lr, #4
- 1953              	.L5:
- 1954              		.align	2
- 1955              	.L4:
- 1956 0084 00000000 		.word	posicion
- 1957 0088 2400E001 		.word	31457316
- 1958              		.cfi_endproc
- 1959              	.LFE0:
- 1961              	.Letext0:
+  15:../timer.c    **** int modoT = 0;
+  16:../timer.c    **** int cuentaClave = 0;
+  17:../timer.c    **** int cuentaIntento = 0;
+  18:../timer.c    **** int cuentaAcierto = 0;
+  19:../timer.c    **** // El 0 es modo mostrar clave, el 1 mostrar intento, el 2 mostrar acierto
+  20:../timer.c    **** //*--- declaracion de funciones ---*/
+  21:../timer.c    **** void timer_ISR(void) __attribute__ ((interrupt ("IRQ")));
+  22:../timer.c    **** 
+  23:../timer.c    **** 
+  24:../timer.c    **** /*--- codigo de las funciones ---*/
+  25:../timer.c    **** void timer_ISR(void)
+  26:../timer.c    **** {  /*  TAREA 2a */
+ 1920              		.loc 1 26 0
+ 1921              		.cfi_startproc
+ 1922              		@ Interrupt Service Routine.
+ 1923              		@ args = 0, pretend = 0, frame = 0
+ 1924              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1925 0000 04C02DE5 		str	ip, [sp, #-4]!
+ 1926 0004 0DC0A0E1 		mov	ip, sp
+ 1927              	.LCFI0:
+ 1928              		.cfi_def_cfa_register 12
+ 1929 0008 0FD82DE9 		stmfd	sp!, {r0, r1, r2, r3, fp, ip, lr, pc}
+ 1930 000c 04B04CE2 		sub	fp, ip, #4
+ 1931              		.cfi_offset 14, -8
+ 1932              		.cfi_offset 13, -12
+ 1933              		.cfi_offset 11, -16
+ 1934              		.cfi_offset 3, -20
+ 1935              		.cfi_offset 2, -24
+ 1936              		.cfi_offset 1, -28
+ 1937              		.cfi_offset 0, -32
+ 1938              	.LCFI1:
+ 1939              		.cfi_def_cfa 11, 4
+  27:../timer.c    ****         /*Actualizar leds con cada int. del timer */
+  28:../timer.c    **** 	if (modoT == 0){
+ 1940              		.loc 1 28 0
+ 1941 0010 20319FE5 		ldr	r3, .L7
+ 1942 0014 003093E5 		ldr	r3, [r3, #0]
+ 1943 0018 000053E3 		cmp	r3, #0
+ 1944 001c 1900001A 		bne	.L2
+  29:../timer.c    **** 		cuentaClave++;
+ 1945              		.loc 1 29 0
+ 1946 0020 14319FE5 		ldr	r3, .L7+4
+ 1947 0024 003093E5 		ldr	r3, [r3, #0]
+ 1948 0028 012083E2 		add	r2, r3, #1
+ 1949 002c 08319FE5 		ldr	r3, .L7+4
+ 1950 0030 002083E5 		str	r2, [r3, #0]
+  30:../timer.c    **** 		D8Led_symbol(leerClave(posicion));
+ 1951              		.loc 1 30 0
+ 1952 0034 04319FE5 		ldr	r3, .L7+8
+ 1953 0038 003093E5 		ldr	r3, [r3, #0]
+ 1954 003c 0300A0E1 		mov	r0, r3
+ 1955 0040 FEFFFFEB 		bl	leerClave
+ 1956 0044 0030A0E1 		mov	r3, r0
+ 1957 0048 0300A0E1 		mov	r0, r3
+ 1958 004c FEFFFFEB 		bl	D8Led_symbol
+  31:../timer.c    **** 		if (posicion == 3)
+ 1959              		.loc 1 31 0
+ 1960 0050 E8309FE5 		ldr	r3, .L7+8
+ 1961 0054 003093E5 		ldr	r3, [r3, #0]
+ 1962 0058 030053E3 		cmp	r3, #3
+ 1963 005c 0300001A 		bne	.L3
+  32:../timer.c    **** 			posicion = 0;
+ 1964              		.loc 1 32 0
+ 1965 0060 D8309FE5 		ldr	r3, .L7+8
+ 1966 0064 0020A0E3 		mov	r2, #0
+ 1967 0068 002083E5 		str	r2, [r3, #0]
+ 1968 006c 280000EA 		b	.L4
+ 1969              	.L3:
+  33:../timer.c    **** 		else
+  34:../timer.c    **** 			posicion = posicion + 1;
+ 1970              		.loc 1 34 0
+ 1971 0070 C8309FE5 		ldr	r3, .L7+8
+ 1972 0074 003093E5 		ldr	r3, [r3, #0]
+ 1973 0078 012083E2 		add	r2, r3, #1
+ 1974 007c BC309FE5 		ldr	r3, .L7+8
+ 1975 0080 002083E5 		str	r2, [r3, #0]
+ 1976 0084 220000EA 		b	.L4
+ 1977              	.L2:
+  35:../timer.c    **** 	}else if(modoT == 1){
+ 1978              		.loc 1 35 0
+ 1979 0088 A8309FE5 		ldr	r3, .L7
+ 1980 008c 003093E5 		ldr	r3, [r3, #0]
+ 1981 0090 010053E3 		cmp	r3, #1
+ 1982 0094 1900001A 		bne	.L5
+  36:../timer.c    **** 		cuentaIntento++;
+ 1983              		.loc 1 36 0
+ 1984 0098 A4309FE5 		ldr	r3, .L7+12
+ 1985 009c 003093E5 		ldr	r3, [r3, #0]
+ 1986 00a0 012083E2 		add	r2, r3, #1
+ 1987 00a4 98309FE5 		ldr	r3, .L7+12
+ 1988 00a8 002083E5 		str	r2, [r3, #0]
+  37:../timer.c    **** 		D8Led_symbol(leerIntento(posicion));
+ 1989              		.loc 1 37 0
+ 1990 00ac 8C309FE5 		ldr	r3, .L7+8
+ 1991 00b0 003093E5 		ldr	r3, [r3, #0]
+ 1992 00b4 0300A0E1 		mov	r0, r3
+ 1993 00b8 FEFFFFEB 		bl	leerIntento
+ 1994 00bc 0030A0E1 		mov	r3, r0
+ 1995 00c0 0300A0E1 		mov	r0, r3
+ 1996 00c4 FEFFFFEB 		bl	D8Led_symbol
+  38:../timer.c    **** 		if (posicion == 3)
+ 1997              		.loc 1 38 0
+ 1998 00c8 70309FE5 		ldr	r3, .L7+8
+ 1999 00cc 003093E5 		ldr	r3, [r3, #0]
+ 2000 00d0 030053E3 		cmp	r3, #3
+ 2001 00d4 0300001A 		bne	.L6
+  39:../timer.c    **** 			posicion = 0;
+ 2002              		.loc 1 39 0
+ 2003 00d8 60309FE5 		ldr	r3, .L7+8
+ 2004 00dc 0020A0E3 		mov	r2, #0
+ 2005 00e0 002083E5 		str	r2, [r3, #0]
+ 2006 00e4 0A0000EA 		b	.L4
+ 2007              	.L6:
+  40:../timer.c    **** 		else
+  41:../timer.c    **** 			posicion = posicion + 1;
+ 2008              		.loc 1 41 0
+ 2009 00e8 50309FE5 		ldr	r3, .L7+8
+ 2010 00ec 003093E5 		ldr	r3, [r3, #0]
+ 2011 00f0 012083E2 		add	r2, r3, #1
+ 2012 00f4 44309FE5 		ldr	r3, .L7+8
+ 2013 00f8 002083E5 		str	r2, [r3, #0]
+ 2014 00fc 040000EA 		b	.L4
+ 2015              	.L5:
+  42:../timer.c    **** 	}else{
+  43:../timer.c    **** 		cuentaAcierto++;
+ 2016              		.loc 1 43 0
+ 2017 0100 40309FE5 		ldr	r3, .L7+16
+ 2018 0104 003093E5 		ldr	r3, [r3, #0]
+ 2019 0108 012083E2 		add	r2, r3, #1
+ 2020 010c 34309FE5 		ldr	r3, .L7+16
+ 2021 0110 002083E5 		str	r2, [r3, #0]
+ 2022              	.L4:
+  44:../timer.c    **** 	}
+  45:../timer.c    **** 	/* borrar bit en I_ISPC */
+  46:../timer.c    **** 	rI_ISPC |= BIT_TIMER0;
+ 2023              		.loc 1 46 0
+ 2024 0114 30309FE5 		ldr	r3, .L7+20
+ 2025 0118 2C209FE5 		ldr	r2, .L7+20
+ 2026 011c 002092E5 		ldr	r2, [r2, #0]
+ 2027 0120 022A82E3 		orr	r2, r2, #8192
+ 2028 0124 002083E5 		str	r2, [r3, #0]
+  47:../timer.c    **** 	/*fin Tarea 2a*/
+  48:../timer.c    **** 
+  49:../timer.c    **** }
+ 2029              		.loc 1 49 0
+ 2030 0128 1CD04BE2 		sub	sp, fp, #28
+ 2031 012c 0F689DE8 		ldmfd	sp, {r0, r1, r2, r3, fp, sp, lr}
+ 2032 0130 04C09DE4 		ldmfd	sp!, {ip}
+ 2033 0134 04F05EE2 		subs	pc, lr, #4
+ 2034              	.L8:
+ 2035              		.align	2
+ 2036              	.L7:
+ 2037 0138 00000000 		.word	modoT
+ 2038 013c 00000000 		.word	cuentaClave
+ 2039 0140 00000000 		.word	posicion
+ 2040 0144 00000000 		.word	cuentaIntento
+ 2041 0148 00000000 		.word	cuentaAcierto
+ 2042 014c 2400E001 		.word	31457316
+ 2043              		.cfi_endproc
+ 2044              	.LFE0:
+ 2046              		.align	2
+ 2047              		.global	modoTimer
+ 2049              	modoTimer:
+ 2050              	.LFB1:
+  50:../timer.c    **** 
+  51:../timer.c    **** void modoTimer(int i){
+ 2051              		.loc 1 51 0
+ 2052              		.cfi_startproc
+ 2053              		@ Function supports interworking.
+ 2054              		@ args = 0, pretend = 0, frame = 8
+ 2055              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2056 0150 0DC0A0E1 		mov	ip, sp
+ 2057              	.LCFI2:
+ 2058              		.cfi_def_cfa_register 12
+ 2059 0154 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2060 0158 04B04CE2 		sub	fp, ip, #4
+ 2061              		.cfi_offset 14, -8
+ 2062              		.cfi_offset 13, -12
+ 2063              		.cfi_offset 11, -16
+ 2064              	.LCFI3:
+ 2065              		.cfi_def_cfa 11, 4
+ 2066 015c 08D04DE2 		sub	sp, sp, #8
+ 2067 0160 10000BE5 		str	r0, [fp, #-16]
+  52:../timer.c    **** 	modoT = i;
+ 2068              		.loc 1 52 0
+ 2069 0164 10309FE5 		ldr	r3, .L10
+ 2070 0168 10201BE5 		ldr	r2, [fp, #-16]
+ 2071 016c 002083E5 		str	r2, [r3, #0]
+  53:../timer.c    **** }
+ 2072              		.loc 1 53 0
+ 2073 0170 0CD04BE2 		sub	sp, fp, #12
+ 2074 0174 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2075 0178 1EFF2FE1 		bx	lr
+ 2076              	.L11:
+ 2077              		.align	2
+ 2078              	.L10:
+ 2079 017c 00000000 		.word	modoT
+ 2080              		.cfi_endproc
+ 2081              	.LFE1:
+ 2083              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 timer.c
-C:\Users\USUARI~1\AppData\Local\Temp\cc5fQvho.s:1888   .bss:00000000 posicion
-C:\Users\USUARI~1\AppData\Local\Temp\cc5fQvho.s:1885   .bss:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc5fQvho.s:1891   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc5fQvho.s:1894   .text:00000000 timer_ISR
-C:\Users\USUARI~1\AppData\Local\Temp\cc5fQvho.s:1956   .text:00000084 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1888   .bss:00000000 posicion
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1885   .bss:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1894   .bss:00000004 modoT
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1900   .bss:00000008 cuentaClave
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1906   .bss:0000000c cuentaIntento
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1912   .bss:00000010 cuentaAcierto
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1915   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1918   .text:00000000 timer_ISR
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:2037   .text:00000138 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:2046   .text:00000150 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:2049   .text:00000150 modoTimer
+C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:2079   .text:0000017c $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
 leerClave
 D8Led_symbol
+leerIntento
