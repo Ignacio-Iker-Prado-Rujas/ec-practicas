@@ -11,14 +11,14 @@
   11              		.file	"main.c"
   21              	.Ltext0:
   22              		.file 1 "../main.c"
- 1875              		.align	2
- 1878              	symbol:
- 1879 0000 0B000000 		.word	11
- 1880              		.text
- 1881              		.align	2
- 1882              		.global	main
- 1884              	main:
- 1885              	.LFB0:
+ 1896              		.align	2
+ 1899              	symbol:
+ 1900 0000 0C000000 		.word	12
+ 1901              		.text
+ 1902              		.align	2
+ 1903              		.global	guardaClave
+ 1905              	guardaClave:
+ 1906              	.LFB0:
    1:../main.c     ****     /*********************************************************************************************
    2:../main.c     **** * Fichero:	main.c
    3:../main.c     **** * Autor:	
@@ -29,75 +29,453 @@
    8:../main.c     **** /*--- ficheros de cabecera ---*/
    9:../main.c     **** #include "44blib.h"
   10:../main.c     **** #include "44b.h"
-  11:../main.c     **** 
-  12:../main.c     **** /*--- variables globales ---*/
-  13:../main.c     **** int symbol = 11;
+  11:../main.c     **** #include "keyboard.h"
+  12:../main.c     **** #include "buffer.h"
+  13:../main.c     **** #include "timer.h"
   14:../main.c     **** 
-  15:../main.c     **** /*--- funciones externas ---*/
-  16:../main.c     **** extern void init_keyboard(void);
-  17:../main.c     **** extern void D8Led_symbol(int value);
-  18:../main.c     **** extern void TIMER_init(void);
-  19:../main.c     **** /*--- codigo de las funciones ---*/
-  20:../main.c     **** int main(void)
-  21:../main.c     **** {	
- 1886              		.loc 1 21 0
- 1887              		.cfi_startproc
- 1888              		@ Function supports interworking.
- 1889              		@ args = 0, pretend = 0, frame = 0
- 1890              		@ frame_needed = 1, uses_anonymous_args = 0
- 1891 0000 0DC0A0E1 		mov	ip, sp
- 1892              	.LCFI0:
- 1893              		.cfi_def_cfa_register 12
- 1894 0004 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 1895 0008 04B04CE2 		sub	fp, ip, #4
- 1896              		.cfi_offset 14, -8
- 1897              		.cfi_offset 13, -12
- 1898              		.cfi_offset 11, -16
- 1899              	.LCFI1:
- 1900              		.cfi_def_cfa 11, 4
-  22:../main.c     **** 
-  23:../main.c     ****     sys_init();     		/* Inicializacion de la placa, interrupciones, puertos y UART */
- 1901              		.loc 1 23 0
- 1902 000c FEFFFFEB 		bl	sys_init
-  24:../main.c     ****     init_keyboard(); 	    /* Inicializacion de EINT6/7 y del puerto G */
- 1903              		.loc 1 24 0
- 1904 0010 FEFFFFEB 		bl	init_keyboard
-  25:../main.c     **** 	TIMER_init();	   // Inicializacion del temporizador
- 1905              		.loc 1 25 0
- 1906 0014 FEFFFFEB 		bl	TIMER_init
-  26:../main.c     **** 
-  27:../main.c     **** 	D8Led_symbol(symbol);  	/* muestra el simbolo inicial en el display */
+  15:../main.c     **** /*--- variables globales ---*/
+  16:../main.c     **** int symbol = 12;
+  17:../main.c     **** 
+  18:../main.c     **** extern int key;
+  19:../main.c     **** extern int cuentaClave;
+  20:../main.c     **** extern int cuentaIntento;
+  21:../main.c     **** extern int cuentaAcierto;
+  22:../main.c     **** /*--- funciones externas ---*/
+  23:../main.c     **** extern void init_keyboard(void);
+  24:../main.c     **** extern void D8Led_symbol(int value);
+  25:../main.c     **** extern void TIMER_init(void);
+  26:../main.c     **** /*--- codigo de las funciones ---*/
+  27:../main.c     **** void guardaClave(){
  1907              		.loc 1 27 0
- 1908 0018 0C309FE5 		ldr	r3, .L3
- 1909 001c 003093E5 		ldr	r3, [r3, #0]
- 1910 0020 0300A0E1 		mov	r0, r3
- 1911 0024 FEFFFFEB 		bl	D8Led_symbol
- 1912              	.L2:
-  28:../main.c     **** 		
-  29:../main.c     ****     while(1) {
-  30:../main.c     **** 
-  31:../main.c     **** 
-  32:../main.c     **** 	}
- 1913              		.loc 1 32 0 discriminator 1
- 1914 0028 FEFFFFEA 		b	.L2
- 1915              	.L4:
- 1916              		.align	2
- 1917              	.L3:
- 1918 002c 00000000 		.word	symbol
- 1919              		.cfi_endproc
- 1920              	.LFE0:
- 1922              	.Letext0:
+ 1908              		.cfi_startproc
+ 1909              		@ Function supports interworking.
+ 1910              		@ args = 0, pretend = 0, frame = 0
+ 1911              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1912 0000 0DC0A0E1 		mov	ip, sp
+ 1913              	.LCFI0:
+ 1914              		.cfi_def_cfa_register 12
+ 1915 0004 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 1916 0008 04B04CE2 		sub	fp, ip, #4
+ 1917              		.cfi_offset 14, -8
+ 1918              		.cfi_offset 13, -12
+ 1919              		.cfi_offset 11, -16
+ 1920              	.LCFI1:
+ 1921              		.cfi_def_cfa 11, 4
+  28:../main.c     **** 	D8Led_symbol(symbol);  	/* muestra el simbolo inicial en el display */
+ 1922              		.loc 1 28 0
+ 1923 000c 44309FE5 		ldr	r3, .L3
+ 1924 0010 003093E5 		ldr	r3, [r3, #0]
+ 1925 0014 0300A0E1 		mov	r0, r3
+ 1926 0018 FEFFFFEB 		bl	D8Led_symbol
+  29:../main.c     **** 	rINTMSK |= BIT_TIMER0; // Enmascara el timer
+ 1927              		.loc 1 29 0
+ 1928 001c 38309FE5 		ldr	r3, .L3+4
+ 1929 0020 34209FE5 		ldr	r2, .L3+4
+ 1930 0024 002092E5 		ldr	r2, [r2, #0]
+ 1931 0028 022A82E3 		orr	r2, r2, #8192
+ 1932 002c 002083E5 		str	r2, [r3, #0]
+  30:../main.c     **** 	modoClave(1); //Activa la lectura de clave
+ 1933              		.loc 1 30 0
+ 1934 0030 0100A0E3 		mov	r0, #1
+ 1935 0034 FEFFFFEB 		bl	modoClave
+  31:../main.c     **** 	while (key != 15){
+ 1936              		.loc 1 31 0
+ 1937 0038 0000A0E1 		mov	r0, r0	@ nop
+ 1938              	.L2:
+ 1939              		.loc 1 31 0 is_stmt 0 discriminator 1
+ 1940 003c 1C309FE5 		ldr	r3, .L3+8
+ 1941 0040 003093E5 		ldr	r3, [r3, #0]
+ 1942 0044 0F0053E3 		cmp	r3, #15
+ 1943 0048 FBFFFF1A 		bne	.L2
+  32:../main.c     **** 
+  33:../main.c     **** 	}
+  34:../main.c     **** }
+ 1944              		.loc 1 34 0 is_stmt 1
+ 1945 004c 0CD04BE2 		sub	sp, fp, #12
+ 1946 0050 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 1947 0054 1EFF2FE1 		bx	lr
+ 1948              	.L4:
+ 1949              		.align	2
+ 1950              	.L3:
+ 1951 0058 00000000 		.word	symbol
+ 1952 005c 0C00E001 		.word	31457292
+ 1953 0060 00000000 		.word	key
+ 1954              		.cfi_endproc
+ 1955              	.LFE0:
+ 1957              		.align	2
+ 1958              		.global	muestraClave
+ 1960              	muestraClave:
+ 1961              	.LFB1:
+  35:../main.c     **** 
+  36:../main.c     **** void muestraClave(){
+ 1962              		.loc 1 36 0
+ 1963              		.cfi_startproc
+ 1964              		@ Function supports interworking.
+ 1965              		@ args = 0, pretend = 0, frame = 0
+ 1966              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1967 0064 0DC0A0E1 		mov	ip, sp
+ 1968              	.LCFI2:
+ 1969              		.cfi_def_cfa_register 12
+ 1970 0068 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 1971 006c 04B04CE2 		sub	fp, ip, #4
+ 1972              		.cfi_offset 14, -8
+ 1973              		.cfi_offset 13, -12
+ 1974              		.cfi_offset 11, -16
+ 1975              	.LCFI3:
+ 1976              		.cfi_def_cfa 11, 4
+  37:../main.c     **** 	rINTMSK &= ~BIT_TIMER0; //Habilita el timer, enmascara el keyboard
+ 1977              		.loc 1 37 0
+ 1978 0070 48309FE5 		ldr	r3, .L7
+ 1979 0074 44209FE5 		ldr	r2, .L7
+ 1980 0078 002092E5 		ldr	r2, [r2, #0]
+ 1981 007c 022AC2E3 		bic	r2, r2, #8192
+ 1982 0080 002083E5 		str	r2, [r3, #0]
+  38:../main.c     **** 	rINTMSK |= BIT_EINT1;
+ 1983              		.loc 1 38 0
+ 1984 0084 34309FE5 		ldr	r3, .L7
+ 1985 0088 30209FE5 		ldr	r2, .L7
+ 1986 008c 002092E5 		ldr	r2, [r2, #0]
+ 1987 0090 012482E3 		orr	r2, r2, #16777216
+ 1988 0094 002083E5 		str	r2, [r3, #0]
+  39:../main.c     **** 	modoTimer(0); //Modo muestra de clave
+ 1989              		.loc 1 39 0
+ 1990 0098 0000A0E3 		mov	r0, #0
+ 1991 009c FEFFFFEB 		bl	modoTimer
+  40:../main.c     **** 	while(cuentaClave <= 20){
+ 1992              		.loc 1 40 0
+ 1993 00a0 0000A0E1 		mov	r0, r0	@ nop
+ 1994              	.L6:
+ 1995              		.loc 1 40 0 is_stmt 0 discriminator 1
+ 1996 00a4 18309FE5 		ldr	r3, .L7+4
+ 1997 00a8 003093E5 		ldr	r3, [r3, #0]
+ 1998 00ac 140053E3 		cmp	r3, #20
+ 1999 00b0 FBFFFFDA 		ble	.L6
+  41:../main.c     **** 
+  42:../main.c     **** 	}
+  43:../main.c     **** }
+ 2000              		.loc 1 43 0 is_stmt 1
+ 2001 00b4 0CD04BE2 		sub	sp, fp, #12
+ 2002 00b8 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2003 00bc 1EFF2FE1 		bx	lr
+ 2004              	.L8:
+ 2005              		.align	2
+ 2006              	.L7:
+ 2007 00c0 0C00E001 		.word	31457292
+ 2008 00c4 00000000 		.word	cuentaClave
+ 2009              		.cfi_endproc
+ 2010              	.LFE1:
+ 2012              		.align	2
+ 2013              		.global	leeIntento
+ 2015              	leeIntento:
+ 2016              	.LFB2:
+  44:../main.c     **** void leeIntento(){
+ 2017              		.loc 1 44 0
+ 2018              		.cfi_startproc
+ 2019              		@ Function supports interworking.
+ 2020              		@ args = 0, pretend = 0, frame = 0
+ 2021              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2022 00c8 0DC0A0E1 		mov	ip, sp
+ 2023              	.LCFI4:
+ 2024              		.cfi_def_cfa_register 12
+ 2025 00cc 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2026 00d0 04B04CE2 		sub	fp, ip, #4
+ 2027              		.cfi_offset 14, -8
+ 2028              		.cfi_offset 13, -12
+ 2029              		.cfi_offset 11, -16
+ 2030              	.LCFI5:
+ 2031              		.cfi_def_cfa 11, 4
+  45:../main.c     **** 	resetIntento();
+ 2032              		.loc 1 45 0
+ 2033 00d4 FEFFFFEB 		bl	resetIntento
+  46:../main.c     **** 	modoClave(0); //Activa la lectura de intento
+ 2034              		.loc 1 46 0
+ 2035 00d8 0000A0E3 		mov	r0, #0
+ 2036 00dc FEFFFFEB 		bl	modoClave
+  47:../main.c     **** 	D8Led_symbol(15);
+ 2037              		.loc 1 47 0
+ 2038 00e0 0F00A0E3 		mov	r0, #15
+ 2039 00e4 FEFFFFEB 		bl	D8Led_symbol
+  48:../main.c     **** 	rINTMSK |= BIT_TIMER0; // Enmascara el timer
+ 2040              		.loc 1 48 0
+ 2041 00e8 4C309FE5 		ldr	r3, .L11
+ 2042 00ec 48209FE5 		ldr	r2, .L11
+ 2043 00f0 002092E5 		ldr	r2, [r2, #0]
+ 2044 00f4 022A82E3 		orr	r2, r2, #8192
+ 2045 00f8 002083E5 		str	r2, [r3, #0]
+  49:../main.c     **** 	rINTMSK &= ~BIT_EINT1; //Habilita el keyboard
+ 2046              		.loc 1 49 0
+ 2047 00fc 38309FE5 		ldr	r3, .L11
+ 2048 0100 34209FE5 		ldr	r2, .L11
+ 2049 0104 002092E5 		ldr	r2, [r2, #0]
+ 2050 0108 0124C2E3 		bic	r2, r2, #16777216
+ 2051 010c 002083E5 		str	r2, [r3, #0]
+  50:../main.c     **** 	key = -1;
+ 2052              		.loc 1 50 0
+ 2053 0110 28309FE5 		ldr	r3, .L11+4
+ 2054 0114 0020E0E3 		mvn	r2, #0
+ 2055 0118 002083E5 		str	r2, [r3, #0]
+  51:../main.c     **** 	while (key != 15){
+ 2056              		.loc 1 51 0
+ 2057 011c 0000A0E1 		mov	r0, r0	@ nop
+ 2058              	.L10:
+ 2059              		.loc 1 51 0 is_stmt 0 discriminator 1
+ 2060 0120 18309FE5 		ldr	r3, .L11+4
+ 2061 0124 003093E5 		ldr	r3, [r3, #0]
+ 2062 0128 0F0053E3 		cmp	r3, #15
+ 2063 012c FBFFFF1A 		bne	.L10
+  52:../main.c     **** 
+  53:../main.c     **** 	}
+  54:../main.c     **** }
+ 2064              		.loc 1 54 0 is_stmt 1
+ 2065 0130 0CD04BE2 		sub	sp, fp, #12
+ 2066 0134 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2067 0138 1EFF2FE1 		bx	lr
+ 2068              	.L12:
+ 2069              		.align	2
+ 2070              	.L11:
+ 2071 013c 0C00E001 		.word	31457292
+ 2072 0140 00000000 		.word	key
+ 2073              		.cfi_endproc
+ 2074              	.LFE2:
+ 2076              		.align	2
+ 2077              		.global	muestraIntento
+ 2079              	muestraIntento:
+ 2080              	.LFB3:
+  55:../main.c     **** void muestraIntento(){
+ 2081              		.loc 1 55 0
+ 2082              		.cfi_startproc
+ 2083              		@ Function supports interworking.
+ 2084              		@ args = 0, pretend = 0, frame = 0
+ 2085              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2086 0144 0DC0A0E1 		mov	ip, sp
+ 2087              	.LCFI6:
+ 2088              		.cfi_def_cfa_register 12
+ 2089 0148 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2090 014c 04B04CE2 		sub	fp, ip, #4
+ 2091              		.cfi_offset 14, -8
+ 2092              		.cfi_offset 13, -12
+ 2093              		.cfi_offset 11, -16
+ 2094              	.LCFI7:
+ 2095              		.cfi_def_cfa 11, 4
+  56:../main.c     **** 	rINTMSK &= ~BIT_TIMER0; //Habilita el timer, enmascara el keyboard
+ 2096              		.loc 1 56 0
+ 2097 0150 54309FE5 		ldr	r3, .L15
+ 2098 0154 50209FE5 		ldr	r2, .L15
+ 2099 0158 002092E5 		ldr	r2, [r2, #0]
+ 2100 015c 022AC2E3 		bic	r2, r2, #8192
+ 2101 0160 002083E5 		str	r2, [r3, #0]
+  57:../main.c     **** 	rINTMSK |= BIT_EINT1;
+ 2102              		.loc 1 57 0
+ 2103 0164 40309FE5 		ldr	r3, .L15
+ 2104 0168 3C209FE5 		ldr	r2, .L15
+ 2105 016c 002092E5 		ldr	r2, [r2, #0]
+ 2106 0170 012482E3 		orr	r2, r2, #16777216
+ 2107 0174 002083E5 		str	r2, [r3, #0]
+  58:../main.c     **** 	modoTimer(1); //Modo muestra de intento
+ 2108              		.loc 1 58 0
+ 2109 0178 0100A0E3 		mov	r0, #1
+ 2110 017c FEFFFFEB 		bl	modoTimer
+  59:../main.c     **** 	cuentaIntento = 0;
+ 2111              		.loc 1 59 0
+ 2112 0180 28309FE5 		ldr	r3, .L15+4
+ 2113 0184 0020A0E3 		mov	r2, #0
+ 2114 0188 002083E5 		str	r2, [r3, #0]
+  60:../main.c     **** 	while(cuentaIntento <= 20){
+ 2115              		.loc 1 60 0
+ 2116 018c 0000A0E1 		mov	r0, r0	@ nop
+ 2117              	.L14:
+ 2118              		.loc 1 60 0 is_stmt 0 discriminator 1
+ 2119 0190 18309FE5 		ldr	r3, .L15+4
+ 2120 0194 003093E5 		ldr	r3, [r3, #0]
+ 2121 0198 140053E3 		cmp	r3, #20
+ 2122 019c FBFFFFDA 		ble	.L14
+  61:../main.c     **** 
+  62:../main.c     **** 	}
+  63:../main.c     **** }
+ 2123              		.loc 1 63 0 is_stmt 1
+ 2124 01a0 0CD04BE2 		sub	sp, fp, #12
+ 2125 01a4 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2126 01a8 1EFF2FE1 		bx	lr
+ 2127              	.L16:
+ 2128              		.align	2
+ 2129              	.L15:
+ 2130 01ac 0C00E001 		.word	31457292
+ 2131 01b0 00000000 		.word	cuentaIntento
+ 2132              		.cfi_endproc
+ 2133              	.LFE3:
+ 2135              		.align	2
+ 2136              		.global	compruebaAcierto
+ 2138              	compruebaAcierto:
+ 2139              	.LFB4:
+  64:../main.c     **** void compruebaAcierto(){
+ 2140              		.loc 1 64 0
+ 2141              		.cfi_startproc
+ 2142              		@ Function supports interworking.
+ 2143              		@ args = 0, pretend = 0, frame = 0
+ 2144              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2145 01b4 0DC0A0E1 		mov	ip, sp
+ 2146              	.LCFI8:
+ 2147              		.cfi_def_cfa_register 12
+ 2148 01b8 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2149 01bc 04B04CE2 		sub	fp, ip, #4
+ 2150              		.cfi_offset 14, -8
+ 2151              		.cfi_offset 13, -12
+ 2152              		.cfi_offset 11, -16
+ 2153              	.LCFI9:
+ 2154              		.cfi_def_cfa 11, 4
+  65:../main.c     **** 	rINTMSK &= ~BIT_TIMER0; //Habilita el timer, enmascara el keyboard
+ 2155              		.loc 1 65 0
+ 2156 01c0 78309FE5 		ldr	r3, .L21
+ 2157 01c4 74209FE5 		ldr	r2, .L21
+ 2158 01c8 002092E5 		ldr	r2, [r2, #0]
+ 2159 01cc 022AC2E3 		bic	r2, r2, #8192
+ 2160 01d0 002083E5 		str	r2, [r3, #0]
+  66:../main.c     **** 	rINTMSK |= BIT_EINT1;
+ 2161              		.loc 1 66 0
+ 2162 01d4 64309FE5 		ldr	r3, .L21
+ 2163 01d8 60209FE5 		ldr	r2, .L21
+ 2164 01dc 002092E5 		ldr	r2, [r2, #0]
+ 2165 01e0 012482E3 		orr	r2, r2, #16777216
+ 2166 01e4 002083E5 		str	r2, [r3, #0]
+  67:../main.c     **** 	modoTimer(2); //Modo muestra de clave
+ 2167              		.loc 1 67 0
+ 2168 01e8 0200A0E3 		mov	r0, #2
+ 2169 01ec FEFFFFEB 		bl	modoTimer
+  68:../main.c     **** 	if (comparar() == 1)
+ 2170              		.loc 1 68 0
+ 2171 01f0 FEFFFFEB 		bl	comparar
+ 2172 01f4 0030A0E1 		mov	r3, r0
+ 2173 01f8 010053E3 		cmp	r3, #1
+ 2174 01fc 0200001A 		bne	.L18
+  69:../main.c     **** 		D8Led_symbol(10);
+ 2175              		.loc 1 69 0
+ 2176 0200 0A00A0E3 		mov	r0, #10
+ 2177 0204 FEFFFFEB 		bl	D8Led_symbol
+ 2178 0208 010000EA 		b	.L19
+ 2179              	.L18:
+  70:../main.c     **** 	else
+  71:../main.c     **** 		D8Led_symbol(14);
+ 2180              		.loc 1 71 0
+ 2181 020c 0E00A0E3 		mov	r0, #14
+ 2182 0210 FEFFFFEB 		bl	D8Led_symbol
+ 2183              	.L19:
+  72:../main.c     **** 	cuentaAcierto = 0;
+ 2184              		.loc 1 72 0
+ 2185 0214 28309FE5 		ldr	r3, .L21+4
+ 2186 0218 0020A0E3 		mov	r2, #0
+ 2187 021c 002083E5 		str	r2, [r3, #0]
+  73:../main.c     **** 	while(cuentaAcierto <= 10){
+ 2188              		.loc 1 73 0
+ 2189 0220 0000A0E1 		mov	r0, r0	@ nop
+ 2190              	.L20:
+ 2191              		.loc 1 73 0 is_stmt 0 discriminator 1
+ 2192 0224 18309FE5 		ldr	r3, .L21+4
+ 2193 0228 003093E5 		ldr	r3, [r3, #0]
+ 2194 022c 0A0053E3 		cmp	r3, #10
+ 2195 0230 FBFFFFDA 		ble	.L20
+  74:../main.c     **** 
+  75:../main.c     **** 	}
+  76:../main.c     **** }
+ 2196              		.loc 1 76 0 is_stmt 1
+ 2197 0234 0CD04BE2 		sub	sp, fp, #12
+ 2198 0238 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2199 023c 1EFF2FE1 		bx	lr
+ 2200              	.L22:
+ 2201              		.align	2
+ 2202              	.L21:
+ 2203 0240 0C00E001 		.word	31457292
+ 2204 0244 00000000 		.word	cuentaAcierto
+ 2205              		.cfi_endproc
+ 2206              	.LFE4:
+ 2208              		.align	2
+ 2209              		.global	main
+ 2211              	main:
+ 2212              	.LFB5:
+  77:../main.c     **** int main(void)
+  78:../main.c     **** {	
+ 2213              		.loc 1 78 0
+ 2214              		.cfi_startproc
+ 2215              		@ Function supports interworking.
+ 2216              		@ args = 0, pretend = 0, frame = 0
+ 2217              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2218 0248 0DC0A0E1 		mov	ip, sp
+ 2219              	.LCFI10:
+ 2220              		.cfi_def_cfa_register 12
+ 2221 024c 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2222 0250 04B04CE2 		sub	fp, ip, #4
+ 2223              		.cfi_offset 14, -8
+ 2224              		.cfi_offset 13, -12
+ 2225              		.cfi_offset 11, -16
+ 2226              	.LCFI11:
+ 2227              		.cfi_def_cfa 11, 4
+  79:../main.c     **** 
+  80:../main.c     ****     sys_init();     		/* Inicializacion de la placa, interrupciones, puertos y UART */
+ 2228              		.loc 1 80 0
+ 2229 0254 FEFFFFEB 		bl	sys_init
+  81:../main.c     ****     init_keyboard(); 	    /* Inicializacion de EINT6/7 y del puerto G */
+ 2230              		.loc 1 81 0
+ 2231 0258 FEFFFFEB 		bl	init_keyboard
+  82:../main.c     **** 	TIMER_init();	   		// Inicializacion del temporizador
+ 2232              		.loc 1 82 0
+ 2233 025c FEFFFFEB 		bl	TIMER_init
+  83:../main.c     **** 
+  84:../main.c     **** 	guardaClave();
+ 2234              		.loc 1 84 0
+ 2235 0260 FEFFFFEB 		bl	guardaClave
+  85:../main.c     **** 	muestraClave();
+ 2236              		.loc 1 85 0
+ 2237 0264 FEFFFFEB 		bl	muestraClave
+ 2238              	.L24:
+  86:../main.c     **** 
+  87:../main.c     **** 	while(1){
+  88:../main.c     **** 		leeIntento();
+ 2239              		.loc 1 88 0 discriminator 1
+ 2240 0268 FEFFFFEB 		bl	leeIntento
+  89:../main.c     **** 		muestraIntento();
+ 2241              		.loc 1 89 0 discriminator 1
+ 2242 026c FEFFFFEB 		bl	muestraIntento
+  90:../main.c     **** 		compruebaAcierto();
+ 2243              		.loc 1 90 0 discriminator 1
+ 2244 0270 FEFFFFEB 		bl	compruebaAcierto
+  91:../main.c     **** 	}
+ 2245              		.loc 1 91 0 discriminator 1
+ 2246 0274 FBFFFFEA 		b	.L24
+ 2247              		.cfi_endproc
+ 2248              	.LFE5:
+ 2250              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1878   .data:00000000 symbol
-C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1875   .data:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1881   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1884   .text:00000000 main
-C:\Users\USUARI~1\AppData\Local\Temp\ccfI9aVj.s:1918   .text:0000002c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:1899   .data:00000000 symbol
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:1896   .data:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:1902   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:1905   .text:00000000 guardaClave
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:1951   .text:00000058 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:1957   .text:00000064 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:1960   .text:00000064 muestraClave
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2007   .text:000000c0 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2012   .text:000000c8 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2015   .text:000000c8 leeIntento
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2071   .text:0000013c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2076   .text:00000144 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2079   .text:00000144 muestraIntento
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2130   .text:000001ac $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2135   .text:000001b4 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2138   .text:000001b4 compruebaAcierto
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2203   .text:00000240 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2208   .text:00000248 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccPGfY8B.s:2211   .text:00000248 main
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
+D8Led_symbol
+modoClave
+key
+modoTimer
+cuentaClave
+resetIntento
+cuentaIntento
+comparar
+cuentaAcierto
 sys_init
 init_keyboard
 TIMER_init
-D8Led_symbol
