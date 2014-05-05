@@ -43,7 +43,7 @@ void timer_ISR(void)
 		cuentaAcierto++;
 	}
 	/* borrar bit en I_ISPC */
-	rI_ISPC |= BIT_TIMER0;
+	rI_ISPC |= BIT_TIMER1;
 	/*fin Tarea 2a*/
 
 }

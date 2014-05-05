@@ -183,12 +183,12 @@
  2022              	.L4:
   44:../timer.c    **** 	}
   45:../timer.c    **** 	/* borrar bit en I_ISPC */
-  46:../timer.c    **** 	rI_ISPC |= BIT_TIMER0;
+  46:../timer.c    **** 	rI_ISPC |= BIT_TIMER1;
  2023              		.loc 1 46 0
  2024 0114 30309FE5 		ldr	r3, .L7+20
  2025 0118 2C209FE5 		ldr	r2, .L7+20
  2026 011c 002092E5 		ldr	r2, [r2, #0]
- 2027 0120 022A82E3 		orr	r2, r2, #8192
+ 2027 0120 012A82E3 		orr	r2, r2, #4096
  2028 0124 002083E5 		str	r2, [r3, #0]
   47:../timer.c    **** 	/*fin Tarea 2a*/
   48:../timer.c    **** 
@@ -251,18 +251,18 @@
  2083              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 timer.c
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1888   .bss:00000000 posicion
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1885   .bss:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1894   .bss:00000004 modoT
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1900   .bss:00000008 cuentaClave
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1906   .bss:0000000c cuentaIntento
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1912   .bss:00000010 cuentaAcierto
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1915   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:1918   .text:00000000 timer_ISR
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:2037   .text:00000138 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:2046   .text:00000150 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:2049   .text:00000150 modoTimer
-C:\Users\USUARI~1\AppData\Local\Temp\cc3vDJqL.s:2079   .text:0000017c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:1888   .bss:00000000 posicion
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:1885   .bss:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:1894   .bss:00000004 modoT
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:1900   .bss:00000008 cuentaClave
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:1906   .bss:0000000c cuentaIntento
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:1912   .bss:00000010 cuentaAcierto
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:1915   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:1918   .text:00000000 timer_ISR
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:2037   .text:00000138 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:2046   .text:00000150 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:2049   .text:00000150 modoTimer
+C:\Users\USUARI~1\AppData\Local\Temp\ccBarsO3.s:2079   .text:0000017c $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

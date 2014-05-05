@@ -27,7 +27,7 @@ extern void TIMER_init(void);
 /*--- codigo de las funciones ---*/
 void guardaClave(){
 	D8Led_symbol(symbol);  	/* muestra el simbolo inicial en el display */
-	rINTMSK |= BIT_TIMER0; // Enmascara el timer
+	rINTMSK |= BIT_TIMER1; // Enmascara el timer
 	modoClave(1); //Activa la lectura de clave
 	while (key != 15){
 
@@ -35,10 +35,10 @@ void guardaClave(){
 }
 
 void muestraClave(){
-	rINTMSK &= ~BIT_TIMER0; //Habilita el timer, enmascara el keyboard
+	rINTMSK &= ~BIT_TIMER1; //Habilita el timer, enmascara el keyboard
 	rINTMSK |= BIT_EINT1;
 	modoTimer(0); //Modo muestra de clave
-	while(cuentaClave <= 20){
+	while(cuentaClave <= 12){
 
 	}
 }
@@ -46,7 +46,7 @@ void leeIntento(){
 	resetIntento();
 	modoClave(0); //Activa la lectura de intento
 	D8Led_symbol(15);
-	rINTMSK |= BIT_TIMER0; // Enmascara el timer
+	rINTMSK |= BIT_TIMER1; // Enmascara el timer
 	rINTMSK &= ~BIT_EINT1; //Habilita el keyboard
 	key = -1;
 	while (key != 15){
@@ -54,17 +54,17 @@ void leeIntento(){
 	}
 }
 void muestraIntento(){
-	rINTMSK &= ~BIT_TIMER0; //Habilita el timer, enmascara el keyboard
+	rINTMSK &= ~BIT_TIMER1; //Habilita el timer, enmascara el keyboard
 	rINTMSK |= BIT_EINT1;
 	modoTimer(1); //Modo muestra de intento
 	cuentaIntento = 0;
 	posicion = 0;
-	while(cuentaIntento <= 20){
+	while(cuentaIntento <= 16){
 
 	}
 }
 void compruebaAcierto(){
-	rINTMSK &= ~BIT_TIMER0; //Habilita el timer, enmascara el keyboard
+	rINTMSK &= ~BIT_TIMER1; //Habilita el timer, enmascara el keyboard
 	rINTMSK |= BIT_EINT1;
 	modoTimer(2); //Modo muestra de clave
 	if (comparar() == 1)
@@ -72,7 +72,7 @@ void compruebaAcierto(){
 	else
 		D8Led_symbol(14);
 	cuentaAcierto = 0;
-	while(cuentaAcierto <= 10){
+	while(cuentaAcierto <= 4){
 
 	}
 }

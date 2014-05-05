@@ -45,7 +45,7 @@ void init_keyboard()
 		rINTMOD=0x0;	   // Configura las lineas como de tipo IRQ mediante rINTMOD
 		rINTCON  =0x1; // Habilita int. vectorizadas y la linea IRQ (FIQ no) mediante rINTCON
 			// Emascara todas las lineas excepto eint1y el bit global mediante rINTMSK
-		rINTMSK &= ~(BIT_GLOBAL|BIT_EINT1);
+		rINTMSK = ~(BIT_GLOBAL|BIT_EINT1);
 		/*Establece la rutina de servicio para Eint1 */
 		pISR_EINT1 = (int)Eint1_ISR;
 	    /* Configuracion del puerto G */
