@@ -1,0 +1,154 @@
+   1              	# 1 "../timer_init.asm"
+   1              	.global TIMER_init
+   0              	
+   0              	
+   0              	
+   2              	
+   3              	.extern timer_ISR
+   4              	
+   5              	.equ rI_ISPC, 0x1e00024
+   6              	.equ rEXTINTPND, 0x1d20054
+   7              	.equ rEXTINT, 0x1d20050
+   8              	.equ rINTMOD, 0x1e00008
+   9              	.equ rINTCON, 0x1e00000
+  10              	.equ rINTMSK, 0x1e0000c
+  11              	.equ BIT_GLOBAL, (0x1<<26)
+  12              	.equ BIT_EINT4567, (0x1<<21)
+  13              	.equ rPCONG, 0x1d20040
+  14              	.equ rPUPG, 0x1d20048
+  15              	.equ pISR_TIMER0, 0xc7fff54
+  16              	.equ pISR_TIMER1, 0xc7fff50
+  17              	
+  18              	.equ rTCFG0, 0x1d50000
+  19              	.equ rTCFG1, 0x1d50004
+  20              	
+  21              	.equ rTCNTB0, 0x1d5000c
+  22              	.equ rTCMPB0, 0x1d50010
+  23              	
+  24              	
+  25              	.equ rTCNTB1,	0x1d50018
+  26              	.equ rTCMPB1,	0x1d5001c
+  27              	
+  28              	.equ rTCON, 0x1d50008
+  29              	
+  30              	.equ BorraIspc, 0xFFFFFFFF;
+  31              	.equ BorraExtint, 0xf;
+  32              	.equ ConfigIntmod, 0x0;
+  33              	.equ Pines, 0xffff;
+  34              	.equ FlancoBajada, 0x22222222;
+  35              	.equ BitsTimer0, 0xFBFFDFFF;
+  36              	.equ BitsTimer1, 0xFBFFEFFF;
+  37              	
+  38              	.equ Constante, 65535;
+  39              	
+  40              	TIMER_init:
+  41              		/* Configuracion del controlador de interrupciones */
+  42              	
+  43              	/*TAREA 2b*/
+  44              		/* Configuraion controlador de interrupciones */
+  45              		@rINTMOD=0x0; // Configura las linas como de tipo IRQ
+  46              	
+  47 0000 0000A0E3 		ldr r0, =ConfigIntmod;
+  48 0004 78109FE5 		ldr r1, =rINTMOD;
+  49 0008 000081E5 		str r0,[r1]
+  50              	
+  51              		@rINTCON  =0x1;  // Habilita int. vectorizadas y la linea IRQ (FIQ no)
+  52              	
+  53 000c 0100A0E3 		mov r0, #1;
+  54 0010 1E16A0E3 		ldr r1, =rINTCON;
+  55 0014 000081E5 		str r0,[r1]
+  56              	
+  57              		@rINTMSK &= ~(BIT_GLOBAL|BIT_TIMER1);  // habilita Timer1 y el bit global
+  58              	
+  59 0018 68309FE5 		ldr r3, =rINTMSK;
+  60 001c 000093E5 		ldr r0, [r3];
+  61 0020 64109FE5 		ldr r1, =BitsTimer1
+  62 0024 012000E0 		and r2, r0, r1;
+  63              	
+  64 0028 002083E5 		str r2, [r3];
+  65              	
+  66              		/* Establece la rutina de servicio para TIMER1 */
+  67              		@pISR_TIMER1=(unsigned)timer_ISR;
+  68              	
+  69 002c 5C009FE5 		ldr r0, =timer_ISR;
+  70 0030 5C109FE5 	    ldr r1, =pISR_TIMER1;
+  71 0034 000081E5 		str r0, [r1];
+  72              	
+  73              	
+  74              		/* Configura el Timer1 */
+  75              	    @rTCFG0 = 255;
+  76              	
+  77 0038 FF00A0E3 	    mov r0, #255;
+  78 003c 54109FE5 		ldr r1, =rTCFG0;
+  79 0040 000081E5 		str r0,[r1];
+  80              	
+  81              	    @rTCFG1 = 0x0;
+  82 0044 0000A0E3 	    mov r0, #0;
+  83 0048 4C109FE5 		ldr r1, =rTCFG1;
+  84 004c 000081E5 		str r0,[r1];
+  85              	
+  86              	    @rTCNTB1 = 65535;
+  87 0050 48009FE5 	    ldr r0, =Constante
+  88 0054 48109FE5 		ldr r1, =rTCNTB1;
+  89 0058 000081E5 		str r0,[r1];
+  90              	
+  91              	    @rTCMPB1 = 12800;
+  92              	
+  93 005c 320CA0E3 	    mov r0, #12800;
+  94 0060 40109FE5 		ldr r1, =rTCMPB1;
+  95 0064 000081E5 		str r0,[r1];
+  96              	
+  97              	    /* establecer update=manual + inverter=on */
+  98              		@rTCON = 0x200;
+  99              	
+ 100 0068 020CA0E3 	    mov r0, #0x200;
+ 101 006c 38109FE5 		ldr r1, =rTCON;
+ 102 0070 000081E5 		str r0,[r1];
+ 103              		/* inicial timer con auto-reload */
+ 104              	
+ 105              	    @rTCON  = 0x0900;
+ 106              	
+ 107 0074 090CA0E3 	    mov r0, #0x0900;
+ 108 0078 2C109FE5 		ldr r1, =rTCON;
+ 109 007c 000081E5 		str r0,[r1];
+ 110              	
+ 111 0080 0EF0A0E1 		mov pc,lr
+ 111      0800E001 
+ 111      0C00E001 
+ 111      FFEFFFFB 
+ 111      00000000 
+DEFINED SYMBOLS
+   ../timer_init.asm:40     .text:00000000 TIMER_init
+   ../timer_init.asm:5      *ABS*:01e00024 rI_ISPC
+   ../timer_init.asm:6      *ABS*:01d20054 rEXTINTPND
+   ../timer_init.asm:7      *ABS*:01d20050 rEXTINT
+   ../timer_init.asm:8      *ABS*:01e00008 rINTMOD
+   ../timer_init.asm:9      *ABS*:01e00000 rINTCON
+   ../timer_init.asm:10     *ABS*:01e0000c rINTMSK
+   ../timer_init.asm:11     *ABS*:04000000 BIT_GLOBAL
+   ../timer_init.asm:12     *ABS*:00200000 BIT_EINT4567
+   ../timer_init.asm:13     *ABS*:01d20040 rPCONG
+   ../timer_init.asm:14     *ABS*:01d20048 rPUPG
+   ../timer_init.asm:15     *ABS*:0c7fff54 pISR_TIMER0
+   ../timer_init.asm:16     *ABS*:0c7fff50 pISR_TIMER1
+   ../timer_init.asm:18     *ABS*:01d50000 rTCFG0
+   ../timer_init.asm:19     *ABS*:01d50004 rTCFG1
+   ../timer_init.asm:21     *ABS*:01d5000c rTCNTB0
+   ../timer_init.asm:22     *ABS*:01d50010 rTCMPB0
+   ../timer_init.asm:25     *ABS*:01d50018 rTCNTB1
+   ../timer_init.asm:26     *ABS*:01d5001c rTCMPB1
+   ../timer_init.asm:28     *ABS*:01d50008 rTCON
+   ../timer_init.asm:30     *ABS*:ffffffff BorraIspc
+   ../timer_init.asm:31     *ABS*:0000000f BorraExtint
+   ../timer_init.asm:32     *ABS*:00000000 ConfigIntmod
+   ../timer_init.asm:33     *ABS*:0000ffff Pines
+   ../timer_init.asm:34     *ABS*:22222222 FlancoBajada
+   ../timer_init.asm:35     *ABS*:fbffdfff BitsTimer0
+   ../timer_init.asm:36     *ABS*:fbffefff BitsTimer1
+   ../timer_init.asm:38     *ABS*:0000ffff Constante
+   ../timer_init.asm:47     .text:00000000 $a
+   ../timer_init.asm:111    .text:00000084 $d
+                   .debug_aranges:0000000c $d
+
+UNDEFINED SYMBOLS
+timer_ISR

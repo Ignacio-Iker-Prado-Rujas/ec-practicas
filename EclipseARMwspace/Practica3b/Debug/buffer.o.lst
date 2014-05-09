@@ -1,0 +1,378 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.file	"buffer.c"
+  21              	.Ltext0:
+  22              		.file 1 "../buffer.c"
+ 2044              		.align	2
+ 2047              	clave:
+ 2048 0000 00000000 		.space	16
+ 2048      00000000 
+ 2048      00000000 
+ 2048      00000000 
+ 2049              		.global	intento
+ 2050              		.align	2
+ 2053              	intento:
+ 2054 0010 00000000 		.space	16
+ 2054      00000000 
+ 2054      00000000 
+ 2054      00000000 
+ 2055              		.text
+ 2056              		.align	2
+ 2057              		.global	insertarClave
+ 2059              	insertarClave:
+ 2060              	.LFB0:
+   1:../buffer.c   **** 
+   2:../buffer.c   **** #include <stdio.h>
+   3:../buffer.c   **** #include <stdlib.h>
+   4:../buffer.c   **** 
+   5:../buffer.c   **** int clave[] = {0,0,0,0};
+   6:../buffer.c   **** int intento[] = {0,0,0,0};
+   7:../buffer.c   **** 
+   8:../buffer.c   **** void insertarClave (int nuevo){
+ 2061              		.loc 1 8 0
+ 2062              		.cfi_startproc
+ 2063              		@ Function supports interworking.
+ 2064              		@ args = 0, pretend = 0, frame = 8
+ 2065              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2066 0000 0DC0A0E1 		mov	ip, sp
+ 2067              	.LCFI0:
+ 2068              		.cfi_def_cfa_register 12
+ 2069 0004 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2070 0008 04B04CE2 		sub	fp, ip, #4
+ 2071              		.cfi_offset 14, -8
+ 2072              		.cfi_offset 13, -12
+ 2073              		.cfi_offset 11, -16
+ 2074              	.LCFI1:
+ 2075              		.cfi_def_cfa 11, 4
+ 2076 000c 08D04DE2 		sub	sp, sp, #8
+ 2077 0010 10000BE5 		str	r0, [fp, #-16]
+   9:../buffer.c   **** 
+  10:../buffer.c   **** 	clave[0] = clave[1];
+ 2078              		.loc 1 10 0
+ 2079 0014 40309FE5 		ldr	r3, .L2
+ 2080 0018 042093E5 		ldr	r2, [r3, #4]
+ 2081 001c 38309FE5 		ldr	r3, .L2
+ 2082 0020 002083E5 		str	r2, [r3, #0]
+  11:../buffer.c   **** 	clave[1] = clave[2];
+ 2083              		.loc 1 11 0
+ 2084 0024 30309FE5 		ldr	r3, .L2
+ 2085 0028 082093E5 		ldr	r2, [r3, #8]
+ 2086 002c 28309FE5 		ldr	r3, .L2
+ 2087 0030 042083E5 		str	r2, [r3, #4]
+  12:../buffer.c   **** 	clave[2] = clave[3];
+ 2088              		.loc 1 12 0
+ 2089 0034 20309FE5 		ldr	r3, .L2
+ 2090 0038 0C2093E5 		ldr	r2, [r3, #12]
+ 2091 003c 18309FE5 		ldr	r3, .L2
+ 2092 0040 082083E5 		str	r2, [r3, #8]
+  13:../buffer.c   **** 	clave[3] = nuevo;
+ 2093              		.loc 1 13 0
+ 2094 0044 10309FE5 		ldr	r3, .L2
+ 2095 0048 10201BE5 		ldr	r2, [fp, #-16]
+ 2096 004c 0C2083E5 		str	r2, [r3, #12]
+  14:../buffer.c   **** }
+ 2097              		.loc 1 14 0
+ 2098 0050 0CD04BE2 		sub	sp, fp, #12
+ 2099 0054 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2100 0058 1EFF2FE1 		bx	lr
+ 2101              	.L3:
+ 2102              		.align	2
+ 2103              	.L2:
+ 2104 005c 00000000 		.word	clave
+ 2105              		.cfi_endproc
+ 2106              	.LFE0:
+ 2108              		.align	2
+ 2109              		.global	leerClave
+ 2111              	leerClave:
+ 2112              	.LFB1:
+  15:../buffer.c   **** int leerClave(int posicion){
+ 2113              		.loc 1 15 0
+ 2114              		.cfi_startproc
+ 2115              		@ Function supports interworking.
+ 2116              		@ args = 0, pretend = 0, frame = 8
+ 2117              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2118 0060 0DC0A0E1 		mov	ip, sp
+ 2119              	.LCFI2:
+ 2120              		.cfi_def_cfa_register 12
+ 2121 0064 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2122 0068 04B04CE2 		sub	fp, ip, #4
+ 2123              		.cfi_offset 14, -8
+ 2124              		.cfi_offset 13, -12
+ 2125              		.cfi_offset 11, -16
+ 2126              	.LCFI3:
+ 2127              		.cfi_def_cfa 11, 4
+ 2128 006c 08D04DE2 		sub	sp, sp, #8
+ 2129 0070 10000BE5 		str	r0, [fp, #-16]
+  16:../buffer.c   **** 	return clave[posicion];
+ 2130              		.loc 1 16 0
+ 2131 0074 14309FE5 		ldr	r3, .L5
+ 2132 0078 10201BE5 		ldr	r2, [fp, #-16]
+ 2133 007c 023193E7 		ldr	r3, [r3, r2, asl #2]
+  17:../buffer.c   **** }
+ 2134              		.loc 1 17 0
+ 2135 0080 0300A0E1 		mov	r0, r3
+ 2136 0084 0CD04BE2 		sub	sp, fp, #12
+ 2137 0088 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2138 008c 1EFF2FE1 		bx	lr
+ 2139              	.L6:
+ 2140              		.align	2
+ 2141              	.L5:
+ 2142 0090 00000000 		.word	clave
+ 2143              		.cfi_endproc
+ 2144              	.LFE1:
+ 2146              		.align	2
+ 2147              		.global	insertarIntento
+ 2149              	insertarIntento:
+ 2150              	.LFB2:
+  18:../buffer.c   **** void insertarIntento (int nuevo){
+ 2151              		.loc 1 18 0
+ 2152              		.cfi_startproc
+ 2153              		@ Function supports interworking.
+ 2154              		@ args = 0, pretend = 0, frame = 8
+ 2155              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2156 0094 0DC0A0E1 		mov	ip, sp
+ 2157              	.LCFI4:
+ 2158              		.cfi_def_cfa_register 12
+ 2159 0098 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2160 009c 04B04CE2 		sub	fp, ip, #4
+ 2161              		.cfi_offset 14, -8
+ 2162              		.cfi_offset 13, -12
+ 2163              		.cfi_offset 11, -16
+ 2164              	.LCFI5:
+ 2165              		.cfi_def_cfa 11, 4
+ 2166 00a0 08D04DE2 		sub	sp, sp, #8
+ 2167 00a4 10000BE5 		str	r0, [fp, #-16]
+  19:../buffer.c   **** 
+  20:../buffer.c   **** 	intento[0] = intento[1];
+ 2168              		.loc 1 20 0
+ 2169 00a8 40309FE5 		ldr	r3, .L8
+ 2170 00ac 042093E5 		ldr	r2, [r3, #4]
+ 2171 00b0 38309FE5 		ldr	r3, .L8
+ 2172 00b4 002083E5 		str	r2, [r3, #0]
+  21:../buffer.c   **** 	intento[1] = intento[2];
+ 2173              		.loc 1 21 0
+ 2174 00b8 30309FE5 		ldr	r3, .L8
+ 2175 00bc 082093E5 		ldr	r2, [r3, #8]
+ 2176 00c0 28309FE5 		ldr	r3, .L8
+ 2177 00c4 042083E5 		str	r2, [r3, #4]
+  22:../buffer.c   **** 	intento[2] = intento[3];
+ 2178              		.loc 1 22 0
+ 2179 00c8 20309FE5 		ldr	r3, .L8
+ 2180 00cc 0C2093E5 		ldr	r2, [r3, #12]
+ 2181 00d0 18309FE5 		ldr	r3, .L8
+ 2182 00d4 082083E5 		str	r2, [r3, #8]
+  23:../buffer.c   **** 	intento[3] = nuevo;
+ 2183              		.loc 1 23 0
+ 2184 00d8 10309FE5 		ldr	r3, .L8
+ 2185 00dc 10201BE5 		ldr	r2, [fp, #-16]
+ 2186 00e0 0C2083E5 		str	r2, [r3, #12]
+  24:../buffer.c   **** }
+ 2187              		.loc 1 24 0
+ 2188 00e4 0CD04BE2 		sub	sp, fp, #12
+ 2189 00e8 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2190 00ec 1EFF2FE1 		bx	lr
+ 2191              	.L9:
+ 2192              		.align	2
+ 2193              	.L8:
+ 2194 00f0 00000000 		.word	intento
+ 2195              		.cfi_endproc
+ 2196              	.LFE2:
+ 2198              		.align	2
+ 2199              		.global	leerIntento
+ 2201              	leerIntento:
+ 2202              	.LFB3:
+  25:../buffer.c   **** int leerIntento(int posicion){
+ 2203              		.loc 1 25 0
+ 2204              		.cfi_startproc
+ 2205              		@ Function supports interworking.
+ 2206              		@ args = 0, pretend = 0, frame = 8
+ 2207              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2208 00f4 0DC0A0E1 		mov	ip, sp
+ 2209              	.LCFI6:
+ 2210              		.cfi_def_cfa_register 12
+ 2211 00f8 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2212 00fc 04B04CE2 		sub	fp, ip, #4
+ 2213              		.cfi_offset 14, -8
+ 2214              		.cfi_offset 13, -12
+ 2215              		.cfi_offset 11, -16
+ 2216              	.LCFI7:
+ 2217              		.cfi_def_cfa 11, 4
+ 2218 0100 08D04DE2 		sub	sp, sp, #8
+ 2219 0104 10000BE5 		str	r0, [fp, #-16]
+  26:../buffer.c   **** 	return intento[posicion];
+ 2220              		.loc 1 26 0
+ 2221 0108 14309FE5 		ldr	r3, .L11
+ 2222 010c 10201BE5 		ldr	r2, [fp, #-16]
+ 2223 0110 023193E7 		ldr	r3, [r3, r2, asl #2]
+  27:../buffer.c   **** }
+ 2224              		.loc 1 27 0
+ 2225 0114 0300A0E1 		mov	r0, r3
+ 2226 0118 0CD04BE2 		sub	sp, fp, #12
+ 2227 011c 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2228 0120 1EFF2FE1 		bx	lr
+ 2229              	.L12:
+ 2230              		.align	2
+ 2231              	.L11:
+ 2232 0124 00000000 		.word	intento
+ 2233              		.cfi_endproc
+ 2234              	.LFE3:
+ 2236              		.align	2
+ 2237              		.global	resetIntento
+ 2239              	resetIntento:
+ 2240              	.LFB4:
+  28:../buffer.c   **** void resetIntento(){
+ 2241              		.loc 1 28 0
+ 2242              		.cfi_startproc
+ 2243              		@ Function supports interworking.
+ 2244              		@ args = 0, pretend = 0, frame = 0
+ 2245              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2246 0128 0DC0A0E1 		mov	ip, sp
+ 2247              	.LCFI8:
+ 2248              		.cfi_def_cfa_register 12
+ 2249 012c 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2250 0130 04B04CE2 		sub	fp, ip, #4
+ 2251              		.cfi_offset 14, -8
+ 2252              		.cfi_offset 13, -12
+ 2253              		.cfi_offset 11, -16
+ 2254              	.LCFI9:
+ 2255              		.cfi_def_cfa 11, 4
+  29:../buffer.c   **** 	intento[0] = 0;
+ 2256              		.loc 1 29 0
+ 2257 0134 34309FE5 		ldr	r3, .L14
+ 2258 0138 0020A0E3 		mov	r2, #0
+ 2259 013c 002083E5 		str	r2, [r3, #0]
+  30:../buffer.c   **** 	intento[1] = 0;
+ 2260              		.loc 1 30 0
+ 2261 0140 28309FE5 		ldr	r3, .L14
+ 2262 0144 0020A0E3 		mov	r2, #0
+ 2263 0148 042083E5 		str	r2, [r3, #4]
+  31:../buffer.c   **** 	intento[2] = 0;
+ 2264              		.loc 1 31 0
+ 2265 014c 1C309FE5 		ldr	r3, .L14
+ 2266 0150 0020A0E3 		mov	r2, #0
+ 2267 0154 082083E5 		str	r2, [r3, #8]
+  32:../buffer.c   **** 	intento[3] = 0;
+ 2268              		.loc 1 32 0
+ 2269 0158 10309FE5 		ldr	r3, .L14
+ 2270 015c 0020A0E3 		mov	r2, #0
+ 2271 0160 0C2083E5 		str	r2, [r3, #12]
+  33:../buffer.c   **** }
+ 2272              		.loc 1 33 0
+ 2273 0164 0CD04BE2 		sub	sp, fp, #12
+ 2274 0168 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2275 016c 1EFF2FE1 		bx	lr
+ 2276              	.L15:
+ 2277              		.align	2
+ 2278              	.L14:
+ 2279 0170 00000000 		.word	intento
+ 2280              		.cfi_endproc
+ 2281              	.LFE4:
+ 2283              		.align	2
+ 2284              		.global	comparar
+ 2286              	comparar:
+ 2287              	.LFB5:
+  34:../buffer.c   **** int comparar(){
+ 2288              		.loc 1 34 0
+ 2289              		.cfi_startproc
+ 2290              		@ Function supports interworking.
+ 2291              		@ args = 0, pretend = 0, frame = 0
+ 2292              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2293 0174 0DC0A0E1 		mov	ip, sp
+ 2294              	.LCFI10:
+ 2295              		.cfi_def_cfa_register 12
+ 2296 0178 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 2297 017c 04B04CE2 		sub	fp, ip, #4
+ 2298              		.cfi_offset 14, -8
+ 2299              		.cfi_offset 13, -12
+ 2300              		.cfi_offset 11, -16
+ 2301              	.LCFI11:
+ 2302              		.cfi_def_cfa 11, 4
+  35:../buffer.c   **** 	if(clave[0] == intento[0])
+ 2303              		.loc 1 35 0
+ 2304 0180 74309FE5 		ldr	r3, .L19
+ 2305 0184 002093E5 		ldr	r2, [r3, #0]
+ 2306 0188 70309FE5 		ldr	r3, .L19+4
+ 2307 018c 003093E5 		ldr	r3, [r3, #0]
+ 2308 0190 030052E1 		cmp	r2, r3
+ 2309 0194 1300001A 		bne	.L17
+  36:../buffer.c   **** 		if(clave[1] == intento[1])
+ 2310              		.loc 1 36 0
+ 2311 0198 5C309FE5 		ldr	r3, .L19
+ 2312 019c 042093E5 		ldr	r2, [r3, #4]
+ 2313 01a0 58309FE5 		ldr	r3, .L19+4
+ 2314 01a4 043093E5 		ldr	r3, [r3, #4]
+ 2315 01a8 030052E1 		cmp	r2, r3
+ 2316 01ac 0D00001A 		bne	.L17
+  37:../buffer.c   **** 			if(clave[2] == intento[2])
+ 2317              		.loc 1 37 0
+ 2318 01b0 44309FE5 		ldr	r3, .L19
+ 2319 01b4 082093E5 		ldr	r2, [r3, #8]
+ 2320 01b8 40309FE5 		ldr	r3, .L19+4
+ 2321 01bc 083093E5 		ldr	r3, [r3, #8]
+ 2322 01c0 030052E1 		cmp	r2, r3
+ 2323 01c4 0700001A 		bne	.L17
+  38:../buffer.c   **** 				if(clave[3] == intento[3])
+ 2324              		.loc 1 38 0
+ 2325 01c8 2C309FE5 		ldr	r3, .L19
+ 2326 01cc 0C2093E5 		ldr	r2, [r3, #12]
+ 2327 01d0 28309FE5 		ldr	r3, .L19+4
+ 2328 01d4 0C3093E5 		ldr	r3, [r3, #12]
+ 2329 01d8 030052E1 		cmp	r2, r3
+ 2330 01dc 0100001A 		bne	.L17
+  39:../buffer.c   **** 					return 1;
+ 2331              		.loc 1 39 0
+ 2332 01e0 0130A0E3 		mov	r3, #1
+ 2333 01e4 000000EA 		b	.L18
+ 2334              	.L17:
+  40:../buffer.c   **** 	return 0;
+ 2335              		.loc 1 40 0
+ 2336 01e8 0030A0E3 		mov	r3, #0
+ 2337              	.L18:
+  41:../buffer.c   **** }
+ 2338              		.loc 1 41 0
+ 2339 01ec 0300A0E1 		mov	r0, r3
+ 2340 01f0 0CD04BE2 		sub	sp, fp, #12
+ 2341 01f4 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 2342 01f8 1EFF2FE1 		bx	lr
+ 2343              	.L20:
+ 2344              		.align	2
+ 2345              	.L19:
+ 2346 01fc 00000000 		.word	clave
+ 2347 0200 00000000 		.word	intento
+ 2348              		.cfi_endproc
+ 2349              	.LFE5:
+ 2351              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 buffer.c
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2047   .bss:00000000 clave
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2044   .bss:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2053   .bss:00000010 intento
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2056   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2059   .text:00000000 insertarClave
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2104   .text:0000005c $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2108   .text:00000060 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2111   .text:00000060 leerClave
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2142   .text:00000090 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2146   .text:00000094 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2149   .text:00000094 insertarIntento
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2194   .text:000000f0 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2198   .text:000000f4 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2201   .text:000000f4 leerIntento
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2232   .text:00000124 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2236   .text:00000128 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2239   .text:00000128 resetIntento
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2279   .text:00000170 $d
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2283   .text:00000174 $a
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2286   .text:00000174 comparar
+C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2346   .text:000001fc $d
+                     .debug_frame:00000010 $d
+
+NO UNDEFINED SYMBOLS
