@@ -27,8 +27,9 @@ extern void D8Led_symbol(int value);
 extern void TIMER_init(void);
 /*--- codigo de las funciones ---*/
 void guardaClave(){
+	modoTimer(3);
 	D8Led_symbol(symbol);  	/* muestra el simbolo inicial en el display */
-	rINTMSK |= BIT_TIMER1; // Enmascara el timer
+	rINTMSK &= ~BIT_TIMER1; // Enmascara el timer
 	while (key != 15){
 
 	}
@@ -45,11 +46,12 @@ void muestraClave(){
 void leeIntento(){
 	resetIntento();
 	D8Led_symbol(15);
-	rINTMSK |= BIT_TIMER1; // Enmascara el timer
+	modoTimer(3);
+	rINTMSK &= ~BIT_TIMER1; // Enmascara el timer
 	rINTMSK |= BIT_EINT1; //Inhabilita el keyboard
 	Uart_Printf("Introduzca clave\n");
 	inte = Uart_Getch();
-	while (inte != '\n'){
+	while (inte != '\r'){
 		insertarIntento(inte-'0');
 		inte = Uart_Getch();
 	}
