@@ -352,27 +352,27 @@
  2351              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 buffer.c
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2047   .bss:00000000 clave
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2044   .bss:00000000 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2053   .bss:00000010 intento
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2056   .text:00000000 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2059   .text:00000000 insertarClave
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2104   .text:0000005c $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2108   .text:00000060 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2111   .text:00000060 leerClave
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2142   .text:00000090 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2146   .text:00000094 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2149   .text:00000094 insertarIntento
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2194   .text:000000f0 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2198   .text:000000f4 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2201   .text:000000f4 leerIntento
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2232   .text:00000124 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2236   .text:00000128 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2239   .text:00000128 resetIntento
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2279   .text:00000170 $d
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2283   .text:00000174 $a
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2286   .text:00000174 comparar
-C:\Users\USUARI~1\AppData\Local\Temp\cc6s4nza.s:2346   .text:000001fc $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2047   .bss:00000000 clave
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2044   .bss:00000000 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2053   .bss:00000010 intento
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2056   .text:00000000 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2059   .text:00000000 insertarClave
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2104   .text:0000005c $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2108   .text:00000060 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2111   .text:00000060 leerClave
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2142   .text:00000090 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2146   .text:00000094 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2149   .text:00000094 insertarIntento
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2194   .text:000000f0 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2198   .text:000000f4 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2201   .text:000000f4 leerIntento
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2232   .text:00000124 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2236   .text:00000128 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2239   .text:00000128 resetIntento
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2279   .text:00000170 $d
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2283   .text:00000174 $a
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2286   .text:00000174 comparar
+C:\Users\USUARI~1\AppData\Local\Temp\ccVB4Cgz.s:2346   .text:000001fc $d
                      .debug_frame:00000010 $d
 
 NO UNDEFINED SYMBOLS

@@ -25,6 +25,7 @@ void timer_ISR(void) __attribute__ ((interrupt ("IRQ")));
 void timer_ISR(void)
 {  /*  TAREA 2a */
         /*Actualizar leds con cada int. del timer */
+	leds_switch ();
 	if (modoT == 0){
 		cuentaClave++;
 		D8Led_symbol(leerClave(posicion));
@@ -39,9 +40,11 @@ void timer_ISR(void)
 			posicion = 0;
 		else
 			posicion = posicion + 1;
-	}else{
+	}else if(modoT == 2)
+	{
 		cuentaAcierto++;
 	}
+
 	/* borrar bit en I_ISPC */
 	rI_ISPC |= BIT_TIMER1;
 	/*fin Tarea 2a*/

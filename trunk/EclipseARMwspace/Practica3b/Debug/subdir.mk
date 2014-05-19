@@ -8,6 +8,7 @@ C_SRCS += \
 ../8seg.c \
 ../buffer.c \
 ../keyboard.c \
+../led.c \
 ../main.c \
 ../timer.c \
 ../uart.c 
@@ -22,6 +23,7 @@ OBJS += \
 ./8seg.o \
 ./buffer.o \
 ./keyboard.o \
+./led.o \
 ./main.o \
 ./timer.o \
 ./timer_init.o \
@@ -32,6 +34,7 @@ C_DEPS += \
 ./8seg.d \
 ./buffer.d \
 ./keyboard.d \
+./led.d \
 ./main.d \
 ./timer.d \
 ./uart.d 
